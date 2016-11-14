@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_diet_plan_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@mipmap/background"
-    tools:context="project.martin.bepeakedprojekt.Diet_Plan.DietPlanMenu_akt">
+    android:orientation="vertical"
+    android:background="@mipmap/background">
+
+
+    <ExpandableListView
+        android:id="@+id/simpleExpandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" />
 
 </RelativeLayout>

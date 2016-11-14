@@ -20,9 +20,9 @@ public class Velcome_frag extends Fragment implements Runnable {
     Handler handler = new Handler();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rod = inflater.inflate(R.layout.velcome, container, false);
+        View rod = inflater.inflate(R.layout.fragment_velcome, container, false);
 
-        handler.postDelayed(this, 3000);
+        handler.postDelayed(this, 2000);
 
         return rod;
     }
