@@ -38,6 +38,7 @@ public class Login_akt extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         if(v == buttonLogin){
             Intent i = new Intent(this, MainMenu_akt.class);
+            Login_akt.this.finish();
             startActivity(i);
         }
         else if (v == opretBruger){

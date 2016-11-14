@@ -30,6 +30,7 @@ public class Velcome_frag extends Fragment implements Runnable {
     @Override
     public void run() {
         Intent i = new Intent(getActivity(), Login_akt.class);
+        getActivity().finish();
         startActivity(i);
     }
 }
