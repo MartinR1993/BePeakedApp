@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ele_ExerciseTitle"
+        android:layout_weight="1"
+        android:textSize="36sp" />
+
+    <ImageView
+        android:layout_height="49dp"
+        app:srcCompat="@drawable/ic_menu_send"
+        android:id="@+id/ele_image"
+        android:layout_weight="1.00"
+        android:layout_width="wrap_content" />
+</LinearLayout>

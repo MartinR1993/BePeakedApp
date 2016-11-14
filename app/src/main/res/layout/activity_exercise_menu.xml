@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_exercise_menu"
     android:layout_width="match_parent"
@@ -11,4 +12,9 @@
     android:background="@mipmap/background"
     tools:context="project.martin.bepeakedprojekt.Exercises.ExerciseMenu_akt">
 
-</RelativeLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:id="@+id/exerciseList" />
+</LinearLayout>

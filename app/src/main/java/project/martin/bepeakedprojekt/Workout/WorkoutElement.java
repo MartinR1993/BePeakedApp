@@ -33,7 +33,7 @@ public class WorkoutElement {
 
     @Override
     public String toString() {
-        return "WorkoutElement{" +
+        return "ExerciseElement{" +
                 "workoutName='" + workoutName + '\'' +
                 ", exercises=" + exercises +
                 '}';
