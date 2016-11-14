@@ -11,15 +11,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="project.martin.bepeakedprojekt.Login_akt"
     android:background="@mipmap/background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/bepeaked_logo"
+        android:layout_height="177dp"
+        app:srcCompat="@drawable/logotext"
         android:layout_gravity="center"
         android:id="@+id/imageView"
-        android:layout_marginBottom="11dp" />
+        android:layout_margin="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_weight="0.10" />
 
     <LinearLayout
         android:layout_gravity="center"

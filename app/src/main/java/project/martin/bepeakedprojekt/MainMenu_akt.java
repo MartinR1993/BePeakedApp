@@ -50,4 +50,5 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
     }
+
 }
