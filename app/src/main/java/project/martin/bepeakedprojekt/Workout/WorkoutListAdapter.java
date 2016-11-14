@@ -55,7 +55,7 @@ public class WorkoutListAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder = new Holder();
         View rowView;
-        rowView = inflater.inflate(R.layout.workout_liste_element, null);
+        rowView = inflater.inflate(R.layout.list_workout_element, null);
         WorkoutElement workoutelement = workoutList.get(position);
 
         holder.WorkoutTitle = (TextView) rowView.findViewById(R.id.wle_WorkoutTitle);

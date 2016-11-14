@@ -2,7 +2,6 @@ package project.martin.bepeakedprojekt.Exercises;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +54,7 @@ public class ExerciseListAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder = new Holder();
         View rowView;
-        rowView = inflater.inflate(R.layout.exercise_list_element, null);
+        rowView = inflater.inflate(R.layout.list_exercise_element, null);
         ExerciseElement exerciseElement = exerciseList.get(position);
 
         holder.ExerciseTitle = (TextView) rowView.findViewById(R.id.ele_ExerciseTitle);
