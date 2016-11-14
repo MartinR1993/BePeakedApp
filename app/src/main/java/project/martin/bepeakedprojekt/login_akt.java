@@ -35,8 +35,6 @@ public class login_akt extends AppCompatActivity implements View.OnClickListener
 
         opretBruger = (TextView) findViewById(R.id.opretBruger);
         opretBruger.setOnClickListener(this);
-
-
     }
 
     @Override

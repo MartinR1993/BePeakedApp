@@ -13,7 +13,7 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
+        setTitle("Menu");
         workoutButton = (Button) findViewById(R.id.WorkoutButton);
         workoutButton.setOnClickListener(this);
 
