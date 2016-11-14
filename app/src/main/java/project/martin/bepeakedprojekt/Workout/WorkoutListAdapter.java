@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class WorkoutListAdapter extends BaseAdapter {
     {
         protected TextView WorkoutTitle;
         protected TextView Exercises;
+        protected ImageView image;
     }
 
     @Override
@@ -58,13 +60,14 @@ public class WorkoutListAdapter extends BaseAdapter {
 
         holder.WorkoutTitle = (TextView) rowView.findViewById(R.id.wle_WorkoutTitle);
         holder.Exercises = (TextView) rowView.findViewById(R.id.wle_Exercises);
-
+        holder.image = (ImageView) rowView.findViewById(R.id.wle_Image);
 
         String workoutTitle = workoutelement.getWorkoutName();
         ArrayList<String> exercises = workoutelement.getExercises();
 
         holder.WorkoutTitle.setText(workoutTitle);
         holder.Exercises.setText(exercises.toString());
+        holder.image.setImageResource(workoutelement.getImage());
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override

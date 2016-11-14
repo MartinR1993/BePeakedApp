@@ -19,8 +19,8 @@ public class ExerciseMenu_akt extends AppCompatActivity {
         setTitle("Exercises");
 
         ArrayList<ExerciseElement> list = new ArrayList<>();
-        list.add(new ExerciseElement("Exercise 1", R.mipmap.ic_launcher));
-        list.add(new ExerciseElement("Exercise 2", R.mipmap.ic_launcher));
+        list.add(new ExerciseElement("Exercise 1", R.drawable.forward));
+        list.add(new ExerciseElement("Exercise 2", R.drawable.forward));
 
         ListView lv = (ListView) findViewById(R.id.exerciseList);
         lv.setAdapter(new ExerciseListAdapter(this,list));

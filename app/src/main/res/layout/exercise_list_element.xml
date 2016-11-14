@@ -14,8 +14,7 @@
 
     <ImageView
         android:layout_height="49dp"
-        app:srcCompat="@drawable/ic_menu_send"
+        app:srcCompat="@drawable/forward"
         android:id="@+id/ele_image"
-        android:layout_weight="1.00"
-        android:layout_width="wrap_content" />
+        android:layout_width="49dp" />
 </LinearLayout>

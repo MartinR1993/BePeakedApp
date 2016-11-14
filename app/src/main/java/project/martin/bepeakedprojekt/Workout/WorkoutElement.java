@@ -9,10 +9,21 @@ import java.util.ArrayList;
 public class WorkoutElement {
     private String workoutName;
     ArrayList<String> exercises;
+    private int image;
 
-    public WorkoutElement(String workoutName, ArrayList<String> exercises) {
+
+    public WorkoutElement(String workoutName, ArrayList<String> exercises, int image) {
         this.exercises = exercises;
         this.workoutName = workoutName;
+        this.image = image;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     public String getWorkoutName() {
@@ -33,9 +44,10 @@ public class WorkoutElement {
 
     @Override
     public String toString() {
-        return "ExerciseElement{" +
+        return "WorkoutElement{" +
                 "workoutName='" + workoutName + '\'' +
                 ", exercises=" + exercises +
+                ", image=" + image +
                 '}';
     }
 }
