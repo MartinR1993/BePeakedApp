@@ -3,7 +3,7 @@ package project.martin.bepeakedprojekt;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ExerciseMenu extends AppCompatActivity {
+public class ExerciseMenu_akt extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

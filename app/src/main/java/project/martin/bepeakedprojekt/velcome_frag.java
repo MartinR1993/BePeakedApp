@@ -16,7 +16,7 @@ import android.view.ViewGroup;
  * Created by Martin on 09-11-2016.
  */
 
-public class velcome_frag extends Fragment implements Runnable {
+public class Velcome_frag extends Fragment implements Runnable {
     Handler handler = new Handler();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class velcome_frag extends Fragment implements Runnable {
 
     @Override
     public void run() {
-        Intent i = new Intent(getActivity(), login_akt.class);
+        Intent i = new Intent(getActivity(), Login_akt.class);
         startActivity(i);
     }
 }

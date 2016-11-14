@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class mainMenu extends AppCompatActivity implements View.OnClickListener {
+public class MainMenu_akt extends AppCompatActivity implements View.OnClickListener {
 
     Button exerciseButton, workoutButton, dietplanButton ;
     @Override
@@ -28,15 +28,15 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if(v == workoutButton){
-            Intent i = new Intent(this, WorkoutMenu.class);
+            Intent i = new Intent(this, WorkoutMenu_akt.class);
             startActivity(i);
         }
         else if(v == exerciseButton){
-            Intent i = new Intent(this, ExerciseMenu.class);
+            Intent i = new Intent(this, ExerciseMenu_akt.class);
             startActivity(i);
         }
         else if(v == dietplanButton){
-            Intent i = new Intent(this, DietPlanMenu.class);
+            Intent i = new Intent(this, DietPlanMenu_akt.class);
             startActivity(i);
         }
     }

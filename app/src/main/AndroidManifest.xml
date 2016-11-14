@@ -17,11 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login_akt" />
-        <activity android:name=".mainMenu" />
-        <activity android:name=".WorkoutMenu" />
-        <activity android:name=".ExerciseMenu" />
-        <activity android:name=".DietPlanMenu"></activity>
+        <activity android:name=".Login_akt" />
+        <activity android:name=".MainMenu_akt" />
+        <activity android:name=".WorkoutMenu_akt" />
+        <activity android:name=".ExerciseMenu_akt" />
+        <activity android:name=".DietPlanMenu_akt"></activity>
     </application>
 
 </manifest>
