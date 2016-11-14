@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -49,6 +50,23 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        if (item.getItemId() == R.id.logout) {
+            System.out.println("Du er nu logget ud");
+            Intent i = new Intent(this, Login_akt.class);
+            MainMenu_akt.this.finish();
+            startActivity(i);
+        }
+        else if(item.getItemId() == R.id.settings){
+            System.out.println("Du har valgt indstillinger");
+            //Intent i = new Intent(this, Settings.class);
+            //startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
 }
