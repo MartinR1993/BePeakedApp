@@ -20,8 +20,8 @@
         <activity android:name=".Login_akt" />
         <activity android:name=".MainMenu_akt" />
         <activity android:name=".Workout.WorkoutMenu_akt" />
-        <activity android:name=".ExerciseMenu_akt" />
-        <activity android:name=".DietPlanMenu_akt"></activity>
+        <activity android:name=".Exercises.ExerciseMenu_akt" />
+        <activity android:name=".Diet_Plan.DietPlanMenu_akt"></activity>
     </application>
 
 </manifest>
