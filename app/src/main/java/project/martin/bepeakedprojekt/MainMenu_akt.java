@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
+
 public class MainMenu_akt extends AppCompatActivity implements View.OnClickListener {
 
     Button exerciseButton, workoutButton, dietplanButton ;
