@@ -18,10 +18,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".login_akt" />
-        <activity
-            android:name=".mainMenu_akt"
-            android:label="@string/title_activity_main_menu_akt"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".mainMenu" />
         <activity android:name=".WorkoutMenu" />
         <activity android:name=".ExerciseMenu" />
