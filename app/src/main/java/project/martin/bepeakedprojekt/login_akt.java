@@ -42,8 +42,8 @@ public class login_akt extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if(v == buttonLogin){
-            /*Intent i = new Intent(this, mainMenu_akt.class);
-            startActivity(i);*/
+            Intent i = new Intent(this, mainMenu.class);
+            startActivity(i);
         }
         else if (v == opretBruger){
             System.out.println("Opret bruger");
