@@ -25,6 +25,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         View rod = inflater.inflate(R.layout.frag_exercise_results, container, false);
 
         resultbutton = (Button) rod.findViewById(R.id.ex_results_button);
+        resultbutton.setOnClickListener(this);
 
         graph = (ImageView) rod.findViewById(R.id.ex_graph);
         view = (GridView) rod.findViewById(R.id.ex_gridview);
@@ -37,6 +38,11 @@ public class Result_frag extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
+        if(v == resultbutton){
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.ex_fragment, new Description_frag())
+                    .commit();
+        }
     }
 }
