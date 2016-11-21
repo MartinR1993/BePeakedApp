@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.Diet_Plan;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import java.util.LinkedHashMap;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.ChildInfo;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.DietPlanAdapter;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.GroupInfo;
+import project.martin.bepeakedprojekt.Login_akt;
 import project.martin.bepeakedprojekt.R;
 
 public class DietPlanMenu_akt extends AppCompatActivity {
