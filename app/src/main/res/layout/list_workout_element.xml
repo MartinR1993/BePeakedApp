@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="right">
+    android:layout_height="wrap_content"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="vertical"
@@ -12,7 +12,7 @@
 
         <TextView
             android:text="TextView"
-            android:layout_width="327dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/wle_WorkoutTitle"
             android:textSize="36sp" />
@@ -23,14 +23,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/wle_Exercises"
             android:textSize="14sp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp" />
 
     </LinearLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/forward"
-        android:id="@+id/wle_Image" />
+        android:id="@+id/wle_Image"
+        android:focusable="false"
+        android:layout_gravity="right"/>
 
 </LinearLayout>
