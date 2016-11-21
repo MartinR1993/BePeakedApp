@@ -21,7 +21,7 @@ public class Exercise_akt extends AppCompatActivity {
                     .commit();
         }
 
-        setTitle("Øvelsens navn");
+        setTitle("Øvelsens navn Description");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }

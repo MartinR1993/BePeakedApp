@@ -24,6 +24,7 @@
         <activity android:name=".Diet_Plan.DietPlanMenu_akt" />
         <activity android:name=".Exercises.Exercise.Exercise_akt" />
         <activity android:name=".Diet_Plan.Recipe.Recipe_akt"></activity>
+        <activity android:name=".Workout.WorkoutExercises.Workout_Exercises_akt"/>
     </application>
 
 </manifest>

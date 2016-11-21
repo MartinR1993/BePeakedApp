@@ -40,6 +40,7 @@ public class Description_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v == descriptionbutton){
+            getActivity().setTitle("Øvelsens navn Results");
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.ex_fragment, new Result_frag())

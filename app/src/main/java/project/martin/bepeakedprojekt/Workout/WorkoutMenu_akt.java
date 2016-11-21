@@ -21,8 +21,8 @@ public class WorkoutMenu_akt extends AppCompatActivity {
         setContentView(R.layout.activity_workout_menu);
         setTitle("Workouts");
         ArrayList<String> exercises = new ArrayList<>();
-        exercises.add("ryg");
-        exercises.add("mave");
+        exercises.add("Benchpress");
+        exercises.add("Push Ups");
 
         ArrayList<WorkoutElement> list = new ArrayList<>();
         list.add(new WorkoutElement("Workout 1", exercises, R.drawable.forward));

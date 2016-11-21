@@ -1,4 +1,4 @@
-package project.martin.bepeakedprojekt.Workout;
+package project.martin.bepeakedprojekt.Workout.WorkoutExercises;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,29 +14,30 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Exercises.Exercise.Exercise_akt;
+import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
-import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
 
 /**
  * Created by Martin on 14-11-2016.
  */
 
-public class WorkoutListAdapter extends BaseAdapter {
+public class WorkoutExercisesListAdapter extends BaseAdapter {
     private final Context context;
     private static LayoutInflater inflater = null;
-    private ArrayList<WorkoutElement> workoutList;
+    private ArrayList<ExerciseElement> exerciseList;
     private Activity akt;
 
-    public WorkoutListAdapter(Activity activity, ArrayList<WorkoutElement> workoutList) {
+
+    public WorkoutExercisesListAdapter(Activity activity, ArrayList<ExerciseElement> exerciseList) {
         context = activity;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.workoutList = workoutList;
+        this.exerciseList = exerciseList;
         this.akt = activity;
     }
 
     @Override
     public int getCount() {
-        return workoutList.size();
+        return exerciseList.size();
     }
 
     @Override
@@ -51,8 +52,7 @@ public class WorkoutListAdapter extends BaseAdapter {
 
     private class Holder
     {
-        protected TextView WorkoutTitle;
-        protected TextView Exercises;
+        protected TextView ExerciseTitle;
         protected ImageView image;
     }
 
@@ -60,29 +60,28 @@ public class WorkoutListAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder = new Holder();
         View rowView;
-        rowView = inflater.inflate(R.layout.list_workout_element, null);
-        WorkoutElement workoutelement = workoutList.get(position);
+        rowView = inflater.inflate(R.layout.list_exercise_element, null);
+        ExerciseElement exerciseElement = exerciseList.get(position);
 
-        holder.WorkoutTitle = (TextView) rowView.findViewById(R.id.wle_WorkoutTitle);
-        holder.Exercises = (TextView) rowView.findViewById(R.id.wle_Exercises);
-        holder.image = (ImageView) rowView.findViewById(R.id.wle_Image);
+        holder.ExerciseTitle = (TextView) rowView.findViewById(R.id.ele_ExerciseTitle);
+        holder.image = (ImageView) rowView.findViewById(R.id.ele_image);
 
-        String workoutTitle = workoutelement.getWorkoutName();
-        ArrayList<String> exercises = workoutelement.getExercises();
+        String exerciseTitle = exerciseElement.getExerciseName();
 
-        holder.WorkoutTitle.setText(workoutTitle);
-        holder.Exercises.setText(exercises.toString());
-        holder.image.setImageResource(workoutelement.getImage());
+        holder.ExerciseTitle.setText(exerciseTitle);
+        holder.image.setImageResource(exerciseElement.getImageID());
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(akt, Workout_Exercises_akt.class);
-                akt.startActivity(i);
+                if(position == 0) {
+                    Intent i = new Intent(akt, Exercise_akt.class);
+                    akt.startActivity(i);
+                }
+                else
+                    Toast.makeText(context, "Ikke implementeret endnu...", Toast.LENGTH_LONG).show();
             }
         });
         return rowView;
     }
-
-
 }
