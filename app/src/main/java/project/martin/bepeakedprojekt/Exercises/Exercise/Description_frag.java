@@ -27,9 +27,9 @@ public class Description_frag extends Fragment implements View.OnClickListener {
         descriptionbutton.setOnClickListener(this);
 
         before = (ImageView) rod.findViewById(R.id.ex_imagebefore);
-        before.setImageResource(R.drawable.bepeaked);
+        before.setImageResource(R.drawable.benchpressbefore);
         after = (ImageView) rod.findViewById(R.id.ex_imageafter);
-        after.setImageResource(R.drawable.bepeaked_logo);
+        after.setImageResource(R.drawable.benchpressafter);
 
         description = (TextView) rod.findViewById(R.id.ex_descriptiontext);
         description.setText("Her skal beskrivelsen af øvelsen stå");
@@ -40,7 +40,7 @@ public class Description_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v == descriptionbutton){
-            getActivity().setTitle("Øvelsens navn Results");
+            getActivity().setTitle("Benchpress Results");
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.ex_fragment, new Result_frag())
