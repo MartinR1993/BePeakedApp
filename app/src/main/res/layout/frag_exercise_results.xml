@@ -31,12 +31,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        app:srcCompat="@drawable/plus_white_stor"
+        app:srcCompat="@drawable/ic_add"
         android:id="@+id/floatingActionButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        app:backgroundTint="@android:color/holo_green_light"
-        app:fabSize="normal" />
+        app:backgroundTint="#5BBA78"
+        app:fabSize="mini" />
 </RelativeLayout>

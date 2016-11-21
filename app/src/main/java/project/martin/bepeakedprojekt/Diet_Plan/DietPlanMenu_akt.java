@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.ChildInfo;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.DietPlanAdapter;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.GroupInfo;
+import project.martin.bepeakedprojekt.Diet_Plan.Recipe.Recipe_akt;
 import project.martin.bepeakedprojekt.Login_akt;
 import project.martin.bepeakedprojekt.R;
 
@@ -52,8 +53,15 @@ public class DietPlanMenu_akt extends AppCompatActivity {
                 //get the child info
                 ChildInfo detailInfo =  headerInfo.getProductList().get(childPosition);
                 //display it or do something with it
-                Toast.makeText(getBaseContext(), " Clicked on : " + headerInfo.getName()
-                        + "/" + detailInfo.getName(), Toast.LENGTH_LONG).show();
+                if(groupPosition == 0 && childPosition == 0) {
+                    Intent intent = new Intent(DietPlanMenu_akt.this, Recipe_akt.class);
+                    intent.putExtra("description", "Proteinsmoothie & Æg");
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getBaseContext(), " Clicked on : " + headerInfo.getName()
+                            + "/" + detailInfo.getName(), Toast.LENGTH_LONG).show();
+                }
                 return false;
             }
         });
@@ -101,7 +109,7 @@ public class DietPlanMenu_akt extends AppCompatActivity {
     //load some initial data into our list
     private void loadData(){
 
-        addProduct("Breakfast","Havregryn");
+        addProduct("Breakfast","Proteinsmoothie & Æg");
         addProduct("Breakfast","Skyr");
         addProduct("Breakfast","Banan Pandekager");
 

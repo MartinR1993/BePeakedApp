@@ -23,5 +23,6 @@
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rc_description" />
+        android:id="@+id/rc_description"
+        android:textSize="18sp" />
 </LinearLayout>
