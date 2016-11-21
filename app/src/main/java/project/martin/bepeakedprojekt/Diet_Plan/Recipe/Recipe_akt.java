@@ -23,6 +23,7 @@ public class Recipe_akt extends AppCompatActivity {
 
         image = (ImageView) findViewById(R.id.rc_image);
         //TODO
+        //Lav det for diverse opskrifter
         image.setImageResource(R.drawable.proteinsmothie);
         descriptionView = (TextView) findViewById(R.id.rc_description);
         descriptionView.setText("1. Bland skyr, isterninger, havregryn, blåbær og proteinpulver i den beskrevne mængde og blend det i 2-3 minutter. " +
