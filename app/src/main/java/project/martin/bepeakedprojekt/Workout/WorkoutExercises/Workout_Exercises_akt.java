@@ -25,7 +25,8 @@ public class Workout_Exercises_akt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_menu);
-        setTitle("Exercises");
+        String workout = getIntent().getStringExtra("workout");
+        setTitle(workout);
 
         ArrayList<ExerciseElement> list = new ArrayList<>();
         list.add(new ExerciseElement("Benchpress", R.drawable.forward));

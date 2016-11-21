@@ -77,8 +77,16 @@ public class WorkoutListAdapter extends BaseAdapter {
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(akt, Workout_Exercises_akt.class);
-                akt.startActivity(i);
+                if (position == 0) {
+                    Intent i = new Intent(akt, Workout_Exercises_akt.class);
+                    i.putExtra("workout", "Workout 1");
+                    akt.startActivity(i);
+                }
+                else if(position == 1){
+                    Intent i = new Intent(akt, Workout_Exercises_akt.class);
+                    i.putExtra("workout", "Workout 2");
+                    akt.startActivity(i);
+                }
             }
         });
         return rowView;
