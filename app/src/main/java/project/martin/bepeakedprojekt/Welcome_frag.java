@@ -20,7 +20,7 @@ public class Welcome_frag extends Fragment implements Runnable {
     Handler handler = new Handler();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rod = inflater.inflate(R.layout.fragment_velcome, container, false);
+        View rod = inflater.inflate(R.layout.frag_velcome, container, false);
 
         handler.postDelayed(this, 2000);
 
