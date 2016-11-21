@@ -4,6 +4,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:text="Description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ex_results_button" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

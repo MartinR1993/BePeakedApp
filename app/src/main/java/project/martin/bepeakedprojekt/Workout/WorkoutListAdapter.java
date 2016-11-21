@@ -2,6 +2,7 @@ package project.martin.bepeakedprojekt.Workout;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import project.martin.bepeakedprojekt.Exercises.Exercise.Exercise_akt;
 import project.martin.bepeakedprojekt.R;
 
 /**
@@ -22,11 +24,13 @@ public class WorkoutListAdapter extends BaseAdapter {
     private final Context context;
     private static LayoutInflater inflater = null;
     private ArrayList<WorkoutElement> workoutList;
+    private Activity akt;
 
     public WorkoutListAdapter(Activity activity, ArrayList<WorkoutElement> workoutList) {
         context = activity;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.workoutList = workoutList;
+        this.akt = activity;
     }
 
     @Override
@@ -72,9 +76,12 @@ public class WorkoutListAdapter extends BaseAdapter {
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, workoutList.get(position).getWorkoutName(), Toast.LENGTH_LONG).show();
+                Intent i = new Intent(akt, Exercise_akt.class);
+                akt.startActivity(i);
             }
         });
         return rowView;
     }
+
+
 }
