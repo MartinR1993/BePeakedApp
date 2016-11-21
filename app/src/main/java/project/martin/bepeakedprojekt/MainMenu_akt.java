@@ -1,12 +1,14 @@
 package project.martin.bepeakedprojekt;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import project.martin.bepeakedprojekt.Diet_Plan.DietPlanMenu_akt;
 import project.martin.bepeakedprojekt.Exercises.ExerciseMenu_akt;
@@ -20,6 +22,11 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         setTitle("Menu");
+        /*HER KAN DER SÆTTES ET LOGO TIL HOVEDMENUBAREN
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.drawable.bepeakedlogo);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);*/
         workoutButton = (Button) findViewById(R.id.WorkoutButton);
         workoutButton.setOnClickListener(this);
 
@@ -62,6 +69,8 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         }
         else if(item.getItemId() == R.id.settings){
             System.out.println("Du har valgt indstillinger");
+            Toast.makeText(this, "Ikke implementeret endnu...", Toast.LENGTH_LONG).show();
+
             //Intent i = new Intent(this, Settings.class);
             //startActivity(i);
         }

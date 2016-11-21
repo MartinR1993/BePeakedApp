@@ -3,10 +3,12 @@ package project.martin.bepeakedprojekt.Workout;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,15 @@ public class WorkoutMenu_akt extends AppCompatActivity {
         if(item.getItemId() == android.R.id.home){
             onBackPressed();
         }
+        else if(item.getItemId() == R.id.add){
+            Toast.makeText(this, "Her skal tilføjes et workout", Toast.LENGTH_LONG).show();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.addmenu, menu);
+        return true;
     }
 }
