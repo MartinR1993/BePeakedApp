@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle(" ");
         
         if (savedInstanceState == null){
-            Fragment fragment = new Velcome_frag();
+            Fragment fragment = new Welcome_frag();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragmentindhold, fragment)
                     .commit();

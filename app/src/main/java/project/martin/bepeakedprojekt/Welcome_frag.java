@@ -16,7 +16,7 @@ import android.view.ViewGroup;
  * Created by Martin on 09-11-2016.
  */
 
-public class Velcome_frag extends Fragment implements Runnable {
+public class Welcome_frag extends Fragment implements Runnable {
     Handler handler = new Handler();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
