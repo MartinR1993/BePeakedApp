@@ -3,6 +3,7 @@ package project.martin.bepeakedprojekt.Exercises.Exercise;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,5 +22,13 @@ public class Exercise_akt extends AppCompatActivity {
         }
 
         setTitle("Øvelsens navn");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == android.R.id.home){
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
