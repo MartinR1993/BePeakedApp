@@ -2,6 +2,8 @@ package project.martin.bepeakedprojekt.Exercises.Exercise;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
     ImageView graph;
     GridView view;
     Button resultbutton;
+    FloatingActionButton fab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,8 +33,15 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         graph = (ImageView) rod.findViewById(R.id.ex_graph);
         view = (GridView) rod.findViewById(R.id.ex_gridview);
 
-        //TODO
-        //Mangler floating button, som kan tilføje et nyt resultat til gridviewet.
+        fab = (FloatingActionButton) rod.findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         return rod;
     }
