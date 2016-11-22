@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/resultsbillede">
+    android:layout_height="match_parent">
+    <!--android:background="@mipmap/resultsbillede">-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,10 +21,98 @@
         app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/ex_graph" />
 
-    <GridView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/ex_gridview" />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/res_tableresult">
+        </TableLayout>
+
+        <!--<GridView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:id="@+id/ex_gridview" />-->
+
+        <!--<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--xmlns:tools="http://schemas.android.com/tools"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#CCC"-->
+            <!--android:paddingTop="1dp"-->
+            <!--android:stretchColumns="0"-->
+            <!--android:id="@+id/tlTable01">-->
+
+            <!--<TableRow-->
+                <!--android:background="#CCC"-->
+                <!--android:paddingBottom="1dp"-->
+                <!--android:paddingRight="1dp">-->
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="1dp"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:background="#FFF"-->
+                    <!--android:text="Item1"/>-->
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="1dp"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:background="#FFF"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="123456"/>-->
+            <!--</TableRow>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent" >-->
+
+                <!--<View style="@style/Divider_invisible" />-->
+            <!--</LinearLayout>-->
+
+            <!--<TableRow-->
+                <!--android:background="#CCC"-->
+                <!--android:paddingBottom="1dp"-->
+                <!--android:paddingRight="1dp">-->
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="1dp"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:background="#FFF"-->
+                    <!--android:text="Item2"/>-->
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="1dp"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:background="#FFF"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="456789"/>-->
+            <!--</TableRow>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent" >-->
+
+                <!--<View style="@style/Divider" />-->
+            <!--</LinearLayout>-->
+
+            <!--<TableRow-->
+                <!--android:background="#CCC"-->
+                <!--android:paddingBottom="1dp"-->
+                <!--android:paddingRight="1dp">-->
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="1dp"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:background="#FFF"-->
+                    <!--android:text="Item2"/>-->
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="1dp"-->
+                    <!--android:padding="5dp"-->
+                    <!--android:background="#FFF"-->
+                    <!--android:gravity="right"-->
+                    <!--android:text="456789"/>-->
+            <!--</TableRow>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent" >-->
+
+                <!--<View style="@style/Divider" />-->
+            <!--</LinearLayout>-->
+        <!--</TableLayout>-->
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

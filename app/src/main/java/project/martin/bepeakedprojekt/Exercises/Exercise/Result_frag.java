@@ -1,7 +1,7 @@
 package project.martin.bepeakedprojekt.Exercises.Exercise;
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import project.martin.bepeakedprojekt.R;
 
@@ -18,10 +21,10 @@ import project.martin.bepeakedprojekt.R;
  */
 
 public class Result_frag extends Fragment implements View.OnClickListener {
-    ImageView graph;
-    GridView view;
-    Button resultbutton;
-    FloatingActionButton fab;
+    private ImageView graph;
+    private GridView view;
+    private Button resultbutton;
+    private FloatingActionButton fab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         resultbutton.setOnClickListener(this);
 
         graph = (ImageView) rod.findViewById(R.id.ex_graph);
-        view = (GridView) rod.findViewById(R.id.ex_gridview);
+//        view = (GridView) rod.findViewById(R.id.ex_gridview);
 
         fab = (FloatingActionButton) rod.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +45,30 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                         .setAction("Action", null).show();
             }
         });
+
+        TableLayout table = (TableLayout) rod.findViewById(R.id.res_tableresult);
+
+        TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
+//        TextView col1 = (TextView) row.findViewById(R.id.resta_col1);
+        ((TextView) row.findViewById(R.id.resta_col1)).setText("R0C1");
+        ((TextView) row.findViewById(R.id.resta_col2)).setText("R0C2");
+        ((TextView) row.findViewById(R.id.resta_col3)).setText("R0C3");
+        ((Button) row.findViewById(R.id.resta_button)).setText("R0B1");
+        table.addView(row);
+
+        row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
+        ((TextView) row.findViewById(R.id.resta_col1)).setText("R1C1");
+        ((TextView) row.findViewById(R.id.resta_col2)).setText("R1C2");
+        ((TextView) row.findViewById(R.id.resta_col3)).setText("R1C3");
+        ((Button) row.findViewById(R.id.resta_button)).setText("R1B1");
+        table.addView(row);
+
+        row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
+        ((TextView) row.findViewById(R.id.resta_col1)).setText("R2C1");
+        ((TextView) row.findViewById(R.id.resta_col2)).setText("R2C2");
+        ((TextView) row.findViewById(R.id.resta_col3)).setText("R2C3");
+        ((Button) row.findViewById(R.id.resta_button)).setText("R2B1");
+        table.addView(row);
 
         return rod;
     }
