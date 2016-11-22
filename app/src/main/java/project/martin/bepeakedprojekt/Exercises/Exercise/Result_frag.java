@@ -65,19 +65,14 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         row.findViewById(R.id.resta_button).setVisibility(View.INVISIBLE);
         table.addView(row);
 
-        row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
-        ((TextView) row.findViewById(R.id.resta_col1)).setText("R1C1");
-        ((TextView) row.findViewById(R.id.resta_col2)).setText("R1C2");
-        ((TextView) row.findViewById(R.id.resta_col3)).setText("R1C3");
-        ((Button) row.findViewById(R.id.resta_button)).setText("R1B1");
-        table.addView(row);
-
-        row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
-        ((TextView) row.findViewById(R.id.resta_col1)).setText("R2C1");
-        ((TextView) row.findViewById(R.id.resta_col2)).setText("R2C2");
-        ((TextView) row.findViewById(R.id.resta_col3)).setText("R2C3");
-        ((Button) row.findViewById(R.id.resta_button)).setText("R2B1");
-        table.addView(row);
+        for (int i = 1; i < 15; i++) {
+            row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
+            ((TextView) row.findViewById(R.id.resta_col1)).setText("R" + i + "C1");
+            ((TextView) row.findViewById(R.id.resta_col2)).setText("R" + i + "C2");
+            ((TextView) row.findViewById(R.id.resta_col3)).setText("R" + i + "C3");
+            ((Button) row.findViewById(R.id.resta_button)).setText("R" + i + "B1");
+            table.addView(row);
+        }
 
         return rod;
     }
