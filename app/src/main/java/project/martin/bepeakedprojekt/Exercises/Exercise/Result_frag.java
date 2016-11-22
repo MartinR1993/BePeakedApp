@@ -48,12 +48,21 @@ public class Result_frag extends Fragment implements View.OnClickListener {
 
         TableLayout table = (TableLayout) rod.findViewById(R.id.res_tableresult);
 
+        //TODO: This is just dummy data.
         TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
-//        TextView col1 = (TextView) row.findViewById(R.id.resta_col1);
-        ((TextView) row.findViewById(R.id.resta_col1)).setText("R0C1");
-        ((TextView) row.findViewById(R.id.resta_col2)).setText("R0C2");
-        ((TextView) row.findViewById(R.id.resta_col3)).setText("R0C3");
-        ((Button) row.findViewById(R.id.resta_button)).setText("R0B1");
+        TextView col1 = (TextView) row.findViewById(R.id.resta_col1);
+        col1.setTextAppearance(getActivity(), R.style.resta_header);
+        col1.setText("Weight");
+        TextView col2 = (TextView) row.findViewById(R.id.resta_col2);
+        col2.setTextAppearance(getActivity(), R.style.resta_header);
+        col2.setText("Reps");
+        TextView col3 = (TextView) row.findViewById(R.id.resta_col3);
+        col3.setTextAppearance(getActivity(), R.style.resta_header);
+        col3.setText("1-RM");
+        row.findViewById(R.id.resta_div1).setVisibility(View.INVISIBLE);
+        row.findViewById(R.id.resta_div2).setVisibility(View.INVISIBLE);
+        row.findViewById(R.id.resta_div3).setVisibility(View.INVISIBLE);
+        row.findViewById(R.id.resta_button).setVisibility(View.INVISIBLE);
         table.addView(row);
 
         row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);

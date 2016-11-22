@@ -17,7 +17,8 @@
         android:layout_width="1dp"
         android:layout_height="match_parent" >
 
-        <View style="@style/Divider" />
+        <View style="@style/Divider"
+            android:id="@+id/resta_div1" />
     </LinearLayout>
 
     <TextView
@@ -33,7 +34,8 @@
         android:layout_width="1dp"
         android:layout_height="match_parent" >
 
-        <View style="@style/Divider" />
+        <View style="@style/Divider"
+            android:id="@+id/resta_div2" />
     </LinearLayout>
 
     <TextView
@@ -47,7 +49,8 @@
         android:layout_width="1dp"
         android:layout_height="match_parent" >
 
-        <View style="@style/Divider" />
+        <View style="@style/Divider"
+            android:id="@+id/resta_div3" />
     </LinearLayout>
 
     <Button
@@ -57,7 +60,6 @@
         android:layout_height="wrap_content"
         style="@android:style/Widget.Holo.Button"
         android:backgroundTint="@android:drawable/screen_background_light_transparent"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textStyle="normal|bold" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
 </TableRow>
