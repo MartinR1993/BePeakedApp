@@ -17,7 +17,7 @@ import android.view.ViewGroup;
  */
 
 public class Welcome_frag extends Fragment implements Runnable {
-    Handler handler = new Handler();
+    private Handler handler = new Handler();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rod = inflater.inflate(R.layout.frag_velcome, container, false);

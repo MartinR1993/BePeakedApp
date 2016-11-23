@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class WorkoutElement {
     private String workoutName;
-    ArrayList<String> exercises;
+    private ArrayList<String> exercises;
     private int image;
 
 

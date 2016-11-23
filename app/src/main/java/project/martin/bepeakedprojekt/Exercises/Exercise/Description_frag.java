@@ -32,7 +32,12 @@ public class Description_frag extends Fragment implements View.OnClickListener {
         after.setImageResource(R.drawable.benchpressafter);
 
         description = (TextView) rod.findViewById(R.id.ex_descriptiontext);
-        description.setText("Her skal beskrivelsen af øvelsen stå");
+        description.setText("1. Lie on a flat bench with your feet flat on the floor, keep your back flat on the bench.\n" +
+                "2. Grasp the bar a little wider than shoulder width apart.\n" +
+                "3. Raise the barbell above your body and move it over the middle of your chest, this is your starting position.\n" +
+                "4. Lower the bar down so it just touches your chest.\n" +
+                "5. Raise the bar till your arms are fully extended and your elbows are locked.\n" +
+                "6. Return to starting position.");
 
         return rod;
     }

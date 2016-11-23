@@ -2,8 +2,10 @@ package project.martin.bepeakedprojekt.Exercises;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,14 @@ public class ExerciseMenu_akt extends AppCompatActivity {
         if(item.getItemId() == android.R.id.home){
             onBackPressed();
         }
-        return super.onOptionsItemSelected(item);
+        else if(item.getItemId() == R.id.search) {
+            Toast.makeText(this, "Denne funktion søger i alle øvelser", Toast.LENGTH_LONG).show();
+        }
+            return super.onOptionsItemSelected(item);
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.searchmenu, menu);
+        return true;
     }
 }

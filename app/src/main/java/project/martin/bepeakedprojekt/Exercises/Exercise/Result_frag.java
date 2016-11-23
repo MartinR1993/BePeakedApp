@@ -14,6 +14,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import project.martin.bepeakedprojekt.R;
 
 /**
@@ -21,10 +25,12 @@ import project.martin.bepeakedprojekt.R;
  */
 
 public class Result_frag extends Fragment implements View.OnClickListener {
-    private ImageView graph;
     private GridView view;
     private Button resultbutton;
+    private GraphView graphView;
     private FloatingActionButton fab;
+    private double y,x;
+    LineGraphSeries<DataPoint> series;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,7 +39,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         resultbutton = (Button) rod.findViewById(R.id.ex_results_button);
         resultbutton.setOnClickListener(this);
 
-        graph = (ImageView) rod.findViewById(R.id.ex_graph);
+        graphView = (GraphView) rod.findViewById(R.id.graph);
 //        view = (GridView) rod.findViewById(R.id.ex_gridview);
 
         fab = (FloatingActionButton) rod.findViewById(R.id.floatingActionButton);
@@ -70,9 +76,18 @@ public class Result_frag extends Fragment implements View.OnClickListener {
             ((TextView) row.findViewById(R.id.resta_col1)).setText("R" + i + "C1");
             ((TextView) row.findViewById(R.id.resta_col2)).setText("R" + i + "C2");
             ((TextView) row.findViewById(R.id.resta_col3)).setText("R" + i + "C3");
-            ((Button) row.findViewById(R.id.resta_button)).setText("R" + i + "B1");
+            ((Button) row.findViewById(R.id.resta_button)).setText("Edit"/*"R" + i + "B1"*/);
             table.addView(row);
         }
+
+        x = 5.0;
+        series = new LineGraphSeries<DataPoint>();
+        for (int i = 0; i<100; i++){
+            x = x + 0.1;
+            y = 2*x+2;
+            series.appendData(new DataPoint(x,y), true, 500);
+        }
+        graphView.addSeries(series);
 
         return rod;
     }

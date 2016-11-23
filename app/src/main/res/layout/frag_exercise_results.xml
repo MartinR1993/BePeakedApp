@@ -15,11 +15,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/ex_results_button" />
 
-    <ImageView
+    <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/ex_graph" />
+        android:layout_height="229dp"
+        android:id="@+id/graph" />
 
         <ScrollView
             android:layout_width="match_parent"

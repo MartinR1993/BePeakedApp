@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 public class Login_akt extends AppCompatActivity implements View.OnClickListener {
 
-    TextView textUsername, textPassword, opretBruger;
-    EditText editUsername, editPassword;
-    Button buttonLogin;
+    private TextView textUsername, textPassword, opretBruger;
+    private EditText editUsername, editPassword;
+    private Button buttonLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
