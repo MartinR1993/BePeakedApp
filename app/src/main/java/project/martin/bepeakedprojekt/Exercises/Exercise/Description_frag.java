@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import project.martin.bepeakedprojekt.Backend.API;
 import project.martin.bepeakedprojekt.R;
 
 /**
@@ -33,6 +34,9 @@ public class Description_frag extends Fragment {
                 "4. Lower the bar down so it just touches your chest.\n" +
                 "5. Raise the bar till your arms are fully extended and your elbows are locked.\n" +
                 "6. Return to starting position.");
+
+        API api = new API();
+        api.getImages();
 
         return rod;
     }
