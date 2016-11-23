@@ -1,7 +1,5 @@
 package project.martin.bepeakedprojekt.Workout.WorkoutExercises;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -12,9 +10,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
-import project.martin.bepeakedprojekt.Exercises.ExerciseListAdapter;
-import project.martin.bepeakedprojekt.Login_akt;
-import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
 
 import static project.martin.bepeakedprojekt.R.id.exerciseList;

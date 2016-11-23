@@ -9,8 +9,8 @@ import android.widget.TextView;
 import project.martin.bepeakedprojekt.R;
 
 public class Recipe_akt extends AppCompatActivity {
-    ImageView image;
-    TextView descriptionView;
+    private ImageView image;
+    private TextView descriptionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

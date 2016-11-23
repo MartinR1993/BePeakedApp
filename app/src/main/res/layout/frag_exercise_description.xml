@@ -13,12 +13,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <Button
-                android:text="Go to Results"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ex_description_button" />
-
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

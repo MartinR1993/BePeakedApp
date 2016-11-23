@@ -9,16 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <Button
-        android:text="Go to Description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ex_results_button" />
 
-    <com.jjoe64.graphview.GraphView
+        <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
         android:layout_height="229dp"
-        android:id="@+id/graph" />
+        android:id="@+id/res_graph" />
 
         <ScrollView
             android:layout_width="match_parent"

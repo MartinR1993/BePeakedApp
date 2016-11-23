@@ -1,28 +1,60 @@
 package project.martin.bepeakedprojekt.Exercises.Exercise;
 
-import android.app.Fragment;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+
 
 import project.martin.bepeakedprojekt.R;
 
 public class Exercise_akt extends AppCompatActivity {
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPagerAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_akt);
-
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.ex_fragment, new Description_frag())
-                    .commit();
-        }
-
-        setTitle("Benchpress Description");
+        setTitle("Benchpress");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager2);
+
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+
+        final TabLayout.Tab description=tabLayout.newTab();
+        final TabLayout.Tab results=tabLayout.newTab();
+
+        description.setText("Description");
+        results.setText("Results");
+
+        tabLayout.addTab(description, 0);
+        tabLayout.addTab(results, 1);
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
 
     }
     public boolean onOptionsItemSelected(MenuItem item){
@@ -30,5 +62,37 @@ public class Exercise_akt extends AppCompatActivity {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //Inner Class
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
+
+        public ViewPagerAdapter (FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            if (position == 0)
+                return "Description";
+            else
+                return "Results";
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            Fragment f;
+            if (position == 0)
+                f = new Description_frag();
+            else
+                f = new Result_frag();
+
+            return f;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
     }
 }

@@ -1,7 +1,6 @@
 package project.martin.bepeakedprojekt;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,7 +15,7 @@ import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
 
 public class MainMenu_akt extends AppCompatActivity implements View.OnClickListener {
 
-    Button exerciseButton, workoutButton, dietplanButton ;
+    private Button exerciseButton, workoutButton, dietplanButton ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

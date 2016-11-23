@@ -1,15 +1,14 @@
 package project.martin.bepeakedprojekt.Exercises.Exercise;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,22 +23,18 @@ import project.martin.bepeakedprojekt.R;
  * Created by Martin on 21-11-2016.
  */
 
-public class Result_frag extends Fragment implements View.OnClickListener {
+public class Result_frag extends Fragment {
     private GridView view;
-    private Button resultbutton;
     private GraphView graphView;
     private FloatingActionButton fab;
     private double y,x;
-    LineGraphSeries<DataPoint> series;
+    private LineGraphSeries<DataPoint> series;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rod = inflater.inflate(R.layout.frag_exercise_results, container, false);
 
-        resultbutton = (Button) rod.findViewById(R.id.ex_results_button);
-        resultbutton.setOnClickListener(this);
-
-        graphView = (GraphView) rod.findViewById(R.id.graph);
+        graphView = (GraphView) rod.findViewById(R.id.res_graph);
 //        view = (GridView) rod.findViewById(R.id.ex_gridview);
 
         fab = (FloatingActionButton) rod.findViewById(R.id.floatingActionButton);
@@ -90,16 +85,5 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         graphView.addSeries(series);
 
         return rod;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(v == resultbutton){
-            getActivity().setTitle("Benchpress Description");
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.ex_fragment, new Description_frag())
-                    .commit();
-        }
     }
 }
