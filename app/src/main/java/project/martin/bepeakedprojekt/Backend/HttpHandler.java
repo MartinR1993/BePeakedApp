@@ -17,21 +17,19 @@ import java.net.URL;
  * Original created by Ravi Tamada on 01/09/16.
  * www.androidhive.info
  */
-public class HttpHandler
+class HttpHandler
 {
     private static final String TAG = HttpHandler.class.getSimpleName();
 
-    public HttpHandler() {
-    }
-
-    public String makeServiceCall(String reqUrl) {
+    static String makeServiceCall(String reqUrl) {
         String response = null;
+
         try {
-            URL url = new URL(reqUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) new URL(reqUrl).openConnection();
             conn.setRequestMethod("GET");
+
             // read the response
-            InputStream in = new BufferedInputStream(conn.getInputStream());
+            final InputStream in = new BufferedInputStream(conn.getInputStream());
             response = convertStreamToString(in);
         } catch (MalformedURLException e) {
             Log.e(TAG, "MalformedURLException: " + e.getMessage());
@@ -45,21 +43,26 @@ public class HttpHandler
         return response;
     }
 
-    private String convertStreamToString(InputStream is) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
+    private static String convertStreamToString(InputStream is) {
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        final StringBuilder sb = new StringBuilder();
 
         String line;
         try {
             while ((line = reader.readLine()) != null) {
                 sb.append(line).append('\n');
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
+            Log.e(TAG, "IO Exception: " + e.getMessage());
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             try {
                 is.close();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
+                Log.e(TAG, "IO Exception: " + e.getMessage());
                 e.printStackTrace();
             }
         }
