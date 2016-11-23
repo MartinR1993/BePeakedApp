@@ -21,7 +21,7 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         setTitle("Menu");
-        /*HER KAN DER SÆTTES ET LOGO TIL HOVEDMENUBAREN
+        /*//HER KAN DER SÆTTES ET LOGO TIL HOVEDMENUBAREN
         ActionBar actionBar = getSupportActionBar();
         actionBar.setLogo(R.drawable.bepeakedlogo);
         actionBar.setDisplayUseLogoEnabled(true);

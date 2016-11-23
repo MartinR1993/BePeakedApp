@@ -30,7 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
             android:id="@+id/WorkoutButton"
-            style="@style/Widget.AppCompat.Button" />
+            style="@android:style/Widget.Holo.Button"
+            android:backgroundTint="@android:drawable/screen_background_light_transparent"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="20sp" />
 
         <Button
             android:text="Exercises"
@@ -38,13 +41,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
             android:id="@+id/ExerciseButton"
-            style="@style/Widget.AppCompat.Button" />
+            style="@android:style/Widget.Holo.Button"
+            android:backgroundTint="@android:drawable/screen_background_light_transparent"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="20sp" />
 
         <Button
             android:text="Diet Plan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
-            android:id="@+id/DietPlanButton" />
+            android:id="@+id/DietPlanButton"
+            style="@android:style/Widget.Holo.Button"
+            android:backgroundTint="@android:drawable/screen_background_light_transparent"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="20sp" />
 
 </LinearLayout>
