@@ -8,14 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-
 /**
- *
- *
  * Created by Martin on 09-11-2016.
  */
-
 public class Welcome_frag extends Fragment implements Runnable {
     private Handler handler = new Handler();
 
@@ -29,7 +24,7 @@ public class Welcome_frag extends Fragment implements Runnable {
 
     @Override
     public void run() {
-        Intent i = new Intent(getActivity(), login_akt.class);
+        Intent i = new Intent(getActivity(), Login_akt.class);
         getActivity().finish();
         startActivity(i);
     }
