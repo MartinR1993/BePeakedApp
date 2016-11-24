@@ -66,7 +66,7 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         }
         else if (item.getItemId() == R.id.logout) {
             System.out.println("Du er nu logget ud");
-            Intent i = new Intent(this, Login_akt.class);
+            Intent i = new Intent(this, login_akt.class);
             MainMenu_akt.this.finish();
             startActivity(i);
         }

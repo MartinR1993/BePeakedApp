@@ -15,7 +15,6 @@ import project.martin.bepeakedprojekt.Diet_Plan.Adapter.ChildInfo;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.DietPlanAdapter;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.GroupInfo;
 import project.martin.bepeakedprojekt.Diet_Plan.Recipe.Recipe_akt;
-import project.martin.bepeakedprojekt.Login_akt;
 import project.martin.bepeakedprojekt.R;
 
 public class DietPlanMenu_akt extends AppCompatActivity {
