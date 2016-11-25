@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
         //LoadingScreen title.
         setTitle(" ");
+        getSupportActionBar().hide();
         
         if (savedInstanceState == null){
             Fragment fragment = new Welcome_frag();
