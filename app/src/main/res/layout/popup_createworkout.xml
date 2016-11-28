@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:text="Give your new Workout a name:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/workoutName"
+        android:layout_marginTop="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/giveNameWorkout"
+        android:hint="Type name here!"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/workoutName"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Save Workout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/saveWorkout"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/giveNameWorkout"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
