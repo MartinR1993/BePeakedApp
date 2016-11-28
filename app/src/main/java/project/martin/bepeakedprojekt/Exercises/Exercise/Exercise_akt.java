@@ -36,8 +36,9 @@ public class Exercise_akt extends AppCompatActivity {
         description.setText("Description");
         results.setText("Results");
 
-        tabLayout.addTab(description, 0);
-        tabLayout.addTab(results, 1);
+
+        tabLayout.addTab(results, 0);
+        tabLayout.addTab(description, 1);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -74,18 +75,18 @@ public class Exercise_akt extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             if (position == 0)
-                return "Description";
-            else
                 return "Results";
+            else
+                return "Description";
         }
 
         @Override
         public Fragment getItem(int position) {
             Fragment f;
             if (position == 0)
-                f = new Description_frag();
-            else
                 f = new Result_frag();
+            else
+                f = new Description_frag();
 
             return f;
         }
