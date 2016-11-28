@@ -128,7 +128,7 @@ public class Result_frag extends Fragment
                     final String unit = Settings.getUnit(Settings.USTAG_WEIGHT);
 
                     //TODO: Kender ikke algoritmen for 1-RM (x)
-                    table.addView(createRow(npWeight.getValue() + " " + unit, npReps.getValue() + "", "x " + unit));
+                    table.addView(createRow(npWeight.getValue() * increment + " " + unit, npReps.getValue() + "", "x " + unit));
                     popup.cancel();
                 }
             });

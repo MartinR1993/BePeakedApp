@@ -34,6 +34,10 @@ public class Settings {
         unitSystem = systemID;
     }
 
+    public int getUnitSystem() {
+        return unitSystem;
+    }
+
     public static final String getUnit(String unitTag) {
         final HashMap<String, String> us;
 
