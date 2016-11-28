@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:id="@+id/popres_weightView">
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/popres_weightTitle"
+                android:textAlignment="center" />
+
+            <NumberPicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/popres_weightSpin" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:id="@+id/popres_repsView">
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/popres_repsTitle"
+                android:textAlignment="center" />
+
+            <NumberPicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/popres_repsSpin" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

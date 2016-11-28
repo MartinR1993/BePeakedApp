@@ -5,13 +5,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,13 +19,19 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import project.martin.bepeakedprojekt.Misc.NumberPickerFormatter;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.User.Settings;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
  * Created by Martin on 21-11-2016.
  */
 public class Result_frag extends Fragment
 {
+    private TableLayout table;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rod = inflater.inflate(R.layout.frag_exercise_results, container, false);
@@ -36,7 +41,7 @@ public class Result_frag extends Fragment
         FloatingActionButton fab = (FloatingActionButton) rod.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new AddListener(this.getContext()));
 
-        TableLayout table = (TableLayout) rod.findViewById(R.id.res_tableresult);
+        table = (TableLayout) rod.findViewById(R.id.res_tableresult);
 
         //TODO: This is just dummy data.
         TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
@@ -55,16 +60,6 @@ public class Result_frag extends Fragment
         row.findViewById(R.id.resta_button).setVisibility(View.INVISIBLE);
         table.addView(row);
 
-        for (int i = 1; i < 15; i++) {
-            row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
-            ((TextView) row.findViewById(R.id.resta_col1)).setText("R" + i + "C1");
-            ((TextView) row.findViewById(R.id.resta_col2)).setText("R" + i + "C2");
-            ((TextView) row.findViewById(R.id.resta_col3)).setText("R" + i + "C3");
-            Button editButton = (Button) row.findViewById(R.id.resta_button);
-            editButton.setText("Edit");
-            table.addView(row);
-        }
-
         double y;
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
         for (double x = 5.0; x < 8; x += 0.1){
@@ -74,6 +69,18 @@ public class Result_frag extends Fragment
         graphView.addSeries(series);
 
         return rod;
+    }
+
+    private TableRow createRow(String valCol1, String valCol2, String valRM) {
+        final TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
+
+        ((TextView) row.findViewById(R.id.resta_col1)).setText(valCol1);
+        ((TextView) row.findViewById(R.id.resta_col2)).setText(valCol2);
+        ((TextView) row.findViewById(R.id.resta_col3)).setText(valRM);
+        Button editButton = (Button) row.findViewById(R.id.resta_button);
+        editButton.setText("Edit");
+
+        return row;
     }
 
     private class AddListener implements View.OnClickListener
@@ -86,29 +93,49 @@ public class Result_frag extends Fragment
 
         @Override
         public void onClick(View v) {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle("Add exercise result");
-            dialog.setMessage("Write your result for this set");
+            final AlertDialog popup = new AlertDialog.Builder(context).create();
+            popup.setTitle("Add exercise result");
+            popup.setMessage("Write your result for this set");
 
-            LinearLayout layout = new LinearLayout(context);
+            final LinearLayout layout = new LinearLayout(context);
             layout.setOrientation(LinearLayout.VERTICAL);
+            layout.setLayoutParams(new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
 
-            final EditText weightBox = new EditText(context);
-            weightBox.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
-            weightBox.setHint("Weight");
-            layout.addView(weightBox);
+            final LinearLayout popupContent = (LinearLayout) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.popup_result, null);
 
-            final EditText repsBox = new EditText(context);
-            repsBox.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
-            repsBox.setHint("Reps");
-            layout.addView(repsBox);
+            ((TextView) popupContent.findViewById(R.id.popres_weightTitle)).setText("Weight");
+            final NumberPicker npWeight = (NumberPicker) popupContent.findViewById(R.id.popres_weightSpin);
+
+            final int increment = 5;
+            npWeight.setMinValue(1);
+            npWeight.setFormatter(new NumberPickerFormatter(increment));
+            npWeight.setMaxValue(250 / increment);
+            npWeight.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
+            ((TextView) popupContent.findViewById(R.id.popres_repsTitle)).setText("Reps");
+            final NumberPicker npReps = (NumberPicker) popupContent.findViewById(R.id.popres_repsSpin);
+            npReps.setMinValue(1);
+            npReps.setMaxValue(100);
+            npReps.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
+            layout.addView(popupContent);
 
             final Button saveButton = new Button(context);
             saveButton.setText("Save");
+            saveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final String unit = Settings.getUnit(Settings.USTAG_WEIGHT);
+
+                    //TODO: Kender ikke algoritmen for 1-RM (x)
+                    table.addView(createRow(npWeight.getValue() + " " + unit, npReps.getValue() + "", "x " + unit));
+                    popup.cancel();
+                }
+            });
             layout.addView(saveButton);
 
-            dialog.setView(layout);
-            dialog.show();
+            popup.setView(layout);
+            popup.show();
         }
     }
 }
