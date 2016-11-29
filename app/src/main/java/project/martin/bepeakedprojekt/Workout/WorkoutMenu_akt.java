@@ -16,11 +16,11 @@ import project.martin.bepeakedprojekt.R;
 
 public class WorkoutMenu_akt extends AppCompatActivity  {
 
-    ArrayList<WorkoutElement> list;
-    ArrayList<String> exercises;
-    ListView lv;
-    EditText saveWorkoutName;
-    AlertDialog popup;
+    private ArrayList<WorkoutElement> list;
+    private ArrayList<String> exercises;
+    private ListView lv;
+    private EditText saveWorkoutName;
+    private AlertDialog popup;
     private WorkoutListAdapter listAdapter;
 
     @Override

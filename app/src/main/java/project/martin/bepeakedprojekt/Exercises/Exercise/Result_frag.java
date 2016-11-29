@@ -32,7 +32,7 @@ public class Result_frag extends Fragment
 {
     private TableLayout table;
     private LineGraphSeries<DataPoint> series;
-    GraphView graphView;
+    private GraphView graphView;
     private int i = 0;
 
     @Override

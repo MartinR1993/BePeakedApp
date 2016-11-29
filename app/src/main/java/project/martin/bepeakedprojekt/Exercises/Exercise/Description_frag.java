@@ -16,7 +16,7 @@ import project.martin.bepeakedprojekt.R;
  */
 public class Description_frag extends Fragment {
     //TODO: Hardcodet øvelses id.
-    private final int excersiseID = 15;
+    private final int exerciseID = 15;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rod = inflater.inflate(R.layout.frag_exercise_description, container, false);
@@ -24,7 +24,7 @@ public class Description_frag extends Fragment {
         ImageView before = (ImageView) rod.findViewById(R.id.ex_imagebefore);
         ImageView after = (ImageView) rod.findViewById(R.id.ex_imageafter);
 
-        API.getImages(excersiseID, after, before);
+        API.getImages(exerciseID, after, before);
 
         TextView description = (TextView) rod.findViewById(R.id.ex_descriptiontext);
         description.setText("1. Lie on a flat bench with your feet flat on the floor, keep your back flat on the bench.\n" +
