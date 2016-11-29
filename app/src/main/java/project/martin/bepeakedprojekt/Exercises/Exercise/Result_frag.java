@@ -31,12 +31,15 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 public class Result_frag extends Fragment
 {
     private TableLayout table;
+    private LineGraphSeries<DataPoint> series;
+    GraphView graphView;
+    private int i = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rod = inflater.inflate(R.layout.frag_exercise_results, container, false);
 
-        GraphView graphView = (GraphView) rod.findViewById(R.id.res_graph);
+        graphView = (GraphView) rod.findViewById(R.id.res_graph);
 
         FloatingActionButton fab = (FloatingActionButton) rod.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new AddListener(this.getContext()));
@@ -60,17 +63,10 @@ public class Result_frag extends Fragment
         row.findViewById(R.id.resta_button).setVisibility(View.INVISIBLE);
         table.addView(row);
 
-        double y;
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
-
-        for (double x = 5.0; x < 8; x += 0.1){
-            y = 1 / (5 + Math.exp(-x)) + 2;
-            series.appendData(new DataPoint(x, y), true, 500);
-        }
-        graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
-
+        series = new LineGraphSeries<>();
+//        graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
-        graphView.addSeries(series);
+//        series.setDrawAsPath(true);
 
         return rod;
     }
@@ -132,10 +128,17 @@ public class Result_frag extends Fragment
                     final String unit = Settings.getUnit(Settings.USTAG_WEIGHT);
 
                     double weight = npWeight.getValue() * increment;
-                    double reps = npReps.getValue();
-                    double oneRM = weight * (1 + reps / 30);
+                    int reps = npReps.getValue();
+                    double oneRM = weight * Math.pow(reps, 0.1);
+                    String oneRMString = "" + oneRM;
+                    oneRMString = oneRMString.substring(0, oneRMString.indexOf('.') + 2);
 
-                    table.addView(createRow(weight + " " + unit, reps + "", oneRM + " " + unit));
+                    i++;
+                    series.appendData(new DataPoint(i, oneRM), true, i);
+
+                    graphView.addSeries(series);
+
+                    table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit));
                     popup.cancel();
                 }
             });
