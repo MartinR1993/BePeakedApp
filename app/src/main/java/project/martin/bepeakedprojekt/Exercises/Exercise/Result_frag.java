@@ -62,10 +62,14 @@ public class Result_frag extends Fragment
 
         double y;
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
+
         for (double x = 5.0; x < 8; x += 0.1){
             y = 1 / (5 + Math.exp(-x)) + 2;
             series.appendData(new DataPoint(x, y), true, 500);
         }
+        graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+
+        graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
         graphView.addSeries(series);
 
         return rod;
