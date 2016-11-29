@@ -64,9 +64,8 @@ public class Result_frag extends Fragment
         table.addView(row);
 
         series = new LineGraphSeries<>();
-//        graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
-//        series.setDrawAsPath(true);
+        graphView.getViewport().setScalable(true);
 
         return rod;
     }
@@ -137,6 +136,8 @@ public class Result_frag extends Fragment
                     series.appendData(new DataPoint(i, oneRM), true, i);
 
                     graphView.addSeries(series);
+                    graphView.getViewport().setMinX(0);
+                    graphView.getViewport().setMaxX(i);
 
                     table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit));
                     popup.cancel();
