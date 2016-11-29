@@ -20,7 +20,6 @@ import project.martin.bepeakedprojekt.R;
 public class DietPlanMenu_akt extends AppCompatActivity {
     private LinkedHashMap<String, GroupInfo> subjects = new LinkedHashMap<String, GroupInfo>();
     private ArrayList<GroupInfo> deptList = new ArrayList<GroupInfo>();
-
     private DietPlanAdapter listAdapter;
     private ExpandableListView simpleExpandableListView;
 
@@ -38,10 +37,6 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         listAdapter = new DietPlanAdapter(DietPlanMenu_akt.this, deptList);
         // attach the adapter to the expandable list view
         simpleExpandableListView.setAdapter(listAdapter);
-
-        //expand all the Groups
-        //expandAll();
-        //collapseAll();
 
         // setOnChildClickListener listener for child row click
         simpleExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -64,24 +59,10 @@ public class DietPlanMenu_akt extends AppCompatActivity {
                 return false;
             }
         });
-        // setOnGroupClickListener listener for group heading click
-        simpleExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                //get the group header
-                GroupInfo headerInfo = deptList.get(groupPosition);
-                //display it or do something with it
-                /*Toast.makeText(getBaseContext(), " Header is :: " + headerInfo.getName(),
-                        Toast.LENGTH_LONG).show();*/
-
-                return false;
-            }
-        });
-
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
+
     public boolean onOptionsItemSelected(MenuItem item){
         if(item.getItemId() == android.R.id.home){
             onBackPressed();
@@ -119,21 +100,20 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         addProduct("Dinner", "Studenter Kaviar");
 
         addProduct("Snacks", "Nødder");
-
     }
 
-    //here we maintain our products in various departments
-    private int addProduct(String department, String product){
+    //here we maintain our products in various food
+    private int addProduct(String food, String product){
 
         int groupPosition = 0;
 
         //check the hash map if the group already exists
-        GroupInfo headerInfo = subjects.get(department);
+        GroupInfo headerInfo = subjects.get(food);
         //add the group if doesn't exists
         if(headerInfo == null){
             headerInfo = new GroupInfo();
-            headerInfo.setName(department);
-            subjects.put(department, headerInfo);
+            headerInfo.setName(food);
+            subjects.put(food, headerInfo);
             deptList.add(headerInfo);
         }
 
