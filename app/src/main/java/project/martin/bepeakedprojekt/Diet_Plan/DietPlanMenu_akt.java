@@ -146,7 +146,7 @@ public class DietPlanMenu_akt extends AppCompatActivity {
 
         //create a new child and add that to the group
         ChildInfo detailInfo = new ChildInfo();
-        detailInfo.setSequence(String.valueOf(listSize));
+       // detailInfo.setSequence(String.valueOf(listSize));
         detailInfo.setName(product);
         productList.add(detailInfo);
         headerInfo.setProductList(productList);
@@ -155,11 +155,4 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         groupPosition = deptList.indexOf(headerInfo);
         return groupPosition;
     }
-
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diet_plan_menu);
-        setTitle("Diet plan");
-    }*/
 }
