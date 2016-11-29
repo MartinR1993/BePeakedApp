@@ -21,6 +21,7 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
     ListView lv;
     EditText saveWorkoutName;
     AlertDialog popup;
+    private WorkoutListAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,9 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
         list.add(new WorkoutElement("Workout 2", exercises, R.drawable.forward));
 
         lv = (ListView) findViewById(R.id.listWorkoutMenu);
-        lv.setAdapter(new WorkoutListAdapter(this, list));
+        listAdapter = new WorkoutListAdapter(this, list);
+        lv.setAdapter(listAdapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -59,7 +59,7 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
                 public void onClick(View v) {
                     list.add(new WorkoutElement(saveWorkoutName.getText().toString(), exercises, R.drawable.forward));
                     System.out.println("hej"+ list.size());
-                    lv.invalidateViews();
+                    listAdapter.notifyDataSetChanged();
                     popup.cancel();
 
                 }
