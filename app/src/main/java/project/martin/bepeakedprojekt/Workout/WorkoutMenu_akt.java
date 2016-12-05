@@ -27,7 +27,7 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_menu);
-        setTitle("Workouts");
+        setTitle(R.string.workoutMenu_banner);
         exercises = new ArrayList<>();
         exercises.add("Benchpress");
         exercises.add("Push Ups");
@@ -65,7 +65,7 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
                 }
             });
 
-            popup.setTitle("Create Workout");
+            popup.setTitle(R.string.createWorkout_title);
             popup.setView(createWorkout);
             popup.show();
 

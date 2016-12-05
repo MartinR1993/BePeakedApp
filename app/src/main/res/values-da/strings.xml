@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">BePeaked Projekt</string>
+
+    <string name="login_banner">Login Menu</string>
+    <string name="login_createUser"><u>Opret Bruger</u></string>
+    <string name="login_username">Brugernavn</string>
+    <string name="login_usernameInput">Indtast brugernavn her..</string>
+    <string name="login_password">Kodeord</string>
+    <string name="login_buttonExecute">Log på</string>
+
+    <string name="mainMenu_banner">Menu</string>
+    <string name="mainMenu_buttonWorkoutMenu">Træningsprogrammer</string>
+    <string name="mainMenu_buttonExerciseLibrary">Øvelser</string>
+    <string name="mainMenu_buttonDietPlan">Kostplan</string>
+    <string name="toolbar_elAbout">Om</string>
+    <string name="toolbar_elLogOut">Log Af</string>
+
+    <string name="workoutMenu_banner">Træningsprogrammer</string>
+    <string name="createWorkout_title">Opret Træningsprogram</string>
+    <string name="createWorkout_description">Angiv programmets navn:</string>
+    <string name="createWorkout_nameInput">Indtast navn her..</string>
+    <string name="createWorkout_buttonExecute">Opret træningsprogram</string>
+
+    <string name="exerciseResult_banner">Resultater</string>
+    <string name="exerciseResult_tableWeight">Vægt</string>
+    <string name="exerciseResult_tableReps">Reps</string>
+    <string name="exerciseResult_table1RM">1-RM</string>
+    <string name="exerciseResult_tableButtonEdit">Rediger</string>
+    <string name="exerciseResult_addBanner">Tilføj resultat</string>
+    <string name="exerciseResult_addDescription">Angiv dit resultat for dette sæt</string>
+    <string name="exerciseResult_addButtonExecute">Gem</string>
+
+    <string name="exerciseDescription_banner">Beskrivelse</string>
+
+    <string name="exerciseMenu_banner">Øvleser</string>
+
+    <string name="dietPlanMenu_banner">Opskrifter</string>
+    <string name="dietPlanMenu_breakfast">Morgenmad</string>
+    <string name="dietPlanMenu_lunch">Frokost</string>
+    <string name="dietPlanMenu_dinner">Aftensmad</string>
+    <string name="dietPlanMenu_snacks">Mellemmåltider</string>
+</resources>

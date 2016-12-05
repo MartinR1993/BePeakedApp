@@ -50,13 +50,13 @@ public class Result_frag extends Fragment
         TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
         TextView col1 = (TextView) row.findViewById(R.id.resta_col1);
         col1.setTextAppearance(getActivity(), R.style.resta_header);
-        col1.setText("Weight");
+        col1.setText(R.string.exerciseResult_tableWeight);
         TextView col2 = (TextView) row.findViewById(R.id.resta_col2);
         col2.setTextAppearance(getActivity(), R.style.resta_header);
-        col2.setText("Reps");
+        col2.setText(R.string.exerciseResult_tableReps);
         TextView col3 = (TextView) row.findViewById(R.id.resta_col3);
         col3.setTextAppearance(getActivity(), R.style.resta_header);
-        col3.setText("1-RM");
+        col3.setText(R.string.exerciseResult_table1RM);
         row.findViewById(R.id.resta_div1).setVisibility(View.INVISIBLE);
         row.findViewById(R.id.resta_div2).setVisibility(View.INVISIBLE);
         row.findViewById(R.id.resta_div3).setVisibility(View.INVISIBLE);
@@ -77,7 +77,7 @@ public class Result_frag extends Fragment
         ((TextView) row.findViewById(R.id.resta_col2)).setText(valCol2);
         ((TextView) row.findViewById(R.id.resta_col3)).setText(valRM);
         Button editButton = (Button) row.findViewById(R.id.resta_button);
-        editButton.setText("Edit");
+        editButton.setText(R.string.exerciseResult_tableButtonEdit);
 
         return row;
     }
@@ -93,8 +93,8 @@ public class Result_frag extends Fragment
         @Override
         public void onClick(View v) {
             final AlertDialog popup = new AlertDialog.Builder(context).create();
-            popup.setTitle("Add exercise result");
-            popup.setMessage("Write your result for this set");
+            popup.setTitle(R.string.exerciseResult_addBanner);
+            popup.setMessage(getString(R.string.exerciseResult_addDescription));
 
             final LinearLayout layout = new LinearLayout(context);
             layout.setOrientation(LinearLayout.VERTICAL);
@@ -102,7 +102,7 @@ public class Result_frag extends Fragment
 
             final LinearLayout popupContent = (LinearLayout) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.popup_result, null);
 
-            ((TextView) popupContent.findViewById(R.id.popres_weightTitle)).setText("Weight");
+            ((TextView) popupContent.findViewById(R.id.popres_weightTitle)).setText(R.string.exerciseResult_tableWeight);
             final NumberPicker npWeight = (NumberPicker) popupContent.findViewById(R.id.popres_weightSpin);
 
             final int increment = 5;
@@ -111,7 +111,7 @@ public class Result_frag extends Fragment
             npWeight.setMaxValue(250 / increment);
             npWeight.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
 
-            ((TextView) popupContent.findViewById(R.id.popres_repsTitle)).setText("Reps");
+            ((TextView) popupContent.findViewById(R.id.popres_repsTitle)).setText(R.string.exerciseResult_tableReps);
             final NumberPicker npReps = (NumberPicker) popupContent.findViewById(R.id.popres_repsSpin);
             npReps.setMinValue(1);
             npReps.setMaxValue(100);
@@ -120,7 +120,7 @@ public class Result_frag extends Fragment
             layout.addView(popupContent);
 
             final Button saveButton = new Button(context);
-            saveButton.setText("Save");
+            saveButton.setText(R.string.exerciseResult_addButtonExecute);
             saveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -16,7 +16,6 @@
             android:id="@+id/popres_weightView">
 
             <TextView
-                android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/popres_weightTitle"
@@ -36,7 +35,6 @@
             android:id="@+id/popres_repsView">
 
             <TextView
-                android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/popres_repsTitle"

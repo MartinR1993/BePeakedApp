@@ -31,12 +31,12 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:text="Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
             android:id="@+id/textUsername"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:text="@string/login_username" />
 
         <EditText
             android:layout_width="match_parent"
@@ -45,14 +45,14 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/editUsername"
-            android:hint="Enter username here..." />
+            android:hint="@string/login_usernameInput" />
 
         <TextView
-            android:text="Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textPassword"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:text="@string/login_password" />
 
         <EditText
             android:layout_width="match_parent"
@@ -64,7 +64,6 @@
     </LinearLayout>
 
     <Button
-        android:text="Log in"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,10 +71,11 @@
         style="@android:style/Widget.Holo.Button"
         android:backgroundTint="@android:drawable/screen_background_light_transparent"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:text="@string/login_buttonExecute" />
 
     <TextView
-        android:text="@string/opretBruger"
+        android:text="@string/login_createUser"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,20 +1,28 @@
 package project.martin.bepeakedprojekt.User;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
+
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * Created by Lasse on 27-11-2016.
  */
-public class Settings {
-    public static final int US_METRIC = 0;
-    public static final int US_IMPLERIAL = 1;
+public class Settings
+{
+    public enum UnitSystem {
+        METRIC, IMPERIAL;
+    }
+
+    public enum Language {
+        ENGLISH, DANISH;
+    }
 
     public static final String USTAG_WEIGHT = "weight";
     public static final String USTAG_LENGTH = "lenght";
     public static final String USTAG_VOLUME = "volume";
     public static final String USTAG_TEMPRATURE = "temp";
-
-    public static int unitSystem = US_METRIC;
 
     private static final HashMap<String, String> metricSystem = new HashMap<String, String>() {{
         put(USTAG_WEIGHT,"kg");
@@ -30,29 +38,51 @@ public class Settings {
         put(USTAG_TEMPRATURE,"F");
     }};
 
-    public void setUnitSystem(int systemID) {
-        unitSystem = systemID;
+    public static UnitSystem unitSystemType = UnitSystem.METRIC;
+    private static HashMap<String, String> unitSystem = metricSystem;
+
+    public static void setUnitSystem(UnitSystem system) {
+        unitSystemType = system;
+
+        switch (unitSystemType) {
+            default:
+            case METRIC: {
+                unitSystem = metricSystem;
+                break;
+            }
+            case IMPERIAL: {
+                unitSystem = imperialSystem;
+                break;
+            }
+        }
     }
 
-    public int getUnitSystem() {
-        return unitSystem;
+    public static UnitSystem getUnitSystem() {
+        return unitSystemType;
     }
 
     public static final String getUnit(String unitTag) {
-        final HashMap<String, String> us;
+        return unitSystem.get(unitTag);
+    }
 
-        switch (unitSystem) {
+    public static void setLanguage(Resources resources, Language lang) {
+        String isoCode;
+
+        switch (lang) {
             default:
-            case US_METRIC: {
-                us = metricSystem;
+            case ENGLISH: {
+                isoCode = "en";
                 break;
             }
-            case US_IMPLERIAL: {
-                us = imperialSystem;
+            case DANISH: {
+                isoCode = "da";
                 break;
             }
         }
 
-        return us.get(unitTag);
+        Configuration config = new Configuration();
+        config.setLocale(new Locale(isoCode));
+
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 }

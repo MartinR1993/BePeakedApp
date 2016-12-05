@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BePeaked Project</string>
+    <string name="app_name">BePeaked Projekt</string>
 
     <string name="login_banner">Login Menu</string>
     <string name="login_createUser"><u>Create User</u></string>

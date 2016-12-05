@@ -6,10 +6,10 @@
         android:title="Settings"
         app:showAsAction="always"/>
     <item android:id="@+id/about"
-        android:title="About"
+        android:title="@string/toolbar_elAbout"
         app:showAsAction="never"/>
     <item android:id="@+id/logout"
-        android:title="Log Out"
+        android:title="@string/toolbar_elLogOut"
         app:showAsAction="never"/>
 
 </menu>

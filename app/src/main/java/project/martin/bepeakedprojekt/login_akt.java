@@ -1,8 +1,8 @@
 package project.martin.bepeakedprojekt;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +19,7 @@ public class Login_akt extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_akt);
 
-        setTitle("Login Menu");
+        setTitle(R.string.login_banner);
 
         textUsername = (TextView) findViewById(R.id.textUsername);
         editUsername = (EditText) findViewById(R.id.editUsername);

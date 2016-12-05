@@ -33,8 +33,8 @@ public class Exercise_akt extends AppCompatActivity {
         final TabLayout.Tab description=tabLayout.newTab();
         final TabLayout.Tab results=tabLayout.newTab();
 
-        description.setText("Description");
-        results.setText("Results");
+        description.setText(R.string.exerciseDescription_banner);
+        results.setText(R.string.exerciseResult_banner);
 
 
         tabLayout.addTab(results, 0);
@@ -75,9 +75,9 @@ public class Exercise_akt extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             if (position == 0)
-                return "Results";
+                return getString(R.string.exerciseResult_banner);
             else
-                return "Description";
+                return getString(R.string.exerciseDescription_banner);
         }
 
         @Override

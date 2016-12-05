@@ -27,7 +27,7 @@ public class DietPlanMenu_akt extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_plan_menu);
-        setTitle("Diet Plan");
+        setTitle(R.string.dietPlanMenu_banner);
         // add data for displaying in expandable list view
         loadData();
 
@@ -88,18 +88,22 @@ public class DietPlanMenu_akt extends AppCompatActivity {
 
     //load some initial data into our list
     private void loadData(){
+        String breakfast = getString(R.string.dietPlanMenu_breakfast);
+        String lunch = getString(R.string.dietPlanMenu_lunch);
+        String dinner = getString(R.string.dietPlanMenu_dinner);
+        String snacks = getString(R.string.dietPlanMenu_snacks);
 
-        addProduct("Breakfast","Proteinsmoothie & Æg");
-        addProduct("Breakfast","Skyr");
-        addProduct("Breakfast","Banan Pandekager");
+        addProduct(breakfast,"Proteinsmoothie & Æg");
+        addProduct(breakfast,"Skyr");
+        addProduct(breakfast,"Banan Pandekager");
 
-        addProduct("Lunch","Chili con Carne");
-        addProduct("Lunch","Håndmadder");
+        addProduct(lunch,"Chili con Carne");
+        addProduct(lunch,"Håndmadder");
 
-        addProduct("Dinner", "Æggekage");
-        addProduct("Dinner", "Studenter Kaviar");
+        addProduct(dinner, "Æggekage");
+        addProduct(dinner, "Studenter Kaviar");
 
-        addProduct("Snacks", "Nødder");
+        addProduct(snacks, "Nødder");
     }
 
     //here we maintain our products in various food
@@ -126,7 +130,7 @@ public class DietPlanMenu_akt extends AppCompatActivity {
 
         //create a new child and add that to the group
         ChildInfo detailInfo = new ChildInfo();
-       // detailInfo.setSequence(String.valueOf(listSize));
+        // detailInfo.setSequence(String.valueOf(listSize));
         detailInfo.setName(product);
         productList.add(detailInfo);
         headerInfo.setProductList(productList);

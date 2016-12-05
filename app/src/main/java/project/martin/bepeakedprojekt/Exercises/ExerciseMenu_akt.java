@@ -1,7 +1,7 @@
 package project.martin.bepeakedprojekt.Exercises;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -10,8 +10,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.R;
-import project.martin.bepeakedprojekt.Workout.WorkoutElement;
-import project.martin.bepeakedprojekt.Workout.WorkoutListAdapter;
 
 public class ExerciseMenu_akt extends AppCompatActivity {
 
@@ -19,7 +17,7 @@ public class ExerciseMenu_akt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_menu);
-        setTitle("Exercises");
+        setTitle(R.string.exerciseMenu_banner);
 
         ArrayList<ExerciseElement> list = new ArrayList<>();
         list.add(new ExerciseElement("Exercise 1", R.drawable.forward));

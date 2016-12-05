@@ -1,9 +1,8 @@
 package project.martin.bepeakedprojekt;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,5 +19,8 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragmentindhold, fragment)
                     .commit();
         }
+
+        //Sprog kan ændres vha. hardcode her
+//        Settings.setLanguage(this.getBaseContext().getResources(), Settings.Language.DANISH);
     }
 }
