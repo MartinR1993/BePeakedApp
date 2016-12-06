@@ -60,7 +60,7 @@ public class API {
 
                     //Compare imageView size with image url size.
                     if(ivs.length > imageUrls.length)
-                        throw new ArrayIndexOutOfBoundsException("Less images returned than ImageViews: images=" + imageUrls.length + ", ImageViews=" + ivs.length);
+                        throw new ArrayIndexOutOfBoundsException("Less images returned than ImageViews: images=" + imageUrls.length + ", ImageViews=" + ivs.length + ", imageID=" + exerciseID);
                     else if (ivs.length < imageUrls.length)
                         Log.w(TAG, "More images returned than ImageViews: images=" + imageUrls.length + ", ImageViews=" + ivs.length);
 

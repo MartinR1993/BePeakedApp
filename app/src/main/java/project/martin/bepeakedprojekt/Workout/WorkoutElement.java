@@ -1,44 +1,43 @@
 package project.martin.bepeakedprojekt.Workout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by Martin on 14-11-2016.
- */
+import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 
-public class WorkoutElement {
+public class WorkoutElement implements Serializable
+{
     private String workoutName;
-    private ArrayList<String> exercises;
-    private int image;
+    private ArrayList<ExerciseElement> exercises;
+    private int workoutID;
 
-
-    public WorkoutElement(String workoutName, ArrayList<String> exercises, int image) {
-        this.exercises = exercises;
+    public WorkoutElement(int workoutID, String workoutName, ArrayList<ExerciseElement> exercises) {
+        this.workoutID = workoutID;
         this.workoutName = workoutName;
-        this.image = image;
+        this.exercises = exercises;
     }
 
-    public int getImage() {
-        return image;
+    public int getWorkoutID() {
+        return workoutID;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setWorkoutID(int id) {
+        this.workoutID = id;
     }
 
-    public String getWorkoutName() {
+    public String getName() {
         return workoutName;
     }
 
-    public void setWorkoutName(String workoutName) {
-        this.workoutName = workoutName;
+    public void setName(String name) {
+        this.workoutName = name;
     }
 
-    public ArrayList<String> getExercises() {
+    public ArrayList<ExerciseElement> getExercises() {
         return exercises;
     }
 
-    public void setExercises(ArrayList<String> exercises) {
+    public void setExercises(ArrayList<ExerciseElement> exercises) {
         this.exercises = exercises;
     }
 
@@ -47,7 +46,32 @@ public class WorkoutElement {
         return "WorkoutElement{" +
                 "workoutName='" + workoutName + '\'' +
                 ", exercises=" + exercises +
-                ", image=" + image +
+                ", workoutID=" + workoutID +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        WorkoutElement that = (WorkoutElement) o;
+
+        if (workoutID != that.workoutID)
+            return false;
+        if (!workoutName.equals(that.workoutName))
+            return false;
+        return exercises != null ? exercises.equals(that.exercises) : that.exercises == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = workoutName.hashCode();
+        result = 31 * result + (exercises != null ? exercises.hashCode() : 0);
+        result = 31 * result + workoutID;
+        return result;
     }
 }

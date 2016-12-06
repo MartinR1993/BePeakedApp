@@ -9,26 +9,23 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import project.martin.bepeakedprojekt.Exercises.Exercise.Exercise_akt;
+import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
 
 /**
  * Created by Martin on 14-11-2016.
  */
-
 public class WorkoutListAdapter extends BaseAdapter {
-    private final Context context;
     private static LayoutInflater inflater = null;
     private ArrayList<WorkoutElement> workoutList;
     private Activity akt;
 
-    public WorkoutListAdapter(Activity activity, ArrayList<WorkoutElement> workoutList) {
-        context = activity;
+    protected WorkoutListAdapter(Activity activity, ArrayList<WorkoutElement> workoutList) {
+        Context context = activity;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.workoutList = workoutList;
         this.akt = activity;
@@ -67,30 +64,26 @@ public class WorkoutListAdapter extends BaseAdapter {
         holder.Exercises = (TextView) rowView.findViewById(R.id.wle_Exercises);
         holder.image = (ImageView) rowView.findViewById(R.id.wle_Image);
 
-        String workoutTitle = workoutelement.getWorkoutName();
-        ArrayList<String> exercises = workoutelement.getExercises();
+        String workoutTitle = workoutelement.getName();
 
         holder.WorkoutTitle.setText(workoutTitle);
-        holder.Exercises.setText(exercises.toString());
-        holder.image.setImageResource(workoutelement.getImage());
+
+        StringBuilder sbExerciseList = new StringBuilder();
+        for (ExerciseElement exercise : workoutelement.getExercises())
+            sbExerciseList.append(exercise.getName()).append(", ");
+        sbExerciseList.substring(0, sbExerciseList.length() - 2);
+
+        holder.Exercises.setText(sbExerciseList);
+        holder.image.setImageResource(R.drawable.forward);
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position == 0) {
-                    Intent i = new Intent(akt, Workout_Exercises_akt.class);
-                    i.putExtra("workout", "Workout 1");
-                    akt.startActivity(i);
-                }
-                else if(position == 1){
-                    Intent i = new Intent(akt, Workout_Exercises_akt.class);
-                    i.putExtra("workout", "Workout 2");
-                    akt.startActivity(i);
-                }
+                Intent i = new Intent(akt, Workout_Exercises_akt.class);
+                i.putExtra("workout", workoutList.get(position));
+                akt.startActivity(i);
             }
         });
         return rowView;
     }
-
-
 }

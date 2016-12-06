@@ -11,13 +11,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
+import project.martin.bepeakedprojekt.Misc.DummyData;
 import project.martin.bepeakedprojekt.R;
 
 public class WorkoutMenu_akt extends AppCompatActivity  {
-
-    private ArrayList<WorkoutElement> list;
-    private ArrayList<String> exercises;
+    private ArrayList<WorkoutElement> workoutList;
     private ListView lv;
     private EditText saveWorkoutName;
     private AlertDialog popup;
@@ -28,16 +29,11 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_menu);
         setTitle(R.string.workoutMenu_banner);
-        exercises = new ArrayList<>();
-        exercises.add("Benchpress");
-        exercises.add("Push Ups");
 
-        list = new ArrayList<>();
-        list.add(new WorkoutElement("Workout 1", exercises, R.drawable.forward));
-        list.add(new WorkoutElement("Workout 2", exercises, R.drawable.forward));
+        workoutList = new ArrayList<>(Arrays.asList(DummyData.workoutList));
 
         lv = (ListView) findViewById(R.id.listWorkoutMenu);
-        listAdapter = new WorkoutListAdapter(this, list);
+        listAdapter = new WorkoutListAdapter(this, workoutList);
         lv.setAdapter(listAdapter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -45,11 +41,10 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
-        } else if (item.getItemId() == R.id.add) {
-
+        }
+        else if (item.getItemId() == R.id.add) {
             popup = new AlertDialog.Builder(WorkoutMenu_akt.this).create();
             View createWorkout = View.inflate(this, R.layout.popup_createworkout, null);
-
 
             saveWorkoutName = (EditText) createWorkout.findViewById(R.id.giveNameWorkout);
             final Button saveWorkoutButton = (Button) createWorkout.findViewById(R.id.saveWorkout);
@@ -57,19 +52,15 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
 
                 @Override
                 public void onClick(View v) {
-                    list.add(new WorkoutElement(saveWorkoutName.getText().toString(), exercises, R.drawable.forward));
-                    System.out.println("hej"+ list.size());
+                    workoutList.add(new WorkoutElement(-1, saveWorkoutName.getText().toString(), new ArrayList<ExerciseElement>()));
                     listAdapter.notifyDataSetChanged();
                     popup.cancel();
-
                 }
             });
 
             popup.setTitle(R.string.createWorkout_title);
             popup.setView(createWorkout);
             popup.show();
-
-
         }
         return super.onOptionsItemSelected(item);
     }

@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
-
-import static project.martin.bepeakedprojekt.R.id.exerciseList;
+import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
 public class Workout_Exercises_akt extends AppCompatActivity {
 
@@ -20,15 +19,13 @@ public class Workout_Exercises_akt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_menu);
-        String workout = getIntent().getStringExtra("workout");
-        setTitle(workout);
+        WorkoutElement workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
+        setTitle(workout.getName());
 
-        ArrayList<ExerciseElement> list = new ArrayList<>();
-        list.add(new ExerciseElement("Benchpress", R.drawable.forward));
-        list.add(new ExerciseElement("Push Ups", R.drawable.forward));
+        ArrayList<ExerciseElement> exerciseList = workout.getExercises();
 
-        ListView lv = (ListView) findViewById(exerciseList);
-        lv.setAdapter(new WorkoutExercisesListAdapter(this,list));
+        ListView lv = (ListView) findViewById(R.id.exerciseList);
+        lv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }

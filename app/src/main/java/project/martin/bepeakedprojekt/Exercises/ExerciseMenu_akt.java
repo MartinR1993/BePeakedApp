@@ -8,7 +8,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import project.martin.bepeakedprojekt.Misc.DummyData;
 import project.martin.bepeakedprojekt.R;
 
 public class ExerciseMenu_akt extends AppCompatActivity {
@@ -19,10 +21,7 @@ public class ExerciseMenu_akt extends AppCompatActivity {
         setContentView(R.layout.activity_exercise_menu);
         setTitle(R.string.exerciseMenu_banner);
 
-        ArrayList<ExerciseElement> list = new ArrayList<>();
-        list.add(new ExerciseElement("Exercise 1", R.drawable.forward));
-        list.add(new ExerciseElement("Exercise 2", R.drawable.forward));
-        list.add(new ExerciseElement("Exercise 3", R.drawable.forward));
+        ArrayList<ExerciseElement> list = new ArrayList<>(Arrays.asList(DummyData.exerciseList));
 
         ListView lv = (ListView) findViewById(R.id.exerciseList);
         lv.setAdapter(new ExerciseListAdapter(this,list));

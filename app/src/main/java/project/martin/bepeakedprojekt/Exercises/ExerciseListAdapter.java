@@ -17,13 +17,12 @@ import project.martin.bepeakedprojekt.R;
 /**
  * Created by Martin on 14-11-2016.
  */
-
 public class ExerciseListAdapter extends BaseAdapter {
     private final Context context;
     private static LayoutInflater inflater = null;
     private ArrayList<ExerciseElement> exerciseList;
 
-    public ExerciseListAdapter(Activity activity, ArrayList<ExerciseElement> exerciseList) {
+    protected ExerciseListAdapter(Activity activity, ArrayList<ExerciseElement> exerciseList) {
         context = activity;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.exerciseList = exerciseList;
@@ -60,15 +59,15 @@ public class ExerciseListAdapter extends BaseAdapter {
         holder.ExerciseTitle = (TextView) rowView.findViewById(R.id.ele_ExerciseTitle);
         holder.image = (ImageView) rowView.findViewById(R.id.ele_image);
 
-        String exerciseTitle = exerciseElement.getExerciseName();
+        String exerciseTitle = exerciseElement.getName();
 
         holder.ExerciseTitle.setText(exerciseTitle);
-        holder.image.setImageResource(exerciseElement.getImageID());
+        holder.image.setImageResource(R.drawable.forward);
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, exerciseList.get(position).getExerciseName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, exerciseList.get(position).getName(), Toast.LENGTH_LONG).show();
             }
         });
         return rowView;

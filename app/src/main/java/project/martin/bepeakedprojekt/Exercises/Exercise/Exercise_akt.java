@@ -10,18 +10,22 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 
+import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
 
 public class Exercise_akt extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
+    private ExerciseElement exercise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_akt);
-        setTitle("Benchpress");
+
+        exercise = (ExerciseElement) getIntent().getSerializableExtra("exercise");
+        setTitle(exercise.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
@@ -30,12 +34,11 @@ public class Exercise_akt extends AppCompatActivity {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
-        final TabLayout.Tab description=tabLayout.newTab();
-        final TabLayout.Tab results=tabLayout.newTab();
+        final TabLayout.Tab description = tabLayout.newTab();
+        final TabLayout.Tab results = tabLayout.newTab();
 
         description.setText(R.string.exerciseDescription_banner);
         results.setText(R.string.exerciseResult_banner);
-
 
         tabLayout.addTab(results, 0);
         tabLayout.addTab(description, 1);
@@ -83,10 +86,16 @@ public class Exercise_akt extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             Fragment f;
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("exercise", exercise);
+
             if (position == 0)
                 f = new Result_frag();
             else
                 f = new Description_frag();
+
+            f.setArguments(bundle);
 
             return f;
         }

@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,16 +19,14 @@ import project.martin.bepeakedprojekt.R;
 /**
  * Created by Martin on 14-11-2016.
  */
-
 public class WorkoutExercisesListAdapter extends BaseAdapter {
-    private final Context context;
     private static LayoutInflater inflater = null;
     private ArrayList<ExerciseElement> exerciseList;
     private Activity akt;
 
 
-    public WorkoutExercisesListAdapter(Activity activity, ArrayList<ExerciseElement> exerciseList) {
-        context = activity;
+    protected WorkoutExercisesListAdapter(Activity activity, ArrayList<ExerciseElement> exerciseList) {
+        Context context = activity;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.exerciseList = exerciseList;
         this.akt = activity;
@@ -66,20 +63,17 @@ public class WorkoutExercisesListAdapter extends BaseAdapter {
         holder.ExerciseTitle = (TextView) rowView.findViewById(R.id.ele_ExerciseTitle);
         holder.image = (ImageView) rowView.findViewById(R.id.ele_image);
 
-        String exerciseTitle = exerciseElement.getExerciseName();
+        String exerciseTitle = exerciseElement.getName();
 
         holder.ExerciseTitle.setText(exerciseTitle);
-        holder.image.setImageResource(exerciseElement.getImageID());
+        holder.image.setImageResource(R.drawable.forward);
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(position == 0) {
-                    Intent i = new Intent(akt, Exercise_akt.class);
-                    akt.startActivity(i);
-                }
-                else
-                    Toast.makeText(context, "Ikke implementeret endnu...", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(akt, Exercise_akt.class);
+                i.putExtra("exercise", exerciseList.get(position));
+                akt.startActivity(i);
             }
         });
         return rowView;
