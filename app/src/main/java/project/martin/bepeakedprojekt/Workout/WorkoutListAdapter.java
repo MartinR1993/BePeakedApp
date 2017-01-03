@@ -71,7 +71,7 @@ public class WorkoutListAdapter extends BaseAdapter {
         StringBuilder sbExerciseList = new StringBuilder();
         for (ExerciseElement exercise : workoutelement.getExercises())
             sbExerciseList.append(exercise.getName()).append(", ");
-        sbExerciseList.substring(0, sbExerciseList.length() - 2);
+        sbExerciseList.substring(0, sbExerciseList.length());
 
         holder.Exercises.setText(sbExerciseList);
         holder.image.setImageResource(R.drawable.forward);
