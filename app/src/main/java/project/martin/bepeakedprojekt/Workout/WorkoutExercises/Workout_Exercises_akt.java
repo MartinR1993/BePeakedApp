@@ -94,22 +94,20 @@ public class Workout_Exercises_akt extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if (s.toString().equals("")) {
+
                         allExercises.clear();
 
                         for(int i = 1 ; i <= DummyData.exerciseList.length ; i++){
                                 allExercises.add(DummyData.getExercise(i));
                         }
-                    }
 
-                    else{
+                        searchItem();
 
-                    }
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    searchItem(s.toString());
+
                 }
             });
 
@@ -143,48 +141,21 @@ public class Workout_Exercises_akt extends AppCompatActivity {
         return true;
     }
 
-    public void searchItem(String textToSearch){
-
-
-        System.out.println(searchText.getText().toString());
+    public void searchItem(){
 
             for (int j = 0 ; j < allExercises.size(); j++) {
 
 
                String exerciseName = allExercises.get(j).getName().toString().toLowerCase();
 
-             //   String exerciseName = list.get(j).toLowerCase();
-
-                System.out.println(exerciseName);
-
-
 
                 if(!exerciseName.contains(searchText.getText().toString())){
-                    System.out.println(allExercises.get(j).getName() +" blev fjernet");
                     allExercises.remove(j);
-
-//                    System.out.println(exerciseName +" blev fjernet");
-//                    list.remove(j);
-
-
-
-                    //listOfExercises.deferNotifyDataSetChanged();
-
-
-
-
-
 
                     j=j-1;
 
-
-
-
                 }
                 listOfExercises.setAdapter(new WorkoutAddExerciseAdapter(this,allExercises));
-
-//                listOfExercises.setAdapter(adapter);
-
 
 
         }
