@@ -122,7 +122,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
                 public void onClick(View v) {
 
                     popup.cancel();
-
+                    exerciseNames.clear();
                 }
             });
 
