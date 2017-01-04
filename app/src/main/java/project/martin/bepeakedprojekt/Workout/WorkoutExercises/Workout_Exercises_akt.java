@@ -132,7 +132,8 @@ public class Workout_Exercises_akt extends AppCompatActivity {
             popup.show();
         }
         return super.onOptionsItemSelected(item);
-        }
+
+    }
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
