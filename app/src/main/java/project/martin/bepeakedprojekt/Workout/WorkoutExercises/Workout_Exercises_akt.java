@@ -53,8 +53,6 @@ public class Workout_Exercises_akt extends AppCompatActivity {
             View addExercise = View.inflate(this, R.layout.popup_addexercise, null);
 
             EditText searchText = (EditText) addExercise.findViewById(R.id.searchText);
-            searchText.setText("hej");
-
 
             ArrayList<ExerciseElement> allExercises = new ArrayList<ExerciseElement>();
 
@@ -63,10 +61,9 @@ public class Workout_Exercises_akt extends AppCompatActivity {
 
             for(int i = 1 ; i <= DummyData.exerciseList.length ; i++){
                 allExercises.add(DummyData.getExercise(i));
-                System.out.println(DummyData.getExercise(i).getName());
            }
 
-                System.out.println(allExercises.size());
+
 
             // VIRKER halvt
              listOfExercises.setAdapter(new WorkoutExercisesListAdapter(this,allExercises));
