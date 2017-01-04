@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/addExerBotton"
-        android:text="@string/createWorkout_buttonExecute"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="26dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -21,8 +13,10 @@
         android:ems="10"
         android:id="@+id/searchText"
         android:layout_below="@+id/exerciseName"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="12dp"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView4"
+        android:hint="Search..." />
 
     <TextView
         android:text="Click an exercise below to add"
@@ -38,5 +32,22 @@
         android:layout_height="300dp"
         android:layout_below="@+id/searchText"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_search_category_default"
+        android:layout_above="@+id/listViewExer"
+        android:layout_alignParentStart="true"
+        android:id="@+id/imageView4"
+        android:layout_alignTop="@+id/searchText" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addExerBotton"
+        android:text="Add Exercise"
+        android:layout_below="@+id/listViewExer"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
