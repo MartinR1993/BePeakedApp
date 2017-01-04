@@ -1,6 +1,8 @@
 <resources>
+    <!--Projekt navn-->
     <string name="app_name">BePeaked Projekt</string>
 
+    <!--Log ind menu-->
     <string name="login_banner">Login Menu</string>
     <string name="login_createUser"><u>Create User</u></string>
     <string name="login_username">Username</string>
@@ -8,6 +10,7 @@
     <string name="login_password">Password</string>
     <string name="login_buttonExecute">Log in</string>
 
+    <!--Main menu-->
     <string name="mainMenu_banner">Menu</string>
     <string name="mainMenu_buttonWorkoutMenu">Workouts</string>
     <string name="mainMenu_buttonExerciseLibrary">Exercises</string>
@@ -15,12 +18,14 @@
     <string name="toolbar_elAbout">About</string>
     <string name="toolbar_elLogOut">Log Out</string>
 
+    <!--Workout-->
     <string name="workoutMenu_banner">Workouts</string>
     <string name="createWorkout_title">Create Workout</string>
     <string name="createWorkout_description">Give your new workout a name:</string>
     <string name="createWorkout_nameInput">Type name here!</string>
     <string name="createWorkout_buttonExecute">Save Workout</string>
 
+    <!--Øvelse-->
     <string name="exerciseResult_banner">Results</string>
     <string name="exerciseResult_tableWeight">Weight</string>
     <string name="exerciseResult_tableReps">Reps</string>
@@ -29,11 +34,10 @@
     <string name="exerciseResult_addBanner">Add exercise result</string>
     <string name="exerciseResult_addDescription">Write your result for this set</string>
     <string name="exerciseResult_addButtonExecute">Save</string>
-
     <string name="exerciseDescription_banner">Description</string>
-
     <string name="exerciseMenu_banner">Exercises</string>
 
+    <!--Kostplan-->
     <string name="dietPlanMenu_banner">Diet Plan</string>
     <string name="dietPlanMenu_breakfast">Breakfast</string>
     <string name="dietPlanMenu_lunch">Lunch</string>

@@ -34,7 +34,7 @@ public class Workout_Exercises_akt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercise_menu);
+        setContentView(R.layout.activity_workout_exercises_menu);
         WorkoutElement workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
         setTitle(workout.getName());
 

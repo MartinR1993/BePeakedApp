@@ -22,11 +22,15 @@
         <activity android:name=".Login_akt" />
         <activity android:name=".MainMenu_akt" />
         <activity android:name=".Workout.WorkoutMenu_akt" />
-        <activity android:name=".Exercises.ExerciseMenu_akt" />
+        <activity
+            android:name=".Exercises.ExerciseMenu_akt"
+            android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".Diet_Plan.DietPlanMenu_akt" />
         <activity android:name=".Exercises.Exercise.Exercise_akt" />
-        <activity android:name=".Diet_Plan.Recipe.Recipe_akt"></activity>
-        <activity android:name=".Workout.WorkoutExercises.Workout_Exercises_akt"/>z
+        <activity android:name=".Diet_Plan.Recipe.Recipe_akt" />
+        <activity android:name=".Workout.WorkoutExercises.Workout_Exercises_akt" />
+        <activity android:name=".Settings.Settings_akt" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="214e1f041248b7c17ff553134eeeaf8697e8e220" />

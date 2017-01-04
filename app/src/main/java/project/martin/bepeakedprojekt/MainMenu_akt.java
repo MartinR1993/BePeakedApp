@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import project.martin.bepeakedprojekt.Diet_Plan.DietPlanMenu_akt;
 import project.martin.bepeakedprojekt.Exercises.ExerciseMenu_akt;
+import project.martin.bepeakedprojekt.Settings.Settings_akt;
 import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
 
 public class MainMenu_akt extends AppCompatActivity implements View.OnClickListener {
@@ -74,6 +75,8 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         }
         else if(item.getItemId() == R.id.settings) {
             System.out.println("Du har valgt indstillinger");
+            Intent i = new Intent(this, Settings_akt.class);
+            startActivity(i);
             Toast.makeText(this, "Ikke implementeret endnu...", Toast.LENGTH_LONG).show();
             //Intent i = new Intent(this, Settings.class);
             //startActivity(i);
