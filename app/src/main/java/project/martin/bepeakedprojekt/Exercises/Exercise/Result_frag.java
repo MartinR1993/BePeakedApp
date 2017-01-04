@@ -128,7 +128,10 @@ public class Result_frag extends Fragment
 
                     double weight = npWeight.getValue() * increment;
                     int reps = npReps.getValue();
+                    //Lombardi
                     double oneRM = weight * Math.pow(reps, 0.1);
+                    //Brzycki
+                    //double oneRM = weight*36/(37-reps);
                     String oneRMString = "" + oneRM;
                     oneRMString = oneRMString.substring(0, oneRMString.indexOf('.') + 2);
 
