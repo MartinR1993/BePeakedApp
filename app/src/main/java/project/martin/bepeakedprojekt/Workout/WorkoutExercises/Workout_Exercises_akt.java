@@ -72,6 +72,10 @@ public class Workout_Exercises_akt extends AppCompatActivity {
             for(int i = 1 ; i <= DummyData.exerciseList.length ; i++){
                 allExercises.add(DummyData.getExercise(i));
            }
+            for(int i = 0 ; i < exerciseList.size() ; i++){
+                allExercises.remove(exerciseList.get(i));
+                System.out.println(exerciseList.get(i).getName()+" blev fjernet");
+            }
 
 //             list = new ArrayList<>();
 
@@ -99,7 +103,15 @@ public class Workout_Exercises_akt extends AppCompatActivity {
 
                         for(int i = 1 ; i <= DummyData.exerciseList.length ; i++){
                                 allExercises.add(DummyData.getExercise(i));
+
                         }
+
+                    for(int i = 0 ; i < exerciseList.size() ; i++){
+                        allExercises.remove(exerciseList.get(i));
+                        System.out.println(exerciseList.get(i).getName()+" blev fjernet");
+                    }
+
+
 
                         searchItem();
 
