@@ -10,15 +10,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/ele_ExerciseTitle"
         android:layout_weight="1"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:layout_margin="5dp"
         android:layout_marginBottom="5dp"/>
 
     <ImageView
-        android:layout_height="49dp"
+        android:layout_height="39dp"
         app:srcCompat="@drawable/forward"
         android:id="@+id/ele_image"
-        android:layout_width="49dp"
+        android:layout_width="39dp"
         android:layout_margin="5dp"
         android:layout_marginBottom="5dp"/>
 </LinearLayout>

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:weightSum="1">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width= "0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4">
 
         <TextView
             android:text="Title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/wle_WorkoutTitle"
             android:textSize="36sp"
@@ -20,7 +21,7 @@
 
         <TextView
             android:text="Exercices"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/wle_Exercises"
             android:textSize="14sp"
@@ -32,14 +33,16 @@
     <Space
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="0.1" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/forward"
         android:id="@+id/wle_Image"
         android:focusable="false"
-        android:layout_gravity="right"/>
+        android:layout_gravity="end"
+        tools:ignore="ContentDescription"
+        android:layout_weight="1"/>
 
 </LinearLayout>
