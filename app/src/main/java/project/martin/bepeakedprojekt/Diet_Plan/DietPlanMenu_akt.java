@@ -49,11 +49,11 @@ public class DietPlanMenu_akt extends AppCompatActivity {
                 //display it or do something with it
                 if(groupPosition == 0 && childPosition == 0) {
                     Intent intent = new Intent(DietPlanMenu_akt.this, Recipe_akt.class);
-                    intent.putExtra("description", "Proteinsmoothie & Æg");
+                    intent.putExtra(getString(R.string.DietPlanMenu_description), getString(R.string.DietPlanMenu_Proteinsmoothie_and_egg));
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(getBaseContext(), " Clicked on : " + headerInfo.getName()
+                    Toast.makeText(getBaseContext(), getString(R.string.DietPlanMenu_Clicked_on) + headerInfo.getName()
                             + "/" + detailInfo.getName(), Toast.LENGTH_LONG).show();
                 }
                 return false;
@@ -93,17 +93,17 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         String dinner = getString(R.string.dietPlanMenu_dinner);
         String snacks = getString(R.string.dietPlanMenu_snacks);
 
-        addProduct(breakfast,"Proteinsmoothie & Æg");
-        addProduct(breakfast,"Skyr");
-        addProduct(breakfast,"Banan Pandekager");
+        addProduct(breakfast,getString(R.string.DietPlanMenu_Proteinsmoothie_and_egg));
+        addProduct(breakfast,getString(R.string.DietPlanMenu_shun));
+        addProduct(breakfast,getString(R.string.DietPlanMenu_Banana_Pancakes));
 
-        addProduct(lunch,"Chili con Carne");
-        addProduct(lunch,"Håndmadder");
+        addProduct(lunch,getString(R.string.DietPlanMenu_Chili_con_carne));
+        addProduct(lunch,getString(R.string.DietPlanMenu_Sandwiches));
 
-        addProduct(dinner, "Æggekage");
-        addProduct(dinner, "Studenter Kaviar");
+        addProduct(dinner, getString(R.string.DietPlanMenu_Omelette));
+        addProduct(dinner, getString(R.string.DietPlanMenu_Student_Caviar));
 
-        addProduct(snacks, "Nødder");
+        addProduct(snacks, getString(R.string.DietPlanMenu_Nuts));
     }
 
     //here we maintain our products in various food

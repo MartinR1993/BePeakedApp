@@ -88,7 +88,7 @@ public class Exercise_akt extends AppCompatActivity {
             Fragment f;
 
             Bundle bundle = new Bundle();
-            bundle.putSerializable("exercise", exercise);
+            bundle.putSerializable(getString(R.string.Exercise_akt_exercise), exercise);
 
             if (position == 0)
                 f = new Result_frag();

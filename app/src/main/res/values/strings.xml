@@ -37,12 +37,29 @@
     <string name="exerciseDescription_banner">Description</string>
     <string name="exerciseMenu_banner">Exercises</string>
 
+    <string name="Exercise_akt_exercise">exercise</string>
+
     <!--Kostplan-->
     <string name="dietPlanMenu_banner">Diet Plan</string>
     <string name="dietPlanMenu_breakfast">Breakfast</string>
     <string name="dietPlanMenu_lunch">Lunch</string>
     <string name="dietPlanMenu_dinner">Dinner</string>
     <string name="dietPlanMenu_snacks">Snacks</string>
+
+    <string name="DietPlanMenu_description">description</string>
+
+    <string name="Recipe_description">description</string>
+
+    <string name="DietPlanMenu_Proteinsmoothie_and_egg">Proteinsmoothie and egg</string>
+    <string name="DietPlanMenu_Clicked_on"> Clicked on : </string>
+    <string name="DietPlanMenu_shun">Shun</string>
+    <string name="DietPlanMenu_Banana_Pancakes">Banana Pancakes</string>
+    <string name="DietPlanMenu_Chili_con_carne">Chili con Carne</string>
+    <string name="DietPlanMenu_Sandwiches">Sandwiches</string>
+    <string name="DietPlanMenu_Omelette">Omelette</string>
+    <string name="DietPlanMenu_Student_Caviar">Student Caviar</string>
+    <string name="DietPlanMenu_Nuts">Nuts</string>
+
 
     <!--Indstillinger-->
     <string name="settingstitle">Settings</string>
@@ -51,5 +68,8 @@
     <string name="settings_unitsystem">Change Unitsystem</string>
     <string name="settings_about">About</string>
     <string name="settings_logout">Log out</string>
+
+
+
 
 </resources>
