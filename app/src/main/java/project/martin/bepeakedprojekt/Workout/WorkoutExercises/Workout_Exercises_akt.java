@@ -8,10 +8,12 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -20,16 +22,16 @@ import project.martin.bepeakedprojekt.Misc.DummyData;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
-public class Workout_Exercises_akt extends AppCompatActivity {
+public class Workout_Exercises_akt extends AppCompatActivity implements AdapterView.OnItemClickListener  {
 
-    private AlertDialog popup;
+    AlertDialog popup;
     ListView listOfExercises;
+    ArrayList<String> exerciseNames = new ArrayList<>();
     ArrayList<ExerciseElement> exerciseList;
     public ArrayList<ExerciseElement> allExercises;
     EditText searchText;
-    ArrayList<String> list;
-    ArrayAdapter<String> adapter;
-
+    ListView lv;
+    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +42,12 @@ public class Workout_Exercises_akt extends AppCompatActivity {
 
         exerciseList = workout.getExercises();
 
-        ListView lv = (ListView) findViewById(R.id.exerciseList);
+        lv = (ListView) findViewById(R.id.exerciseList);
         lv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
-
-
     }
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(final MenuItem item){
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
@@ -58,10 +56,7 @@ public class Workout_Exercises_akt extends AppCompatActivity {
 
             View addExercise = View.inflate(this, R.layout.popup_addexercise, null);
 
-             searchText = (EditText) addExercise.findViewById(R.id.searchText);
-
-
-
+            searchText = (EditText) addExercise.findViewById(R.id.searchText);
 
 
             allExercises = new ArrayList<ExerciseElement>();
@@ -74,21 +69,18 @@ public class Workout_Exercises_akt extends AppCompatActivity {
            }
             for(int i = 0 ; i < exerciseList.size() ; i++){
                 allExercises.remove(exerciseList.get(i));
-                System.out.println(exerciseList.get(i).getName()+" blev fjernet");
             }
 
-//             list = new ArrayList<>();
 
-//            for (int h=0; h< allExercises.size(); h++)
-//                list.add(allExercises.get(h).getName().toString());
+            for (int q = 0; q< allExercises.size(); q++)
+                exerciseNames.add(allExercises.get(q).getName());
 
+             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, exerciseNames);
 
+            listOfExercises.setAdapter(adapter);
 
-            // VIRKER halvt
-            listOfExercises.setAdapter(new WorkoutAddExerciseAdapter(this,allExercises));
+            listOfExercises.setOnItemClickListener(this);
 
-          //   adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
-         //   listOfExercises.setAdapter(adapter);
 
             searchText.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -100,46 +92,40 @@ public class Workout_Exercises_akt extends AppCompatActivity {
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                         allExercises.clear();
-
+                        exerciseNames.clear();
                         for(int i = 1 ; i <= DummyData.exerciseList.length ; i++){
                                 allExercises.add(DummyData.getExercise(i));
-
                         }
 
                     for(int i = 0 ; i < exerciseList.size() ; i++){
                         allExercises.remove(exerciseList.get(i));
-                        System.out.println(exerciseList.get(i).getName()+" blev fjernet");
                     }
 
+                    for (int q = 0; q< allExercises.size(); q++)
+                        exerciseNames.add(allExercises.get(q).getName());
 
-
-                        searchItem();
+                searchItem();
 
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
-
                 }
             });
 
 
             final Button addExerBotton = (Button) addExercise.findViewById(R.id.addExerBotton);
-            addExerBotton.setText("Add Exercise");
+            addExerBotton.setText("Cancel");
             addExerBotton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-               //     workoutList.add(new WorkoutElement(-1, saveExerciseName.getText().toString(), new ArrayList<ExerciseElement>()));
-                //    listAdapter.notifyDataSetChanged();
-                  //  popup.cancel();
 
-                    for (int k=0 ; k<allExercises.size(); k++)
-                        System.out.println(allExercises.get(k).getName().toString().toLowerCase());
+                    popup.cancel();
+
                 }
             });
 
-           // popup.setTitle("Add Exercise");
             popup.setView(addExercise);
             popup.show();
         }
@@ -156,24 +142,32 @@ public class Workout_Exercises_akt extends AppCompatActivity {
 
     public void searchItem(){
 
-            for (int j = 0 ; j < allExercises.size(); j++) {
+            for (int j = 0 ; j < exerciseNames.size(); j++) {
 
-
-               String exerciseName = allExercises.get(j).getName().toString().toLowerCase();
-
+                String exerciseName = exerciseNames.get(j).toLowerCase();
 
                 if(!exerciseName.contains(searchText.getText().toString())){
-                    allExercises.remove(j);
-
+                    exerciseNames.remove(j);
                     j=j-1;
 
                 }
-                listOfExercises.setAdapter(new WorkoutAddExerciseAdapter(this,allExercises));
-
-
+            listOfExercises.setAdapter(adapter);
         }
-
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        for (int t = 0 ; t <allExercises.size(); t++) {
+            if (allExercises.get(t).getName().equalsIgnoreCase(exerciseNames.get(i)))
+            exerciseList.add(allExercises.get(t));
+        }
+
+                lv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
+                exerciseNames.clear();
+                listOfExercises.setAdapter(adapter);
+                popup.cancel();
+
+    }
 }
 
