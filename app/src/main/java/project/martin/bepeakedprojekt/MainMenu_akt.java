@@ -63,23 +63,10 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        if (item.getItemId() == R.id.about) {
-            System.out.println("Du har valgt Om appen");
-            Toast.makeText(this, "Ikke implementeret endnu...", Toast.LENGTH_LONG).show();
-        }
-        else if (item.getItemId() == R.id.logout) {
-            System.out.println("Du er nu logget ud");
-            Intent i = new Intent(this, Login_akt.class);
-            MainMenu_akt.this.finish();
-            startActivity(i);
-        }
-        else if(item.getItemId() == R.id.settings) {
+        if(item.getItemId() == R.id.settings) {
             System.out.println("Du har valgt indstillinger");
             Intent i = new Intent(this, Settings_akt.class);
             startActivity(i);
-            Toast.makeText(this, "Ikke implementeret endnu...", Toast.LENGTH_LONG).show();
-            //Intent i = new Intent(this, Settings.class);
-            //startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

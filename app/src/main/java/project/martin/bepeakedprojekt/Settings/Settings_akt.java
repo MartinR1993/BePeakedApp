@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.Settings;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import project.martin.bepeakedprojekt.Login_akt;
+import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
 
 public class Settings_akt extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -44,8 +47,19 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(position == 1){
+        if(position == 0){
+            //her skal der oprettes en profil side
+        }
 
+        else if(position == 1){
+            //Her skal der kunne skiftes sprog
+        }
+
+        else if(position == 4){
+            Intent i = new Intent(this, Login_akt.class);
+// set the new task and clear flags
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
         }
     }
 }
