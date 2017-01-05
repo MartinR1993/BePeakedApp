@@ -34,6 +34,8 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="214e1f041248b7c17ff553134eeeaf8697e8e220" />
+
+        <activity android:name=".Settings.Language_akt"></activity>
     </application>
 
 </manifest>
