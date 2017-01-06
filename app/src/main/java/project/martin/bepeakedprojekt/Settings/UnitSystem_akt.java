@@ -1,6 +1,8 @@
 package project.martin.bepeakedprojekt.Settings;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,25 +14,37 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import project.martin.bepeakedprojekt.Login_akt;
-import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.User.Settings;
 
-public class Settings_akt extends AppCompatActivity implements AdapterView.OnItemClickListener {
+import static project.martin.bepeakedprojekt.User.Settings.Language.DANISH;
+import static project.martin.bepeakedprojekt.User.Settings.Language.ENGLISH;
+
+public class UnitSystem_akt extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+    SharedPreferences prefs;
+    Settings setting;
+    ListView listView;
+    String[] unitsystem = {
+            "Metric",
+            "Imperial"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ListView listView;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings_akt);
-        setTitle(getString(R.string.settingstitle));
+        setContentView(R.layout.activity_language_akt);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Language");
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String[] indstillinger = {getString(R.string.settings_profile), getString(R.string.settings_language), getString(R.string.settings_unitsystem), getString(R.string.settings_about), getString(R.string.settings_logout)};
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_selectable_list_item, android.R.id.text1, indstillinger);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_checked, android.R.id.text1, unitsystem);
 
         listView = (ListView) findViewById(R.id.listView);
+        listView.setChoiceMode(listView.CHOICE_MODE_SINGLE);
         listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
+        listView.setItemChecked(prefs.getInt("Unitsystem", 0),true);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,24 +62,13 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(position == 0){
-            //her skal der oprettes en profil side
+            setting.setUnitSystem(Settings.UnitSystem.METRIC);
+            prefs.edit().putInt("Unitsystem", 0).commit();
         }
-
         else if(position == 1){
-            Intent i = new Intent(this, Language_akt.class);
-            startActivity(i);
+            setting.setUnitSystem(Settings.UnitSystem.IMPERIAL);
+            prefs.edit().putInt("Unitsystem", 1).commit();
         }
 
-        else if(position == 2){
-            Intent i = new Intent(this, UnitSystem_akt.class);
-            startActivity(i);
-        }
-
-
-        else if(position == 4){
-            Intent i = new Intent(this, Login_akt.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-        }
     }
 }

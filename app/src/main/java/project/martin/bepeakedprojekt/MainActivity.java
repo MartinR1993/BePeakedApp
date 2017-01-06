@@ -1,12 +1,18 @@
 package project.martin.bepeakedprojekt;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
+import project.martin.bepeakedprojekt.User.Settings;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences prefs;
+    Settings setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,12 +21,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
-        
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+
         if (savedInstanceState == null){
             Fragment fragment = new Welcome_frag();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragmentindhold, fragment)
                     .commit();
+        }
+
+        if(prefs.getInt("Unitsystem",0) == 0){
+            setting.setUnitSystem(Settings.UnitSystem.METRIC);
+        }
+        else if(prefs.getInt("Unitsystem",0) == 1){
+            setting.setUnitSystem(Settings.UnitSystem.IMPERIAL);
+        }
+
+        if(prefs.getInt("Language",0) == 0){
+            setting.setLanguage(getResources(), Settings.Language.DANISH);
+        }
+        else if(prefs.getInt("Language",0) == 1){
+            setting.setLanguage(getResources(), Settings.Language.ENGLISH);
+        }
+        else if(prefs.getInt("Language",0) == 2){
+            //Her mangler vietnamesisk
         }
 
         //Sprog kan ændres vha. hardcode her
