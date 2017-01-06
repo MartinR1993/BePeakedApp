@@ -24,7 +24,7 @@ public class Welcome_frag extends Fragment implements Runnable {
 
     @Override
     public void run() {
-        Intent i = new Intent(getActivity(), Login_akt.class);
+        Intent i = new Intent(getActivity(), login_akt.class);
         getActivity().finish();
         startActivity(i);
     }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,13 +13,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import project.martin.bepeakedprojekt.Login_akt;
 import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.Settings;
-import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
 
 import static project.martin.bepeakedprojekt.User.Settings.Language.DANISH;
 import static project.martin.bepeakedprojekt.User.Settings.Language.ENGLISH;

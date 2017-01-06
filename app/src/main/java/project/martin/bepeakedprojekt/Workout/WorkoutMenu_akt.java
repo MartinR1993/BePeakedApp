@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -24,11 +27,22 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
     private AlertDialog popup;
     private WorkoutListAdapter listAdapter;
 
+
+    //DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+    //DatabaseReference workouts = db.child("workouts");
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_menu);
         setTitle(R.string.workoutMenu_banner);
+
+
+
 
         workoutList = new ArrayList<>(Arrays.asList(DummyData.workoutList));
 
