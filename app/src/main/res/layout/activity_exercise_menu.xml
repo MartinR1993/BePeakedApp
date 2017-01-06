@@ -32,7 +32,7 @@
             android:ems="10"
             android:id="@+id/editText"
             android:layout_weight="1"
-            android:hint="Search..." />
+            android:hint="@string/exerciseMenu_search" />
 
     </LinearLayout>
 

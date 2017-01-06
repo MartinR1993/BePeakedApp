@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="10dp">
 
     <TextView
-        android:text="Changing language..."
+        android:text="@string/language_loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textLan"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_weight="1"
         android:paddingTop="5dp"
-        android:paddingEnd="5dp"/>
+        android:paddingEnd="5dp"
+        tools:ignore="RtlSymmetry" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleSmall"

@@ -33,6 +33,7 @@ public class Language_akt extends AppCompatActivity  implements AdapterView.OnIt
     Settings setting;
     ListView listView;
     String[] language = {
+            //Kan ikke oversættes?
             "Danish",
             "English",
             "Vietnamese"
@@ -43,7 +44,7 @@ public class Language_akt extends AppCompatActivity  implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_akt);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Language");
+        setTitle(getString(R.string.language_title));
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_checked, android.R.id.text1, language);
