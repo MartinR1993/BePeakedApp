@@ -52,12 +52,11 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
         }
 
         else if(position == 1){
-            //Her skal der kunne skiftes sprog
-        }
+            Intent i = new Intent(this, Language_akt.class);
+            startActivity(i);        }
 
         else if(position == 4){
             Intent i = new Intent(this, Login_akt.class);
-// set the new task and clear flags
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
         }
