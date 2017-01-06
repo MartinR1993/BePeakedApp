@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(prefs.getInt("Language",0) == 0){
-            setting.setLanguage(getResources(), Settings.Language.DANISH);
+            setting.setLanguage(this.getBaseContext().getResources(), Settings.Language.DANISH);
         }
         else if(prefs.getInt("Language",0) == 1){
-            setting.setLanguage(getResources(), Settings.Language.ENGLISH);
+            setting.setLanguage(this.getBaseContext().getResources(), Settings.Language.ENGLISH);
         }
         else if(prefs.getInt("Language",0) == 2){
             //Her mangler vietnamesisk
