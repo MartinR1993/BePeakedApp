@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "853634964791",
+    "firebase_url": "https://bepeakedapp.firebaseio.com",
+    "project_id": "bepeakedapp",
+    "storage_bucket": "bepeakedapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853634964791:android:3df5b8d9ecf3f5bb",
+        "android_client_info": {
+          "package_name": "project.martin.bepeakedprojekt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853634964791-bbeud1u6u9ojeck7qr97smoohatv2t3f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "project.martin.bepeakedprojekt",
+            "certificate_hash": "0EA2C907D90FA8077D78C61687E58B24B3ED0108"
+          }
+        },
+        {
+          "client_id": "853634964791-92d7kof8llu4aqqgq65hj530v7if669f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5-59P5NCKwMcYrD7406seCcqEXOzCUdE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853634964791-92d7kof8llu4aqqgq65hj530v7if669f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
