@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -54,7 +53,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         else if (item.getItemId() == R.id.add) {
             popup = new AlertDialog.Builder(Workout_Exercises_akt.this).create();
 
-            View addExercise = View.inflate(this, R.layout.popup_addexercise, null);
+            View addExercise = View.inflate(this, R.layout.popup_addexercises, null);
 
             searchText = (EditText) addExercise.findViewById(R.id.searchText);
 

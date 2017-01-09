@@ -22,30 +22,36 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        firstStart();
 
 
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             Fragment fragment = new Welcome_frag();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragmentindhold, fragment)
                     .commit();
         }
 
-        if(prefs.getInt("Unitsystem",0) == 0){
+        if (prefs.getInt("Unitsystem", 0) == 0) {
             setting.setUnitSystem(Settings.UnitSystem.METRIC);
-        }
-        else if(prefs.getInt("Unitsystem",0) == 1){
+        } else if (prefs.getInt("Unitsystem", 0) == 1) {
             setting.setUnitSystem(Settings.UnitSystem.IMPERIAL);
         }
 
-        if(prefs.getInt("Language",0) == 0){
+        if (prefs.getInt("Language", 0) == 0) {
             setting.setLanguage(this.getBaseContext().getResources(), Settings.Language.DANISH);
-        }
-        else if(prefs.getInt("Language",0) == 1){
+        } else if (prefs.getInt("Language", 0) == 1) {
             setting.setLanguage(this.getBaseContext().getResources(), Settings.Language.ENGLISH);
-        }
-        else if(prefs.getInt("Language",0) == 2){
+        } else if (prefs.getInt("Language", 0) == 2) {
             //Her mangler vietnamesisk
+        }
+    }
+
+    public void firstStart() {
+        if (prefs.getBoolean("firstStartOfApp", true)) {
+            prefs.edit().putInt("Language", 1).commit();
+            prefs.edit().putBoolean("firstStartOfApp", false).commit();
+
         }
 
         //Sprog kan ændres vha. hardcode her

@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login_akt" />
+        <activity android:name=".Logind_akt" />
         <activity android:name=".MainMenu_akt" />
         <activity android:name=".Workout.WorkoutMenu_akt" />
         <activity

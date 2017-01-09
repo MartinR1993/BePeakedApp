@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import project.martin.bepeakedprojekt.login_akt;
+import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.R;
 
 public class Settings_akt extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -84,7 +84,7 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
             startActivity(i);
         }
         else if(position == 4){
-            Intent i = new Intent(this, login_akt.class);
+            Intent i = new Intent(this, Logind_akt.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
         }
