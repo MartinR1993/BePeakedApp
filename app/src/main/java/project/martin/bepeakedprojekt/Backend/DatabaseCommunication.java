@@ -22,7 +22,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     private static final String HOST     = "nasie.diskstation.me"; //Lasses server
     private static final int    PORT     = 3306;
     private static final String DATABASE = "bepeakedwebserver_com_db";
-    private static final String USERNAME = "DTU";
+    private static final String USERNAME = "DTU123";
     private static final String PASSWORD = "Gruppe9";
 
     // Contacts Table Columns names
