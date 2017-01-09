@@ -1,6 +1,5 @@
 package project.martin.bepeakedprojekt.Settings;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,14 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import project.martin.bepeakedprojekt.Login_akt;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.Settings;
-
-import static project.martin.bepeakedprojekt.User.Settings.Language.DANISH;
-import static project.martin.bepeakedprojekt.User.Settings.Language.ENGLISH;
 
 public class UnitSystem_akt extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -35,7 +29,7 @@ public class UnitSystem_akt extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_akt);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Language");
+        setTitle(getString(R.string.unitsystem_title));
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_checked, android.R.id.text1, unitsystem);

@@ -6,7 +6,7 @@
     <string name="login_banner">Login Menu</string>
     <string name="login_createUser"><u>Opret Bruger</u></string>
     <string name="login_username">Brugernavn</string>
-    <string name="login_usernameInput">Indtast brugernavn her..</string>
+    <string name="login_usernameInput">Indtast brugernavn her...</string>
     <string name="login_password">Kodeord</string>
     <string name="login_buttonExecute">Log på</string>
 
@@ -35,12 +35,47 @@
     <string name="exerciseResult_addDescription">Angiv dit resultat for dette sæt</string>
     <string name="exerciseResult_addButtonExecute">Gem</string>
     <string name="exerciseDescription_banner">Beskrivelse</string>
-    <string name="exerciseMenu_banner">Øvleser</string>
+    <string name="exerciseMenu_banner">Øvelser</string>
+    <string name="exerciseMenu_search">Søg...</string>
+    <string name="exercise_add">Klik på en øvelse for at tilføje</string>
+    <string name="add_exercise">Tilføj øvelse</string>
+    <string name="exercise_cancel">Tilbage</string>
 
     <!--Kostplan-->
-    <string name="dietPlanMenu_banner">Opskrifter</string>
+    <string name="dietPlanMenu_banner">Kostplan</string>
     <string name="dietPlanMenu_breakfast">Morgenmad</string>
     <string name="dietPlanMenu_lunch">Frokost</string>
     <string name="dietPlanMenu_dinner">Aftensmad</string>
     <string name="dietPlanMenu_snacks">Mellemmåltider</string>
+
+    <!--Opskrifter-->
+    <string name="DietPlanMenu_Proteinsmoothie_and_egg">Proteinsmoothie og æg</string>
+    <string name="DietPlanMenu_shun">Skyr</string>
+    <string name="DietPlanMenu_Banana_Pancakes">Banan pandekager</string>
+    <string name="DietPlanMenu_Chili_con_carne">Chili con Carne</string>
+    <string name="DietPlanMenu_Sandwiches">Sandwich</string>
+    <string name="DietPlanMenu_Omelette">Omelet</string>
+    <string name="DietPlanMenu_Student_Caviar">Student Caviar</string>
+    <string name="DietPlanMenu_Nuts">Nødder</string>
+
+    <!--Indstillinger-->
+    <string name="settingstitle">Indstillinger</string>
+    <string name="settings_profile">Profil</string>
+    <string name="settings_language">Skift Sprog</string>
+    <string name="settings_unitsystem">Skift Enheder</string>
+    <string name="settings_about">Om</string>
+    <string name="settings_logout">Log ud</string>
+    <string name="settings_danish">Dansk</string>
+    <string name="settings_english">Engelsk</string>
+    <string name="settings_vietnamese">Vietnamesisk</string>
+    <string name="settings_default">Default</string>
+
+
+    <!--Sprog-->
+    <string name="language_title">Sprog</string>
+    <string name="language_loading">Skifter sprog...</string>
+
+    <!--Enheder-->
+    <string name="unitsystem_title">Enheder</string>
+
 </resources>

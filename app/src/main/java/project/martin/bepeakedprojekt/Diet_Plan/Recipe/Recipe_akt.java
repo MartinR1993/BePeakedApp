@@ -18,7 +18,7 @@ public class Recipe_akt extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_akt);
 
         //Hente data fra forrige aktivitet
-        String description = getIntent().getStringExtra(getString(R.string.Recipe_description));
+        String description = getIntent().getStringExtra("description");
         setTitle(description);
 
         image = (ImageView) findViewById(R.id.rc_image);

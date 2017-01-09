@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Login_akt extends AppCompatActivity implements View.OnClickListener {
+public class login_akt extends AppCompatActivity implements View.OnClickListener {
 
     private TextView textUsername, textPassword, opretBruger;
     private EditText editUsername, editPassword;
@@ -38,7 +38,7 @@ public class Login_akt extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         if(v == buttonLogin){
             Intent i = new Intent(this, MainMenu_akt.class);
-            Login_akt.this.finish();
+            login_akt.this.finish();
             startActivity(i);
         }
         else if (v == opretBruger){

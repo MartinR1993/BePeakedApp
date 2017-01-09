@@ -15,21 +15,13 @@
         android:layout_below="@+id/exerciseName"
         android:layout_marginTop="12dp"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/imageView4"
-        android:hint="Search..." />
-
-    <TextView
-        android:text="Click an exercise below to add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/exerciseName"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toEndOf="@+id/imageView"
+        android:hint="@string/exerciseMenu_search" />
 
     <ListView
         android:layout_width="match_parent"
         android:id="@+id/listViewExer"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/searchText"
         android:layout_alignParentStart="true" />
 
@@ -39,14 +31,23 @@
         app:srcCompat="@android:drawable/ic_search_category_default"
         android:layout_above="@+id/listViewExer"
         android:layout_alignParentStart="true"
-        android:id="@+id/imageView4"
+        android:id="@+id/imageView"
         android:layout_alignTop="@+id/searchText" />
+
+    <TextView
+        android:text="@string/exercise_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/exerciseName"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addExerBotton"
-        android:text="Add Exercise"
+        android:text="@string/exercise_cancel"
         android:layout_below="@+id/listViewExer"
         android:layout_centerHorizontal="true" />
 

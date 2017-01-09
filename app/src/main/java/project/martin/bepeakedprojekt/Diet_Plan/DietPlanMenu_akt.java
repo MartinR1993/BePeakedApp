@@ -49,11 +49,11 @@ public class DietPlanMenu_akt extends AppCompatActivity {
                 //display it or do something with it
                 if(groupPosition == 0 && childPosition == 0) {
                     Intent intent = new Intent(DietPlanMenu_akt.this, Recipe_akt.class);
-                    intent.putExtra(getString(R.string.DietPlanMenu_description), getString(R.string.DietPlanMenu_Proteinsmoothie_and_egg));
+                    intent.putExtra("description", getString(R.string.DietPlanMenu_Proteinsmoothie_and_egg));
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(getBaseContext(), getString(R.string.DietPlanMenu_Clicked_on) + headerInfo.getName()
+                    Toast.makeText(getBaseContext(), "Clicked on : " + headerInfo.getName()
                             + "/" + detailInfo.getName(), Toast.LENGTH_LONG).show();
                 }
                 return false;

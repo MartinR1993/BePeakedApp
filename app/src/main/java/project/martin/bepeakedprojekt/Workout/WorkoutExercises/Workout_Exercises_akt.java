@@ -115,7 +115,6 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
 
             final Button addExerBotton = (Button) addExercise.findViewById(R.id.addExerBotton);
-            addExerBotton.setText("Cancel");
             addExerBotton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -126,6 +125,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
                 }
             });
 
+            popup.setTitle(R.string.add_exercise);
             popup.setView(addExercise);
             popup.show();
         }
