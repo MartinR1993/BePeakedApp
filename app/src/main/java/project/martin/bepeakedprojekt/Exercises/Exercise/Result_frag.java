@@ -155,7 +155,7 @@ public class Result_frag extends Fragment
                     graphView.getViewport().setMinX(0);
                     graphView.getViewport().setMaxX(i);
 
-                    table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit));
+                    table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit),1);
                     popup.cancel();
                 }
             });
