@@ -2,6 +2,8 @@ package project.martin.bepeakedprojekt.Exercises.Exercise;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -150,11 +152,15 @@ public class Result_frag extends Fragment
                     oneRMString = oneRMString.substring(0, oneRMString.indexOf('.') + 2);
 
                     i++;
-                    series.appendData(new DataPoint(i, oneRM), true, i);
+                    series.appendData(new DataPoint(i-1, oneRM), true, i);
 
                     graphView.addSeries(series);
                     graphView.getViewport().setMinX(0);
                     graphView.getViewport().setMaxX(i);
+
+
+                    // udskriver højeste måling
+                    //System.out.println(series.getHighestValueY());
 
                     table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit),1);
 
