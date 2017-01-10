@@ -30,12 +30,6 @@
                 android:textSize="18sp" />
 
             <ImageView
-                app:srcCompat="@mipmap/ek_license"
-                android:id="@+id/credits_eklicense"
-                android:layout_width="50dp"
-                android:layout_height="10dp" />
-
-            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:srcCompat="@mipmap/ek_logo"
