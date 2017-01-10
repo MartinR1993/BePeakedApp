@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public class ExerciseElement implements Serializable
 {
-    private String exerciseName, description;
-    private int exerciseID, imageID;
+    private String exerciseName, description, reps;
+    private int exerciseID, imageID, sets;
 
-    public ExerciseElement(int exerciseID, String ExerciseName, String description, int imageID) {
+    public ExerciseElement(int exerciseID, int sets, String reps, String ExerciseName, String description, int imageID) {
         this.exerciseID = exerciseID;
+        this.sets = sets;
+        this.reps = reps;
         this.exerciseName = ExerciseName;
         this.description = description;
         this.imageID = imageID;
@@ -20,6 +22,22 @@ public class ExerciseElement implements Serializable
 
     public void setExerciseID(int id) {
         this.exerciseID = id;
+    }
+
+    public int getSets() {
+        return sets;
+    }
+
+    public void setSets(int sets) {
+        this.sets = sets;
+    }
+
+    public String getReps() {
+        return reps;
+    }
+
+    public void setReps(String reps) {
+        this.reps = reps;
     }
 
     public String getName() {

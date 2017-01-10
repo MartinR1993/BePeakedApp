@@ -49,7 +49,7 @@ public class WorkoutExercisesListAdapter extends BaseAdapter {
 
     private class Holder
     {
-        protected TextView ExerciseTitle;
+        protected TextView ExerciseTitle, Reps, Sets;
         protected ImageView image;
     }
 
@@ -62,10 +62,16 @@ public class WorkoutExercisesListAdapter extends BaseAdapter {
 
         holder.ExerciseTitle = (TextView) rowView.findViewById(R.id.ele_ExerciseTitle);
         holder.image = (ImageView) rowView.findViewById(R.id.ele_image);
+        holder.Sets = (TextView) rowView.findViewById(R.id.textViewSets);
+        holder.Reps = (TextView) rowView.findViewById(R.id.textViewReps);
 
         String exerciseTitle = exerciseElement.getName();
+        int sets = exerciseElement.getSets();
+        String reps = exerciseElement.getReps();
 
         holder.ExerciseTitle.setText(exerciseTitle);
+        holder.Sets.setText(akt.getString(R.string.Exercises_sets) + sets);
+        holder.Reps.setText(akt.getString(R.string.Exercises_reps) + reps);
         holder.image.setImageResource(R.drawable.forward);
 
         rowView.setOnClickListener(new View.OnClickListener() {
