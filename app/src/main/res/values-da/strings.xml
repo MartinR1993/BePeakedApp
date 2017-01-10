@@ -40,6 +40,9 @@
     <string name="exercise_add">Klik på en øvelse for at tilføje</string>
     <string name="add_exercise">Tilføj øvelse</string>
     <string name="exercise_cancel">Tilbage</string>
+    <string name="Exercises_sets">"Sæt: "</string>
+    <string name="Exercises_reps">"Repetitioner: "</string>
+
 
     <!--Kostplan-->
     <string name="dietPlanMenu_banner">Kostplan</string>

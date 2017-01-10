@@ -40,6 +40,9 @@
     <string name="exercise_add">Click an exercise below to add</string>
     <string name="add_exercise">Add Exercise</string>
     <string name="exercise_cancel">Cancel</string>
+    <string name="Exercises_sets">"Sets: "</string>
+    <string name="Exercises_reps">"Reps: "</string>
+
 
     <!--Kostplan-->
     <string name="dietPlanMenu_banner">Diet Plan</string>

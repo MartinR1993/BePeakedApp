@@ -65,7 +65,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 //  public ExerciseElement(int exerciseID, String ExerciseName, String description, int imageID) {
-                ExerciseElement elem = new ExerciseElement(1, "", "", 1);
+                ExerciseElement elem = new ExerciseElement(1,3,"", "", "", 1);
                 elem.setExerciseID(Integer.parseInt(cursor.getString(0)));
                 elem.setName(cursor.getString(1));
                 elem.setDescription("Dette er ikke en del af databasen :)");
