@@ -92,6 +92,7 @@ public class Result_frag extends Fragment
         Button editButton = (Button) row.findViewById(R.id.resta_button);
         editButton.setText(R.string.exerciseResult_tableButtonEdit);
 
+
         return row;
     }
 
@@ -156,6 +157,12 @@ public class Result_frag extends Fragment
                     graphView.getViewport().setMaxX(i);
 
                     table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit),1);
+
+                    if (table.getChildCount() > 11)
+                        table.getChildAt(11).setVisibility(View.INVISIBLE);
+
+                    System.out.println(table.getChildCount());
+
                     popup.cancel();
                 }
             });
