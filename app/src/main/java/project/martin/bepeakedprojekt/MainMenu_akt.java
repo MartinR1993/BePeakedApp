@@ -1,6 +1,9 @@
 package project.martin.bepeakedprojekt;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,12 +19,21 @@ import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
 
 public class MainMenu_akt extends AppCompatActivity implements View.OnClickListener {
     private Button exerciseButton, workoutButton, dietplanButton ;
+    SharedPreferences prefs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         setTitle(R.string.mainMenu_banner);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        prefs.getInt("usertype",0);
+
+
+
         /*//HER KAN DER SÆTTES ET LOGO TIL HOVEDMENUBAREN
         ActionBar actionBar = getSupportActionBar();
         actionBar.setLogo(R.drawable.bepeakedlogo);
@@ -35,6 +47,18 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
 
         dietplanButton = (Button) findViewById(R.id.DietPlanButton);
         dietplanButton.setOnClickListener(this);
+
+        // fjerner muligheden for dietplan hvis man ikke er kunde ( usertype = 1) og giver besked om dette
+        if (prefs.getInt("usertype",0) == 1) {
+            dietplanButton.setBackgroundColor(Color.BLUE);
+            dietplanButton.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), "Du skal være kunde for at bruge denne funktion makker", Toast.LENGTH_LONG).show();
+                }
+
+            });
+        }
+
 
     }
 
