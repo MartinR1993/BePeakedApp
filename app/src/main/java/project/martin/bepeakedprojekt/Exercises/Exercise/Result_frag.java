@@ -159,9 +159,8 @@ public class Result_frag extends Fragment
                     table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit),1);
 
                     if (table.getChildCount() > 11)
-                        table.getChildAt(11).setVisibility(View.INVISIBLE);
+                        table.getChildAt(11).setVisibility(View.GONE);
 
-                    System.out.println(table.getChildCount());
 
                     popup.cancel();
                 }
