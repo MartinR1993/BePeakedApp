@@ -15,7 +15,7 @@ public class About_akt extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_akt);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle(getString(R.string.credits_title));
+        setTitle(getString(R.string.settings_about));
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
