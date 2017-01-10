@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:layout_width= "0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4">
+        android:layout_weight="10">
 
         <TextView
             android:text="Title"
@@ -31,13 +31,13 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="39dp"
         app:srcCompat="@drawable/forward"
         android:id="@+id/wle_Image"
         android:focusable="false"
-        android:layout_gravity="end"
+        android:layout_gravity="center"
         tools:ignore="ContentDescription"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_width="0dp" />
 
 </LinearLayout>

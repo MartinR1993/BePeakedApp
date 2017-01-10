@@ -79,6 +79,7 @@ public class WorkoutExercisesListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent i = new Intent(akt, Exercise_akt.class);
                 i.putExtra("exercise", exerciseList.get(position));
+                i.putExtra("sets", exerciseList.get(position).getSets());
                 akt.startActivity(i);
             }
         });
