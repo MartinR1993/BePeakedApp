@@ -48,10 +48,15 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         dietplanButton = (Button) findViewById(R.id.DietPlanButton);
         dietplanButton.setOnClickListener(this);
 
-        // fjerner muligheden for dietplan hvis man ikke er kunde ( usertype = 1)
+        // fjerner muligheden for dietplan hvis man ikke er kunde ( usertype = 1) og giver besked om dette
         if (prefs.getInt("usertype",0) == 1) {
-            dietplanButton.setEnabled(false);
             dietplanButton.setBackgroundColor(Color.BLUE);
+            dietplanButton.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), "Du skal være kunde for at bruge denne funktion makker", Toast.LENGTH_LONG).show();
+                }
+
+            });
         }
 
 
