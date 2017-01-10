@@ -1,14 +1,13 @@
 package project.martin.bepeakedprojekt.Exercises.Exercise;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
@@ -18,6 +17,7 @@ public class Exercise_akt extends AppCompatActivity {
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
     private ExerciseElement exercise;
+    private int sets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class Exercise_akt extends AppCompatActivity {
         setContentView(R.layout.activity_exercise_akt);
 
         exercise = (ExerciseElement) getIntent().getSerializableExtra("exercise");
+        sets = (int) getIntent().getSerializableExtra("sets");
         setTitle(exercise.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -90,11 +91,12 @@ public class Exercise_akt extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putSerializable("exercise", exercise);
 
-            if (position == 0)
+            if (position == 0) {
                 f = new Result_frag();
-            else
+                bundle.putSerializable("sets", sets);
+            }else {
                 f = new Description_frag();
-
+            }
             f.setArguments(bundle);
 
             return f;

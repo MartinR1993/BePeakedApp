@@ -42,15 +42,9 @@ public class Result_frag extends Fragment
     private GraphView graphView;
     private int i = 0;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rod = inflater.inflate(R.layout.frag_exercise_results, container, false);
-
-
-
-
 
         graphView = (GraphView) rod.findViewById(R.id.res_graph);
 
@@ -83,8 +77,6 @@ public class Result_frag extends Fragment
         return rod;
     }
 
-
-
     private TableRow createRow(String valCol1, String valCol2, String valRM) {
         final TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
 
@@ -93,7 +85,6 @@ public class Result_frag extends Fragment
         ((TextView) row.findViewById(R.id.resta_col3)).setText(valRM);
         Button editButton = (Button) row.findViewById(R.id.resta_button);
         editButton.setText(R.string.exerciseResult_tableButtonEdit);
-
 
         return row;
     }
