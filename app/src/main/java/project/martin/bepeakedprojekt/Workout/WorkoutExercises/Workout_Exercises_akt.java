@@ -21,6 +21,8 @@ import project.martin.bepeakedprojekt.Misc.DummyData;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
+import static android.R.id.edit;
+
 public class Workout_Exercises_akt extends AppCompatActivity implements AdapterView.OnItemClickListener  {
 
     AlertDialog popup;
@@ -49,6 +51,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     public boolean onOptionsItemSelected(final MenuItem item){
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
+        }
+        else if(item.getItemId() == R.id.edit){
         }
         else if (item.getItemId() == R.id.add) {
             popup = new AlertDialog.Builder(Workout_Exercises_akt.this).create();
@@ -135,7 +139,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.addmenu, menu);
+        getMenuInflater().inflate(R.menu.add_edit_menu, menu);
         return true;
     }
 

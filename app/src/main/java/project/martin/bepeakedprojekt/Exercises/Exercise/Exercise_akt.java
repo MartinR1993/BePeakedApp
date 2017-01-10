@@ -25,7 +25,7 @@ public class Exercise_akt extends AppCompatActivity {
         setContentView(R.layout.activity_exercise_akt);
 
         exercise = (ExerciseElement) getIntent().getSerializableExtra("exercise");
-        sets = (int) getIntent().getSerializableExtra("sets");
+//        sets = (int) getIntent().getSerializableExtra("sets");
         setTitle(exercise.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -93,7 +93,7 @@ public class Exercise_akt extends AppCompatActivity {
 
             if (position == 0) {
                 f = new Result_frag();
-                bundle.putSerializable("sets", sets);
+//                bundle.putSerializable("sets", sets);
             }else {
                 f = new Description_frag();
             }

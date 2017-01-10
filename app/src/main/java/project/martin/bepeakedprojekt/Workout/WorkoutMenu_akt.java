@@ -56,6 +56,9 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
+        else if(item.getItemId() == R.id.edit){
+
+        }
         else if (item.getItemId() == R.id.add) {
             popup = new AlertDialog.Builder(WorkoutMenu_akt.this).create();
             View createWorkout = View.inflate(this, R.layout.popup_createworkout, null);
@@ -81,7 +84,7 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.addmenu, menu);
+        getMenuInflater().inflate(R.menu.add_edit_menu, menu);
         return true;
     }
 }

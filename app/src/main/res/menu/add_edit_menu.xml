@@ -1,6 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/edit"
+        android:icon="@drawable/ic_action_name"
+        android:title="@string/toolbar_edit"
+        app:showAsAction="always"  />
     <item android:id="@+id/add"
         android:icon="@drawable/ic_add"
         android:title="@string/toolbar_add"
