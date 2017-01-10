@@ -50,7 +50,7 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
 //            unitsystem = "Imperial";
 //        }
 
-        String[] indstillinger = {getString(R.string.settings_profile), getString(R.string.settings_language) + "  -  " + language , getString(R.string.settings_unitsystem), getString(R.string.settings_about), getString(R.string.settings_logout)};
+        String[] indstillinger = {getString(R.string.settings_profile), getString(R.string.settings_language) + "  -  " + language , getString(R.string.settings_unitsystem), getString(R.string.settings_about), getString(R.string.credits_title), getString(R.string.settings_logout)};
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_selectable_list_item, android.R.id.text1, indstillinger);
 
         listView = (ListView) findViewById(R.id.listView);
@@ -72,21 +72,37 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(position == 0){
-            //her skal der oprettes en profil side
-        }
-        else if(position == 1){
-            Intent i = new Intent(this, Language_akt.class);
-            startActivity(i);
-        }
-        else if(position == 2){
-            Intent i = new Intent(this, UnitSystem_akt.class);
-            startActivity(i);
-        }
-        else if(position == 4){
-            Intent i = new Intent(this, Logind_akt.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
+        switch (position) {
+            case 0: {
+                //TODO: her skal der oprettes en profil side
+                break;
+            }
+            case 1: {
+                Intent i = new Intent(this, Language_akt.class);
+                startActivity(i);
+                break;
+            }
+            case 2: {
+                Intent i = new Intent(this, UnitSystem_akt.class);
+                startActivity(i);
+                break;
+            }
+            case 3: {
+                //TODO: her skal der oprettes en om side
+                break;
+            }
+            case 4: {
+                Intent i = new Intent(this, Credits_akt.class);
+                startActivity(i);
+                break;
+            }
+            case 5: {
+                Intent i = new Intent(this, Logind_akt.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+                break;
+            }
+            default: break;
         }
     }
 }
