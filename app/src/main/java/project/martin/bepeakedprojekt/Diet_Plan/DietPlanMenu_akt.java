@@ -1,6 +1,7 @@
 package project.martin.bepeakedprojekt.Diet_Plan;
 
 import android.content.Intent;
+import java.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,11 +18,20 @@ import project.martin.bepeakedprojekt.Diet_Plan.Adapter.GroupInfo;
 import project.martin.bepeakedprojekt.Diet_Plan.Recipe.Recipe_akt;
 import project.martin.bepeakedprojekt.R;
 
+
+
 public class DietPlanMenu_akt extends AppCompatActivity {
     private LinkedHashMap<String, GroupInfo> subjects = new LinkedHashMap<String, GroupInfo>();
     private ArrayList<GroupInfo> deptList = new ArrayList<GroupInfo>();
     private DietPlanAdapter listAdapter;
     private ExpandableListView simpleExpandableListView;
+    Calendar c = Calendar.getInstance();
+    int hour = c.get(Calendar.HOUR);
+    int ampm = c.get(Calendar.AM_PM);
+
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,12 +41,23 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         // add data for displaying in expandable list view
         loadData();
 
+
         //get reference of the ExpandableListView
         simpleExpandableListView = (ExpandableListView) findViewById(R.id.simpleExpandableListView);
         // create the adapter by passing your ArrayList data
         listAdapter = new DietPlanAdapter(DietPlanMenu_akt.this, deptList);
         // attach the adapter to the expandable list view
         simpleExpandableListView.setAdapter(listAdapter);
+
+
+        if (hour > 5 && hour < 12 && ampm == 0)
+            simpleExpandableListView.expandGroup(0);
+        else if(hour < 5 && ampm == 1)
+            simpleExpandableListView.expandGroup(1);
+        else if(hour < 10 && ampm == 1)
+            simpleExpandableListView.expandGroup(2);
+
+
 
         // setOnChildClickListener listener for child row click
         simpleExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
