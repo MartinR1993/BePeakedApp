@@ -57,3 +57,13 @@ dependencies {
 
 
 apply plugin: 'com.google.gms.google-services'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.nhaarman.listviewanimations:lib-core:3.1.0@aar'
+    compile 'com.nhaarman.listviewanimations:lib-manipulation:3.1.0@aar'
+    compile 'com.nhaarman.listviewanimations:lib-core-slh:3.1.0@aar'
+}

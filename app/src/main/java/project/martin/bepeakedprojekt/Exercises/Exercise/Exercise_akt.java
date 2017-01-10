@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.Exercises.Exercise;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,9 @@ public class Exercise_akt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_akt);
+
+        //disabling screen rotation
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         exercise = (ExerciseElement) getIntent().getSerializableExtra("exercise");
 //        sets = (int) getIntent().getSerializableExtra("sets");

@@ -31,6 +31,10 @@ public class WorkoutExercisesListAdapter extends BaseAdapter {
         this.exerciseList = exerciseList;
         this.akt = activity;
     }
+//    @Override
+//    public boolean hasStableIds(){
+//        return false;
+//    }
 
     @Override
     public int getCount() {
@@ -44,7 +48,8 @@ public class WorkoutExercisesListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        ExerciseElement element = exerciseList.get(position);
+        return (element.getExerciseID() + element.getName()).hashCode();
     }
 
     private class Holder

@@ -19,11 +19,16 @@
 
     </LinearLayout>
 
-    <ListView
+    <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
+        android:id="@+id/dynamiclistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--<ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:id="@+id/exerciseList"
-        android:layout_weight="1" />
+        android:layout_weight="1" />-->
 
 </LinearLayout>

@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
+
 import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
@@ -31,7 +33,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     ArrayList<ExerciseElement> exerciseList;
     public ArrayList<ExerciseElement> allExercises;
     EditText searchText;
-    ListView lv;
+    DynamicListView dlv;
+//    ListView lv;
     ArrayAdapter adapter;
 
     @Override
@@ -43,8 +46,11 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
         exerciseList = workout.getExercises();
 
-        lv = (ListView) findViewById(R.id.exerciseList);
-        lv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
+        dlv = (DynamicListView) findViewById(R.id.dynamiclistview);
+        dlv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
+//        dlv.enableDragAndDrop();
+//        lv = (ListView) findViewById(R.id.exerciseList);
+//        lv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
@@ -166,7 +172,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             exerciseList.add(allExercises.get(t));
         }
 
-                lv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
+                dlv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
                 exerciseNames.clear();
                 listOfExercises.setAdapter(adapter);
                 popup.cancel();
