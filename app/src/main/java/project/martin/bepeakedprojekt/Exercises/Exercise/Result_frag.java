@@ -161,7 +161,6 @@ public class Result_frag extends Fragment
                     if (table.getChildCount() > 11)
                         table.getChildAt(11).setVisibility(View.GONE);
 
-
                     popup.cancel();
                 }
             });
