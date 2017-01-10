@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ele_ExerciseTitle"
+        android:singleLine="true"
         android:layout_weight="0.92"
         android:textSize="20sp"
         android:paddingTop="5dp"/>
