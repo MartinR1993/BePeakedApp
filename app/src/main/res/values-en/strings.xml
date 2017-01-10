@@ -41,7 +41,6 @@
     <string name="add_exercise">Add Exercise</string>
     <string name="exercise_cancel">Cancel</string>
 
-
     <!--Kostplan-->
     <string name="dietPlanMenu_banner">Diet Plan</string>
     <string name="dietPlanMenu_breakfast">Breakfast</string>
@@ -70,6 +69,7 @@
     <string name="settings_english">English</string>
     <string name="settings_vietnamese">Vietnamese</string>
     <string name="settings_default">Default</string>
+    <string name="settings_about_text">We are BePeaked, we strive to get results, and for you to get results. something something something</string>
 
     <!--Sprog-->
     <string name="language_title">Language</string>

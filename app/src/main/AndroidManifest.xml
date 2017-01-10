@@ -37,7 +37,8 @@
 
         <activity android:name=".Settings.Language_akt" />
         <activity android:name=".Settings.UnitSystem_akt" />
-        <activity android:name=".Settings.Credits_akt"></activity>
+        <activity android:name=".Settings.Credits_akt" />
+        <activity android:name=".Settings.About_akt"></activity>
     </application>
 
 </manifest>

@@ -69,6 +69,7 @@
     <string name="settings_english">English</string>
     <string name="settings_vietnamese">Vietnamese</string>
     <string name="settings_default">Default</string>
+    <string name="settings_about_text">We are BePeaked, we strive to get results, and for you to get results. something something something</string>
 
     <!--Sprog-->
     <string name="language_title">Language</string>
@@ -76,6 +77,8 @@
 
     <!--Enheder-->
     <string name="unitsystem_title">Unitsystem</string>
+
+    <!--Credits-->
     <string name="credits_title">Credits</string>
     <string name="credits_everkinetic">All excersise images is created by everkinetic at everkinetic.com\nThese images are licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.</string>
     <string name="credits_grp9">This app is created by in cooperation with group 9 from Technical University of Denmark (DTU) in combination with course 62550 User experience and mobile application development E16 under the guidance of Ian Bridgwood and Jacob Nordfalk.\nThanks to the group members;\nMartin Rødgaard\nMathias Kvisgaard Hansen\nFrank Thomsen aka. Don Fronk Franko Fonko\nMagnus Erengaard Enevoldsen\nLasse Holm Nielsen</string>
