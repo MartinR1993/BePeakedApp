@@ -86,7 +86,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 //public WorkoutElement(int workoutID, String workoutName, ArrayList<ExerciseElement> exercises)
-                WorkoutElement elem = new WorkoutElement(1,"", null);
+                WorkoutElement elem = new WorkoutElement(1,"", new ArrayList<ExerciseElement>());
 
                 //elem.setWorkoutID(Integer.parseInt(cursor.getString(0)));
                 elem.setWorkoutID(cursor.getInt(0));
