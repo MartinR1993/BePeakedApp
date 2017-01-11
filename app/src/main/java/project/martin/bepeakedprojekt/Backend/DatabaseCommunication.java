@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
+import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
 /**
  * Created by Martin on 22-11-2016.
@@ -25,12 +26,24 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     private static final String USERNAME = "DTU123";
     private static final String PASSWORD = "Gruppe9";
 
-    // Contacts Table Columns names
+    // Workout Table Columns names
+    private static final String WORKOUT_TABLE = "Workouts";
+    private static final String WORKOUT_ID = "WorkoutID";
+    private static final String WORKOUT_NAME = "WorkoutName";
+
+    // Exercise Table Columns names
     private static final String EXERCISE_TABLE = "Exercises";
-    private static final String EXERCISES_ID = "ExercisesID";
+    private static final String EXERCISE_ID = "ExerciseID";
+    private static final String EXERCISE_SETS = "ExerciseSets";
+    private static final String EXERCISE_REPS = "ExerciseReps";
     private static final String EXERCISE_NAME = "ExerciseName";
-    private static final String EXERCISE_WORKOUT_ID = "WorkoutID";
-    private static final String EXERCISE_TIME = "Datetime";
+    private static final String EXERCISE_DESC = "ExerciseDesc";
+    private static final String EXERCISE_IMAGE = "ExerciseImage";
+
+    // WorkoutExercises Table Columns names
+    private static final String WORKOUTEXERCISE_TABLE = "WorkoutExercises";
+    //private static final String WORKOUT_ID = "WorkoutID";
+    //private static final String EXERCISE_ID = "ExerciseID";
 
     public DatabaseCommunication(Context context) {
         super(context, HOST, null, 2);
@@ -39,24 +52,32 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 //CREATE TABLE operatoer(opr_id INT PRIMARY KEY, opr_navn TEXT, ini TEXT, cpr TEXT, password TEXT, aktiv BOOLEAN, type TEXT)
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + EXERCISE_TABLE + "("
-                + EXERCISES_ID + " INTEGER PRIMARY KEY," + EXERCISE_NAME + " TEXT,"
-                + EXERCISE_WORKOUT_ID + " TEXT" + "," + EXERCISE_TIME + " TEXT)";
-        db.execSQL(CREATE_CONTACTS_TABLE);
+        String CREATE_WORKOUT_TABLE = "CREATE TABLE " + WORKOUT_TABLE + "(" +WORKOUT_ID + " INTEGER AUTO_INCREMENT PRIMARY KEY," + WORKOUT_NAME + " TEXT)";
+        db.execSQL(CREATE_WORKOUT_TABLE);
+
+        String CREATE_WORKOUTEXERCISE_TABLE = "CREATE TABLE " + WORKOUTEXERCISE_TABLE + "(" +WORKOUT_ID + " INTEGER," + EXERCISE_ID + " INTEGER)";
+        db.execSQL(CREATE_WORKOUTEXERCISE_TABLE);
+
+        String CREATE_EXERCISE_TABLE = "CREATE TABLE " + EXERCISE_TABLE + "(" +EXERCISE_ID + " INTEGER PRIMARY KEY,"
+                + EXERCISE_SETS + " INTEGER, "+ EXERCISE_REPS +" INTEGER," + EXERCISE_NAME + " TEXT," + EXERCISE_DESC + " TEXT," + EXERCISE_IMAGE + " INTEGER)";
+        db.execSQL(CREATE_EXERCISE_TABLE);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("drop table " + EXERCISE_TABLE);
-        //this.onCreate(db);
+        db.execSQL("drop table " + WORKOUT_TABLE);
+        db.execSQL("drop table " + WORKOUTEXERCISE_TABLE);
+        db.execSQL("drop table " + EXERCISE_TABLE);
+        this.onCreate(db);
 
     }
 
-    public ArrayList<ExerciseElement> getAllContacts() {
-        ArrayList<ExerciseElement> exerciseList = new ArrayList<ExerciseElement>();
+    public ArrayList<WorkoutElement> getAllWorkouts() {
+        ArrayList<WorkoutElement> workoutElements = new ArrayList<WorkoutElement>();
 
         // Select All Query
-        String selectQuery = "SELECT * FROM Exercises";
+        String selectQuery = "SELECT * FROM Workouts";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -64,20 +85,38 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                //  public ExerciseElement(int exerciseID, String ExerciseName, String description, int imageID) {
-                ExerciseElement elem = new ExerciseElement(1,3,"", "", "", 1);
-                elem.setExerciseID(Integer.parseInt(cursor.getString(0)));
+                //public WorkoutElement(int workoutID, String workoutName, ArrayList<ExerciseElement> exercises)
+                WorkoutElement elem = new WorkoutElement(1,"", null);
+
+                //elem.setWorkoutID(Integer.parseInt(cursor.getString(0)));
+                elem.setWorkoutID(cursor.getInt(0));
                 elem.setName(cursor.getString(1));
-                elem.setDescription("Dette er ikke en del af databasen :)");
-                elem.setImageID(Integer.parseInt(cursor.getString(2)));
                 // Adding to list
-                exerciseList.add(elem);
+                workoutElements.add(elem);
             } while (cursor.moveToNext());
         }
 
         // return  list
-        return exerciseList;
+        return workoutElements;
     }
+
+    public void addWorkout(String name) {
+        //WorkoutElement elem = new WorkoutElement(0, name, null);
+        //String selectQuery = "INSERT INTO Workout(WorkoutID, WorkoutName, WorkoutExercises) VALUES " + "('0', '" + name + "', '" + name + "')";
+        String insertQuery = "INSERT INTO Workouts(WorkoutID, WorkoutName) VALUES " + "(NULL, '" + name + "')";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(insertQuery);
+        //Cursor cursor = db.rawQuery(selectQuery, null);
+    }
+    //new WorkoutElement(1, "Bench", new ArrayList<>(Arrays.asList(getExercise(2), getExercise(3), getExercise(4), getExercise(6)))),
+    //new WorkoutElement(2, "Dumbell", new ArrayList<>(Arrays.asList(getExercise(1), getExercise(4), getExercise(5), getExercise(7)))),
+    //new WorkoutElement(3, "Curl", new ArrayList<>(Arrays.asList(getExercise(8), getExercise(9)))),
+    //new WorkoutElement(4, "All", new ArrayList<>(Arrays.asList(exerciseList)))
+
+    //private static final String WORKOUT_TABLE = "Workouts";
+    //private static final String WORKOUT_ID = "WorkoutID";
+    //private static final String WORKOUT_NAME = "WorkoutName";
+
 }
 
 //this.exerciseID = exerciseID;

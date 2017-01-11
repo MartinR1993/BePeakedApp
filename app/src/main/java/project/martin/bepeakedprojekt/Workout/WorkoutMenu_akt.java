@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import project.martin.bepeakedprojekt.Backend.DatabaseCommunication;
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Misc.DummyData;
 import project.martin.bepeakedprojekt.R;
@@ -28,9 +29,7 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
     private WorkoutListAdapter listAdapter;
 
 
-    //DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-    //DatabaseReference workouts = db.child("workouts");
-
+    DatabaseCommunication DBCom;
 
 
 
@@ -42,13 +41,15 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
         setTitle(R.string.workoutMenu_banner);
 
 
+        DBCom = new DatabaseCommunication(this);
 
-
-        workoutList = new ArrayList<>(Arrays.asList(DummyData.workoutList));
+        //workoutList = new ArrayList<>(Arrays.asList(DummyData.workoutList));
 
         lv = (ListView) findViewById(R.id.listWorkoutMenu);
-        listAdapter = new WorkoutListAdapter(this, workoutList);
+        listAdapter = new WorkoutListAdapter(this, DBCom.getAllWorkouts());
         lv.setAdapter(listAdapter);
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -69,7 +70,8 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
 
                 @Override
                 public void onClick(View v) {
-                    workoutList.add(new WorkoutElement(-1, saveWorkoutName.getText().toString(), new ArrayList<ExerciseElement>()));
+                    DBCom.addWorkout(saveWorkoutName.getText().toString());
+                    //workoutList.add(new WorkoutElement(-1, saveWorkoutName.getText().toString(), new ArrayList<ExerciseElement>()));
                     listAdapter.notifyDataSetChanged();
                     popup.cancel();
                 }

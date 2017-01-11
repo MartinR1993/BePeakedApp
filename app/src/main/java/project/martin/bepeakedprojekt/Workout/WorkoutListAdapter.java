@@ -68,12 +68,13 @@ public class WorkoutListAdapter extends BaseAdapter {
 
         holder.WorkoutTitle.setText(workoutTitle);
 
-        StringBuilder sbExerciseList = new StringBuilder();
-        for (ExerciseElement exercise : workoutelement.getExercises())
-            sbExerciseList.append(exercise.getName()).append(", ");
-        sbExerciseList.substring(0, sbExerciseList.length());
+        //StringBuilder sbExerciseList = new StringBuilder();
+        //for (ExerciseElement exercise : workoutelement.getExercises())
+        //    sbExerciseList.append(exercise.getName()).append(", ");
+        //sbExerciseList.substring(0, sbExerciseList.length());
 
-        holder.Exercises.setText(sbExerciseList);
+        //holder.Exercises.setText(sbExerciseList);
+        holder.Exercises.setText("Carl Mar var her");
         holder.image.setImageResource(R.drawable.forward);
 
         rowView.setOnClickListener(new View.OnClickListener() {
