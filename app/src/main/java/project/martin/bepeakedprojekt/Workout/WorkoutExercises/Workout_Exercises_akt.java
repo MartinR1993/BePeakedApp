@@ -18,6 +18,7 @@ import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 
 import java.util.ArrayList;
 
+import project.martin.bepeakedprojekt.Backend.DatabaseCommunication;
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Misc.DummyData;
 import project.martin.bepeakedprojekt.R;
@@ -36,6 +37,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     DynamicListView dlv;
 //    ListView lv;
     ArrayAdapter adapter;
+    DatabaseCommunication DBCom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +46,14 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         WorkoutElement workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
         setTitle(workout.getName());
 
-        exerciseList = workout.getExercises();
+
+        DBCom = new DatabaseCommunication(this);
+
+        //exerciseList = workout.getExercises();
 
         dlv = (DynamicListView) findViewById(R.id.dynamiclistview);
-        dlv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
+        dlv.setAdapter(new WorkoutExercisesListAdapter(this, DBCom.getAllWorkoutExercises(workout.getWorkoutID())));
+        //dlv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
 //        dlv.enableDragAndDrop();
 //        lv = (ListView) findViewById(R.id.exerciseList);
 //        lv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));

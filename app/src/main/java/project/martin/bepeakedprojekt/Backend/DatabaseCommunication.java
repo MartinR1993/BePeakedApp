@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
+import project.martin.bepeakedprojekt.Misc.DummyData;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
 /**
@@ -100,6 +101,42 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         return workoutElements;
     }
 
+
+
+    public ArrayList<ExerciseElement> getAllWorkoutExercises(int ID) {
+        ArrayList<ExerciseElement> exerciseList = new ArrayList<ExerciseElement>();
+
+        // Select All Query
+        String selectQuery = "SELECT * FROM WorkoutExercises NATURAL JOIN Exercises WHERE WorkoutID="+ID+"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                //public WorkoutElement(int workoutID, String workoutName, ArrayList<ExerciseElement> exercises)
+                ExerciseElement elem = new ExerciseElement(0, 0, "", "", "", 0);
+                //int exerciseID, int sets, String reps, String ExerciseName, String description, int imageID
+
+                //elem.setWorkoutID(Integer.parseInt(cursor.getString(0)));
+                elem.setExerciseID(cursor.getInt(0));
+                elem.setSets(cursor.getInt(1));
+                elem.setReps(cursor.getString(2));
+                elem.setName(cursor.getString(3));
+                elem.setDescription(cursor.getString(4));
+                elem.setImageID(cursor.getInt(5));
+                // Adding to list
+                exerciseList.add(elem);
+            } while (cursor.moveToNext());
+        }
+
+        // return  list
+        return exerciseList;
+    }
+
+
+
     public void addWorkout(String name) {
         //WorkoutElement elem = new WorkoutElement(0, name, null);
         //String selectQuery = "INSERT INTO Workout(WorkoutID, WorkoutName, WorkoutExercises) VALUES " + "('0', '" + name + "', '" + name + "')";
@@ -113,9 +150,61 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     //new WorkoutElement(3, "Curl", new ArrayList<>(Arrays.asList(getExercise(8), getExercise(9)))),
     //new WorkoutElement(4, "All", new ArrayList<>(Arrays.asList(exerciseList)))
 
-    //private static final String WORKOUT_TABLE = "Workouts";
-    //private static final String WORKOUT_ID = "WorkoutID";
-    //private static final String WORKOUT_NAME = "WorkoutName";
+
+
+    public void addWorkoutExercise(int workoutID, int exerciseID) {
+        String insertQuery = "INSERT INTO "+ WORKOUTEXERCISE_TABLE +"(WorkoutID, ExerciseID) VALUES " + "("+workoutID+","+exerciseID+")";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(insertQuery);
+    }
+
+    public void addExercises(ExerciseElement[] exerciseList) {
+
+        for (int i=0; i<exerciseList.length; i++) {
+            String insertQuery = "INSERT INTO "+ EXERCISE_TABLE +"(ExerciseID, ExerciseSets, ExerciseReps, ExerciseName, ExerciseDesc, ExerciseImage) " +
+                    "VALUES ("+ exerciseList[i].getExerciseID() +","+ exerciseList[i].getSets() +","+ exerciseList[i].getReps() +",'"+ exerciseList[i].getName() +"','"+ exerciseList[i].getDescription() +"', "+ exerciseList[i].getImageID() +")";
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.execSQL(insertQuery);
+        }
+    }
+
+    public ArrayList<ExerciseElement> getAllExercises() {
+        ArrayList<ExerciseElement> exerciseList = new ArrayList<ExerciseElement>();
+
+        // Select All Query
+        String selectQuery = "SELECT * FROM Exercises";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                //public WorkoutElement(int workoutID, String workoutName, ArrayList<ExerciseElement> exercises)
+                ExerciseElement elem = new ExerciseElement(0, 0, "", "", "", 0);
+                //int exerciseID, int sets, String reps, String ExerciseName, String description, int imageID
+
+                //elem.setWorkoutID(Integer.parseInt(cursor.getString(0)));
+                elem.setExerciseID(cursor.getInt(0));
+                elem.setSets(cursor.getInt(1));
+                elem.setReps(cursor.getString(2));
+                elem.setName(cursor.getString(3));
+                elem.setDescription(cursor.getString(4));
+                elem.setImageID(cursor.getInt(5));
+                // Adding to list
+                exerciseList.add(elem);
+            } while (cursor.moveToNext());
+        }
+
+        // return  list
+        return exerciseList;
+    }
+
+
+
+    // Exercise Table Columns names
+    //"CREATE TABLE " + EXERCISE_TABLE + "(" +EXERCISE_ID + " INTEGER PRIMARY KEY,"
+       //     + EXERCISE_SETS + " INTEGER, "+ EXERCISE_REPS +" INTEGER," + EXERCISE_NAME + " TEXT," + EXERCISE_DESC + " TEXT," + EXERCISE_IMAGE + " INTEGER)";
 
 }
 
