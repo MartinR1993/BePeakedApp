@@ -55,7 +55,6 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
 
             // bruges midlertidig til at sætte en bruger til ikke kunde
             prefs.edit().putInt("usertype",1).commit();
-
             System.out.println("Opret bruger");
         }
     }

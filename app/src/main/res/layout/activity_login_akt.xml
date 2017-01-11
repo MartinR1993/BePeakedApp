@@ -74,6 +74,11 @@
         android:textSize="20sp"
         android:text="@string/login_buttonExecute" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.40" />
+
     <TextView
         android:text="@string/login_createUser"
         android:layout_gravity="center"
