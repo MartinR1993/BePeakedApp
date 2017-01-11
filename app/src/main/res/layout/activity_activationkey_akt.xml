@@ -11,15 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="project.martin.bepeakedprojekt.Settings.About_akt">
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="27dp"
-        android:id="@+id/insertInfo" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,12 +21,21 @@
         android:layout_marginTop="18dp"
         android:id="@+id/insertactivationkey" />
 
-    <Button
-        android:text="Button"
+    <TextView
+        android:text="@string/settings_activationkey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/insertInfo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:id="@+id/activationButton"
         android:layout_below="@+id/insertactivationkey"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
-        android:id="@+id/activationButton" />
+        android:text="@string/settings_buttonActivation" />
 </RelativeLayout>
