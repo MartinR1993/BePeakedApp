@@ -42,11 +42,10 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
 
 
         DBCom = new DatabaseCommunication(this);
-
-        //workoutList = new ArrayList<>(Arrays.asList(DummyData.workoutList));
+        workoutList = DBCom.getAllWorkouts();
 
         lv = (ListView) findViewById(R.id.listWorkoutMenu);
-        listAdapter = new WorkoutListAdapter(this, DBCom.getAllWorkouts());
+        listAdapter = new WorkoutListAdapter(this, workoutList);
         lv.setAdapter(listAdapter);
 
 
@@ -70,9 +69,11 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
 
                 @Override
                 public void onClick(View v) {
+
                     DBCom.addWorkout(saveWorkoutName.getText().toString());
-                    //workoutList.add(new WorkoutElement(-1, saveWorkoutName.getText().toString(), new ArrayList<ExerciseElement>()));
-                    listAdapter.notifyDataSetChanged();
+                    workoutList = DBCom.getAllWorkouts();
+                    lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
+
                     popup.cancel();
                 }
             });
