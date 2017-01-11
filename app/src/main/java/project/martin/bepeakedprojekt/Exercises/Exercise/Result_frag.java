@@ -2,8 +2,6 @@ package project.martin.bepeakedprojekt.Exercises.Exercise;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -16,15 +14,14 @@ import android.widget.NumberPicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 
 import project.martin.bepeakedprojekt.Misc.NumberPickerFormatter;
 import project.martin.bepeakedprojekt.R;
@@ -41,6 +38,7 @@ public class Result_frag extends Fragment
     private LineGraphSeries<DataPoint> series;
     private GraphView graphView;
     private int i = 0;
+    Toast toast;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,8 +69,11 @@ public class Result_frag extends Fragment
         table.addView(row);
 
         series = new LineGraphSeries<>();
-        graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
+        series.setDrawDataPoints(true);
         graphView.getViewport().setScalable(true);
+        graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+        graphView.getGridLabelRenderer().setPadding(30);
+
 
         return rod;
     }
@@ -153,6 +154,27 @@ public class Result_frag extends Fragment
                     // udskriver højeste måling
                     //System.out.println(series.getHighestValueY());
 
+//                    får alle punkter skrevet ud
+//                    Iterator<DataPoint> x = series.getValues(0,graphView.getSeries().size());
+//                    DataPoint p;
+//                    while(x.hasNext()) {
+//                        p = x.next();
+//                        System.out.println(p);
+//                    }
+
+                    series.setOnDataPointTapListener(new OnDataPointTapListener() {
+                        @Override
+                        public void onTap(Series series, DataPointInterface dataPoint) {
+                            if (toast != null)
+                            toast.cancel();
+
+                            toast = Toast.makeText(getActivity(), dataPoint.getY() + " 1-RM", Toast.LENGTH_SHORT);
+
+                            toast.show();
+
+                        }
+                    });
+
                     table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit),1);
 
                     if (table.getChildCount() > 11)
@@ -166,5 +188,9 @@ public class Result_frag extends Fragment
             popup.setView(layout);
             popup.show();
         }
+
+
+
     }
+
 }
