@@ -75,6 +75,7 @@
     <string name="settings_about_text">Vi er BePeaked, vi stræber efter resultater og at du opnår disse. noget noget noget</string>
     <string name="settings_activationkey" >Skriv din aktiveringsnøgle her for at be peaked</string>
     <string name="settings_buttonActivation" >Aktiver</string>
+    <string name="settings_activationHelp" >Hvis du ikke ved hvad du skal gøre eller hvordan du får en aktiveringsnøgle, så kontakt us venligst på somethingbepeaked@somemail.com</string>
 
     <!--Sprog-->
     <string name="language_title">Sprog</string>

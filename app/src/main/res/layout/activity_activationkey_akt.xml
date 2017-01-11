@@ -16,26 +16,34 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
+        android:layout_marginTop="24dp"
+        android:id="@+id/insertactivationkey"
         android:layout_below="@+id/insertInfo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:id="@+id/insertactivationkey" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/activationButton"
+        android:text="@string/settings_buttonActivation"
+        android:layout_below="@+id/insertactivationkey"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="@string/settings_activationkey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/insertInfo"
+        android:layout_marginTop="39dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp" />
+        android:layout_centerHorizontal="true" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:id="@+id/activationButton"
-        android:layout_below="@+id/insertactivationkey"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/settings_buttonActivation" />
+        android:id="@+id/textView4"
+        android:text="@string/settings_activationHelp" />
 </RelativeLayout>

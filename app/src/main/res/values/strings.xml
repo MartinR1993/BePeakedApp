@@ -75,6 +75,7 @@
     <string name="settings_about_text">We are BePeaked, we strive to get results, and for you to get results. something something something</string>
     <string name="settings_activationkey" >Insert your activation key here to be peaked</string>
     <string name="settings_buttonActivation" >Activate</string>
+    <string name="settings_activationHelp" >If you don't know what to do or how to get an activationkey, you're very welcome to contact us on somethingbepeaked@somemail.com</string>
 
     <!--Sprog-->
     <string name="language_title">Language</string>
