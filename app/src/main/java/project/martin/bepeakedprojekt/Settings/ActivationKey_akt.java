@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
 
@@ -21,6 +20,7 @@ import project.martin.bepeakedprojekt.R;
 public class ActivationKey_akt extends AppCompatActivity implements View.OnClickListener {
 
     TextView infoText;
+    TextView helpText;
     EditText insertKey;
     Button activationButton;
     SharedPreferences prefs;
@@ -35,6 +35,7 @@ public class ActivationKey_akt extends AppCompatActivity implements View.OnClick
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         infoText = (TextView) findViewById(R.id.insertInfo);
+        helpText = (TextView) findViewById(R.id.helpText);
         insertKey = (EditText) findViewById(R.id.insertactivationkey);
         activationButton = (Button) findViewById(R.id.activationButton);
 
