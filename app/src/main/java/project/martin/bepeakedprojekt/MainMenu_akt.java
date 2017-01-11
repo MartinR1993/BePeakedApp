@@ -2,10 +2,9 @@ package project.martin.bepeakedprojekt;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,7 +49,7 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
 
         // fjerner muligheden for dietplan hvis man ikke er kunde ( usertype = 1) og giver besked om dette
         if (prefs.getInt("usertype",0) == 1) {
-            dietplanButton.setBackgroundColor(Color.BLUE);
+            dietplanButton.setAlpha((float) 0.5);
             dietplanButton.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v) {
                     Toast.makeText(getApplicationContext(), "Du skal være kunde for at bruge denne funktion makker", Toast.LENGTH_LONG).show();
