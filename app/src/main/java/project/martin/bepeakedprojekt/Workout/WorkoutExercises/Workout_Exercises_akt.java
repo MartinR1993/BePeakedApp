@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
+import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.GripView;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.OnItemMovedListener;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
@@ -53,6 +54,9 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     ArrayAdapter adapter;
     DatabaseCommunication DBCom;
     AlphaInAnimationAdapter animAdapter;
+    GripView gripView;
+    Menu menu;
+    MenuItem item;
 
     private static final int INITIAL_DELAY_MILLIS = 300;
 
@@ -79,6 +83,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         //exerciseList = workout.getExercises();
 
         listView = (DynamicListView) findViewById(R.id.dynamiclistview);
+        gripView = (GripView) findViewById(R.id.gripView);
+//        gripView.setVisibility(View.GONE);
 
         /* Setup the adapter */
         com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList);
@@ -90,8 +96,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         listView.setAdapter(animAdapter);
 
         /* Enable drag and drop functionality */
-        listView.enableDragAndDrop();
-        listView.setDraggableManager(new TouchViewDraggableManager(R.id.gripView));
+//        listView.enableDragAndDrop();
+//        listView.setDraggableManager(new TouchViewDraggableManager(R.id.gripView));
         listView.setOnItemMovedListener(new MyOnItemMovedListener(adapter));
         listView.setOnItemLongClickListener(new MyOnItemLongClickListener(listView));
 
@@ -111,6 +117,35 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             onBackPressed();
         }
         else if(item.getItemId() == R.id.edit){
+//            gripView.setVisibility(View.VISIBLE);
+
+            if (menu.findItem(R.id.OK) == null){
+                getMenuInflater().inflate(R.menu.okmenu, menu);
+            } else{
+                MenuItem ok = menu.findItem(R.id.OK);
+            ok.setVisible(true);
+            }
+            MenuItem edit = menu.findItem(R.id.edit);
+            edit.setVisible(false);
+            MenuItem add = menu.findItem(R.id.add);
+            add.setVisible(false);
+
+
+            listView.enableDragAndDrop();
+            listView.setDraggableManager(new TouchViewDraggableManager(R.id.gripView));
+//            listView.setOnItemMovedListener(new MyOnItemMovedListener(adapter));
+//            listView.setOnItemLongClickListener(new MyOnItemLongClickListener(listView));
+
+        }
+        else if (item.getItemId() == R.id.OK){
+            MenuItem ok = menu.findItem(R.id.OK);
+            ok.setVisible(false);
+            MenuItem edit = menu.findItem(R.id.edit);
+            edit.setVisible(true);
+            MenuItem add = menu.findItem(R.id.add);
+            add.setVisible(true);
+            listView.disableDragAndDrop();
+
         }
         else if (item.getItemId() == R.id.add) {
             popup = new AlertDialog.Builder(Workout_Exercises_akt.this).create();
@@ -196,6 +231,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.add_edit_menu, menu);
         return true;
@@ -277,7 +313,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         @Override
         public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
             for (int position : reverseSortedPositions) {
-                mAdapter.remove(position);
+                exerciseNames.remove(position);
             }
 
             if (mToast != null) {

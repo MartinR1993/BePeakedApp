@@ -76,9 +76,9 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> implements
                 for (int i = 0 ; i < exerciseElements.size();i++){
                     if (exerciseElements.get(i).getName() == tesa){
                         Intent j = new Intent(mContext, Exercise_akt.class);
-                j.putExtra("exercise", exerciseElements.get(i));
-                j.putExtra("sets", exerciseElements.get(i).getSets());
-                mContext.startActivity(j);
+                        j.putExtra("exercise", exerciseElements.get(i));
+                        j.putExtra("sets", exerciseElements.get(i).getSets());
+                        mContext.startActivity(j);
                     }
                 }
 
