@@ -28,7 +28,7 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> implements
     private final Context mContext;
         private ArrayList<String> exerciseListNames;
     private static LayoutInflater inflater = null;
-    ArrayList<ExerciseElement> exerciseElements;
+    ArrayList<ExerciseElement> exerciseElements = new ArrayList<>();
 
 
 
@@ -67,7 +67,23 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> implements
             @Override
             public void onClick(View v) {
 //                exerciseListNames.get(position);
-                System.out.println(((TextView) v.findViewById(R.id.ele_ExerciseTitle)).getText());
+                System.out.println();
+
+                TextView test =(TextView) v.findViewById(R.id.ele_ExerciseTitle);
+
+                String tesa = (String) test.getText();
+
+                for (int i = 0 ; i < exerciseElements.size();i++){
+                    if (exerciseElements.get(i).getName() == tesa){
+                        Intent j = new Intent(mContext, Exercise_akt.class);
+                j.putExtra("exercise", exerciseElements.get(i));
+                j.putExtra("sets", exerciseElements.get(i).getSets());
+                mContext.startActivity(j);
+                    }
+                }
+
+
+
                 parent.getChildAt(0).getResources();
 //                Intent i = new Intent(mContext, Exercise_akt.class);
 //                i.putExtra("exercise", exerciseListNames.get(position));

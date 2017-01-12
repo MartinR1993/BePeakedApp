@@ -36,19 +36,23 @@ import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
 import static android.R.id.edit;
+import static project.martin.bepeakedprojekt.R.id.listView;
 
 public class Workout_Exercises_akt extends AppCompatActivity implements AdapterView.OnItemClickListener  {
 
     AlertDialog popup;
     ListView listOfExercises;
     ArrayList<String> exerciseNames = new ArrayList<>();
+    ArrayList<String> missingExerciseNames = new ArrayList<>();
     ArrayList<ExerciseElement> exerciseList = new ArrayList<>();
     public ArrayList<ExerciseElement> allExercises;
     EditText searchText;
     DynamicListView dlv;
+    DynamicListView listView;
 //    ListView lv;
     ArrayAdapter adapter;
     DatabaseCommunication DBCom;
+    AlphaInAnimationAdapter animAdapter;
 
     private static final int INITIAL_DELAY_MILLIS = 300;
 
@@ -74,12 +78,12 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
         //exerciseList = workout.getExercises();
 
-        DynamicListView listView = (DynamicListView) findViewById(R.id.dynamiclistview);
+        listView = (DynamicListView) findViewById(R.id.dynamiclistview);
 
         /* Setup the adapter */
         com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList);
         SimpleSwipeUndoAdapter simpleSwipeUndoAdapter = new SimpleSwipeUndoAdapter(adapter, this, new MyOnDismissCallback(adapter));
-        AlphaInAnimationAdapter animAdapter = new AlphaInAnimationAdapter(simpleSwipeUndoAdapter);
+        animAdapter = new AlphaInAnimationAdapter(simpleSwipeUndoAdapter);
         animAdapter.setAbsListView(listView);
         assert animAdapter.getViewAnimator() != null;
         animAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
@@ -116,10 +120,11 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             searchText = (EditText) addExercise.findViewById(R.id.searchText);
 
 
+            missingExerciseNames.clear();
+
             allExercises = new ArrayList<ExerciseElement>();
 
             listOfExercises = (ListView) addExercise.findViewById(R.id.listViewExer);
-
 
             for(int i = 1 ; i <= DummyData.exerciseList.length ; i++){
                 allExercises.add(DummyData.getExercise(i));
@@ -127,12 +132,11 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             for(int i = 0 ; i < exerciseList.size() ; i++){
                 allExercises.remove(exerciseList.get(i));
             }
+            for (int q = 0; q< allExercises.size(); q++){
+                missingExerciseNames.add(allExercises.get(q).getName());
+            }
 
-
-            for (int q = 0; q< allExercises.size(); q++)
-                exerciseNames.add(allExercises.get(q).getName());
-
-             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, exerciseNames);
+             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, missingExerciseNames);
 
             listOfExercises.setAdapter(adapter);
 
@@ -148,8 +152,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                        allExercises.clear();
-                        exerciseNames.clear();
+                    allExercises.clear();
+                    missingExerciseNames.clear();
                         for(int i = 1 ; i <= DummyData.exerciseList.length ; i++){
                                 allExercises.add(DummyData.getExercise(i));
                         }
@@ -159,7 +163,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
                     }
 
                     for (int q = 0; q< allExercises.size(); q++)
-                        exerciseNames.add(allExercises.get(q).getName());
+                        missingExerciseNames.add(allExercises.get(q).getName());
 
                 searchItem();
 
@@ -178,7 +182,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
                 public void onClick(View v) {
 
                     popup.cancel();
-                    exerciseNames.clear();
+
                 }
             });
 
@@ -199,12 +203,12 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
     public void searchItem(){
 
-            for (int j = 0 ; j < exerciseNames.size(); j++) {
+            for (int j = 0 ; j < missingExerciseNames.size(); j++) {
 
-                String exerciseName = exerciseNames.get(j).toLowerCase();
+                String exerciseName = missingExerciseNames.get(j).toLowerCase();
 
                 if(!exerciseName.contains(searchText.getText().toString())){
-                    exerciseNames.remove(j);
+                    missingExerciseNames.remove(j);
                     j=j-1;
 
                 }
@@ -216,12 +220,27 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
         for (int t = 0 ; t <allExercises.size(); t++) {
-            if (allExercises.get(t).getName().equalsIgnoreCase(exerciseNames.get(i)))
-            exerciseList.add(allExercises.get(t));
+            if (allExercises.get(t).getName().equalsIgnoreCase(missingExerciseNames.get(i))) {
+                exerciseList.add(allExercises.get(t));
+                exerciseNames.add(missingExerciseNames.get(i));
+            }
         }
 
-                dlv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseNames,exerciseList));
-                exerciseNames.clear();
+        System.out.println(missingExerciseNames.size()+" + "+allExercises.size()+" + "+ exerciseNames.size()+" + "+exerciseList.size() );
+
+
+
+//        com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList);
+//        SimpleSwipeUndoAdapter simpleSwipeUndoAdapter = new SimpleSwipeUndoAdapter(adapter, this, new MyOnDismissCallback(adapter));
+//        animAdapter = new AlphaInAnimationAdapter(simpleSwipeUndoAdapter);
+//        animAdapter.setAbsListView(listView);
+//        assert animAdapter.getViewAnimator() != null;
+//        animAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+
+        listView.setAdapter(new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList));
+
+
+
                 listOfExercises.setAdapter(adapter);
                 popup.cancel();
 
