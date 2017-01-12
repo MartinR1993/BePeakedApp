@@ -1,22 +1,33 @@
 package project.martin.bepeakedprojekt.Workout.WorkoutExercises;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
+import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.OnItemMovedListener;
+import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.SimpleSwipeUndoAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import project.martin.bepeakedprojekt.Backend.DatabaseCommunication;
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
@@ -31,13 +42,16 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     AlertDialog popup;
     ListView listOfExercises;
     ArrayList<String> exerciseNames = new ArrayList<>();
-    ArrayList<ExerciseElement> exerciseList;
+    ArrayList<ExerciseElement> exerciseList = new ArrayList<>();
     public ArrayList<ExerciseElement> allExercises;
     EditText searchText;
     DynamicListView dlv;
 //    ListView lv;
     ArrayAdapter adapter;
     DatabaseCommunication DBCom;
+
+    private static final int INITIAL_DELAY_MILLIS = 300;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +60,41 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         WorkoutElement workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
         setTitle(workout.getName());
 
-
         DBCom = new DatabaseCommunication(this);
+
+        exerciseList.add(DummyData.getExercise(1));
+        exerciseList.add(DummyData.getExercise(2));
+        exerciseList.add(DummyData.getExercise(3));
+        exerciseList.add(DummyData.getExercise(4));
+
+        exerciseNames.add(DummyData.getExercise(1).getName());
+        exerciseNames.add(DummyData.getExercise(2).getName());
+        exerciseNames.add(DummyData.getExercise(3).getName());
+        exerciseNames.add(DummyData.getExercise(4).getName());
 
         //exerciseList = workout.getExercises();
 
-        dlv = (DynamicListView) findViewById(R.id.dynamiclistview);
-        dlv.setAdapter(new WorkoutExercisesListAdapter(this, DBCom.getAllWorkoutExercises(workout.getWorkoutID())));
+        DynamicListView listView = (DynamicListView) findViewById(R.id.dynamiclistview);
+
+        /* Setup the adapter */
+        com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList);
+        SimpleSwipeUndoAdapter simpleSwipeUndoAdapter = new SimpleSwipeUndoAdapter(adapter, this, new MyOnDismissCallback(adapter));
+        AlphaInAnimationAdapter animAdapter = new AlphaInAnimationAdapter(simpleSwipeUndoAdapter);
+        animAdapter.setAbsListView(listView);
+        assert animAdapter.getViewAnimator() != null;
+        animAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
+        listView.setAdapter(animAdapter);
+
+        /* Enable drag and drop functionality */
+        listView.enableDragAndDrop();
+        listView.setDraggableManager(new TouchViewDraggableManager(R.id.gripView));
+        listView.setOnItemMovedListener(new MyOnItemMovedListener(adapter));
+        listView.setOnItemLongClickListener(new MyOnItemLongClickListener(listView));
+
+        /* Enable swipe to dismiss */
+        listView.enableSimpleSwipeUndo();
+//        dlv = (DynamicListView) findViewById(R.id.dynamiclistview);
+//        dlv.setAdapter(new WorkoutExercisesListAdapter(this, DBCom.getAllWorkoutExercises(workout.getWorkoutID())));
         //dlv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
 //        dlv.enableDragAndDrop();
 //        lv = (ListView) findViewById(R.id.exerciseList);
@@ -178,11 +220,78 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             exerciseList.add(allExercises.get(t));
         }
 
-                dlv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
+                dlv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseNames,exerciseList));
                 exerciseNames.clear();
                 listOfExercises.setAdapter(adapter);
                 popup.cancel();
 
+    }
+
+    private static class MyOnItemLongClickListener implements AdapterView.OnItemLongClickListener {
+
+        private final DynamicListView mListView;
+
+        MyOnItemLongClickListener(final DynamicListView listView) {
+            mListView = listView;
+        }
+
+        @Override
+        public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+            if (mListView != null) {
+                mListView.startDragging(position - mListView.getHeaderViewsCount());
+            }
+            return true;
+        }
+    }
+
+    private class MyOnDismissCallback implements OnDismissCallback {
+
+        private final com.nhaarman.listviewanimations.ArrayAdapter<String> mAdapter;
+
+        @Nullable
+        private Toast mToast;
+
+        MyOnDismissCallback(final com.nhaarman.listviewanimations.ArrayAdapter<String> adapter) {
+            mAdapter = adapter;
+        }
+
+        @Override
+        public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
+            for (int position : reverseSortedPositions) {
+                mAdapter.remove(position);
+            }
+
+            if (mToast != null) {
+                mToast.cancel();
+            }
+            mToast = Toast.makeText(
+                    Workout_Exercises_akt.this,
+                    getString(R.string.removed_positions, Arrays.toString(reverseSortedPositions)),
+                    Toast.LENGTH_LONG
+            );
+            mToast.show();
+        }
+    }
+
+    private class MyOnItemMovedListener implements OnItemMovedListener {
+
+        private final com.nhaarman.listviewanimations.ArrayAdapter<String> mAdapter;
+
+        private Toast mToast;
+
+        MyOnItemMovedListener(final com.nhaarman.listviewanimations.ArrayAdapter<String> adapter) {
+            mAdapter = adapter;
+        }
+
+        @Override
+        public void onItemMoved(final int originalPosition, final int newPosition) {
+            if (mToast != null) {
+                mToast.cancel();
+            }
+
+            mToast = Toast.makeText(getApplicationContext(), originalPosition + "til" + newPosition, Toast.LENGTH_SHORT);
+            mToast.show();
+        }
     }
 }
 
