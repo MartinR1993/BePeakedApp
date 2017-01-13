@@ -76,6 +76,17 @@
     <string name="settings_activationkey" >Skriv din aktiveringsnøgle her for at be peaked</string>
     <string name="settings_buttonActivation" >Aktiver</string>
     <string name="settings_activationHelp" >Hvis du ikke ved hvad du skal gøre eller hvordan du får en aktiveringsnøgle, så kontakt us venligst på somethingbepeaked@somemail.com</string>
+    <string name="settings_user">Bruger</string>
+    <string name="settings_user_title">Navnet på brugeren</string>
+    <string name="settings_user_height">Højde: </string>
+    <string name="settings_user_weight">Vægt: </string>
+    <string name="settings_user_age">Alder: </string>
+    <string name="settings_user_kostplanID">KostplanID: </string>
+    <string name="settings_user_calories">Kalorier: </string>
+    <string name="settings_user_culhydrates">Kulhydrater: </string>
+    <string name="settings_user_protein">Protein: </string>
+    <string name="settings_user_fat">Fedt: </string>
+    <string name="settings_changepassword">Skift kodeord</string>
 
     <!--Sprog-->
     <string name="language_title">Sprog</string>

@@ -30,6 +30,7 @@
         android:layout_below="@+id/insertactivationkey"
         android:layout_centerHorizontal="true" />
 
+
     <TextView
         android:text="@string/settings_activationkey"
         android:layout_width="wrap_content"

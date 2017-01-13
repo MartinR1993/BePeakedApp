@@ -114,38 +114,38 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-       String data= (String)parent.getItemAtPosition(position);
+        String data= (String)parent.getItemAtPosition(position);
 
-if (data.equalsIgnoreCase(profil)){
+        if (data.equalsIgnoreCase(profil)){
+            Intent i = new Intent(this, User_akt.class);
+            startActivity(i);
 
-}else if (data.equalsIgnoreCase(activationKey)){
+        }else if (data.equalsIgnoreCase(activationKey)){
+            System.out.println("lol");
+            Intent i = new Intent(this, ActivationKey_akt.class);
+            startActivity(i);
 
-    System.out.println("lol");
-    Intent i = new Intent(this, ActivationKey_akt.class);
-    startActivity(i);
+        }else if (data.equalsIgnoreCase(changeLanguage)){
+            Intent i = new Intent(this, Language_akt.class);
+            startActivity(i);
 
+        }else if (data.equalsIgnoreCase(unitSystem)){
+            Intent i = new Intent(this, UnitSystem_akt.class);
+            startActivity(i);
 
-}else if (data.equalsIgnoreCase(changeLanguage)){
-    Intent i = new Intent(this, Language_akt.class);
-    startActivity(i);
+        }else if (data.equalsIgnoreCase(about)){
+            Intent i = new Intent(this, About_akt.class);
+            startActivity(i);
 
-}else if (data.equalsIgnoreCase(unitSystem)){
-    Intent i = new Intent(this, UnitSystem_akt.class);
-    startActivity(i);
+        }else if (data.equalsIgnoreCase(credits)){
+            Intent i = new Intent(this, Credits_akt.class);
+            startActivity(i);
 
-}else if (data.equalsIgnoreCase(about)){
-    Intent i = new Intent(this, About_akt.class);
-    startActivity(i);
-
-}else if (data.equalsIgnoreCase(credits)){
-    Intent i = new Intent(this, Credits_akt.class);
-    startActivity(i);
-
-}else if (data.equalsIgnoreCase(logOut)){
-    Intent i = new Intent(this, Logind_akt.class);
-    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-    startActivity(i);
-}
+        }else if (data.equalsIgnoreCase(logOut)){
+            Intent i = new Intent(this, Logind_akt.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }
 
     }
 

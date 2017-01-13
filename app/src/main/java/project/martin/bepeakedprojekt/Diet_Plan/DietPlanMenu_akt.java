@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class DietPlanMenu_akt extends AppCompatActivity {
     Calendar c = Calendar.getInstance();
     int hour = c.get(Calendar.HOUR);
     int ampm = c.get(Calendar.AM_PM);
+    private TextView username, calories, culhydrates, fat, protein;
 
 
 
@@ -41,6 +43,11 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         // add data for displaying in expandable list view
         loadData();
 
+        username = (TextView) findViewById(R.id.user);
+        calories = (TextView) findViewById(R.id.calories);
+        culhydrates = (TextView) findViewById(R.id.culhydrates);
+        fat = (TextView) findViewById(R.id.fat);
+        protein = (TextView) findViewById(R.id.protein);
 
         //get reference of the ExpandableListView
         simpleExpandableListView = (ExpandableListView) findViewById(R.id.simpleExpandableListView);
