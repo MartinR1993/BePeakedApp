@@ -76,6 +76,16 @@
     <string name="settings_activationkey" >Insert your activation key here to be peaked</string>
     <string name="settings_buttonActivation" >Activate</string>
     <string name="settings_activationHelp" >If you do not know what to do or how to get an activationkey, you are very welcome to contact us on somethingbepeaked@somemail.com</string>
+    <string name="settings_user">User</string>
+    <string name="settings_user_title">Name of the user</string>
+    <string name="settings_user_height">Height: </string>
+    <string name="settings_user_weight">Weight: </string>
+    <string name="settings_user_age">Age: </string>
+    <string name="settings_user_kostplanID">KostplanID: </string>
+    <string name="settings_user_calories">Calories: </string>
+    <string name="settings_user_culhydrates">Culhydrates: </string>
+    <string name="settings_user_protein">Protein: </string>
+    <string name="settings_user_fat">Fat: </string>
 
     <!--Sprog-->
     <string name="language_title">Language</string>

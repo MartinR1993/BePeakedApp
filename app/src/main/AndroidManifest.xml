@@ -39,8 +39,8 @@
         <activity android:name=".Settings.UnitSystem_akt" />
         <activity android:name=".Settings.Credits_akt" />
         <activity android:name=".Settings.ActivationKey_akt" />
-        <activity android:name=".Settings.About_akt"></activity>
-
+        <activity android:name=".Settings.About_akt" />
+        <activity android:name=".Settings.User_akt"></activity>
     </application>
 
 </manifest>

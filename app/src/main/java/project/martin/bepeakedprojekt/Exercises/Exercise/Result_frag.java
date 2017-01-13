@@ -113,7 +113,7 @@ public class Result_frag extends Fragment
             ((TextView) popupContent.findViewById(R.id.popres_weightTitle)).setText(R.string.exerciseResult_tableWeight);
             final NumberPicker npWeight = (NumberPicker) popupContent.findViewById(R.id.popres_weightSpin);
 
-            final int increment = 5;
+            final int increment = 1;
             npWeight.setMinValue(1);
             npWeight.setFormatter(new NumberPickerFormatter(increment));
             npWeight.setMaxValue(250 / increment);
@@ -122,7 +122,7 @@ public class Result_frag extends Fragment
             ((TextView) popupContent.findViewById(R.id.popres_repsTitle)).setText(R.string.exerciseResult_tableReps);
             final NumberPicker npReps = (NumberPicker) popupContent.findViewById(R.id.popres_repsSpin);
             npReps.setMinValue(1);
-            npReps.setMaxValue(100);
+            npReps.setMaxValue(30);
             npReps.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
 
             layout.addView(popupContent);
