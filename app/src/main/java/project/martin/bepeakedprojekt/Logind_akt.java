@@ -10,14 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Logind_akt extends AppCompatActivity implements View.OnClickListener {
+import project.martin.bepeakedprojekt.Backend.BackendData;
+import project.martin.bepeakedprojekt.Backend.ServerComm;
 
+public class Logind_akt extends AppCompatActivity implements View.OnClickListener
+{
+    private ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
     private TextView textUsername, textPassword, opretBruger;
     private EditText editUsername, editPassword;
     private Button buttonLogin;
     SharedPreferences prefs;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +46,23 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if(v == buttonLogin){
-
-
-
-            Intent i = new Intent(this, MainMenu_akt.class);
-            Logind_akt.this.finish();
-            startActivity(i);
+            server.getSalt(this, editUsername.getText().toString());
         }
-        else if (v == opretBruger){
-
+        else if (v == opretBruger) {
             // bruges midlertidig til at sætte en bruger til ikke kunde
             prefs.edit().putInt("usertype",1).commit();
             System.out.println("Opret bruger");
         }
+    }
+
+    public void login(String salt) {
+        System.out.println("SALT=" + salt);
+        server.login(this, editUsername.getText().toString(), editPassword.getText().toString(), salt);
+    }
+
+    public void gotoMenu() {
+        Intent i = new Intent(this, MainMenu_akt.class);
+        Logind_akt.this.finish();
+        startActivity(i);
     }
 }

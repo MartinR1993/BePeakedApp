@@ -54,6 +54,7 @@ dependencies {
     compile 'com.google.firebase:firebase-database:9.8.0'
     testCompile 'junit:junit:4.12'
     compile files('libs/nineoldandroids-2.4.0.jar')
+    compile files('libs/sc-security-1.0.3.jar')
 }
 
 
