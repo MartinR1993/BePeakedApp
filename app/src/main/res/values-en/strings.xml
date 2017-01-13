@@ -86,6 +86,7 @@
     <string name="settings_user_culhydrates">Culhydrates: </string>
     <string name="settings_user_protein">Protein: </string>
     <string name="settings_user_fat">Fat: </string>
+    <string name="settings_changepassword">Change password</string>
 
     <!--Sprog-->
     <string name="language_title">Language</string>

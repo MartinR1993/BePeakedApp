@@ -93,6 +93,16 @@
                 android:id="@+id/textView16"
                 android:layout_marginTop="10dp"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/changepassword"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_vertical"
+                android:text="@string/settings_changepassword"
+                android:textAllCaps="false"
+                android:soundEffectsEnabled="false" />
+
         </LinearLayout>
 
     </RelativeLayout>

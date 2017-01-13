@@ -85,6 +85,7 @@
     <string name="settings_user_culhydrates">Culhydrates: </string>
     <string name="settings_user_protein">Protein: </string>
     <string name="settings_user_fat">Fat: </string>
+    <string name="settings_changepassword">Change password</string>
 
 
     <!--Sprog-->
@@ -137,7 +138,6 @@
     <string name="newly_added_item">This is newly added item %d</string>
 
     <string name="activity_dynamiclistview_header">Touch the grip or long press an item to drag.\nSwipe to dismiss.\nTap an item to insert a new item.</string>
-
 
 
 </resources>

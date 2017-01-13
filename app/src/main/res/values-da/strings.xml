@@ -86,6 +86,7 @@
     <string name="settings_user_culhydrates">Kulhydrater: </string>
     <string name="settings_user_protein">Protein: </string>
     <string name="settings_user_fat">Fedt: </string>
+    <string name="settings_changepassword">Skift kodeord</string>
 
     <!--Sprog-->
     <string name="language_title">Sprog</string>
