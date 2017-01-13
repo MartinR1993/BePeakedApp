@@ -23,12 +23,13 @@ import project.martin.bepeakedprojekt.R;
 /**
  * Created by Martin on 14-11-2016.
  */
-public class WorkoutExercisesListAdapter extends ArrayAdapter<String> implements UndoAdapter {
+public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
 
     private final Context mContext;
-        private ArrayList<String> exerciseListNames;
+    private ArrayList<String> exerciseListNames;
     private static LayoutInflater inflater = null;
     ArrayList<ExerciseElement> exerciseElements = new ArrayList<>();
+    private TextView ExerciseTitle, Sets,Reps;
 
 
 
@@ -61,125 +62,66 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> implements
 
         }
 
-        ((TextView) view.findViewById(R.id.ele_ExerciseTitle)).setText(getItem(position));
+        ExerciseTitle = (TextView) view.findViewById(R.id.ele_ExerciseTitle);
+        ExerciseTitle.setText(getItem(position));
+
+        Sets = (TextView) view.findViewById(R.id.textViewSets);
+        Reps = (TextView) view.findViewById(R.id.textViewReps);
+
+        for (int i = 0 ; i < exerciseElements.size();i++) {
+            if (exerciseElements.get(i).getName() == ExerciseTitle.getText()) {
+                int sets = exerciseElements.get(i).getSets();
+                String reps = exerciseElements.get(i).getReps();
+                Sets.setText("Sets: " + sets);
+                Reps.setText("Reps: " + reps);
+            }
+        }
+
+
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                exerciseListNames.get(position);
-                System.out.println();
 
                 TextView test =(TextView) v.findViewById(R.id.ele_ExerciseTitle);
 
                 String tesa = (String) test.getText();
 
                 for (int i = 0 ; i < exerciseElements.size();i++){
-                    if (exerciseElements.get(i).getName() == tesa){
+                    if (exerciseElements.get(i).getName().equals(tesa)){
                         Intent j = new Intent(mContext, Exercise_akt.class);
                         j.putExtra("exercise", exerciseElements.get(i));
                         j.putExtra("sets", exerciseElements.get(i).getSets());
                         mContext.startActivity(j);
                     }
                 }
-
-
-
-                parent.getChildAt(0).getResources();
-//                Intent i = new Intent(mContext, Exercise_akt.class);
-//                i.putExtra("exercise", exerciseListNames.get(position));
-//                i.putExtra("sets", exerciseListNames.get(position).getSets());
-//                mContext.startActivity(i);
-                System.out.println("hej");
             }
         });
-        return view;
-    }
 
-    @NonNull
-    @Override
-    public View getUndoView(final int position, final View convertView, @NonNull final ViewGroup parent) {
-        View view = convertView;
-        if (view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.undo_row, parent, false);
-        }
-        return view;
-    }
 
-    @NonNull
-    @Override
-    public View getUndoClickView(@NonNull final View view) {
-        return view.findViewById(R.id.undo_row_undobutton);
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+// denne kode virker ikke på sidste element men har ellers ikke design problemer
+//                TextView test =(TextView) view.findViewById(R.id.ele_ExerciseTitle);
+//
+//                String tesa = (String) test.getText();
+//
+//                for (int i = 0; i < exerciseListNames.size(); i++) {
+//
+//                    if (tesa == exerciseListNames.get(i)) {
+//                        exerciseElements.remove(i);
+//
+//                        exerciseListNames.remove(i);
+//
+//                        remove(position);
+//                    }
+//                }
+//
+                return false;
+            }
+        });
+
+        return view;
     }
 }
-//public class WorkoutExercisesListAdapter extends BaseAdapter {
-//    private static LayoutInflater inflater = null;
-//    private ArrayList<ExerciseElement> exerciseList;
-//    private Activity akt;
-//
-//
-//    protected WorkoutExercisesListAdapter(Activity activity, ArrayList<ExerciseElement> exerciseList) {
-//        Context context = activity;
-//        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        this.exerciseList = exerciseList;
-//        this.akt = activity;
-//    }
-////    @Override
-////    public boolean hasStableIds(){
-////        return false;
-////    }
-//
-//    @Override
-//    public int getCount() {
-//        return exerciseList.size();
-//    }
-//
-//    @Override
-//    public Object getItem(int position) {
-//        return position;
-//    }
-//
-//    @Override
-//    public long getItemId(int position) {
-//        ExerciseElement element = exerciseList.get(position);
-//        return (element.getExerciseID() + element.getName()).hashCode();
-//    }
-//
-//    private class Holder
-//    {
-//        protected TextView ExerciseTitle, Reps, Sets;
-//        protected ImageView image;
-//    }
-//
-//    @Override
-//    public View getView(final int position, View convertView, ViewGroup parent) {
-//        Holder holder = new Holder();
-//        View rowView;
-//        rowView = inflater.inflate(R.layout.list_workout_exercise_element, null);
-//        ExerciseElement exerciseElement = exerciseList.get(position);
-//
-//        holder.ExerciseTitle = (TextView) rowView.findViewById(R.id.ele_ExerciseTitle);
-//        holder.image = (ImageView) rowView.findViewById(R.id.ele_image);
-//        holder.Sets = (TextView) rowView.findViewById(R.id.textViewSets);
-//        holder.Reps = (TextView) rowView.findViewById(R.id.textViewReps);
-//
-//        String exerciseTitle = exerciseElement.getName();
-//        int sets = exerciseElement.getSets();
-//        String reps = exerciseElement.getReps();
-//
-//        holder.ExerciseTitle.setText(exerciseTitle);
-//        holder.Sets.setText(akt.getString(R.string.Exercises_sets) + sets);
-//        holder.Reps.setText(akt.getString(R.string.Exercises_reps) + reps);
-//        holder.image.setImageResource(R.drawable.forward);
-//
-//        rowView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(akt, Exercise_akt.class);
-//                i.putExtra("exercise", exerciseList.get(position));
-//                i.putExtra("sets", exerciseList.get(position).getSets());
-//                akt.startActivity(i);
-//            }
-//        });
-//        return rowView;
-//    }
-//}

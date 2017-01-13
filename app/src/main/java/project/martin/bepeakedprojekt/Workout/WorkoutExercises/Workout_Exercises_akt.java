@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.Workout.WorkoutExercises;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
@@ -37,6 +39,7 @@ import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
 import static android.R.id.edit;
+import static project.martin.bepeakedprojekt.R.id.exerciseList;
 import static project.martin.bepeakedprojekt.R.id.listView;
 
 public class Workout_Exercises_akt extends AppCompatActivity implements AdapterView.OnItemClickListener  {
@@ -67,6 +70,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         setContentView(R.layout.activity_workout_exercises_menu);
         WorkoutElement workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
         setTitle(workout.getName());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DBCom = new DatabaseCommunication(this);
 
@@ -84,40 +88,29 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
         listView = (DynamicListView) findViewById(R.id.dynamiclistview);
         gripView = (GripView) findViewById(R.id.gripView);
-//        gripView.setVisibility(View.GONE);
+//      gripView.setVisibility(View.GONE);
+
 
         /* Setup the adapter */
         com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList);
-        SimpleSwipeUndoAdapter simpleSwipeUndoAdapter = new SimpleSwipeUndoAdapter(adapter, this, new MyOnDismissCallback(adapter));
-        animAdapter = new AlphaInAnimationAdapter(simpleSwipeUndoAdapter);
+        animAdapter = new AlphaInAnimationAdapter(adapter);
         animAdapter.setAbsListView(listView);
-        assert animAdapter.getViewAnimator() != null;
+      //  assert animAdapter.getViewAnimator() != null;
         animAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
         listView.setAdapter(animAdapter);
 
-        /* Enable drag and drop functionality */
-//        listView.enableDragAndDrop();
-//        listView.setDraggableManager(new TouchViewDraggableManager(R.id.gripView));
+
         listView.setOnItemMovedListener(new MyOnItemMovedListener(adapter));
-        listView.setOnItemLongClickListener(new MyOnItemLongClickListener(listView));
-
-        /* Enable swipe to dismiss */
-        listView.enableSimpleSwipeUndo();
-//        dlv = (DynamicListView) findViewById(R.id.dynamiclistview);
-//        dlv.setAdapter(new WorkoutExercisesListAdapter(this, DBCom.getAllWorkoutExercises(workout.getWorkoutID())));
-        //dlv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
-//        dlv.enableDragAndDrop();
-//        lv = (ListView) findViewById(R.id.exerciseList);
-//        lv.setAdapter(new WorkoutExercisesListAdapter(this, exerciseList));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        listView.setOnItemLongClickListener(new MyOnItemLongClickListener(this,listView,adapter,exerciseNames,exerciseList));
     }
+
     public boolean onOptionsItemSelected(final MenuItem item){
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
         else if(item.getItemId() == R.id.edit){
 //            gripView.setVisibility(View.VISIBLE);
+
 
             if (menu.findItem(R.id.OK) == null){
                 getMenuInflater().inflate(R.menu.okmenu, menu);
@@ -133,10 +126,9 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
             listView.enableDragAndDrop();
             listView.setDraggableManager(new TouchViewDraggableManager(R.id.gripView));
-//            listView.setOnItemMovedListener(new MyOnItemMovedListener(adapter));
-//            listView.setOnItemLongClickListener(new MyOnItemLongClickListener(listView));
 
         }
+
         else if (item.getItemId() == R.id.OK){
             MenuItem ok = menu.findItem(R.id.OK);
             ok.setVisible(false);
@@ -147,6 +139,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             listView.disableDragAndDrop();
 
         }
+
         else if (item.getItemId() == R.id.add) {
             popup = new AlertDialog.Builder(Workout_Exercises_akt.this).create();
 
@@ -157,7 +150,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
             missingExerciseNames.clear();
 
-            allExercises = new ArrayList<ExerciseElement>();
+            allExercises = new ArrayList<>();
 
             listOfExercises = (ListView) addExercise.findViewById(R.id.listViewExer);
 
@@ -189,9 +182,10 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
                     allExercises.clear();
                     missingExerciseNames.clear();
-                        for(int i = 1 ; i <= DummyData.exerciseList.length ; i++){
-                                allExercises.add(DummyData.getExercise(i));
-                        }
+
+                    for(int i = 1 ; i <= DummyData.exerciseList.length ; i++){
+                        allExercises.add(DummyData.getExercise(i));
+                    }
 
                     for(int i = 0 ; i < exerciseList.size() ; i++){
                         allExercises.remove(exerciseList.get(i));
@@ -264,15 +258,6 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
         System.out.println(missingExerciseNames.size()+" + "+allExercises.size()+" + "+ exerciseNames.size()+" + "+exerciseList.size() );
 
-
-
-//        com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList);
-//        SimpleSwipeUndoAdapter simpleSwipeUndoAdapter = new SimpleSwipeUndoAdapter(adapter, this, new MyOnDismissCallback(adapter));
-//        animAdapter = new AlphaInAnimationAdapter(simpleSwipeUndoAdapter);
-//        animAdapter.setAbsListView(listView);
-//        assert animAdapter.getViewAnimator() != null;
-//        animAdapter.getViewAnimator().setInitialDelayMillis(INITIAL_DELAY_MILLIS);
-
         listView.setAdapter(new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList));
 
 
@@ -284,47 +269,42 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
     private static class MyOnItemLongClickListener implements AdapterView.OnItemLongClickListener {
 
-        private final DynamicListView mListView;
+        private  ArrayList<String> exerciseListNames;
+        private ArrayList<ExerciseElement> exerciseElements;
+        private DynamicListView mListView;
+        com.nhaarman.listviewanimations.ArrayAdapter<String> adapter;
+        Activity akt;
 
-        MyOnItemLongClickListener(final DynamicListView listView) {
+        MyOnItemLongClickListener(Activity activity, DynamicListView listView, com.nhaarman.listviewanimations.ArrayAdapter<String> adapter, ArrayList<String>exerciseListNames, ArrayList<ExerciseElement> exerciseElements) {
             mListView = listView;
+            this.exerciseListNames = exerciseListNames;
+            this.exerciseElements = exerciseElements;
+            this.adapter = adapter;
+            this.akt = activity;
         }
 
         @Override
         public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-            if (mListView != null) {
-                mListView.startDragging(position - mListView.getHeaderViewsCount());
+
+            // denne kode virker men har design problemer
+            TextView test =(TextView) view.findViewById(R.id.ele_ExerciseTitle);
+
+            String tesa = (String) test.getText();
+
+            for (int i = 0; i < exerciseListNames.size(); i++) {
+
+                if (tesa == exerciseListNames.get(i)) {
+                    exerciseElements.remove(i);
+
+                    exerciseListNames.remove(i);
+
+                    mListView.setAdapter( new WorkoutExercisesListAdapter(akt, exerciseListNames, exerciseElements));
+
+                }
+
             }
+
             return true;
-        }
-    }
-
-    private class MyOnDismissCallback implements OnDismissCallback {
-
-        private final com.nhaarman.listviewanimations.ArrayAdapter<String> mAdapter;
-
-        @Nullable
-        private Toast mToast;
-
-        MyOnDismissCallback(final com.nhaarman.listviewanimations.ArrayAdapter<String> adapter) {
-            mAdapter = adapter;
-        }
-
-        @Override
-        public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
-            for (int position : reverseSortedPositions) {
-                exerciseNames.remove(position);
-            }
-
-            if (mToast != null) {
-                mToast.cancel();
-            }
-            mToast = Toast.makeText(
-                    Workout_Exercises_akt.this,
-                    getString(R.string.removed_positions, Arrays.toString(reverseSortedPositions)),
-                    Toast.LENGTH_LONG
-            );
-            mToast.show();
         }
     }
 
