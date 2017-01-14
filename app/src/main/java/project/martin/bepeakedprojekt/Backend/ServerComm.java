@@ -12,15 +12,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Arrays;
 
 import project.martin.bepeakedprojekt.Logind_akt;
+import project.martin.bepeakedprojekt.User.User;
 import scSecurity.hashing.MD5Hashing;
 
 /**
  * Created by Lasse on 13-01-2017.
  */
 
-public class ServerComm extends AsyncTask<String, Void, String>
+public class ServerComm extends AsyncTask<String, Void, String[]>
 {
     public static final String TASK_GETSALT = "salt";
     public static final String TASK_LOGIN = "login";
@@ -32,6 +34,7 @@ public class ServerComm extends AsyncTask<String, Void, String>
     private static final String TAG_CMD_UPDATE = "update";
     private static final String TAG_CMD_VALIDATE = "validate";
     private static final String TAG_CMD_GET = "get";
+    private static final String TAG_CMD_SESSION_ID = "session";
     private static final String TAG_ARGS = "args";
     private static final String TAG_USER = "user";
     private static final String TAG_PASSWORD = "password";
@@ -72,7 +75,9 @@ public class ServerComm extends AsyncTask<String, Void, String>
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected String[] doInBackground(String... params) {
+        String[] result;
+
         switch (task) {
             case TASK_GETSALT: {
                 JSONObject jsonObj = new JSONObject();
@@ -83,7 +88,9 @@ public class ServerComm extends AsyncTask<String, Void, String>
                     argsJA.put(params[0]);
                     jsonObj.put(TAG_ARGS, argsJA);
 
-                    return sendRequest(jsonObj.toString()).getString(TAG_SALT);
+                    result = new String[1];
+                    result[0] = sendRequest(jsonObj.toString()).getString(TAG_SALT);
+                    return result;
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
@@ -107,7 +114,18 @@ public class ServerComm extends AsyncTask<String, Void, String>
 
                     jsonObj.put(TAG_ARGS, argsJA);
 
-                    return sendRequest(jsonObj.toString()).getString(TAG_ERROR);
+                    JSONObject reply = sendRequest(jsonObj.toString());
+                    String errorMsg = reply.getString(TAG_ERROR);
+                    if(errorMsg.equals(TAG_ERROR_NONE)) {
+                        result = new String[2];
+                        result[1] = reply.getString(TAG_CMD_SESSION_ID);
+                    }
+                    else
+                        result = new String[1];
+
+                    result[0] = errorMsg;
+
+                    return result;
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
@@ -118,16 +136,18 @@ public class ServerComm extends AsyncTask<String, Void, String>
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(String... result) {
         switch (task) {
             case TASK_GETSALT: {
-                login.login(result);
+                login.login(result[0]);
                 break;
             }
             case TASK_LOGIN: {
-                System.out.println("RESULT=" + result);
-                if (result.equals(TAG_ERROR_NONE))
+                System.out.println("RESULT=" + Arrays.toString(result));
+                if (result.length == 2) {
+                    User.setSessionID(result[1]);
                     login.gotoMenu();
+                }
                 break;
             }
         }

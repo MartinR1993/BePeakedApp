@@ -7,6 +7,7 @@ package project.martin.bepeakedprojekt.User;
 public class User {
     private int height, weight, age, kostplanID, calories, culhydrates;
     private double protien, fat;
+    private static String sessionID;
 
     public User(int height, int weight, int age, int kostplanID, int calories, int culhydrates, double protien, double fat) {
         this.height = height;
@@ -81,6 +82,14 @@ public class User {
 
     public void setFat(double fat) {
         this.fat = fat;
+    }
+
+    public static String getSessionID() {
+        return sessionID;
+    }
+
+    public static void setSessionID(String sessionID) {
+        User.sessionID = sessionID;
     }
 
     @Override
