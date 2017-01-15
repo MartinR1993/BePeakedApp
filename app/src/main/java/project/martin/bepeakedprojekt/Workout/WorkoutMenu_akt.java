@@ -90,5 +90,6 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
     public void addWorkouts(ArrayList<WorkoutElement> workoutList) {
         System.out.println("Workout received=" + workoutList.toString());
         this.workoutList.addAll(workoutList);
+        listAdapter.notifyDataSetChanged();
     }
 }
