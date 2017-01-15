@@ -10,16 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.DatabaseCommunication;
-import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
-import project.martin.bepeakedprojekt.Misc.DummyData;
+import project.martin.bepeakedprojekt.Backend.ServerComm;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.User.User;
 
 public class WorkoutMenu_akt extends AppCompatActivity  {
     private ArrayList<WorkoutElement> workoutList;
@@ -27,60 +24,59 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
     private EditText saveWorkoutName;
     private AlertDialog popup;
     private WorkoutListAdapter listAdapter;
-
-
-    DatabaseCommunication DBCom;
-
-
-
+    private DatabaseCommunication DBCom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_menu);
         setTitle(R.string.workoutMenu_banner);
-
+        ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
 
         DBCom = new DatabaseCommunication(this);
+        server.getWorkoutlist(this, User.getSessionID());
         workoutList = DBCom.getAllWorkouts();
 
         lv = (ListView) findViewById(R.id.listWorkoutMenu);
         listAdapter = new WorkoutListAdapter(this, workoutList);
         lv.setAdapter(listAdapter);
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-        }
-        else if(item.getItemId() == R.id.edit){
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                onBackPressed();
+                break;
+            }
+            case R.id.edit: {
+                break;
+            }
+            case R.id.add: {
+                popup = new AlertDialog.Builder(WorkoutMenu_akt.this).create();
+                View createWorkout = View.inflate(this, R.layout.popup_createworkout, null);
 
-        }
-        else if (item.getItemId() == R.id.add) {
-            popup = new AlertDialog.Builder(WorkoutMenu_akt.this).create();
-            View createWorkout = View.inflate(this, R.layout.popup_createworkout, null);
+                saveWorkoutName = (EditText) createWorkout.findViewById(R.id.giveNameWorkout);
+                final Button saveWorkoutButton = (Button) createWorkout.findViewById(R.id.saveWorkout);
+                saveWorkoutButton.setOnClickListener(new View.OnClickListener() {
 
-            saveWorkoutName = (EditText) createWorkout.findViewById(R.id.giveNameWorkout);
-            final Button saveWorkoutButton = (Button) createWorkout.findViewById(R.id.saveWorkout);
-            saveWorkoutButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                @Override
-                public void onClick(View v) {
+                        DBCom.addWorkout(saveWorkoutName.getText().toString());
+                        workoutList = DBCom.getAllWorkouts();
+                        lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
 
-                    DBCom.addWorkout(saveWorkoutName.getText().toString());
-                    workoutList = DBCom.getAllWorkouts();
-                    lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
+                        popup.cancel();
+                    }
+                });
 
-                    popup.cancel();
-                }
-            });
-
-            popup.setTitle(R.string.createWorkout_title);
-            popup.setView(createWorkout);
-            popup.show();
+                popup.setTitle(R.string.createWorkout_title);
+                popup.setView(createWorkout);
+                popup.show();
+                break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -91,6 +87,8 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
         return true;
     }
 
-
-
+    public void addWorkouts(ArrayList<WorkoutElement> workoutList) {
+        System.out.println("Workout received=" + workoutList.toString());
+        this.workoutList.addAll(workoutList);
+    }
 }

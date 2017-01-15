@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.Backend;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
@@ -12,10 +13,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Arrays;
 
+import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.User.User;
+import project.martin.bepeakedprojekt.Workout.WorkoutElement;
+import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
 import scSecurity.hashing.MD5Hashing;
 
 /**
@@ -24,8 +29,9 @@ import scSecurity.hashing.MD5Hashing;
 
 public class ServerComm extends AsyncTask<String, Void, String[]>
 {
-    public static final String TASK_GETSALT = "salt";
-    public static final String TASK_LOGIN = "login";
+    private static final String TASK_GETSALT = "salt";
+    private static final String TASK_LOGIN = "login";
+    private static final String TASK_GETWORKOUTS = "get_workouts";
 
     private static final String TAG_COMMAND = "cmd";
     private static final String TAG_CMD_TEST = "SCTest";
@@ -37,6 +43,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     private static final String TAG_CMD_SESSION_ID = "session";
     private static final String TAG_ARGS = "args";
     private static final String TAG_USER = "user";
+    private static final String TAG_WORKOUTLIST = "workouts";
     private static final String TAG_PASSWORD = "password";
     private static final String TAG_SALT = "salt";
     private static final String TAG_RESULT = "result";
@@ -46,7 +53,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 
     private final String host;
     private final int port;
-    private Logind_akt login;
+    private Activity act;
     private String task;
 
     public ServerComm(String host, int port) {
@@ -54,8 +61,8 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
         this.port = port;
     }
 
-    public ServerComm(Logind_akt login, String task, String host, int port) {
-        this.login = login;
+    private ServerComm(Activity act, String task, String host, int port) {
+        this.act = act;
         this.task = task;
         this.host = host;
         this.port = port;
@@ -67,6 +74,10 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 
     public void login(Logind_akt login, String username, String password, String salt) {
         new ServerComm(login, TASK_LOGIN, host, port).execute(username, password, salt);
+    }
+
+    public void getWorkoutlist(WorkoutMenu_akt workoutMenu, String sessionID) {
+        new ServerComm(workoutMenu, TASK_GETWORKOUTS, host, port).execute(sessionID);
     }
 
     @Override
@@ -131,6 +142,23 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 }
                 break;
             }
+            case TASK_GETWORKOUTS: {
+                JSONObject jsonObj = new JSONObject();
+                try {
+                    jsonObj.put(TAG_COMMAND, TAG_CMD_GET);
+                    jsonObj.put(TAG_CMD_SESSION_ID, params[0]);
+                    JSONArray argsJA = new JSONArray();
+                    argsJA.put(0, TAG_WORKOUTLIST);
+                    jsonObj.put(TAG_ARGS, argsJA);
+
+                    result = new String[1];
+                    result[0] = sendRequest(jsonObj.toString()).getString(TAG_WORKOUTLIST);
+                    return result;
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
         }
         return null;
     }
@@ -139,14 +167,38 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     protected void onPostExecute(String... result) {
         switch (task) {
             case TASK_GETSALT: {
+                Logind_akt login = (Logind_akt) act;
                 login.login(result[0]);
                 break;
             }
             case TASK_LOGIN: {
                 System.out.println("RESULT=" + Arrays.toString(result));
                 if (result.length == 2) {
+                    Logind_akt login = (Logind_akt) act;
                     User.setSessionID(result[1]);
                     login.gotoMenu();
+                }
+                break;
+            }
+            case TASK_GETWORKOUTS: {
+                System.out.println("RESULT=" + Arrays.toString(result));
+                try {
+                    ArrayList<WorkoutElement> workoutList = new ArrayList<>();
+                    JSONArray workoutlistJSON = new JSONArray(result[0]);
+                    WorkoutMenu_akt workoutMenu = (WorkoutMenu_akt) act;
+
+                    JSONObject workoutJSON;
+                    for(int i = 0; i < workoutlistJSON.length(); i++) {
+                        workoutJSON = (JSONObject) workoutlistJSON.get(i);
+                        int id = workoutJSON.getInt("id");
+                        String name = workoutJSON.getString("name");
+
+                        workoutList.add(new WorkoutElement(id, name, new ArrayList<ExerciseElement>()));
+                    }
+
+                    workoutMenu.addWorkouts(workoutList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
                 break;
             }
@@ -162,14 +214,18 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
             connIS = socket.getInputStream();
             connOut = new PrintWriter(socket.getOutputStream(), true);
 
+            System.out.println("REQUEST=" + request);
             connOut.print(request + '\n');
             connOut.flush();
 
             connBR = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String input = connBR.readLine();
-            JSONObject replyJO = new JSONObject(input);
+            System.out.println("REPLY=" + input);
 
-            return replyJO;
+            if(input != null)
+                return new JSONObject(input);
+            else
+                return null;
         }
         catch (IOException e) {
             e.printStackTrace();
