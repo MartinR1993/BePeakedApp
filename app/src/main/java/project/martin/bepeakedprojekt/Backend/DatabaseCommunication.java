@@ -5,15 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
-import project.martin.bepeakedprojekt.Misc.DummyData;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
 /**
@@ -50,7 +44,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         super(context, HOST, null, 2);
     }
 
-//CREATE TABLE operatoer(opr_id INT PRIMARY KEY, opr_navn TEXT, ini TEXT, cpr TEXT, password TEXT, aktiv BOOLEAN, type TEXT)
+    //CREATE TABLE operatoer(opr_id INT PRIMARY KEY, opr_navn TEXT, ini TEXT, cpr TEXT, password TEXT, aktiv BOOLEAN, type TEXT)
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_WORKOUT_TABLE = "CREATE TABLE " + WORKOUT_TABLE + "(" +WORKOUT_ID + " INTEGER AUTO_INCREMENT PRIMARY KEY," + WORKOUT_NAME + " TEXT)";
@@ -87,7 +81,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 //public WorkoutElement(int workoutID, String workoutName, ArrayList<ExerciseElement> exercises)
-                WorkoutElement elem = new WorkoutElement(1,"", new ArrayList<ExerciseElement>());
+                WorkoutElement elem = new WorkoutElement(1,"", new ArrayList<ExerciseElement>(), false);
 
                 //elem.setWorkoutID(Integer.parseInt(cursor.getString(0)));
                 elem.setWorkoutID(cursor.getInt(0));
@@ -204,7 +198,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 
     // Exercise Table Columns names
     //"CREATE TABLE " + EXERCISE_TABLE + "(" +EXERCISE_ID + " INTEGER PRIMARY KEY,"
-       //     + EXERCISE_SETS + " INTEGER, "+ EXERCISE_REPS +" INTEGER," + EXERCISE_NAME + " TEXT," + EXERCISE_DESC + " TEXT," + EXERCISE_IMAGE + " INTEGER)";
+    //     + EXERCISE_SETS + " INTEGER, "+ EXERCISE_REPS +" INTEGER," + EXERCISE_NAME + " TEXT," + EXERCISE_DESC + " TEXT," + EXERCISE_IMAGE + " INTEGER)";
 
 }
 

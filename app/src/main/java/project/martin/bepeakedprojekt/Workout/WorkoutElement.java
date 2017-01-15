@@ -10,11 +10,13 @@ public class WorkoutElement implements Serializable
     private String workoutName;
     private ArrayList<ExerciseElement> exercises;
     private int workoutID;
+    private boolean isFromServer;
 
-    public WorkoutElement(int workoutID, String workoutName, ArrayList<ExerciseElement> exercises) {
+    public WorkoutElement(int workoutID, String workoutName, ArrayList<ExerciseElement> exercises, boolean isFromServer) {
         this.workoutID = workoutID;
         this.workoutName = workoutName;
         this.exercises = exercises;
+        this.isFromServer = isFromServer;
     }
 
     public int getWorkoutID() {
@@ -41,12 +43,29 @@ public class WorkoutElement implements Serializable
         this.exercises = exercises;
     }
 
+    public boolean isFromServer() {
+        return isFromServer;
+    }
+
+    public void setFromServer(boolean fromServer) {
+        isFromServer = fromServer;
+    }
+
+    public String getWorkoutName() {
+        return workoutName;
+    }
+
+    public void setWorkoutName(String workoutName) {
+        this.workoutName = workoutName;
+    }
+
     @Override
     public String toString() {
         return "WorkoutElement{" +
                 "workoutName='" + workoutName + '\'' +
                 ", exercises=" + exercises +
                 ", workoutID=" + workoutID +
+                ", server=" + isFromServer +
                 '}';
     }
 

@@ -20,6 +20,7 @@ import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.User.User;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
+import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
 import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
 import scSecurity.hashing.MD5Hashing;
 
@@ -32,10 +33,9 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     private static final String TASK_GETSALT = "salt";
     private static final String TASK_LOGIN = "login";
     private static final String TASK_GETWORKOUTS = "get_workouts";
+    private static final String TASK_GETEXERCISES = "get_exercises";
 
     private static final String TAG_COMMAND = "cmd";
-    private static final String TAG_CMD_TEST = "SCTest";
-    private static final String TAG_CMD_STOP = "stop";
     private static final String TAG_CMD_CREATE = "create";
     private static final String TAG_CMD_UPDATE = "update";
     private static final String TAG_CMD_VALIDATE = "validate";
@@ -46,7 +46,6 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     private static final String TAG_WORKOUTLIST = "workouts";
     private static final String TAG_PASSWORD = "password";
     private static final String TAG_SALT = "salt";
-    private static final String TAG_RESULT = "result";
     private static final String TAG_EXERCISE = "exercise";
     private static final String TAG_ERROR = "error";
     private static final String TAG_ERROR_NONE = "none";
@@ -76,8 +75,12 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
         new ServerComm(login, TASK_LOGIN, host, port).execute(username, password, salt);
     }
 
-    public void getWorkoutlist(WorkoutMenu_akt workoutMenu, String sessionID) {
-        new ServerComm(workoutMenu, TASK_GETWORKOUTS, host, port).execute(sessionID);
+    public void getWorkoutlist(WorkoutMenu_akt workoutsMenu, String sessionID) {
+        new ServerComm(workoutsMenu, TASK_GETWORKOUTS, host, port).execute(sessionID);
+    }
+
+    public void getExercisesByWorkoutID(Workout_Exercises_akt workoutMenu, int workoutID, String sessionID) {
+        new ServerComm(workoutMenu, TASK_GETEXERCISES, host, port).execute("" + workoutID, sessionID);
     }
 
     @Override
@@ -159,6 +162,24 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 }
                 break;
             }
+            case TASK_GETEXERCISES: {
+                JSONObject jsonObj = new JSONObject();
+                try {
+                    jsonObj.put(TAG_COMMAND, TAG_CMD_GET);
+                    jsonObj.put(TAG_CMD_SESSION_ID, params[1]);
+                    JSONArray argsJA = new JSONArray();
+                    argsJA.put(0, TAG_EXERCISE);
+                    argsJA.put(1, Integer.parseInt(params[0]));
+                    jsonObj.put(TAG_ARGS, argsJA);
+
+                    result = new String[1];
+                    result[0] = sendRequest(jsonObj.toString()).getString(TAG_EXERCISE);
+                    return result;
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
         }
         return null;
     }
@@ -185,7 +206,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 try {
                     ArrayList<WorkoutElement> workoutList = new ArrayList<>();
                     JSONArray workoutlistJSON = new JSONArray(result[0]);
-                    WorkoutMenu_akt workoutMenu = (WorkoutMenu_akt) act;
+                    WorkoutMenu_akt workoutsMenu = (WorkoutMenu_akt) act;
 
                     JSONObject workoutJSON;
                     for(int i = 0; i < workoutlistJSON.length(); i++) {
@@ -193,10 +214,35 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                         int id = workoutJSON.getInt("id");
                         String name = workoutJSON.getString("name");
 
-                        workoutList.add(new WorkoutElement(id, name, new ArrayList<ExerciseElement>()));
+                        workoutList.add(new WorkoutElement(id, name, new ArrayList<ExerciseElement>(), true));
                     }
 
-                    workoutMenu.addWorkouts(workoutList);
+                    workoutsMenu.addWorkouts(workoutList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case TASK_GETEXERCISES: {
+                System.out.println("RESULT=" + Arrays.toString(result));
+                try {
+                    ArrayList<ExerciseElement> exerciseList = new ArrayList<>();
+                    JSONArray exerciselistJSON = new JSONArray(result[0]);
+                    Workout_Exercises_akt workoutMenu = (Workout_Exercises_akt) act;
+
+                    JSONObject exerciseJSON;
+                    for(int i = 0; i < exerciselistJSON.length(); i++) {
+                        exerciseJSON = (JSONObject) exerciselistJSON.get(i);
+                        int id = exerciseJSON.getInt("id");
+                        int sets = exerciseJSON.getInt("sets");
+                        String name = exerciseJSON.getString("name");
+                        String description = exerciseJSON.getString("description");
+                        int imageID = exerciseJSON.getInt("imageID");
+
+                        exerciseList.add(new ExerciseElement(id, sets, null, name, description, imageID));
+                    }
+
+                    workoutMenu.addExercises(exerciseList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
