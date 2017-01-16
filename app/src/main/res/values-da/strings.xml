@@ -107,4 +107,16 @@
     <string name="toolbar_add">Tilføj</string>
     <string name="toolbar_settings">Indstillinger</string>
 
+    <!--Opret bruger-->
+    <string name="create_user_user">Brugernavn</string>
+    <string name="create_user_email">E-mail</string>
+    <string name="create_user_password">Password</string>
+    <string name="create_user_password_gentag">Gentag password</string>
+    <string name="create_user_edit_user">Indtast brugernavn...</string>
+    <string name="create_user_email_edit">Indtast Email...</string>
+    <string name="create_user_password_edit">Indtast Password...</string>
+    <string name="create_user_password_gentag_edit">Gentag Password...</string>
+    <string name="create_user_btn">Opret bruger</string>
+    <string name="create_user_title">Opret Bruger</string>
+
 </resources>
