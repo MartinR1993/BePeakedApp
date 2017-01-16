@@ -29,7 +29,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     private static final String EXERCISE_ID = "ExerciseID";
 
     // ExerciseResults Table Columns names
-    private static final String EXERCISERESULTS_TABLE = "WorkoutExercises";
+    private static final String EXERCISERESULTS_TABLE = "ExerciseResults";
     //private static final String EXERCISE_ID = "ExerciseID";
     private static final String RESULT_WEIGHT = "ResultWeight";
     private static final String RESULT_REPS = "ResultReps";
