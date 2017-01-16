@@ -91,12 +91,12 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
         new ServerComm(mainMenu, TASK_GETUSERTYPE, host, port).execute("" + userID, sessionID);
     }
 
-    public void getWorkoutlist(WorkoutMenu_akt workoutsMenu, String sessionID) {
-        new ServerComm(workoutsMenu, TASK_GETWORKOUTS, host, port).execute(sessionID);
+    public void getWorkoutlist(WorkoutMenu_akt workoutsMenu, int userID, String sessionID) {
+        new ServerComm(workoutsMenu, TASK_GETWORKOUTS, host, port).execute("" + userID, sessionID);
     }
 
-    public void getExercisesByWorkoutID(Workout_Exercises_akt workoutMenu, int workoutID, String sessionID) {
-        new ServerComm(workoutMenu, TASK_GETEXERCISES, host, port).execute("" + workoutID, sessionID);
+    public void getExercisesByWorkoutID(Workout_Exercises_akt workoutMenu, int userID, int workoutID, String sessionID) {
+        new ServerComm(workoutMenu, TASK_GETEXERCISES, host, port).execute("" + userID, "" + workoutID, sessionID);
     }
 
     public void activateUser(ActivationKey_akt activationAct, int userID, String activationKey, String sessionID) {
@@ -267,9 +267,10 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 JSONObject jsonObj = new JSONObject();
                 try {
                     jsonObj.put(TAG_COMMAND, TAG_CMD_GET);
-                    jsonObj.put(TAG_CMD_SESSION_ID, params[0]);
+                    jsonObj.put(TAG_CMD_SESSION_ID, params[1]);
                     JSONArray argsJA = new JSONArray();
                     argsJA.put(0, TAG_WORKOUTLIST);
+                    argsJA.put(1, Integer.parseInt(params[0]));
                     jsonObj.put(TAG_ARGS, argsJA);
 
                     result = new String[1];
@@ -284,10 +285,11 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 JSONObject jsonObj = new JSONObject();
                 try {
                     jsonObj.put(TAG_COMMAND, TAG_CMD_GET);
-                    jsonObj.put(TAG_CMD_SESSION_ID, params[1]);
+                    jsonObj.put(TAG_CMD_SESSION_ID, params[2]);
                     JSONArray argsJA = new JSONArray();
                     argsJA.put(0, TAG_EXERCISE);
                     argsJA.put(1, Integer.parseInt(params[0]));
+                    argsJA.put(2, Integer.parseInt(params[1]));
                     jsonObj.put(TAG_ARGS, argsJA);
 
                     result = new String[1];

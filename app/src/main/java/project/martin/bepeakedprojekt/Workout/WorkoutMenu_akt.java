@@ -37,7 +37,8 @@ public class WorkoutMenu_akt extends AppCompatActivity {
         ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         DBCom = new DatabaseCommunication(this);
-        server.getWorkoutlist(this, User.getSessionID());
+        //TODO: Denne linje crasher måske (har ikke kunne tjekke pga. andet problem med SQLLite).
+        server.getWorkoutlist(this, User.getUserID(), User.getSessionID());
         workoutList = DBCom.getAllWorkouts();
 
         lv = (ListView) findViewById(R.id.listWorkoutMenu);
