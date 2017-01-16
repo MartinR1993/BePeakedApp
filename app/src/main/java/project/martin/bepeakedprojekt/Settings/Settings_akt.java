@@ -60,7 +60,6 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
 //            unitsystem = "Imperial";
 //        }
 
-
         profil = getString(R.string.settings_profile);
         activationKey = "ActivationKey";
         changeLanguage = getString(R.string.settings_language) + "  -  " + language;
@@ -68,8 +67,6 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
         about = getString(R.string.settings_about);
         credits = getString(R.string.credits_title);
         logOut = getString(R.string.settings_logout);
-
-
 
         String[] indstillinger = {
                 getString(R.string.settings_profile),
@@ -80,7 +77,7 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
                 getString(R.string.settings_logout)
         };
 
-        if(prefs.getInt("usertype",0) == 1)
+        if(prefs.getInt("usertype",0) == 0)
             indstillinger = new String[]{
                     getString(R.string.settings_profile),
                     "ActivationKey",
@@ -146,8 +143,5 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
         }
-
     }
-
-
 }

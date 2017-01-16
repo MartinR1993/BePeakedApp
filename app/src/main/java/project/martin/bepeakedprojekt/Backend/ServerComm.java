@@ -19,6 +19,7 @@ import java.util.Arrays;
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.MainMenu_akt;
+import project.martin.bepeakedprojekt.Settings.ActivationKey_akt;
 import project.martin.bepeakedprojekt.User.User;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
@@ -33,6 +34,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 {
     private static final String TASK_GETSALT = "salt";
     private static final String TASK_LOGIN = "login";
+    private static final String TASK_ACTIVATEUSER = "activate";
     private static final String TASK_GETUSERTYPE = "get_usertype";
     private static final String TASK_GETWORKOUTS = "get_workouts";
     private static final String TASK_GETEXERCISES = "get_exercises";
@@ -48,6 +50,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     private static final String TAG_USER_TYPE = "us_type";
     private static final String TAG_WORKOUTLIST = "workouts";
     private static final String TAG_PASSWORD = "password";
+    private static final String TAG_ACTIVATIONKEY = "activationkey";
     private static final String TAG_SALT = "salt";
     private static final String TAG_EXERCISE = "exercise";
     private static final String TAG_ERROR = "error";
@@ -88,6 +91,10 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 
     public void getExercisesByWorkoutID(Workout_Exercises_akt workoutMenu, int workoutID, String sessionID) {
         new ServerComm(workoutMenu, TASK_GETEXERCISES, host, port).execute("" + workoutID, sessionID);
+    }
+
+    public void activateUser(ActivationKey_akt activationAct, int userID, String activationKey, String sessionID) {
+        new ServerComm(activationAct, TASK_ACTIVATEUSER, host, port).execute("" + userID, activationKey, sessionID);
     }
 
     @Override
@@ -145,6 +152,34 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                     else
                         result = new String[1];
 
+                    result[0] = errorMsg;
+
+                    return result;
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+            case TASK_ACTIVATEUSER: {
+                JSONObject jsonObj = new JSONObject();
+                try {
+                    jsonObj.put(TAG_COMMAND, TAG_CMD_VALIDATE);
+                    jsonObj.put(TAG_CMD_SESSION_ID, params[2]);
+                    JSONArray argsJA = new JSONArray();
+                    argsJA.put(TAG_ACTIVATIONKEY);
+                    argsJA.put(Integer.parseInt(params[0]));
+                    argsJA.put(params[1]);
+
+                    jsonObj.put(TAG_ARGS, argsJA);
+
+                    JSONObject reply = sendRequest(jsonObj.toString());
+                    String errorMsg;
+                    if(reply != null)
+                        errorMsg = reply.getString(TAG_ERROR);
+                    else
+                        errorMsg = "Activation key does not exsist for the given user";
+
+                    result = new String[1];
                     result[0] = errorMsg;
 
                     return result;
@@ -227,6 +262,12 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                     User.setUserID(Integer.parseInt(result[2]));
                     login.gotoMenu();
                 }
+                break;
+            }
+            case TASK_ACTIVATEUSER: {
+                System.out.println("RESULT=" + Arrays.toString(result));
+                ActivationKey_akt activationAct = (ActivationKey_akt) act;
+                activationAct.activateUser(result[0].equals(TAG_ERROR_NONE));
                 break;
             }
             case TASK_GETUSERTYPE: {

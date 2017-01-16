@@ -1,6 +1,5 @@
 package project.martin.bepeakedprojekt.Settings;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,17 +12,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import project.martin.bepeakedprojekt.MainMenu_akt;
+import project.martin.bepeakedprojekt.Backend.BackendData;
+import project.martin.bepeakedprojekt.Backend.ServerComm;
 import project.martin.bepeakedprojekt.R;
-
+import project.martin.bepeakedprojekt.User.User;
 
 public class ActivationKey_akt extends AppCompatActivity implements View.OnClickListener {
-
-    TextView infoText;
-    TextView helpText;
-    EditText insertKey;
-    Button activationButton;
-    SharedPreferences prefs;
+    private TextView infoText;
+    private TextView helpText;
+    private EditText insertKey;
+    private Button activationButton;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,20 +63,15 @@ public class ActivationKey_akt extends AppCompatActivity implements View.OnClick
         }
     }
 
-
-    // denne metode skal laves så den passer til noget db kald men havde jeg ikke lige nogen ide om pt
     public void ActivationKeyCheck(){
-
-        if (insertKey.getText().toString().equals("abe")) {
-            prefs.edit().putInt("usertype", 0).commit();
-
-            Toast.makeText(getApplicationContext(), "Din activationkey er godkendt", Toast.LENGTH_LONG).show();
-
-            Intent i = new Intent(this, MainMenu_akt.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(getApplicationContext(), "Din activationkey blev afvist prøv med \"abe\"", Toast.LENGTH_LONG).show();
-        }
+        new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT).activateUser(this, User.getUserID(), insertKey.getText().toString(), User.getSessionID());
     }
 
+    public void activateUser(boolean success) {
+        System.out.println("USER ACTIVATED=" + success);
+        if(success)
+            prefs.edit().putInt("usertype", 1).commit();
+        else
+            Toast.makeText(getApplicationContext(), "Din activationkey blev afvist", Toast.LENGTH_LONG).show();
+    }
 }
