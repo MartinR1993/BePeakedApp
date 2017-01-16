@@ -137,7 +137,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
                 WorkoutIDs.add(uname);
             } while (cursor.moveToNext());
         }
-        System.out.println("SE MIG!!!!!: "+ Arrays.toString(WorkoutIDs.toArray()));
+        System.out.println("Workouts : "+ Arrays.toString(WorkoutIDs.toArray()));
         return WorkoutIDs;
     }
 
