@@ -67,7 +67,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
         if(workout.isFromServer()) {
             ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
-            server.getExercisesByWorkoutID(this, workout.getWorkoutID(), User.getSessionID());
+            server.getExercisesByWorkoutID(this, workout.getWorkoutID(), User.getUserID(), User.getSessionID());
         }
         DBCom = SingletonApplications.DBcom;
 
