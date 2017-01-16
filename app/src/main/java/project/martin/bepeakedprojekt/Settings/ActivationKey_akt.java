@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.Settings;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.ServerComm;
+import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.User;
 
@@ -69,8 +71,12 @@ public class ActivationKey_akt extends AppCompatActivity implements View.OnClick
 
     public void activateUser(boolean success) {
         System.out.println("USER ACTIVATED=" + success);
-        if(success)
+        if(success) {
             prefs.edit().putInt("usertype", 1).commit();
+            Intent i = new Intent(this, MainMenu_akt.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }
         else
             Toast.makeText(getApplicationContext(), "Din activationkey blev afvist", Toast.LENGTH_LONG).show();
     }
