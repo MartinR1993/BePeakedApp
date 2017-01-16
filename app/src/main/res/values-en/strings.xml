@@ -66,7 +66,6 @@
     <string name="DietPlanMenu_Nuts">Nuts</string>
     <string name="recipe_ingridients">Ingredients: </string>
 
-
     <!--Indstillinger-->
     <string name="settingstitle">Settings</string>
     <string name="settings_profile">Profile</string>
@@ -126,6 +125,7 @@
     <string name="create_user_last_name_edit">Type in Last name...</string>
     <string name="create_user_username">Username</string>
     <string name="create_user_username_edit">Type in Username...</string>
-
+    <string name="create_user_created">User created</string>
+    <string name="create_user_error_password">Your passwords doesn\'t match</string>
 
 </resources>

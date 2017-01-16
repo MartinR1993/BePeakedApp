@@ -30,7 +30,7 @@ public class DietPlanMenu_akt extends AppCompatActivity {
     Calendar c = Calendar.getInstance();
     int hour = c.get(Calendar.HOUR);
     int ampm = c.get(Calendar.AM_PM);
-    private TextView username, calories, culhydrates, fat, protein;
+    private TextView calories, culhydrates, fat, protein;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,6 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         // add data for displaying in expandable list view
         loadData();
 
-        username = (TextView) findViewById(R.id.user);
         calories = (TextView) findViewById(R.id.calories);
         culhydrates = (TextView) findViewById(R.id.culhydrates);
         fat = (TextView) findViewById(R.id.fat);

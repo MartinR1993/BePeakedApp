@@ -66,7 +66,6 @@
     <string name="DietPlanMenu_Nuts">Nødder</string>
     <string name="recipe_ingridients">Ingredienser: </string>
 
-
     <!--Indstillinger-->
     <string name="settingstitle">Indstillinger</string>
     <string name="settings_profile">Profil</string>
@@ -126,7 +125,7 @@
     <string name="create_user_last_name_edit">Indtast efternavn...</string>
     <string name="create_user_username">Brugernavn</string>
     <string name="create_user_username_edit">Indtast brugernavn...</string>
-
-
+    <string name="create_user_created">Bruger oprettet</string>
+    <string name="create_user_error_password">Dine password stemmer ikke overens</string>
 
 </resources>

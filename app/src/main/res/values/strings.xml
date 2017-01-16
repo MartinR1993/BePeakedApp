@@ -1,6 +1,7 @@
 <resources>
     <!--Projekt navn-->
     <string name="app_name">BePeaked Project</string>
+
     <!--Log ind menu-->
     <string name="login_banner">Login Menu</string>
     <string name="login_createUser"><u>Create User</u></string>
@@ -42,7 +43,6 @@
     <string name="exercise_cancel">Cancel</string>
     <string name="Exercises_sets">"Sets: "</string>
     <string name="Exercises_reps">"Reps: "</string>
-
 
     <!--Kostplan-->
     <string name="dietPlanMenu_banner">Diet Plan</string>
@@ -94,7 +94,6 @@
     <string name="settings_user_fat">Fat: </string>
     <string name="settings_changepassword">Change password</string>
 
-
     <!--Sprog-->
     <string name="language_title">Language</string>
     <string name="language_loading">Changing Language...</string>
@@ -127,7 +126,7 @@
     <string name="create_user_last_name_edit">Type in Last name...</string>
     <string name="create_user_username">Username</string>
     <string name="create_user_username_edit">Type in Username...</string>
-
-
+    <string name="create_user_created">User created</string>
+    <string name="create_user_error_password">Your passwords doesn\'t match</string>
 
 </resources>

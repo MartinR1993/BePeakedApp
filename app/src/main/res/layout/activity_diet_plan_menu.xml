@@ -5,14 +5,6 @@
     android:orientation="vertical"
     android:background="@mipmap/background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/user"
-        android:text="Username"
-        android:layout_margin="10dp"
-        android:textSize="18sp" />
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
