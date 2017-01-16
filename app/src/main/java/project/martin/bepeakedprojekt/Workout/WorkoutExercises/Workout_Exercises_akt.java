@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
@@ -271,17 +270,17 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
             // denne kode virker men har design problemer
-            TextView test =(TextView) view.findViewById(R.id.ele_ExerciseTitle);
-            String tesa = (String) test.getText();
-
-            for (int i = 0; i < exerciseListNames.size(); i++) {
-                if (tesa == exerciseListNames.get(i)) {
-                    SingletonApplications.DBcom.removeWorkoutExercise(SingletonApplications.workout.getWorkoutID(),exerciseElements.get(i).getExerciseID());
-                    exerciseElements.remove(i);
-                    exerciseListNames.remove(i);
-                    mListView.setAdapter( new WorkoutExercisesListAdapter(akt, exerciseListNames, exerciseElements));
-                }
-            }
+//            TextView test =(TextView) view.findViewById(R.id.ele_ExerciseTitle);
+//            String tesa = (String) test.getText();
+//
+//            for (int i = 0; i < exerciseListNames.size(); i++) {
+//                if (tesa == exerciseListNames.get(i)) {
+//                    SingletonApplications.DBcom.removeWorkoutExercise(SingletonApplications.workout.getWorkoutID(),exerciseElements.get(i).getExerciseID());
+//                    exerciseElements.remove(i);
+//                    exerciseListNames.remove(i);
+//                    mListView.setAdapter( new WorkoutExercisesListAdapter(akt, exerciseListNames, exerciseElements));
+//                }
+//            }
             return true;
         }
     }
