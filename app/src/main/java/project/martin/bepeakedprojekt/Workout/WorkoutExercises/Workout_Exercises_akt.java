@@ -109,7 +109,10 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         else if(item.getItemId() == R.id.edit){
 //            gripView.setVisibility(View.VISIBLE);
             SingletonApplications.changepic = true;
-            animAdapter.notifyDataSetChanged();
+
+            listView.setAdapter(new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList));
+
+
             if (menu.findItem(R.id.OK) == null)
                 getMenuInflater().inflate(R.menu.okmenu, menu);
             else {
@@ -128,7 +131,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         }
         else if (item.getItemId() == R.id.OK){
             SingletonApplications.changepic = false;
-            animAdapter.notifyDataSetChanged();
+            listView.setAdapter(new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList));
+
             MenuItem ok = menu.findItem(R.id.OK);
             ok.setVisible(false);
             MenuItem edit = menu.findItem(R.id.edit);

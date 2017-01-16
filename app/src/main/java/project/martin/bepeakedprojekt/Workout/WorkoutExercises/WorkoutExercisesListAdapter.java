@@ -1,18 +1,15 @@
 package project.martin.bepeakedprojekt.Workout.WorkoutExercises;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nhaarman.listviewanimations.ArrayAdapter;
-import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.undo.UndoAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.GripView;
 
 import java.util.ArrayList;
 
@@ -64,11 +61,15 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
 
         }
         image = (ImageView) view.findViewById(R.id.ele_image);
+        GripView grip = (GripView) view.findViewById(R.id.gripView);
+
         if(SingletonApplications.changepic == true){
             image.setImageResource(R.drawable.ic_delete);
+            grip.setVisibility(View.VISIBLE);
         }
         else{
             image.setImageResource(R.drawable.forward);
+            grip.setVisibility(View.GONE);
         }
         ExerciseTitle = (TextView) view.findViewById(R.id.ele_ExerciseTitle);
         ExerciseTitle.setText(getItem(position));
