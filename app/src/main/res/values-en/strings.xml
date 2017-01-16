@@ -60,6 +60,8 @@
     <string name="DietPlanMenu_Omelette">Omelette</string>
     <string name="DietPlanMenu_Student_Caviar">Student Caviar</string>
     <string name="DietPlanMenu_Nuts">Nuts</string>
+    <string name="recipe_ingridients">Ingredients: </string>
+
 
     <!--Indstillinger-->
     <string name="settingstitle">Settings</string>

@@ -10,7 +10,7 @@ import project.martin.bepeakedprojekt.R;
 
 public class Recipe_akt extends AppCompatActivity {
     private ImageView image;
-    private TextView descriptionView;
+    private TextView descriptionView, ingridients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,8 @@ public class Recipe_akt extends AppCompatActivity {
         //Hente data fra forrige aktivitet
         String description = getIntent().getStringExtra("description");
         setTitle(description);
+
+        ingridients = (TextView) findViewById(R.id.ingridients);
 
         image = (ImageView) findViewById(R.id.rc_image);
         //TODO
