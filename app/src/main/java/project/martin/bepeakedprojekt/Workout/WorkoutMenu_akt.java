@@ -1,6 +1,8 @@
 package project.martin.bepeakedprojekt.Workout;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -18,13 +20,14 @@ import project.martin.bepeakedprojekt.Backend.ServerComm;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.User;
 
-public class WorkoutMenu_akt extends AppCompatActivity  {
+public class WorkoutMenu_akt extends AppCompatActivity {
     private ArrayList<WorkoutElement> workoutList;
     private ListView lv;
     private EditText saveWorkoutName;
     private AlertDialog popup;
     private WorkoutListAdapter listAdapter;
     private DatabaseCommunication DBCom;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
         setContentView(R.layout.activity_workout_menu);
         setTitle(R.string.workoutMenu_banner);
         ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
-
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         DBCom = new DatabaseCommunication(this);
         server.getWorkoutlist(this, User.getSessionID());
         workoutList = DBCom.getAllWorkouts();
@@ -64,7 +67,9 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
                     @Override
                     public void onClick(View v) {
 
-                        DBCom.addWorkout(saveWorkoutName.getText().toString());
+                        prefs.edit().putInt("idafworkoutet", prefs.getInt("idafworkoutet", 1) + 1).commit();
+                        DBCom.addWorkout(prefs.getInt("idafworkoutet", 1), saveWorkoutName.getText().toString());
+
                         workoutList = DBCom.getAllWorkouts();
                         lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
 
@@ -92,4 +97,6 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
         this.workoutList.addAll(workoutList);
         listAdapter.notifyDataSetChanged();
     }
+
+
 }

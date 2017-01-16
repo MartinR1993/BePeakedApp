@@ -107,4 +107,16 @@
     <string name="toolbar_add">Add</string>
     <string name="toolbar_settings">Settings</string>
 
+    <!--Opret Bruger-->
+    <string name="create_user_user">Username</string>
+    <string name="create_user_email">E-mail</string>
+    <string name="create_user_password">Password</string>
+    <string name="create_user_password_gentag">Repeat password</string>
+    <string name="create_user_edit_user">Type in username...</string>
+    <string name="create_user_email_edit">Type in Email...</string>
+    <string name="create_user_password_edit">Type in Password...</string>
+    <string name="create_user_password_gentag_edit">Repeat Password...</string>
+    <string name="create_user_btn">Create User</string>
+    <string name="create_user_title">Create User</string>
+
 </resources>
