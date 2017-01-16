@@ -18,7 +18,7 @@ public class SingletonApplications extends Application {
     public static ArrayList<String> dataNames = new ArrayList();
     public static WorkoutElement workout;
     public static DatabaseCommunication DBcom;
-
+    public static int currentExerciseID;
     @Override
     public void onCreate() {
         super.onCreate();
