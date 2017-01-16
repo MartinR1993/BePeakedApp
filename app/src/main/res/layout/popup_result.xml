@@ -13,19 +13,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:id="@+id/popres_weightView">
+            android:id="@+id/popres_weightkgView">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/popres_weightTitle"
+                android:id="@+id/popres_weightkgTitle"
                 android:textAlignment="center" />
 
             <NumberPicker
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/popres_weightSpin" />
+                android:id="@+id/popres_weightkgSpin" />
+
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:id="@+id/popres_weightgrView">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/popres_weightgrTitle"
+                android:textAlignment="center" />
+
+            <NumberPicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/popres_weightgrSpin" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:orientation="vertical"

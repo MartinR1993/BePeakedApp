@@ -23,7 +23,6 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
-import project.martin.bepeakedprojekt.Misc.NumberPickerFormatter;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.Settings;
 
@@ -55,7 +54,7 @@ public class Result_frag extends Fragment
         TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
         TextView col1 = (TextView) row.findViewById(R.id.resta_col1);
         col1.setTextAppearance(getActivity(), R.style.resta_header);
-        col1.setText(R.string.exerciseResult_tableWeight);
+        col1.setText(R.string.exerciseResult_tableWeightkg);
         TextView col2 = (TextView) row.findViewById(R.id.resta_col2);
         col2.setTextAppearance(getActivity(), R.style.resta_header);
         col2.setText(R.string.exerciseResult_tableReps);
@@ -110,20 +109,25 @@ public class Result_frag extends Fragment
 
             final LinearLayout popupContent = (LinearLayout) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.popup_result, null);
 
-            ((TextView) popupContent.findViewById(R.id.popres_weightTitle)).setText(R.string.exerciseResult_tableWeight);
-            final NumberPicker npWeight = (NumberPicker) popupContent.findViewById(R.id.popres_weightSpin);
+            ((TextView) popupContent.findViewById(R.id.popres_weightkgTitle)).setText(R.string.exerciseResult_tableWeightkg);
+            ((TextView) popupContent.findViewById(R.id.popres_weightgrTitle)).setText(R.string.exerciseResult_tableWeightgr);
+
+            final NumberPicker npWeightkg = (NumberPicker) popupContent.findViewById(R.id.popres_weightkgSpin);
+
+            final NumberPicker npWeightgr = (NumberPicker) popupContent.findViewById(R.id.popres_weightgrSpin);
 
             final int increment = 1;
-            npWeight.setMinValue(1);
-            npWeight.setFormatter(new NumberPickerFormatter(increment));
-            npWeight.setMaxValue(250 / increment);
-            npWeight.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
+            npWeightkg.setMinValue(1);
+            npWeightkg.setMaxValue(250);
+
+            npWeightgr.setMinValue(1);
+            npWeightgr.setMaxValue(9);
 
             ((TextView) popupContent.findViewById(R.id.popres_repsTitle)).setText(R.string.exerciseResult_tableReps);
             final NumberPicker npReps = (NumberPicker) popupContent.findViewById(R.id.popres_repsSpin);
             npReps.setMinValue(1);
             npReps.setMaxValue(30);
-            npReps.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
 
             layout.addView(popupContent);
 
@@ -134,7 +138,7 @@ public class Result_frag extends Fragment
                 public void onClick(View v) {
                     final String unit = Settings.getUnit(Settings.USTAG_WEIGHT);
 
-                    double weight = npWeight.getValue() * increment;
+                    double weight = (npWeightkg.getValue()+npWeightgr.getValue()/10.0) * increment;
                     int reps = npReps.getValue();
                     //Lombardi
                     double oneRM = weight * Math.pow(reps, 0.1);
