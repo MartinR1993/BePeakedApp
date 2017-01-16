@@ -125,6 +125,12 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         db.execSQL(insertQuery);
     }
 
+    public void removeAllWorkoutExercises(int workoutID) {
+        String insertQuery = "DELETE FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +" = " + workoutID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(insertQuery);
+    }
+
 }
 
 
