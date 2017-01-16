@@ -18,6 +18,7 @@ import java.util.Arrays;
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Logind_akt;
+import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.User.User;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
@@ -77,8 +78,8 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
         new ServerComm(login, TASK_LOGIN, host, port).execute(username, password, salt);
     }
 
-    public void getUserType(Logind_akt login, int userID, String sessionID) {
-        new ServerComm(login, TASK_GETUSERTYPE, host, port).execute("" + userID, sessionID);
+    public void getUserType(MainMenu_akt mainMenu, int userID, String sessionID) {
+        new ServerComm(mainMenu, TASK_GETUSERTYPE, host, port).execute("" + userID, sessionID);
     }
 
     public void getWorkoutlist(WorkoutMenu_akt workoutsMenu, String sessionID) {
@@ -164,7 +165,6 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 
                     result = new String[1];
                     JSONObject reply = sendRequest(jsonObj.toString());
-                    System.out.println("REPLY" + reply);
                     result[0] = "" + reply.getInt(TAG_USER_TYPE);
                     return result;
                 } catch (JSONException | IOException e) {
@@ -230,8 +230,8 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 break;
             }
             case TASK_GETUSERTYPE: {
-                Logind_akt login = (Logind_akt) act;
-                login.setUserType(Integer.parseInt(result[0]));
+                MainMenu_akt mainMenu = (MainMenu_akt) act;
+                mainMenu.setUserType(Integer.parseInt(result[0]));
                 break;
             }
             case TASK_GETWORKOUTS: {

@@ -11,15 +11,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
+import project.martin.bepeakedprojekt.Backend.ServerComm;
 import project.martin.bepeakedprojekt.Diet_Plan.DietPlanMenu_akt;
 import project.martin.bepeakedprojekt.Exercises.ExerciseMenu_akt;
 import project.martin.bepeakedprojekt.Settings.Settings_akt;
+import project.martin.bepeakedprojekt.User.User;
 import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
 
 public class MainMenu_akt extends AppCompatActivity implements View.OnClickListener {
     private Button exerciseButton, workoutButton, dietplanButton ;
-    SharedPreferences prefs;
-
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +29,8 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main_menu);
         setTitle(R.string.mainMenu_banner);
 
+        new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT).getUserType(this, User.getUserID(), User.getSessionID());
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        prefs.getInt("usertype",0);
-
-
 
         /*//HER KAN DER SÆTTES ET LOGO TIL HOVEDMENUBAREN
         ActionBar actionBar = getSupportActionBar();
@@ -45,20 +44,24 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         exerciseButton.setOnClickListener(this);
 
         dietplanButton = (Button) findViewById(R.id.DietPlanButton);
-        dietplanButton.setOnClickListener(this);
+        dietplanButton.setAlpha(0.5F);
+        dietplanButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Du skal være kunde for at bruge denne funktion makker", Toast.LENGTH_LONG).show();
+            }
 
-        // fjerner muligheden for dietplan hvis man ikke er kunde ( usertype = 1) og giver besked om dette
+        });
+    }
+
+    public void setUserType(int userType) {
+        prefs.edit().putInt("usertype",userType).commit();
+
+        // Tilføjer muligheden for dietplan hvis man er kunde ( usertype = 1)
         if (prefs.getInt("usertype",0) == 1) {
-            dietplanButton.setAlpha((float) 0.5);
-            dietplanButton.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "Du skal være kunde for at bruge denne funktion makker", Toast.LENGTH_LONG).show();
-                }
-
-            });
+            dietplanButton.setAlpha(1.0F);
+            dietplanButton = (Button) findViewById(R.id.DietPlanButton);
+            dietplanButton.setOnClickListener(this);
         }
-
-
     }
 
     @Override
