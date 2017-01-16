@@ -13,11 +13,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
+import project.martin.bepeakedprojekt.Backend.ServerComm;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.ChildInfo;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.DietPlanAdapter;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.GroupInfo;
 import project.martin.bepeakedprojekt.Diet_Plan.Recipe.Recipe_akt;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.User.User;
 
 public class DietPlanMenu_akt extends AppCompatActivity {
     private LinkedHashMap<String, GroupInfo> subjects = new LinkedHashMap<String, GroupInfo>();
@@ -36,8 +39,6 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         setTitle(R.string.dietPlanMenu_banner);
         // add data for displaying in expandable list view
         loadData();
-
-//        new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT).getDieatplanProfile(this, User.getUserID(), User.getSessionID());
 
         username = (TextView) findViewById(R.id.user);
         calories = (TextView) findViewById(R.id.calories);
@@ -109,6 +110,8 @@ public class DietPlanMenu_akt extends AppCompatActivity {
 
     //load some initial data into our list
     private void loadData(){
+        new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT).getDieatplanProfile(this, User.getUserID(), User.getSessionID());
+
         String breakfast = getString(R.string.dietPlanMenu_breakfast);
         String lunch = getString(R.string.dietPlanMenu_lunch);
         String dinner = getString(R.string.dietPlanMenu_dinner);
@@ -162,14 +165,9 @@ public class DietPlanMenu_akt extends AppCompatActivity {
     }
 
     public void setUserData(double prot, double cal, double col, double fat) {
-        TextView protView = (TextView) findViewById(R.id.protein);
-        TextView calView = (TextView) findViewById(R.id.calories);
-        TextView colView = (TextView) findViewById(R.id.culhydrates);
-        TextView fatView = (TextView) findViewById(R.id.fat);
-
-        protView.setText("Protein: " + prot);
-        calView.setText("Calories: " + cal);
-        colView.setText("Culhydrates: " + col);
-        fatView.setText("Fat: " + fat);
+        protein.setText(getString(R.string.dp_protView) + prot);
+        calories.setText(getString(R.string.dp_calView) + cal);
+        culhydrates.setText(getString(R.string.dp_colView) + col);
+        this.fat.setText(getString(R.string.dp_fatView) + fat);
     }
 }

@@ -101,7 +101,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     }
 
     public void getDieatplanProfile(DietPlanMenu_akt dietplanMenu, int userID, String sessionID) {
-        new ServerComm(dietplanMenu, TASK_ACTIVATEUSER, host, port).execute("" + userID, sessionID);
+        new ServerComm(dietplanMenu, TASK_GETDIETPLANPROFILE, host, port).execute("" + userID, sessionID);
     }
 
     @Override
@@ -171,11 +171,10 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 JSONObject jsonObj = new JSONObject();
                 try {
                     jsonObj.put(TAG_COMMAND, TAG_CMD_VALIDATE);
-                    jsonObj.put(TAG_CMD_SESSION_ID, params[2]);
+                    jsonObj.put(TAG_CMD_SESSION_ID, params[1]);
                     JSONArray argsJA = new JSONArray();
                     argsJA.put(TAG_ACTIVATIONKEY);
                     argsJA.put(Integer.parseInt(params[0]));
-                    argsJA.put(params[1]);
 
                     jsonObj.put(TAG_ARGS, argsJA);
 

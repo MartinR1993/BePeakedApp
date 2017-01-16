@@ -30,14 +30,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/protein"
-                android:text="Protein: "
+                android:text="@string/dp_protView"
                 android:layout_margin="5dp"
                 android:textSize="16sp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/culhydrates"
-                android:text="Culhydrates: "
+                android:text="@string/dp_colView"
                 android:layout_margin="5dp"
                 android:textSize="16sp"/>
         </LinearLayout>
@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/calories"
-                android:text="Calories: "
+                android:text="@string/dp_calView"
                 android:layout_margin="5dp"
                 android:textSize="16sp"/>
 
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/fat"
-                android:text="Fat: "
+                android:text="@string/dp_fatView"
                 android:layout_margin="5dp"
                 android:textSize="16sp"/>
         </LinearLayout>

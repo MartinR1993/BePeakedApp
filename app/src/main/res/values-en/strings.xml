@@ -120,5 +120,9 @@
     <string name="create_user_title">Create User</string>
     <string name="create_user_last_name">Last name</string>
     <string name="create_user_last_name_edit">Type in Last name...</string>
+    <string name="dp_protView">Protein:</string>
+    <string name="dp_colView">Culhydrates:</string>
+    <string name="dp_calView">Calories:</string>
+    <string name="dp_fatView">Fat:</string>
 
 </resources>
