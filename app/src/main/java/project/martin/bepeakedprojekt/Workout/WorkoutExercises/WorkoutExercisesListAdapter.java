@@ -147,6 +147,7 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
                         j.putExtra("exercise", exerciseElements.get(i));
                         j.putExtra("sets", exerciseElements.get(i).getSets());
                         mContext.startActivity(j);
+                        SingletonApplications.currentExerciseID = exerciseElements.get(i).getExerciseID();
                     }
                 }
             }
