@@ -131,8 +131,9 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                     JSONObject reply = sendRequest(jsonObj.toString());
                     String errorMsg = reply.getString(TAG_ERROR);
                     if(errorMsg.equals(TAG_ERROR_NONE)) {
-                        result = new String[2];
+                        result = new String[3];
                         result[1] = reply.getString(TAG_CMD_SESSION_ID);
+                        result[2] = "" + reply.getInt(TAG_USER);
                     }
                     else
                         result = new String[1];
@@ -194,9 +195,10 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
             }
             case TASK_LOGIN: {
                 System.out.println("RESULT=" + Arrays.toString(result));
-                if (result.length == 2) {
+                if (result.length == 3) {
                     Logind_akt login = (Logind_akt) act;
                     User.setSessionID(result[1]);
+                    User.setUserID(Integer.parseInt(result[2]));
                     login.gotoMenu();
                 }
                 break;
