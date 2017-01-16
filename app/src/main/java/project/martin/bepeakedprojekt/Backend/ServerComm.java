@@ -32,6 +32,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 {
     private static final String TASK_GETSALT = "salt";
     private static final String TASK_LOGIN = "login";
+    private static final String TASK_GETUSERTYPE = "get_usertype";
     private static final String TASK_GETWORKOUTS = "get_workouts";
     private static final String TASK_GETEXERCISES = "get_exercises";
 
@@ -43,6 +44,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     private static final String TAG_CMD_SESSION_ID = "session";
     private static final String TAG_ARGS = "args";
     private static final String TAG_USER = "user";
+    private static final String TAG_USER_TYPE = "us_type";
     private static final String TAG_WORKOUTLIST = "workouts";
     private static final String TAG_PASSWORD = "password";
     private static final String TAG_SALT = "salt";
@@ -73,6 +75,10 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 
     public void login(Logind_akt login, String username, String password, String salt) {
         new ServerComm(login, TASK_LOGIN, host, port).execute(username, password, salt);
+    }
+
+    public void getUserType(Logind_akt login, int userID, String sessionID) {
+        new ServerComm(login, TASK_GETUSERTYPE, host, port).execute("" + userID, sessionID);
     }
 
     public void getWorkoutlist(WorkoutMenu_akt workoutsMenu, String sessionID) {
@@ -146,6 +152,26 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 }
                 break;
             }
+            case TASK_GETUSERTYPE: {
+                JSONObject jsonObj = new JSONObject();
+                try {
+                    jsonObj.put(TAG_COMMAND, TAG_CMD_GET);
+                    jsonObj.put(TAG_CMD_SESSION_ID, params[1]);
+                    JSONArray argsJA = new JSONArray();
+                    argsJA.put(0, TAG_USER_TYPE);
+                    argsJA.put(1, Integer.parseInt(params[0]));
+                    jsonObj.put(TAG_ARGS, argsJA);
+
+                    result = new String[1];
+                    JSONObject reply = sendRequest(jsonObj.toString());
+                    System.out.println("REPLY" + reply);
+                    result[0] = "" + reply.getInt(TAG_USER_TYPE);
+                    return result;
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
             case TASK_GETWORKOUTS: {
                 JSONObject jsonObj = new JSONObject();
                 try {
@@ -201,6 +227,11 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                     User.setUserID(Integer.parseInt(result[2]));
                     login.gotoMenu();
                 }
+                break;
+            }
+            case TASK_GETUSERTYPE: {
+                Logind_akt login = (Logind_akt) act;
+                login.setUserType(Integer.parseInt(result[0]));
                 break;
             }
             case TASK_GETWORKOUTS: {

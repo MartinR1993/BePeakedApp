@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.ServerComm;
+import project.martin.bepeakedprojekt.User.User;
 
 public class Logind_akt extends AppCompatActivity implements View.OnClickListener
 {
@@ -52,7 +53,7 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
         }
         else if (v == opretBruger) {
             // bruges midlertidig til at sætte en bruger til ikke kunde
-            prefs.edit().putInt("usertype",1).commit();
+//            prefs.edit().putInt("usertype",1).commit();
             System.out.println("Opret bruger");
         }
     }
@@ -63,8 +64,14 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
     }
 
     public void gotoMenu() {
+        server.getUserType(this, User.getUserID(), User.getSessionID());
         Intent i = new Intent(this, MainMenu_akt.class);
         Logind_akt.this.finish();
         startActivity(i);
+    }
+
+    public void setUserType(int userType) {
+        System.out.println("USER TYPE=" + userType);
+        prefs.edit().putInt("usertype",userType).commit();
     }
 }
