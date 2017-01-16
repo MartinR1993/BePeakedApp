@@ -73,12 +73,14 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         exerciseList.add(DummyData.getExercise(2));
         exerciseList.add(DummyData.getExercise(3));
         exerciseList.add(DummyData.getExercise(4));
+        SingletonApplications.data = exerciseList;
+
 
         exerciseNames.add(DummyData.getExercise(1).getName());
         exerciseNames.add(DummyData.getExercise(2).getName());
         exerciseNames.add(DummyData.getExercise(3).getName());
         exerciseNames.add(DummyData.getExercise(4).getName());
-
+        SingletonApplications.dataNames = exerciseNames;
         //exerciseList = workout.getExercises();
 
         listView = (DynamicListView) findViewById(R.id.dynamiclistview);
@@ -86,7 +88,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 //      gripView.setVisibility(View.GONE);
 
         /* Setup the adapter */
-        com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList);
+        com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data);
         animAdapter = new AlphaInAnimationAdapter(adapter);
         animAdapter.setAbsListView(listView);
         //  assert animAdapter.getViewAnimator() != null;
@@ -110,8 +112,9 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 //            gripView.setVisibility(View.VISIBLE);
             SingletonApplications.changepic = true;
 
-            listView.setAdapter(new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList));
-
+            listView.setAdapter(new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data));
+//
+//            animAdapter.notifyDataSetChanged();
 
             if (menu.findItem(R.id.OK) == null)
                 getMenuInflater().inflate(R.menu.okmenu, menu);
@@ -131,7 +134,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         }
         else if (item.getItemId() == R.id.OK){
             SingletonApplications.changepic = false;
-            listView.setAdapter(new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList));
+            listView.setAdapter(new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data));
 
             MenuItem ok = menu.findItem(R.id.OK);
             ok.setVisible(false);

@@ -49,6 +49,18 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
     }
 
     @Override
+    public void swapItems(int positionOne, int positionTwo) {
+        ExerciseElement e = SingletonApplications.data.get(positionOne);
+        String name = SingletonApplications.dataNames.get(positionOne);
+        SingletonApplications.data.remove(positionOne);
+        SingletonApplications.data.add(positionTwo, e);
+        SingletonApplications.dataNames.remove(positionOne);
+        SingletonApplications.dataNames.add(positionTwo, name);
+
+        super.swapItems(positionOne, positionTwo);
+    }
+
+    @Override
     public boolean hasStableIds() {
         return true;
     }
@@ -66,10 +78,12 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
         if(SingletonApplications.changepic == true){
             image.setImageResource(R.drawable.ic_delete);
             grip.setVisibility(View.VISIBLE);
+            notifyDataSetChanged();
         }
         else{
             image.setImageResource(R.drawable.forward);
             grip.setVisibility(View.GONE);
+            notifyDataSetChanged();
         }
         ExerciseTitle = (TextView) view.findViewById(R.id.ele_ExerciseTitle);
         ExerciseTitle.setText(getItem(position));
