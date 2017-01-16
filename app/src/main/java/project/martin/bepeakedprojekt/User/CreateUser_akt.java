@@ -16,8 +16,8 @@ import project.martin.bepeakedprojekt.R;
 
 public class CreateUser_akt extends AppCompatActivity implements View.OnClickListener {
 
-    TextView username, email, password, rpassword;
-    EditText eusername, eemail, epassword, erpassword;
+    TextView firstname, lastname, email, password, rpassword;
+    EditText efirstname, elastname, eemail, epassword, erpassword;
     Button create;
     String passwordc;
 
@@ -28,8 +28,11 @@ public class CreateUser_akt extends AppCompatActivity implements View.OnClickLis
         setTitle(getString(R.string.create_user_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        username = (TextView) findViewById(R.id.cua_textusername);
-        eusername = (EditText) findViewById(R.id.cua_editusername);
+        firstname = (TextView) findViewById(R.id.cua_textfirstname);
+        efirstname = (EditText) findViewById(R.id.cua_editfirstname);
+
+        lastname = (TextView) findViewById(R.id.cua_textlastname);
+        elastname = (EditText) findViewById(R.id.cua_editlastname);
 
         email = (TextView) findViewById(R.id.cua_textemail);
         eemail = (EditText) findViewById(R.id.cua_editemail);

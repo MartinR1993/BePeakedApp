@@ -17,74 +17,90 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_user_user"
-        android:id="@+id/cua_textusername"
-        android:textSize="16sp"
-        android:textColor="@color/colorAccent" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/create_user_edit_user"
-        android:id="@+id/cua_editusername"
-        android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_user_user"
+            android:id="@+id/cua_textfirstname"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_user_email"
-        android:id="@+id/cua_textemail"
-        android:textSize="16sp"
-        android:textColor="@color/colorAccent" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/create_user_edit_user"
+            android:id="@+id/cua_editfirstname"
+            android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/create_user_email_edit"
-        android:id="@+id/cua_editemail"
-        android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_user_last_name"
+            android:id="@+id/cua_textlastname"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_user_password"
-        android:id="@+id/cua_password1"
-        android:textSize="16sp"
-        android:textColor="@color/colorAccent" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/create_user_last_name_edit"
+            android:id="@+id/cua_editlastname"
+            android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/create_user_password_edit"
-        android:id="@+id/cua_editpassword1"
-        android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_user_email"
+            android:id="@+id/cua_textemail"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_user_password_gentag"
-        android:id="@+id/cua_password2"
-        android:textSize="16sp"
-        android:textColor="@color/colorAccent" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/create_user_email_edit"
+            android:id="@+id/cua_editemail"
+            android:textSize="14sp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/create_user_password_gentag_edit"
-        android:id="@+id/cua_editpassword2"
-        android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_user_password"
+            android:id="@+id/cua_password1"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent" />
 
-    <Button
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_user_btn"
-        android:id="@+id/cua_opretbtn"
-        style="@android:style/Widget.Holo.Button"
-        android:backgroundTint="@android:drawable/screen_background_light_transparent" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/create_user_password_edit"
+            android:id="@+id/cua_editpassword1"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_user_password_gentag"
+            android:id="@+id/cua_password2"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/create_user_password_gentag_edit"
+            android:id="@+id/cua_editpassword2"
+            android:textSize="14sp" />
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_user_btn"
+            android:id="@+id/cua_opretbtn"
+            style="@android:style/Widget.Holo.Button"
+            android:backgroundTint="@android:drawable/screen_background_light_transparent" />
     </LinearLayout>
 
 </LinearLayout>
