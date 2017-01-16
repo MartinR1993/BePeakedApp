@@ -1,6 +1,8 @@
 package project.martin.bepeakedprojekt.Workout;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -25,6 +27,7 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
     private AlertDialog popup;
     private WorkoutListAdapter listAdapter;
     private DatabaseCommunication DBCom;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +36,11 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
         setTitle(R.string.workoutMenu_banner);
         ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
 
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         DBCom = new DatabaseCommunication(this);
         server.getWorkoutlist(this, User.getSessionID());
         workoutList = DBCom.getAllWorkouts();
+        ArrayList<Integer> hejjegtester = DBCom.getWorkouts();
 
         lv = (ListView) findViewById(R.id.listWorkoutMenu);
         listAdapter = new WorkoutListAdapter(this, workoutList);
@@ -64,7 +69,10 @@ public class WorkoutMenu_akt extends AppCompatActivity  {
                     @Override
                     public void onClick(View v) {
 
-                        DBCom.addWorkout(saveWorkoutName.getText().toString());
+
+                        DBCom.addWorkout(prefs.getInt("WorkoutID", 0), saveWorkoutName.getText().toString());
+                        prefs.edit().putInt("WorkoutID", prefs.getInt("WorkoutID", 0)+1).commit();
+
                         workoutList = DBCom.getAllWorkouts();
                         lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
 

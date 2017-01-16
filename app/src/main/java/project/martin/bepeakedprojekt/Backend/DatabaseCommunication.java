@@ -34,7 +34,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_WORKOUT_TABLE = "CREATE TABLE " + WORKOUT_TABLE + "(" +WORKOUT_ID + " INTEGER AUTO_INCREMENT PRIMARY KEY," + WORKOUT_NAME + " TEXT)";
+        String CREATE_WORKOUT_TABLE = "CREATE TABLE " + WORKOUT_TABLE + "(" +WORKOUT_ID + " INTEGER PRIMARY KEY," + WORKOUT_NAME + " TEXT)";
         db.execSQL(CREATE_WORKOUT_TABLE);
 
         String CREATE_WORKOUTEXERCISE_TABLE = "CREATE TABLE " + WORKOUTEXERCISE_TABLE + "(" +WORKOUT_ID + " INTEGER," + EXERCISE_ID + " INTEGER)";
@@ -46,7 +46,6 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table " + WORKOUT_TABLE);
         db.execSQL("drop table " + WORKOUTEXERCISE_TABLE);
-        //db.execSQL("drop table " + EXERCISE_TABLE);
         this.onCreate(db);
 
     }
@@ -80,35 +79,31 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
                 ExerciseIDs.add(uname);
             } while (cursor.moveToNext());
         }
-        System.out.println("SE MIG!!!!!: "+ Arrays.toString(ExerciseIDs.toArray()));
         return ExerciseIDs;
     }
 
 
 
 
-    public void addWorkout(String name) {
-        //WorkoutElement elem = new WorkoutElement(0, name, null);
-        //String selectQuery = "INSERT INTO Workout(WorkoutID, WorkoutName, WorkoutExercises) VALUES " + "('0', '" + name + "', '" + name + "')";
+    public void addWorkout(int id, String name) {
         String insertQuery = "INSERT INTO "+ WORKOUT_TABLE +"("+ WORKOUT_ID +", "+ WORKOUT_NAME +") VALUES " + "(NULL, '" + name + "')";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(insertQuery);
-        //Cursor cursor = db.rawQuery(selectQuery, null);
-    }
+        }
 
 
     public void removeWorkout(int id) {
-        String insertQuery = "DELETE FROM "+ WORKOUT_TABLE +" WHERE "+ WORKOUT_ID +" = " + id;
+        String removeQuery = "DELETE FROM "+ WORKOUT_TABLE +" WHERE "+ WORKOUT_ID +" = " + id;
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(insertQuery);
+        db.execSQL(removeQuery);
     }
 
 
 
     public void editWorkout(String newName, int id) {
-        String insertQuery = "UPDATE "+ WORKOUT_TABLE +" SET "+ WORKOUT_NAME +" = "+ newName +" WHERE "+ WORKOUT_ID +" = "+ id;
+        String updateQuery = "UPDATE "+ WORKOUT_TABLE +" SET "+ WORKOUT_NAME +" = "+ newName +" WHERE "+ WORKOUT_ID +" = "+ id;
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(insertQuery);
+        db.execSQL(updateQuery);
     }
 
 
@@ -120,18 +115,48 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     }
 
     public void removeWorkoutExercise(int workoutID, int exerciseID) {
-        String insertQuery = "DELETE FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +" = " + workoutID +" AND "+ EXERCISE_ID +" = "+exerciseID;
+        String deleteQuery = "DELETE FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +" = " + workoutID +" AND "+ EXERCISE_ID +" = "+exerciseID;
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(insertQuery);
+        db.execSQL(deleteQuery);
     }
 
     public void removeAllWorkoutExercises(int workoutID) {
-        String insertQuery = "DELETE FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +" = " + workoutID;
+        String deleteQuery = "DELETE FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +" = " + workoutID;
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(insertQuery);
+        db.execSQL(deleteQuery);
+    }
+
+    public ArrayList<Integer> getWorkouts() {
+        String selectQuery = "SELECT "+ WORKOUT_ID +" FROM "+ WORKOUTEXERCISE_TABLE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<Integer> WorkoutIDs = new ArrayList<Integer>();
+        if (cursor.moveToFirst()) {
+            do {
+                int uname = cursor.getInt(cursor.getColumnIndex("WorkoutID"));
+                WorkoutIDs.add(uname);
+            } while (cursor.moveToNext());
+        }
+        System.out.println("SE MIG!!!!!: "+ Arrays.toString(WorkoutIDs.toArray()));
+        return WorkoutIDs;
     }
 
 }
+//    public ArrayList<Integer> getWorkoutExercises(int WorkoutID) {
+//        String selectQuery = "SELECT * FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +"="+WorkoutID+"";
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery(selectQuery, null);
+//        ArrayList<Integer> ExerciseIDs = new ArrayList<Integer>();
+//        if (cursor.moveToFirst()) {
+//            do {
+//                int uname = cursor.getInt(cursor.getColumnIndex("ExerciseID"));
+//                ExerciseIDs.add(uname);
+//            } while (cursor.moveToNext());
+//        }
+//        System.out.println("SE MIG!!!!!: "+ Arrays.toString(ExerciseIDs.toArray()));
+//        return ExerciseIDs;
+//    }
+
 
 
 //    public void addExercises(ExerciseElement[] exerciseList) {
@@ -253,3 +278,5 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 //String CREATE_EXERCISE_TABLE = "CREATE TABLE " + EXERCISE_TABLE + "(" +EXERCISE_ID + " INTEGER PRIMARY KEY,"
 //        + EXERCISE_SETS + " INTEGER, "+ EXERCISE_REPS +" INTEGER," + EXERCISE_NAME + " TEXT," + EXERCISE_DESC + " TEXT," + EXERCISE_IMAGE + " INTEGER)";
 //db.execSQL(CREATE_EXERCISE_TABLE);
+
+//db.execSQL("drop table " + EXERCISE_TABLE);
