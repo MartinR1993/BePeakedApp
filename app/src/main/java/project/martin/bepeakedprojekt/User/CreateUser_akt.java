@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.User;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,14 +15,16 @@ import org.w3c.dom.Text;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.ServerComm;
+import project.martin.bepeakedprojekt.Logind_akt;
+import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
 import scSecurity.RandomGen;
 import scSecurity.hashing.MD5Hashing;
 
 public class CreateUser_akt extends AppCompatActivity implements View.OnClickListener {
 
-    TextView firstname, lastname, email, password, rpassword;
-    EditText efirstname, elastname, eemail, epassword, erpassword;
+    TextView firstname, lastname, username, email, password, rpassword;
+    EditText efirstname, elastname, eusername, eemail, epassword, erpassword;
     Button create;
     String passwordc;
 
@@ -37,6 +40,9 @@ public class CreateUser_akt extends AppCompatActivity implements View.OnClickLis
 
         lastname = (TextView) findViewById(R.id.cua_textlastname);
         elastname = (EditText) findViewById(R.id.cua_editlastname);
+
+        username = (TextView) findViewById(R.id.cua_textusername);
+        eusername = (EditText) findViewById(R.id.cua_editusername);
 
         email = (TextView) findViewById(R.id.cua_textemail);
         eemail = (EditText) findViewById(R.id.cua_editemail);
@@ -58,16 +64,19 @@ public class CreateUser_akt extends AppCompatActivity implements View.OnClickLis
             String firstName = efirstname.getText().toString();
             String lastName = elastname.getText().toString();
             String email = eemail.getText().toString();
-            String nickName = email;
+            String nickName = eusername.getText().toString();
 
             String salt = RandomGen.getSalt(16);
             MD5Hashing md5 = new MD5Hashing();
             String passwordHashed = md5.decryptHash(md5.encryptHash(password, salt));
 
             new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT).createUser(this, firstName, lastName,  nickName, passwordHashed, salt, email);
+            Intent i = new Intent(this, Logind_akt.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
         }
         else
-            Toast.makeText(getApplicationContext(), "Dit nye password var ikke ens", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Dine passwords stemte ikke overens", Toast.LENGTH_LONG).show();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

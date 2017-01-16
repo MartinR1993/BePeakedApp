@@ -50,6 +50,10 @@
     <string name="dietPlanMenu_lunch">Frokost</string>
     <string name="dietPlanMenu_dinner">Aftensmad</string>
     <string name="dietPlanMenu_snacks">Mellemmåltider</string>
+    <string name="dp_protView">Protein: </string>
+    <string name="dp_colView">Kulhydrater: </string>
+    <string name="dp_calView">Kalorier: </string>
+    <string name="dp_fatView">Fedt: </string>
 
     <!--Opskrifter-->
     <string name="DietPlanMenu_Proteinsmoothie_and_egg">Proteinsmoothie og æg</string>
@@ -120,5 +124,9 @@
     <string name="create_user_title">Opret Bruger</string>
     <string name="create_user_last_name">Efternavn</string>
     <string name="create_user_last_name_edit">Indtast efternavn...</string>
+    <string name="create_user_username">Brugernavn</string>
+    <string name="create_user_username_edit">Indtast brugernavn...</string>
+
+
 
 </resources>

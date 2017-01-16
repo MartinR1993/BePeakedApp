@@ -50,6 +50,10 @@
     <string name="dietPlanMenu_lunch">Lunch</string>
     <string name="dietPlanMenu_dinner">Dinner</string>
     <string name="dietPlanMenu_snacks">Snacks</string>
+    <string name="dp_protView">Protein: </string>
+    <string name="dp_colView">Culhydrates: </string>
+    <string name="dp_calView">Calories: </string>
+    <string name="dp_fatView">Fat: </string>
 
     <!--Opskrifter-->
     <string name="DietPlanMenu_Proteinsmoothie_and_egg">Proteinsmoothie and egg</string>
@@ -121,10 +125,9 @@
     <string name="create_user_title">Create User</string>
     <string name="create_user_last_name">Last name</string>
     <string name="create_user_last_name_edit">Type in Last name...</string>
-    <string name="dp_protView">Protein:</string>
-    <string name="dp_colView">Culhydrates:</string>
-    <string name="dp_calView">Calories:</string>
-    <string name="dp_fatView">Fat:</string>
+    <string name="create_user_username">Username</string>
+    <string name="create_user_username_edit">Type in Username...</string>
+
 
 
 </resources>

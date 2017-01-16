@@ -51,6 +51,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/create_user_username"
+            android:id="@+id/cua_textusername"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/create_user_username_edit"
+            android:id="@+id/cua_editusername"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/create_user_email"
             android:id="@+id/cua_textemail"
             android:textSize="16sp"
@@ -76,6 +91,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/create_user_password_edit"
             android:id="@+id/cua_editpassword1"
+            android:inputType="textPassword"
+            android:ems="10"
             android:textSize="14sp" />
 
         <TextView
@@ -90,7 +107,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/create_user_password_gentag_edit"
+            android:inputType="textPassword"
             android:id="@+id/cua_editpassword2"
+            android:ems="10"
             android:textSize="14sp" />
 
         <Button
@@ -102,5 +121,4 @@
             style="@android:style/Widget.Holo.Button"
             android:backgroundTint="@android:drawable/screen_background_light_transparent" />
     </LinearLayout>
-
 </LinearLayout>
