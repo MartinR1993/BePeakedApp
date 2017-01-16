@@ -32,9 +32,11 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
 
         textUsername = (TextView) findViewById(R.id.textUsername);
         editUsername = (EditText) findViewById(R.id.editUsername);
+        editUsername.setText("lasse91");
 
         textPassword = (TextView) findViewById(R.id.textPassword);
         editPassword = (EditText) findViewById(R.id.editPassword);
+        editPassword.setText("brint");
 
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(this);
