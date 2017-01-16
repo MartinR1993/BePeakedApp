@@ -28,6 +28,15 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     //private static final String WORKOUT_ID = "WorkoutID";
     private static final String EXERCISE_ID = "ExerciseID";
 
+    // ExerciseResults Table Columns names
+    private static final String EXERCISERESULTS_TABLE = "WorkoutExercises";
+    //private static final String EXERCISE_ID = "ExerciseID";
+    private static final String RESULT_WEIGHT = "ResultWeight";
+    private static final String RESULT_REPS = "ResultReps";
+    private static final String RESULT_1RM = "Result1RM";
+
+
+
     public DatabaseCommunication(Context context) {
         super(context, DATABASE, null, 2);
     }
@@ -37,8 +46,11 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         String CREATE_WORKOUT_TABLE = "CREATE TABLE " + WORKOUT_TABLE + "(" +WORKOUT_ID + " INTEGER PRIMARY KEY," + WORKOUT_NAME + " TEXT)";
         db.execSQL(CREATE_WORKOUT_TABLE);
 
-        String CREATE_WORKOUTEXERCISE_TABLE = "CREATE TABLE " + WORKOUTEXERCISE_TABLE + "(" +WORKOUT_ID + " INTEGER," + EXERCISE_ID + " INTEGER)";
+        String CREATE_WORKOUTEXERCISE_TABLE = "CREATE TABLE " + WORKOUTEXERCISE_TABLE + "(" + WORKOUT_ID + " INTEGER," + EXERCISE_ID + " INTEGER)";
         db.execSQL(CREATE_WORKOUTEXERCISE_TABLE);
+
+        String CREATE_EXERCISERESULTS_TABLE = "CREATE TABLE " + EXERCISERESULTS_TABLE + "(" + EXERCISE_ID + " INTEGER PRIMARY KEY," + RESULT_WEIGHT + " DOUBLE," + RESULT_REPS + " INTEGER," + RESULT_1RM + " DOUBLE)";
+        db.execSQL(CREATE_EXERCISERESULTS_TABLE);
 
     }
 
@@ -46,6 +58,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table " + WORKOUT_TABLE);
         db.execSQL("drop table " + WORKOUTEXERCISE_TABLE);
+        db.execSQL("drop table " + EXERCISERESULTS_TABLE);
         this.onCreate(db);
 
     }
@@ -140,6 +153,32 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         System.out.println("Workouts : "+ Arrays.toString(WorkoutIDs.toArray()));
         return WorkoutIDs;
     }
+
+    //RESULTATERDELEN KOMMER HER SÅ VÆR KLAR PARAT TIL START
+
+    public void addExerciseResult(int exerciseID, double weight, int reps, double OneRM) {
+        String insertQuery = "INSERT INTO "+ EXERCISERESULTS_TABLE +"("+ EXERCISE_ID +", "+ RESULT_WEIGHT +", "+ RESULT_REPS +", "+ RESULT_1RM+") VALUES " + "("+exerciseID+","+weight+","+reps+","+OneRM+")";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(insertQuery);
+    }
+
+
+
+
+//    // ExerciseResults Table Columns names
+//    private static final String EXERCISERESULTS_TABLE = "WorkoutExercises";
+//    //private static final String EXERCISE_ID = "ExerciseID";
+//    private static final String RESULT_WEIGHT = "ResultWeight";
+//    private static final String RESULT_REPS = "ResultReps";
+//    private static final String RESULT_1RM = "Result1RM";
+//
+//        String CREATE_EXERCISERESULTS_TABLE = "CREATE TABLE " + EXERCISERESULTS_TABLE + "(" + EXERCISE_ID + " INTEGER PRIMARY KEY," + RESULT_WEIGHT + " INTEGER," + RESULT_REPS + " INTEGER)";
+//        db.execSQL(CREATE_EXERCISERESULTS_TABLE);
+
+
+
+
+
 
 }
 //    public ArrayList<Integer> getWorkoutExercises(int WorkoutID) {
