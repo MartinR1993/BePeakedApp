@@ -21,6 +21,7 @@ import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.Settings.ActivationKey_akt;
+import project.martin.bepeakedprojekt.User.CreateUser_akt;
 import project.martin.bepeakedprojekt.User.User;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
@@ -35,7 +36,9 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 {
     private static final String TASK_GETSALT = "salt";
     private static final String TASK_LOGIN = "login";
+    private static final String TASK_UPDATEPASSWORD = "update_pass";
     private static final String TASK_ACTIVATEUSER = "activate";
+    private static final String TASK_CREATEUSER = "create_user";
     private static final String TASK_GETUSERTYPE = "get_usertype";
     private static final String TASK_GETWORKOUTS = "get_workouts";
     private static final String TASK_GETEXERCISES = "get_exercises";
@@ -98,6 +101,10 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 
     public void activateUser(ActivationKey_akt activationAct, int userID, String activationKey, String sessionID) {
         new ServerComm(activationAct, TASK_ACTIVATEUSER, host, port).execute("" + userID, activationKey, sessionID);
+    }
+
+    public void createUser(CreateUser_akt createUserAct, String firstName, String lastName, String nickName, String passHash, String salt, String email) {
+        new ServerComm(createUserAct, TASK_CREATEUSER, host, port).execute(firstName, lastName, nickName, passHash, salt, email);
     }
 
     public void getDieatplanProfile(DietPlanMenu_akt dietplanMenu, int userID, String sessionID) {
@@ -213,6 +220,28 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 }
                 break;
             }
+            case TASK_CREATEUSER: {
+                JSONObject jsonObj = new JSONObject();
+                try {
+                    jsonObj.put(TAG_COMMAND, TAG_CMD_CREATE);
+                    JSONArray argsJA = new JSONArray();
+                    argsJA.put(0, TAG_USER);
+                    argsJA.put(1, params[0]);
+                    argsJA.put(2, params[1]);
+                    argsJA.put(3, params[2]);
+                    argsJA.put(4, params[3]);
+                    argsJA.put(5, params[4]);
+                    argsJA.put(6, params[5]);
+                    jsonObj.put(TAG_ARGS, argsJA);
+
+                    result = new String[1];
+                    result[0] = sendRequest(jsonObj.toString()).getString(TAG_ERROR);
+                    return result;
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
             case TASK_GETDIETPLANPROFILE: {
                 JSONObject jsonObj = new JSONObject();
                 try {
@@ -300,6 +329,11 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
             case TASK_GETUSERTYPE: {
                 MainMenu_akt mainMenu = (MainMenu_akt) act;
                 mainMenu.setUserType(Integer.parseInt(result[0]));
+                break;
+            }
+            case TASK_CREATEUSER: {
+                if(result != null)
+                    System.out.println("Create user errors: " + result[0]);
                 break;
             }
             case TASK_GETDIETPLANPROFILE: {

@@ -12,7 +12,11 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
+import project.martin.bepeakedprojekt.Backend.ServerComm;
 import project.martin.bepeakedprojekt.R;
+import scSecurity.RandomGen;
+import scSecurity.hashing.MD5Hashing;
 
 public class CreateUser_akt extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,7 +53,21 @@ public class CreateUser_akt extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        String password = epassword.getText().toString();
+        if(password.equals(erpassword.getText().toString())) {
+            String firstName = efirstname.getText().toString();
+            String lastName = elastname.getText().toString();
+            String email = eemail.getText().toString();
+            String nickName = email;
 
+            String salt = RandomGen.getSalt(16);
+            MD5Hashing md5 = new MD5Hashing();
+            String passwordHashed = md5.decryptHash(md5.encryptHash(password, salt));
+
+            new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT).createUser(this, firstName, lastName,  nickName, passwordHashed, salt, email);
+        }
+        else
+            Toast.makeText(getApplicationContext(), "Dit nye password var ikke ens", Toast.LENGTH_LONG).show();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
