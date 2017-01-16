@@ -61,6 +61,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_exercises_menu);
         workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
+        SingletonApplications.workout = workout;
+
         setTitle(workout.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -68,35 +70,22 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
             server.getExercisesByWorkoutID(this, workout.getWorkoutID(), User.getSessionID());
         }
-        DBCom = new DatabaseCommunication(this);
-        System.out.println("WORKOUT ID = "+workout.getWorkoutID());
+        DBCom = SingletonApplications.DBcom;
+
 
         ArrayList<Integer> exerciseArray = DBCom.getWorkoutExercises(workout.getWorkoutID());
 
         for (int id:exerciseArray) {
             exerciseList.add(DummyData.getExercise(id));
             exerciseNames.add(DummyData.getExercise(id).getName());
-
         }
 
-//
-//        exerciseList.add(DummyData.getExercise(1));
-//        exerciseList.add(DummyData.getExercise(2));
-//        exerciseList.add(DummyData.getExercise(3));
-//        exerciseList.add(DummyData.getExercise(4));
         SingletonApplications.data = exerciseList;
-//
-//
-//        exerciseNames.add(DummyData.getExercise(1).getName());
-//        exerciseNames.add(DummyData.getExercise(2).getName());
-//        exerciseNames.add(DummyData.getExercise(3).getName());
-//        exerciseNames.add(DummyData.getExercise(4).getName());
         SingletonApplications.dataNames = exerciseNames;
-        //exerciseList = workout.getExercises();
 
         listView = (DynamicListView) findViewById(R.id.dynamiclistview);
         gripView = (GripView) findViewById(R.id.gripView);
-//      gripView.setVisibility(View.GONE);
+
 
         /* Setup the adapter */
         com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data);
@@ -120,12 +109,10 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             onBackPressed();
 
         else if(item.getItemId() == R.id.edit){
-//            gripView.setVisibility(View.VISIBLE);
+
             SingletonApplications.changepic = true;
 
             listView.setAdapter(new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data));
-//
-//            animAdapter.notifyDataSetChanged();
 
             if (menu.findItem(R.id.OK) == null)
                 getMenuInflater().inflate(R.menu.okmenu, menu);
@@ -146,6 +133,14 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         else if (item.getItemId() == R.id.OK){
             SingletonApplications.changepic = false;
             listView.setAdapter(new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data));
+
+
+            DBCom.removeAllWorkoutExercises(workout.getWorkoutID());
+
+            for (ExerciseElement element: SingletonApplications.data) {
+                DBCom.addWorkoutExercise(workout.getWorkoutID(),element.getExerciseID());
+            }
+
 
             MenuItem ok = menu.findItem(R.id.OK);
             ok.setVisible(false);
@@ -243,14 +238,9 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         for (int t = 0 ; t <allExercises.size(); t++) {
             if (allExercises.get(t).getName().equalsIgnoreCase(missingExerciseNames.get(i))) {
 
-
                 DBCom.addWorkoutExercise(workout.getWorkoutID(),allExercises.get(t).getExerciseID());
-
                 exerciseList.add(allExercises.get(t));
                 exerciseNames.add(missingExerciseNames.get(i));
-
-
-
             }
         }
 
@@ -282,14 +272,13 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
             // denne kode virker men har design problemer
             TextView test =(TextView) view.findViewById(R.id.ele_ExerciseTitle);
-
             String tesa = (String) test.getText();
 
             for (int i = 0; i < exerciseListNames.size(); i++) {
                 if (tesa == exerciseListNames.get(i)) {
+                    SingletonApplications.DBcom.removeWorkoutExercise(SingletonApplications.workout.getWorkoutID(),exerciseElements.get(i).getExerciseID());
                     exerciseElements.remove(i);
                     exerciseListNames.remove(i);
-
                     mListView.setAdapter( new WorkoutExercisesListAdapter(akt, exerciseListNames, exerciseElements));
                 }
             }
