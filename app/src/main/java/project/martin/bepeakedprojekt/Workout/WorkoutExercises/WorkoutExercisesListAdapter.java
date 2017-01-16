@@ -30,8 +30,6 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
     private TextView ExerciseTitle, Sets,Reps;
     private ImageView image;
 
-
-
     WorkoutExercisesListAdapter(final Context context, ArrayList<String> exerciseListNames, ArrayList<ExerciseElement> exerciseElements) {
         this.exerciseListNames = exerciseListNames;
         this.exerciseElements = exerciseElements;
@@ -70,9 +68,40 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
         View view = convertView;
         if (view == null) {
             view = inflater.inflate(R.layout.list_workout_exercise_element, null);
-
         }
+
+
         image = (ImageView) view.findViewById(R.id.ele_image);
+
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                System.out.println(SingletonApplications.dataNames.get(position) +"tester " + position);
+
+                if (SingletonApplications.changepic == true) {
+
+
+                    for (int i = 0; i < exerciseListNames.size(); i++) {
+
+                        if (SingletonApplications.dataNames.get(position) == exerciseListNames.get(i)) {
+
+                            SingletonApplications.DBcom.removeWorkoutExercise(SingletonApplications.workout.getWorkoutID(),exerciseElements.get(i).getExerciseID());
+
+                            exerciseElements.remove(i);
+
+                            exerciseListNames.remove(i);
+
+                            remove(position);
+                        }
+                    }
+                }
+
+            }
+        });
         GripView grip = (GripView) view.findViewById(R.id.gripView);
 
         if(SingletonApplications.changepic == true){

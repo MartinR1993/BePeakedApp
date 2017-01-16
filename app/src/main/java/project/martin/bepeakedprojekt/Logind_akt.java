@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.ServerComm;
+import project.martin.bepeakedprojekt.User.CreateUser_akt;
 
 public class Logind_akt extends AppCompatActivity implements View.OnClickListener
 {
@@ -52,6 +53,8 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
         }
         else if (v == opretBruger) {
             System.out.println("Opret bruger");
+            Intent i = new Intent(this, CreateUser_akt.class);
+            startActivity(i);
         }
     }
 

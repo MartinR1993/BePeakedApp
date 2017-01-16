@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         if (prefs.getBoolean("firstStartOfApp", true)) {
             prefs.edit().putInt("Language", 1).commit();
             prefs.edit().putBoolean("firstStartOfApp", false).commit();
+            prefs.edit().putInt("WorkoutID", 0).commit();
 
         }
 
