@@ -54,12 +54,13 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     private MenuItem item;
 
     private static final int INITIAL_DELAY_MILLIS = 300;
+    WorkoutElement workout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_exercises_menu);
-        WorkoutElement workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
+        workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
         setTitle(workout.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -69,17 +70,27 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         }
         DBCom = new DatabaseCommunication(this);
 
-        exerciseList.add(DummyData.getExercise(1));
-        exerciseList.add(DummyData.getExercise(2));
-        exerciseList.add(DummyData.getExercise(3));
-        exerciseList.add(DummyData.getExercise(4));
+
+        ArrayList<Integer> exerciseArray = DBCom.getWorkoutExercises(workout.getWorkoutID());
+
+        for (int id:exerciseArray) {
+            exerciseList.add(DummyData.getExercise(id));
+            exerciseNames.add(DummyData.getExercise(id).getName());
+
+        }
+
+//
+//        exerciseList.add(DummyData.getExercise(1));
+//        exerciseList.add(DummyData.getExercise(2));
+//        exerciseList.add(DummyData.getExercise(3));
+//        exerciseList.add(DummyData.getExercise(4));
         SingletonApplications.data = exerciseList;
-
-
-        exerciseNames.add(DummyData.getExercise(1).getName());
-        exerciseNames.add(DummyData.getExercise(2).getName());
-        exerciseNames.add(DummyData.getExercise(3).getName());
-        exerciseNames.add(DummyData.getExercise(4).getName());
+//
+//
+//        exerciseNames.add(DummyData.getExercise(1).getName());
+//        exerciseNames.add(DummyData.getExercise(2).getName());
+//        exerciseNames.add(DummyData.getExercise(3).getName());
+//        exerciseNames.add(DummyData.getExercise(4).getName());
         SingletonApplications.dataNames = exerciseNames;
         //exerciseList = workout.getExercises();
 
@@ -231,8 +242,15 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         for (int t = 0 ; t <allExercises.size(); t++) {
             if (allExercises.get(t).getName().equalsIgnoreCase(missingExerciseNames.get(i))) {
+
+
+                DBCom.addWorkoutExercise(workout.getWorkoutID(),allExercises.get(t).getExerciseID());
+
                 exerciseList.add(allExercises.get(t));
                 exerciseNames.add(missingExerciseNames.get(i));
+
+
+
             }
         }
 
