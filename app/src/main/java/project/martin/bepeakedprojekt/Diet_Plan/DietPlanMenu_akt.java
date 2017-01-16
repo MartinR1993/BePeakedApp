@@ -1,9 +1,8 @@
 package project.martin.bepeakedprojekt.Diet_Plan;
 
 import android.content.Intent;
-import java.util.Calendar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedHashMap;
 
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.ChildInfo;
@@ -18,8 +18,6 @@ import project.martin.bepeakedprojekt.Diet_Plan.Adapter.DietPlanAdapter;
 import project.martin.bepeakedprojekt.Diet_Plan.Adapter.GroupInfo;
 import project.martin.bepeakedprojekt.Diet_Plan.Recipe.Recipe_akt;
 import project.martin.bepeakedprojekt.R;
-
-
 
 public class DietPlanMenu_akt extends AppCompatActivity {
     private LinkedHashMap<String, GroupInfo> subjects = new LinkedHashMap<String, GroupInfo>();
@@ -31,10 +29,6 @@ public class DietPlanMenu_akt extends AppCompatActivity {
     int ampm = c.get(Calendar.AM_PM);
     private TextView username, calories, culhydrates, fat, protein;
 
-
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +36,8 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         setTitle(R.string.dietPlanMenu_banner);
         // add data for displaying in expandable list view
         loadData();
+
+//        new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT).getDieatplanProfile(this, User.getUserID(), User.getSessionID());
 
         username = (TextView) findViewById(R.id.user);
         calories = (TextView) findViewById(R.id.calories);
@@ -56,15 +52,12 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         // attach the adapter to the expandable list view
         simpleExpandableListView.setAdapter(listAdapter);
 
-
         if (hour > 5 && hour < 12 && ampm == 0)
             simpleExpandableListView.expandGroup(0);
         else if(hour < 5 && ampm == 1)
             simpleExpandableListView.expandGroup(1);
         else if(hour < 10 && ampm == 1)
             simpleExpandableListView.expandGroup(2);
-
-
 
         // setOnChildClickListener listener for child row click
         simpleExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -166,5 +159,17 @@ public class DietPlanMenu_akt extends AppCompatActivity {
         //find the group position inside the list
         groupPosition = deptList.indexOf(headerInfo);
         return groupPosition;
+    }
+
+    public void setUserData(double prot, double cal, double col, double fat) {
+        TextView protView = (TextView) findViewById(R.id.protein);
+        TextView calView = (TextView) findViewById(R.id.calories);
+        TextView colView = (TextView) findViewById(R.id.culhydrates);
+        TextView fatView = (TextView) findViewById(R.id.fat);
+
+        protView.setText("Protein: " + prot);
+        calView.setText("Calories: " + cal);
+        colView.setText("Culhydrates: " + col);
+        fatView.setText("Fat: " + fat);
     }
 }

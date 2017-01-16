@@ -16,6 +16,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import project.martin.bepeakedprojekt.Diet_Plan.DietPlanMenu_akt;
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.MainMenu_akt;
@@ -38,6 +39,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     private static final String TASK_GETUSERTYPE = "get_usertype";
     private static final String TASK_GETWORKOUTS = "get_workouts";
     private static final String TASK_GETEXERCISES = "get_exercises";
+    private static final String TASK_GETDIETPLANPROFILE = "get_dpprofile";
 
     private static final String TAG_COMMAND = "cmd";
     private static final String TAG_CMD_CREATE = "create";
@@ -48,6 +50,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     private static final String TAG_ARGS = "args";
     private static final String TAG_USER = "user";
     private static final String TAG_USER_TYPE = "us_type";
+    private static final String TAG_DIETPLAN = "us_dp";
     private static final String TAG_WORKOUTLIST = "workouts";
     private static final String TAG_PASSWORD = "password";
     private static final String TAG_ACTIVATIONKEY = "activationkey";
@@ -95,6 +98,10 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 
     public void activateUser(ActivationKey_akt activationAct, int userID, String activationKey, String sessionID) {
         new ServerComm(activationAct, TASK_ACTIVATEUSER, host, port).execute("" + userID, activationKey, sessionID);
+    }
+
+    public void getDieatplanProfile(DietPlanMenu_akt dietplanMenu, int userID, String sessionID) {
+        new ServerComm(dietplanMenu, TASK_ACTIVATEUSER, host, port).execute("" + userID, sessionID);
     }
 
     @Override
@@ -207,6 +214,27 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
                 }
                 break;
             }
+            case TASK_GETDIETPLANPROFILE: {
+                JSONObject jsonObj = new JSONObject();
+                try {
+                    jsonObj.put(TAG_COMMAND, TAG_CMD_GET);
+                    jsonObj.put(TAG_CMD_SESSION_ID, params[1]);
+                    JSONArray argsJA = new JSONArray();
+                    argsJA.put(0, TAG_DIETPLAN);
+                    argsJA.put(1, Integer.parseInt(params[0]));
+                    jsonObj.put(TAG_ARGS, argsJA);
+
+                    result = new String[4];
+                    result[0] = "" + sendRequest(jsonObj.toString()).getDouble("dp_protein");
+                    result[1] = "" + sendRequest(jsonObj.toString()).getDouble("dp_calories");
+                    result[2] = "" + sendRequest(jsonObj.toString()).getDouble("dp_culhydrates");
+                    result[3] = "" + sendRequest(jsonObj.toString()).getDouble("dp_fat");
+                    return result;
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
             case TASK_GETWORKOUTS: {
                 JSONObject jsonObj = new JSONObject();
                 try {
@@ -273,6 +301,17 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
             case TASK_GETUSERTYPE: {
                 MainMenu_akt mainMenu = (MainMenu_akt) act;
                 mainMenu.setUserType(Integer.parseInt(result[0]));
+                break;
+            }
+            case TASK_GETDIETPLANPROFILE: {
+                DietPlanMenu_akt dietplanMenu = (DietPlanMenu_akt) act;
+
+                double prot = Double.parseDouble(result[0]);
+                double cal = Double.parseDouble(result[1]);
+                double col = Double.parseDouble(result[2]);
+                double fat = Double.parseDouble(result[3]);
+
+                dietplanMenu.setUserData(prot, cal, col, fat);
                 break;
             }
             case TASK_GETWORKOUTS: {
