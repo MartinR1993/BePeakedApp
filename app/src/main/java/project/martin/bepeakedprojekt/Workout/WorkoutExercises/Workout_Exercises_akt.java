@@ -78,27 +78,14 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         for (int id:exerciseArray) {
             exerciseList.add(DummyData.getExercise(id));
             exerciseNames.add(DummyData.getExercise(id).getName());
-
         }
 
-
-//        exerciseList.add(DummyData.getExercise(1));
-//        exerciseList.add(DummyData.getExercise(2));
-//        exerciseList.add(DummyData.getExercise(3));
-//        exerciseList.add(DummyData.getExercise(4));
         SingletonApplications.data = exerciseList;
-
-
-//        exerciseNames.add(DummyData.getExercise(1).getName());
-//        exerciseNames.add(DummyData.getExercise(2).getName());
-//        exerciseNames.add(DummyData.getExercise(3).getName());
-//        exerciseNames.add(DummyData.getExercise(4).getName());
         SingletonApplications.dataNames = exerciseNames;
-        //exerciseList = workout.getExercises();
 
         listView = (DynamicListView) findViewById(R.id.dynamiclistview);
         gripView = (GripView) findViewById(R.id.gripView);
-//      gripView.setVisibility(View.GONE);
+
 
         /* Setup the adapter */
         com.nhaarman.listviewanimations.ArrayAdapter<String> adapter = new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data);
@@ -122,12 +109,10 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             onBackPressed();
 
         else if(item.getItemId() == R.id.edit){
-//            gripView.setVisibility(View.VISIBLE);
+
             SingletonApplications.changepic = true;
 
             listView.setAdapter(new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data));
-//
-//            animAdapter.notifyDataSetChanged();
 
             if (menu.findItem(R.id.OK) == null)
                 getMenuInflater().inflate(R.menu.okmenu, menu);
@@ -253,13 +238,9 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         for (int t = 0 ; t <allExercises.size(); t++) {
             if (allExercises.get(t).getName().equalsIgnoreCase(missingExerciseNames.get(i))) {
 
-
                 DBCom.addWorkoutExercise(workout.getWorkoutID(),allExercises.get(t).getExerciseID());
                 exerciseList.add(allExercises.get(t));
                 exerciseNames.add(missingExerciseNames.get(i));
-
-
-
             }
         }
 
