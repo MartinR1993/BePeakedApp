@@ -136,18 +136,19 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (SingletonApplications.changepic == false) {
+                    TextView test = (TextView) v.findViewById(R.id.ele_ExerciseTitle);
 
-                TextView test =(TextView) v.findViewById(R.id.ele_ExerciseTitle);
+                    String tesa = (String) test.getText();
 
-                String tesa = (String) test.getText();
-
-                for (int i = 0 ; i < exerciseElements.size();i++){
-                    if (exerciseElements.get(i).getName().equals(tesa)){
-                        Intent j = new Intent(mContext, Exercise_akt.class);
-                        j.putExtra("exercise", exerciseElements.get(i));
-                        j.putExtra("sets", exerciseElements.get(i).getSets());
-                        mContext.startActivity(j);
-                        SingletonApplications.currentExerciseID = exerciseElements.get(i).getExerciseID();
+                    for (int i = 0; i < exerciseElements.size(); i++) {
+                        if (exerciseElements.get(i).getName().equals(tesa)) {
+                            Intent j = new Intent(mContext, Exercise_akt.class);
+                            j.putExtra("exercise", exerciseElements.get(i));
+                            j.putExtra("sets", exerciseElements.get(i).getSets());
+                            mContext.startActivity(j);
+                            SingletonApplications.currentExerciseID = exerciseElements.get(i).getExerciseID();
+                        }
                     }
                 }
             }

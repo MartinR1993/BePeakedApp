@@ -12,13 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
+
 import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.DatabaseCommunication;
 import project.martin.bepeakedprojekt.Backend.ServerComm;
+import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.SingletonApplications;
 import project.martin.bepeakedprojekt.User.User;
+import project.martin.bepeakedprojekt.Workout.WorkoutExercises.WorkoutExercisesListAdapter;
 
 public class WorkoutMenu_akt extends AppCompatActivity {
     private ArrayList<WorkoutElement> workoutList;
@@ -28,18 +33,24 @@ public class WorkoutMenu_akt extends AppCompatActivity {
     private WorkoutListAdapter listAdapter;
     private DatabaseCommunication DBCom;
     private SharedPreferences prefs;
+    ServerComm server;
+    private Menu menu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_menu);
         setTitle(R.string.workoutMenu_banner);
-        ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
+        SingletonApplications.changepic = false;
+        server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         DBCom = new DatabaseCommunication(this);
         //TODO: Denne linje crasher måske (har ikke kunne tjekke pga. andet problem med SQLLite).
         server.getWorkoutlist(this, User.getUserID(), User.getSessionID());
         workoutList = DBCom.getAllWorkouts();
+
+
 
         lv = (ListView) findViewById(R.id.listWorkoutMenu);
         listAdapter = new WorkoutListAdapter(this, workoutList);
@@ -49,13 +60,45 @@ public class WorkoutMenu_akt extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
         switch (item.getItemId()) {
             case android.R.id.home: {
                 onBackPressed();
                 break;
+
             }
             case R.id.edit: {
+
+                SingletonApplications.changepic = true;
+
+                if (menu.findItem(R.id.OK) == null)
+                    getMenuInflater().inflate(R.menu.okmenu, menu);
+                else {
+                    MenuItem ok = menu.findItem(R.id.OK);
+                    ok.setVisible(true);
+                }
+
+                MenuItem edit = menu.findItem(R.id.edit);
+                edit.setVisible(false);
+                MenuItem add = menu.findItem(R.id.add);
+                add.setVisible(false);
+
+                lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this,workoutList));
                 break;
+            }
+            case  R.id.OK : {
+                SingletonApplications.changepic = false;
+
+                MenuItem ok = menu.findItem(R.id.OK);
+                ok.setVisible(false);
+                MenuItem edit = menu.findItem(R.id.edit);
+                edit.setVisible(true);
+                MenuItem add = menu.findItem(R.id.add);
+                add.setVisible(true);
+
+                lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
+break;
             }
             case R.id.add: {
                 popup = new AlertDialog.Builder(WorkoutMenu_akt.this).create();
@@ -71,8 +114,9 @@ public class WorkoutMenu_akt extends AppCompatActivity {
                         prefs.edit().putInt("idafworkoutet", prefs.getInt("idafworkoutet", 1) + 1).commit();
                         DBCom.addWorkout(prefs.getInt("idafworkoutet", 1), saveWorkoutName.getText().toString());
 
-                        workoutList = DBCom.getAllWorkouts();
-                        lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
+                     //   server.getWorkoutlist(WorkoutMenu_akt.this,User.getSessionID());
+                       // workoutList = DBCom.getAllWorkouts();
+                      //  lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
 
                         popup.cancel();
                     }
@@ -88,6 +132,7 @@ public class WorkoutMenu_akt extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.add_edit_menu, menu);
         return true;

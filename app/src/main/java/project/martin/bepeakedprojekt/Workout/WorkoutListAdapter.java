@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.SingletonApplications;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
 
 /**
@@ -23,6 +24,9 @@ public class WorkoutListAdapter extends BaseAdapter {
     private static LayoutInflater inflater = null;
     private ArrayList<WorkoutElement> workoutList;
     private Activity akt;
+    private TextView WorkoutTitle;
+    private TextView Exercises;
+    private ImageView image;
 
     protected WorkoutListAdapter(Activity activity, ArrayList<WorkoutElement> workoutList) {
         Context context = activity;
@@ -46,27 +50,33 @@ public class WorkoutListAdapter extends BaseAdapter {
         return position;
     }
 
-    private class Holder
-    {
-        protected TextView WorkoutTitle;
-        protected TextView Exercises;
-        protected ImageView image;
-    }
+
+
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        Holder holder = new Holder();
         View rowView;
         rowView = inflater.inflate(R.layout.list_workout_element, null);
         WorkoutElement workoutelement = workoutList.get(position);
 
-        holder.WorkoutTitle = (TextView) rowView.findViewById(R.id.wle_WorkoutTitle);
-        holder.Exercises = (TextView) rowView.findViewById(R.id.wle_Exercises);
-        holder.image = (ImageView) rowView.findViewById(R.id.wle_Image);
+        WorkoutTitle = (TextView) rowView.findViewById(R.id.wle_WorkoutTitle);
+        Exercises = (TextView) rowView.findViewById(R.id.wle_Exercises);
+        image = (ImageView) rowView.findViewById(R.id.wle_Image);
+
 
         String workoutTitle = workoutelement.getName();
 
-        holder.WorkoutTitle.setText(workoutTitle);
+        WorkoutTitle.setText(workoutTitle);
+
+
+        if (SingletonApplications.changepic == true){
+            image.setImageResource(R.drawable.ic_delete);
+        }
+
+        else if(SingletonApplications.changepic == false){
+            image.setImageResource(R.drawable.forward);
+        }
+
 
         //StringBuilder sbExerciseList = new StringBuilder();
         //for (ExerciseElement exercise : workoutelement.getExercises())
@@ -74,15 +84,20 @@ public class WorkoutListAdapter extends BaseAdapter {
         //sbExerciseList.substring(0, sbExerciseList.length());
 
         //holder.Exercises.setText(sbExerciseList);
-        holder.Exercises.setText("Carl Mar var her");
-        holder.image.setImageResource(R.drawable.forward);
+
+        Exercises.setText("Carl Mar var her");
+
+
+
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(akt, Workout_Exercises_akt.class);
-                i.putExtra("workout", workoutList.get(position));
-                akt.startActivity(i);
+                if (SingletonApplications.changepic == false) {
+                    Intent i = new Intent(akt, Workout_Exercises_akt.class);
+                    i.putExtra("workout", workoutList.get(position));
+                    akt.startActivity(i);
+                }
             }
         });
         return rowView;

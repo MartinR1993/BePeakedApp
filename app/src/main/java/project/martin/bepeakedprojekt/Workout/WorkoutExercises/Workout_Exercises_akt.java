@@ -61,7 +61,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         setContentView(R.layout.activity_workout_exercises_menu);
         workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
         SingletonApplications.workout = workout;
-
+        SingletonApplications.changepic = false;
         setTitle(workout.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -124,7 +124,6 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             MenuItem add = menu.findItem(R.id.add);
             add.setVisible(false);
 
-
             listView.enableDragAndDrop();
             listView.setDraggableManager(new TouchViewDraggableManager(R.id.gripView));
 
@@ -147,6 +146,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
             edit.setVisible(true);
             MenuItem add = menu.findItem(R.id.add);
             add.setVisible(true);
+
+
             listView.disableDragAndDrop();
         }
         else if (item.getItemId() == R.id.add) {
