@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_user_akt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="project.martin.bepeakedprojekt.User.CreateUser_akt"
+    android:background="@mipmap/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_user_user"
+        android:id="@+id/cua_textusername"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccent" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_user_edit_user"
+        android:id="@+id/cua_editusername"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_user_email"
+        android:id="@+id/cua_textemail"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccent" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_user_email_edit"
+        android:id="@+id/cua_editemail"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_user_password"
+        android:id="@+id/cua_password1"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccent" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_user_password_edit"
+        android:id="@+id/cua_editpassword1"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_user_password_gentag"
+        android:id="@+id/cua_password2"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccent" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/create_user_password_gentag_edit"
+        android:id="@+id/cua_editpassword2"
+        android:textSize="14sp" />
+
+    <Button
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_user_btn"
+        android:id="@+id/cua_opretbtn"
+        style="@android:style/Widget.Holo.Button"
+        android:backgroundTint="@android:drawable/screen_background_light_transparent" />
+    </LinearLayout>
+
+</LinearLayout>
