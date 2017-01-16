@@ -31,6 +31,7 @@ import project.martin.bepeakedprojekt.Backend.ServerComm;
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Misc.DummyData;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.SingletonApplications;
 import project.martin.bepeakedprojekt.User.User;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
@@ -107,6 +108,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
         else if(item.getItemId() == R.id.edit){
 //            gripView.setVisibility(View.VISIBLE);
+            SingletonApplications.changepic = true;
+            animAdapter.notifyDataSetChanged();
             if (menu.findItem(R.id.OK) == null)
                 getMenuInflater().inflate(R.menu.okmenu, menu);
             else {
@@ -124,6 +127,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
         }
         else if (item.getItemId() == R.id.OK){
+            SingletonApplications.changepic = false;
+            animAdapter.notifyDataSetChanged();
             MenuItem ok = menu.findItem(R.id.OK);
             ok.setVisible(false);
             MenuItem edit = menu.findItem(R.id.edit);

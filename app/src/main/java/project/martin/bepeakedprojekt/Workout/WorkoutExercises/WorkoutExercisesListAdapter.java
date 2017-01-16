@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import project.martin.bepeakedprojekt.Exercises.Exercise.Exercise_akt;
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.SingletonApplications;
 
 /**
  * Created by Martin on 14-11-2016.
@@ -30,6 +31,7 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
     private static LayoutInflater inflater = null;
     ArrayList<ExerciseElement> exerciseElements = new ArrayList<>();
     private TextView ExerciseTitle, Sets,Reps;
+    private ImageView image;
 
 
 
@@ -61,9 +63,17 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
             view = inflater.inflate(R.layout.list_workout_exercise_element, null);
 
         }
-
+        image = (ImageView) view.findViewById(R.id.ele_image);
+        if(SingletonApplications.changepic == true){
+            image.setImageResource(R.drawable.ic_delete);
+        }
+        else{
+            image.setImageResource(R.drawable.forward);
+        }
         ExerciseTitle = (TextView) view.findViewById(R.id.ele_ExerciseTitle);
         ExerciseTitle.setText(getItem(position));
+
+
 
         Sets = (TextView) view.findViewById(R.id.textViewSets);
         Reps = (TextView) view.findViewById(R.id.textViewReps);
