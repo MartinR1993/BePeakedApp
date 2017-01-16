@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TableLayout;
@@ -31,8 +32,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 /**
  * Created by Martin on 21-11-2016.
  */
-public class Result_frag extends Fragment
-{
+public class Result_frag extends Fragment implements View.OnClickListener {
     private TableLayout table;
     private LineGraphSeries<DataPoint> series;
     private GraphView graphView;
@@ -83,10 +83,16 @@ public class Result_frag extends Fragment
         ((TextView) row.findViewById(R.id.resta_col1)).setText(valCol1);
         ((TextView) row.findViewById(R.id.resta_col2)).setText(valCol2);
         ((TextView) row.findViewById(R.id.resta_col3)).setText(valRM);
-        Button editButton = (Button) row.findViewById(R.id.resta_button);
-        editButton.setText(R.string.exerciseResult_tableButtonEdit);
+        ImageView edit = (ImageView) row.findViewById(R.id.resta_button);
+        edit.setOnClickListener(this);
 
         return row;
+    }
+
+    @Override
+    public void onClick(View v) {
+        //Implementere at redigere resultater
+        Toast.makeText(getActivity(), "Her skal resultater redigeres", Toast.LENGTH_LONG).show();
     }
 
     private class AddListener implements View.OnClickListener
