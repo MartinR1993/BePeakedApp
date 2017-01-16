@@ -32,6 +32,7 @@ public class WorkoutListAdapter extends BaseAdapter {
         Context context = activity;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.workoutList = workoutList;
+
         this.akt = activity;
     }
 
@@ -55,7 +56,7 @@ public class WorkoutListAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        View rowView;
+        final View rowView;
         rowView = inflater.inflate(R.layout.list_workout_element, null);
         WorkoutElement workoutelement = workoutList.get(position);
 
@@ -63,6 +64,21 @@ public class WorkoutListAdapter extends BaseAdapter {
         Exercises = (TextView) rowView.findViewById(R.id.wle_Exercises);
         image = (ImageView) rowView.findViewById(R.id.wle_Image);
 
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (SingletonApplications.changepic == true) {
+
+                            SingletonApplications.DBcom.removeWorkout(workoutList.get(position).getWorkoutID());
+                            workoutList.remove(position);
+
+                            notifyDataSetChanged();
+                }
+
+            }
+        });
 
         String workoutTitle = workoutelement.getName();
 

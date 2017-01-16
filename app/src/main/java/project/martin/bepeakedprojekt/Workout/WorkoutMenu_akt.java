@@ -50,10 +50,11 @@ public class WorkoutMenu_akt extends AppCompatActivity {
         server.getWorkoutlist(this, User.getUserID(), User.getSessionID());
         workoutList = DBCom.getAllWorkouts();
 
+        SingletonApplications.allWorkouts = workoutList;
 
 
         lv = (ListView) findViewById(R.id.listWorkoutMenu);
-        listAdapter = new WorkoutListAdapter(this, workoutList);
+        listAdapter = new WorkoutListAdapter(this, SingletonApplications.allWorkouts);
         lv.setAdapter(listAdapter);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -84,7 +85,7 @@ public class WorkoutMenu_akt extends AppCompatActivity {
                 MenuItem add = menu.findItem(R.id.add);
                 add.setVisible(false);
 
-                lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this,workoutList));
+                lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this,SingletonApplications.allWorkouts));
                 break;
             }
             case  R.id.OK : {
@@ -97,7 +98,7 @@ public class WorkoutMenu_akt extends AppCompatActivity {
                 MenuItem add = menu.findItem(R.id.add);
                 add.setVisible(true);
 
-                lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
+                lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, SingletonApplications.allWorkouts));
 break;
             }
             case R.id.add: {
@@ -114,9 +115,10 @@ break;
                         prefs.edit().putInt("idafworkoutet", prefs.getInt("idafworkoutet", 1) + 1).commit();
                         DBCom.addWorkout(prefs.getInt("idafworkoutet", 1), saveWorkoutName.getText().toString());
 
-                     //   server.getWorkoutlist(WorkoutMenu_akt.this,User.getSessionID());
-                       // workoutList = DBCom.getAllWorkouts();
-                      //  lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, workoutList));
+                        SingletonApplications.allWorkouts.add(DBCom.getAllWorkouts().get(DBCom.getAllWorkouts().size()-1));
+
+
+                        lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, SingletonApplications.allWorkouts));
 
                         popup.cancel();
                     }
@@ -140,7 +142,7 @@ break;
 
     public void addWorkouts(ArrayList<WorkoutElement> workoutList) {
         System.out.println("Workout received=" + workoutList.toString());
-        this.workoutList.addAll(workoutList);
+        this.workoutList.addAll(0, workoutList);
         listAdapter.notifyDataSetChanged();
     }
 
