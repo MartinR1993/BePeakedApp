@@ -115,36 +115,6 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         ImageView edit = (ImageView) row.findViewById(R.id.resta_button);
         edit.setOnClickListener(this);
 
-
-//
-//        if (currentSet == sets){
-//            Toast.makeText(getActivity(), "Du har lavet " + currentSet +" sæt", Toast.LENGTH_LONG).show();
-//
-//            for (int i = 0; i < SingletonApplications.data.size(); i++) {
-//                if (SingletonApplications.currentExerciseID == SingletonApplications.data.get(i).getExerciseID() && i != SingletonApplications.data.size()-1) {
-//
-//
-//                    System.out.println(SingletonApplications.data.get(i).getName());
-//
-//                    System.out.println(SingletonApplications.data.get(i+1).getName());
-//
-//
-//
-//                    SingletonApplications.currentExerciseID = SingletonApplications.data.get(i+1).getExerciseID();
-//
-//                    Intent j = new Intent(getContext(), Exercise_akt.class);
-//                    j.putExtra("exercise", SingletonApplications.data.get(i+1));
-//                    j.putExtra("sets", SingletonApplications.data.get(i+1).getSets());
-//                    getActivity().finish();
-//                    getContext().startActivity(j);
-//
-//
-//                    i = SingletonApplications.data.size();
-//                }
-//            }
-//        }
-
-
         return row;
     }
 
