@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
+import project.martin.bepeakedprojekt.Exercises.ResultElement;
+import project.martin.bepeakedprojekt.SingletonApplications;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 
 /**
@@ -30,11 +32,15 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 
     // ExerciseResults Table Columns names
     private static final String EXERCISERESULTS_TABLE = "ExerciseResults";
+//    private static final String RESULT_ID = "ResultID";
     //private static final String EXERCISE_ID = "ExerciseID";
+
+    // Results Table Columns names
+    private static final String RESULTS_TABLE = "Results";
+    private static final String RESULT_ID = "ResultID";
     private static final String RESULT_WEIGHT = "ResultWeight";
     private static final String RESULT_REPS = "ResultReps";
     private static final String RESULT_1RM = "Result1RM";
-
 
 
     public DatabaseCommunication(Context context) {
@@ -43,14 +49,20 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_WORKOUT_TABLE = "CREATE TABLE " + WORKOUT_TABLE + "(" +WORKOUT_ID + " INTEGER PRIMARY KEY," + WORKOUT_NAME + " TEXT)";
+        String CREATE_WORKOUT_TABLE = "CREATE TABLE " + WORKOUT_TABLE + "(" + WORKOUT_ID + " INTEGER PRIMARY KEY," + WORKOUT_NAME + " TEXT)";
         db.execSQL(CREATE_WORKOUT_TABLE);
 
         String CREATE_WORKOUTEXERCISE_TABLE = "CREATE TABLE " + WORKOUTEXERCISE_TABLE + "(" + WORKOUT_ID + " INTEGER," + EXERCISE_ID + " INTEGER)";
         db.execSQL(CREATE_WORKOUTEXERCISE_TABLE);
 
-        String CREATE_EXERCISERESULTS_TABLE = "CREATE TABLE " + EXERCISERESULTS_TABLE + "(" + EXERCISE_ID + " INTEGER PRIMARY KEY," + RESULT_WEIGHT + " DOUBLE," + RESULT_REPS + " INTEGER," + RESULT_1RM + " DOUBLE)";
-        db.execSQL(CREATE_EXERCISERESULTS_TABLE);
+        String CREATE_RESULTS_TABLE = "CREATE TABLE " + RESULTS_TABLE + "(" + RESULT_ID + " INTEGER PRIMARY KEY, " + EXERCISE_ID + " INTEGER, " + RESULT_WEIGHT + " DOUBLE," + RESULT_REPS + " INTEGER," + RESULT_1RM + " DOUBLE)";
+        db.execSQL(CREATE_RESULTS_TABLE);
+
+//        String CREATE_RESULTS_TABLE = "CREATE TABLE " + RESULTS_TABLE + "(" + RESULT_ID + " INTEGER PRIMARY KEY, " + RESULT_WEIGHT + " DOUBLE," + RESULT_REPS + " INTEGER," + RESULT_1RM + " DOUBLE)";
+//        db.execSQL(CREATE_RESULTS_TABLE);
+//
+//        String CREATE_EXERCISERESULT_TABLE = "CREATE TABLE " + EXERCISERESULTS_TABLE + "(" + RESULT_ID + " INTEGER," + EXERCISE_ID + " INTEGER)";
+//        db.execSQL(CREATE_EXERCISERESULT_TABLE);
 
     }
 
@@ -58,6 +70,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table " + WORKOUT_TABLE);
         db.execSQL("drop table " + WORKOUTEXERCISE_TABLE);
+        db.execSQL("drop table " + RESULTS_TABLE);
         db.execSQL("drop table " + EXERCISERESULTS_TABLE);
         this.onCreate(db);
 
@@ -65,12 +78,12 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 
     public ArrayList<WorkoutElement> getAllWorkouts() {
         ArrayList<WorkoutElement> workoutElements = new ArrayList<WorkoutElement>();
-        String selectQuery = "SELECT * FROM "+ WORKOUT_TABLE;
+        String selectQuery = "SELECT * FROM " + WORKOUT_TABLE;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
-                WorkoutElement elem = new WorkoutElement(1,"", new ArrayList<ExerciseElement>(), false);
+                WorkoutElement elem = new WorkoutElement(1, "", new ArrayList<ExerciseElement>(), false);
                 elem.setWorkoutID(cursor.getInt(0));
                 elem.setName(cursor.getString(1));
                 workoutElements.add(elem);
@@ -82,7 +95,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 
     //Test... giver et array af exercise ID'er vi kan bruge til at hente exercises fra Lasses database
     public ArrayList<Integer> getWorkoutExercises(int WorkoutID) {
-        String selectQuery = "SELECT * FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +"="+WorkoutID+"";
+        String selectQuery = "SELECT * FROM " + WORKOUTEXERCISE_TABLE + " WHERE " + WORKOUT_ID + "=" + WorkoutID + "";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<Integer> ExerciseIDs = new ArrayList<Integer>();
@@ -96,51 +109,47 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     }
 
 
-
-
     public void addWorkout(int id, String name) {
-        String insertQuery = "INSERT INTO "+ WORKOUT_TABLE +"("+ WORKOUT_ID +", "+ WORKOUT_NAME +") VALUES " + "(NULL, '" + name + "')";
+        String insertQuery = "INSERT INTO " + WORKOUT_TABLE + "(" + WORKOUT_ID + ", " + WORKOUT_NAME + ") VALUES " + "(NULL, '" + name + "')";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(insertQuery);
-        }
+    }
 
 
     public void removeWorkout(int id) {
-        String removeQuery = "DELETE FROM "+ WORKOUT_TABLE +" WHERE "+ WORKOUT_ID +" = " + id;
+        String removeQuery = "DELETE FROM " + WORKOUT_TABLE + " WHERE " + WORKOUT_ID + " = " + id;
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(removeQuery);
     }
 
 
-
     public void editWorkout(String newName, int id) {
-        String updateQuery = "UPDATE "+ WORKOUT_TABLE +" SET "+ WORKOUT_NAME +" = "+ newName +" WHERE "+ WORKOUT_ID +" = "+ id;
+        String updateQuery = "UPDATE " + WORKOUT_TABLE + " SET " + WORKOUT_NAME + " = " + newName + " WHERE " + WORKOUT_ID + " = " + id;
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(updateQuery);
     }
 
 
-
     public void addWorkoutExercise(int workoutID, int exerciseID) {
-        String insertQuery = "INSERT INTO "+ WORKOUTEXERCISE_TABLE +"("+ WORKOUT_ID +", "+ EXERCISE_ID +") VALUES " + "("+workoutID+","+exerciseID+")";
+        String insertQuery = "INSERT INTO " + WORKOUTEXERCISE_TABLE + "(" + WORKOUT_ID + ", " + EXERCISE_ID + ") VALUES " + "(" + workoutID + "," + exerciseID + ")";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(insertQuery);
     }
 
     public void removeWorkoutExercise(int workoutID, int exerciseID) {
-        String deleteQuery = "DELETE FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +" = " + workoutID +" AND "+ EXERCISE_ID +" = "+exerciseID;
+        String deleteQuery = "DELETE FROM " + WORKOUTEXERCISE_TABLE + " WHERE " + WORKOUT_ID + " = " + workoutID + " AND " + EXERCISE_ID + " = " + exerciseID;
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(deleteQuery);
     }
 
     public void removeAllWorkoutExercises(int workoutID) {
-        String deleteQuery = "DELETE FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +" = " + workoutID;
+        String deleteQuery = "DELETE FROM " + WORKOUTEXERCISE_TABLE + " WHERE " + WORKOUT_ID + " = " + workoutID;
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(deleteQuery);
     }
 
     public ArrayList<Integer> getWorkouts() {
-        String selectQuery = "SELECT "+ WORKOUT_ID +" FROM "+ WORKOUTEXERCISE_TABLE;
+        String selectQuery = "SELECT " + WORKOUT_ID + " FROM " + WORKOUTEXERCISE_TABLE;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<Integer> WorkoutIDs = new ArrayList<Integer>();
@@ -150,17 +159,116 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
                 WorkoutIDs.add(uname);
             } while (cursor.moveToNext());
         }
-        System.out.println("Workouts : "+ Arrays.toString(WorkoutIDs.toArray()));
+        System.out.println("Workouts : " + Arrays.toString(WorkoutIDs.toArray()));
         return WorkoutIDs;
     }
+    //    public ArrayList<Integer> getExerciseResults(int exerciseID) {
+//        String selectQuery = "SELECT * FROM " + EXERCISERESULTS_TABLE + " WHERE " + EXERCISE_ID + "=" + exerciseID + "";
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery(selectQuery, null);
+//        ArrayList<Integer> ExerciseIDs = new ArrayList<Integer>();
+//        if (cursor.moveToFirst()) {
+//            do {
+//                int uname = cursor.getInt(cursor.getColumnIndex("ExerciseID"));
+//                ExerciseIDs.add(uname);
+//            } while (cursor.moveToNext());
+//            System.out.println(Arrays.toString(ExerciseIDs.toArray()));
+//        }
+//        return ExerciseIDs;
+//    }
 
     //RESULTATERDELEN KOMMER HER SÅ VÆR KLAR PARAT TIL START
 
-    public void addExerciseResult(int exerciseID, double weight, int reps, double OneRM) {
-        String insertQuery = "INSERT INTO "+ EXERCISERESULTS_TABLE +"("+ EXERCISE_ID +", "+ RESULT_WEIGHT +", "+ RESULT_REPS +", "+ RESULT_1RM+") VALUES " + "("+exerciseID+","+weight+","+reps+","+OneRM+")";
+    public void addExerciseResult(int resultID, int exerciseID, double weight, int reps, double OneRM) {
+        String insertQuery = "INSERT INTO " + RESULTS_TABLE + "( " + RESULT_ID + "," + EXERCISE_ID + ", " + RESULT_WEIGHT + ", " + RESULT_REPS + ", " + RESULT_1RM + ") VALUES " + "(" + resultID + "," + exerciseID + "," + weight + "," + reps + "," + OneRM + ")";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(insertQuery);
     }
+
+    public ArrayList<ResultElement> getResults(int exerciseID) {
+        String selectQuery = "SELECT * FROM " + RESULTS_TABLE + " WHERE " + EXERCISE_ID + "=" + exerciseID + "";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<ResultElement> resultList = new ArrayList<ResultElement>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                ResultElement elem = new ResultElement(0, 0, 0, 0, 0);
+                elem.setResultID(cursor.getInt(0));
+                elem.setExerciseID(cursor.getInt(1));
+                elem.setWeight(cursor.getDouble(2));
+                elem.setReps(cursor.getInt(3));
+                elem.setOneRM(cursor.getDouble(4));
+                resultList.add(elem);
+            } while (cursor.moveToNext());
+        }
+        return resultList;
+    }
+}
+
+//    public void editExerciseResult(int exerciseID, double weight, int reps, double OneRM) {
+//        String updateQuery = "INSERT INTO " + RESULTS_TABLE + "(" + EXERCISE_ID + ", " + RESULT_WEIGHT + ", " + RESULT_REPS + ", " + RESULT_1RM + ") VALUES " + "(" + exerciseID + "," + weight + "," + reps + "," + OneRM + ")";
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        db.execSQL(updateQuery);
+//    }
+//
+
+//
+//
+//    public ArrayList<ResultElement> getResults(int resultID) {
+//        String selectQuery = "SELECT * FROM " + RESULTS_TABLE + " WHERE " + RESULT_ID + "=" + resultID + "";
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery(selectQuery, null);
+//        ArrayList<ResultElement> resultList = new ArrayList<ResultElement>();
+//
+//        if (cursor.moveToFirst()) {
+//            do {
+//                ResultElement elem = new ResultElement(0, 0, 0, 0);
+//                elem.setExerciseID(cursor.getInt(0));
+//                elem.setWeight(cursor.getDouble(1));
+//                elem.setReps(cursor.getInt(2));
+//                elem.setOneRM(cursor.getDouble(3));
+//                resultList.add(elem);
+//            } while (cursor.moveToNext());
+//        }
+//        return resultList;
+//    }
+//}
+
+//
+//    public ArrayList<ExerciseElement> getAllasdaExercises() {
+//        ArrayList<ExerciseElement> exerciseList = new ArrayList<ExerciseElement>();
+//
+//        // Select All Query
+//        String selectQuery = "SELECT * FROM Exercises";
+//
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery(selectQuery, null);
+//
+//        // looping through all rows and adding to list
+//        if (cursor.moveToFirst()) {
+//            do {
+//                //public WorkoutElement(int workoutID, String workoutName, ArrayList<ExerciseElement> exercises)
+//                ExerciseElement elem = new ExerciseElement(0, 0, "", "", "", 0);
+//                //int exerciseID, int sets, String reps, String ExerciseName, String description, int imageID
+//
+//                //elem.setWorkoutID(Integer.parseInt(cursor.getString(0)));
+//                elem.setExerciseID(cursor.getInt(0));
+//                elem.setSets(cursor.getInt(1));
+//                elem.setReps(cursor.getString(2));
+//                elem.setName(cursor.getString(3));
+//                elem.setDescription(cursor.getString(4));
+//                elem.setImageID(cursor.getInt(5));
+//                // Adding to list
+//                exerciseList.add(elem);
+//            } while (cursor.moveToNext());
+//        }
+//
+//        // return  list
+//        return exerciseList;
+//    }
+
+
 
 
 
@@ -180,7 +288,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 
 
 
-}
+
 //    public ArrayList<Integer> getWorkoutExercises(int WorkoutID) {
 //        String selectQuery = "SELECT * FROM "+ WORKOUTEXERCISE_TABLE +" WHERE "+ WORKOUT_ID +"="+WorkoutID+"";
 //        SQLiteDatabase db = this.getWritableDatabase();

@@ -3,7 +3,9 @@ package project.martin.bepeakedprojekt.Exercises.Exercise;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,6 +27,9 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
+import java.util.ArrayList;
+
+import project.martin.bepeakedprojekt.Exercises.ResultElement;
 import project.martin.bepeakedprojekt.Misc.NumberPickerFormatter;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.SingletonApplications;
@@ -40,9 +45,11 @@ public class Result_frag extends Fragment implements View.OnClickListener {
     private LineGraphSeries<DataPoint> series;
     private GraphView graphView;
     private int i = 0;
+    private SharedPreferences prefs;
     Toast toast;
     int sets;
     int currentSet = 0;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +59,9 @@ public class Result_frag extends Fragment implements View.OnClickListener {
 
         FloatingActionButton fab = (FloatingActionButton) rod.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new AddListener(this.getContext()));
+
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         table = (TableLayout) rod.findViewById(R.id.res_tableresult);
 
@@ -82,6 +92,14 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         graphView.getViewport().setScalable(true);
         graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graphView.getGridLabelRenderer().setPadding(30);
+
+        ArrayList<ResultElement> resultList = SingletonApplications.DBcom.getResults(SingletonApplications.currentExerciseID);
+        for (int i = 0; i<resultList.size(); i++) {
+//            int t = resultList.get(i).getResultID();
+//            System.out.println("HER SKETE NOGET! i = "+i+", t = "+t);
+            table.addView(createRow(resultList.get(i).getWeight()+" "+Settings.getUnit(Settings.USTAG_WEIGHT), resultList.get(i).getReps()+"", resultList.get(i).getOneRM()+" "+Settings.getUnit(Settings.USTAG_WEIGHT)),1);
+
+        }
 
         return rod;
     }
@@ -210,6 +228,9 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                     });
 
                     table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit),1);
+                    prefs.edit().putInt("idafresult", prefs.getInt("idafresult", 1) + 1).commit();
+                    SingletonApplications.DBcom.addExerciseResult(prefs.getInt("idafresult", 1), SingletonApplications.currentExerciseID, weight, reps, oneRM);
+
 
                     if (table.getChildCount() > 11)
                         table.getChildAt(11).setVisibility(View.GONE);
