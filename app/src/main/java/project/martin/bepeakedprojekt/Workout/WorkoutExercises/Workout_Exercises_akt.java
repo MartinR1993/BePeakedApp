@@ -245,8 +245,10 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         getMenuInflater().inflate(R.menu.add_edit_menu, menu);
 
         if (workout.isFromServer()) {
-        MenuItem add = menu.findItem(R.id.add);
-        add.setVisible(false);
+            MenuItem add = menu.findItem(R.id.add);
+            add.setVisible(false);
+            MenuItem edit = menu.findItem(R.id.edit);
+            edit.setVisible(false);
         }
 
         return true;
