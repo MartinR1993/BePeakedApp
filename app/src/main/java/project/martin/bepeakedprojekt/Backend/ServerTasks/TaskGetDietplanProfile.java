@@ -37,10 +37,11 @@ public class TaskGetDietplanProfile extends ServerTask
             jsonObj.put(TAG_ARGS, argsJA);
 
             result = new String[4];
-            result[0] = "" + sendRequest(jsonObj.toString()).getDouble("dp_protein");
-            result[1] = "" + sendRequest(jsonObj.toString()).getDouble("dp_calories");
-            result[2] = "" + sendRequest(jsonObj.toString()).getDouble("dp_culhydrates");
-            result[3] = "" + sendRequest(jsonObj.toString()).getDouble("dp_fat");
+            JSONObject reply = sendRequest(jsonObj.toString());
+            result[0] = "" + reply.getDouble("dp_protein");
+            result[1] = "" + reply.getDouble("dp_calories");
+            result[2] = "" + reply.getDouble("dp_culhydrates");
+            result[3] = "" + reply.getDouble("dp_fat");
             return result;
         } catch (JSONException | IOException e) {
             e.printStackTrace();

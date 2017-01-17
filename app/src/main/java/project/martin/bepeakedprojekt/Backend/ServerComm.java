@@ -10,6 +10,7 @@ import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskCreateUser;
 import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskGetDietplanProfile;
 import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskGetExercisesForWorkout;
 import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskGetSalt;
+import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskGetUserProfile;
 import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskGetUserType;
 import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskGetWorkoutList;
 import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskLogin;
@@ -17,6 +18,7 @@ import project.martin.bepeakedprojekt.Diet_Plan.DietPlanMenu_akt;
 import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.Settings.ActivationKey_akt;
+import project.martin.bepeakedprojekt.Settings.User_akt;
 import project.martin.bepeakedprojekt.User.CreateUser_akt;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
 import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
@@ -58,6 +60,10 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 
     public void createUser(CreateUser_akt createUserAct, String firstName, String lastName, String nickName, String passHash, String salt, String email) {
         new ServerComm(new TaskCreateUser(host, port)).execute(firstName, lastName, nickName, passHash, salt, email);
+    }
+
+    public void getUserProfile(User_akt userProfile, int userID, String sessionID) {
+        new ServerComm(new TaskGetUserProfile(userProfile, host, port)).execute("" + userID, sessionID);
     }
 
     public void getDieatplanProfile(DietPlanMenu_akt dietplanMenu, int userID, String sessionID) {

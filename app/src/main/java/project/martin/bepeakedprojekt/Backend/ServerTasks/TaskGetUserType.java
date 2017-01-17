@@ -37,8 +37,7 @@ public class TaskGetUserType extends ServerTask
             jsonObj.put(TAG_ARGS, argsJA);
 
             result = new String[1];
-            JSONObject reply = sendRequest(jsonObj.toString());
-            result[0] = "" + reply.getInt(TAG_USER_TYPE);
+            result[0] = "" + sendRequest(jsonObj.toString()).getInt(TAG_USER_TYPE);
             return result;
         } catch (JSONException | IOException e) {
             e.printStackTrace();

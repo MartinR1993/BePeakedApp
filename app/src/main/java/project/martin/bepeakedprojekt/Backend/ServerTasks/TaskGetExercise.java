@@ -34,10 +34,11 @@ public class TaskGetExercise extends ServerTask
             jsonObj.put(TAG_ARGS, argsJA);
 
             result = new String[4];
-            result[0] = "" + sendRequest(jsonObj.toString()).getInt("id");
-            result[1] = sendRequest(jsonObj.toString()).getString("name");
-            result[2] = sendRequest(jsonObj.toString()).getString("description");
-            result[3] = "" + sendRequest(jsonObj.toString()).getInt("imageID");
+            JSONObject reply = sendRequest(jsonObj.toString());
+            result[0] = "" + reply.getInt("id");
+            result[1] = reply.getString("name");
+            result[2] = reply.getString("description");
+            result[3] = "" + reply.getInt("imageID");
             return result;
         } catch (JSONException | IOException e) {
             e.printStackTrace();
