@@ -64,14 +64,10 @@ public class ExerciseMenu_akt extends AppCompatActivity {
         if(item.getItemId() == android.R.id.home){
             onBackPressed();
         }
-        else if(item.getItemId() == R.id.add) {
-            Toast.makeText(this, "Denne funktion tilføjer en øvelse", Toast.LENGTH_LONG).show();
-        }
             return super.onOptionsItemSelected(item);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.addmenu, menu);
         return true;
     }
 

@@ -133,5 +133,6 @@
     <string name="create_user_created">Bruger oprettet</string>
     <string name="create_user_error_password">Dine password stemmer ikke overens</string>
     <string name="recipe_text">Proteinpulver: 38 g\nHavregryn: 94 g\nFråsne bær: 151 g\nÆg: 94 g\nTotal: 377 g</string>
+    <string name="recipe_protiensmoothie">1. Bland skyr, isterninger, havregryn, blåbær og proteinpulver i den beskrevne mængde og blend det i 2-3 minutter.\n \n2. Ægget kan du spise hårdkogt eller som spejlæg. Spejlæg: Slå æggene ud på en opvarmet pande og lad dem stege 3-5 minutter, afhængig af hvordan blommen foretrækkes. Hold blusset på middel varme.</string>
 
 </resources>
