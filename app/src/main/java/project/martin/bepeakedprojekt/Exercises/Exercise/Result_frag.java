@@ -48,7 +48,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
     private SharedPreferences prefs;
     Toast toast;
     int sets;
-    int currentSet = 0;
+    int currentSet = 1;
 
 
     @Override
@@ -60,7 +60,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         FloatingActionButton fab = (FloatingActionButton) rod.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new AddListener(this.getContext()));
 
-
+        System.out.println("currentSet " + currentSet);
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         table = (TableLayout) rod.findViewById(R.id.res_tableresult);
@@ -113,7 +113,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         ImageView edit = (ImageView) row.findViewById(R.id.resta_button);
         edit.setOnClickListener(this);
 
-        currentSet++;
+
 
         if (currentSet == sets){
             Toast.makeText(getActivity(), "Du har lavet " + currentSet +" sæt", Toast.LENGTH_LONG).show();
@@ -131,7 +131,9 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                     Intent j = new Intent(getContext(), Exercise_akt.class);
                     j.putExtra("exercise", SingletonApplications.data.get(i+1));
                     j.putExtra("sets", SingletonApplications.data.get(i+1).getSets());
+
                     getContext().startActivity(j);
+
 
                     i = SingletonApplications.data.size();
                 }
@@ -235,6 +237,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                     if (table.getChildCount() > 11)
                         table.getChildAt(11).setVisibility(View.GONE);
 
+                    currentSet++;
                     popup.cancel();
                 }
             });
