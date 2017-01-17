@@ -105,7 +105,8 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
     public void addExercises(ArrayList<ExerciseElement> exerciseList) {
 
-        this.exerciseList.addAll(exerciseList);
+        System.out.println("Workout received=" + exerciseList.toString());
+        this.exerciseList =exerciseList;
         listView.setAdapter(new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data));
     }
 
