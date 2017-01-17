@@ -1,6 +1,7 @@
 package project.martin.bepeakedprojekt.Diet_Plan;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -35,6 +36,7 @@ public class DietPlanMenu_akt extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_diet_plan_menu);
         setTitle(R.string.dietPlanMenu_banner);
         // add data for displaying in expandable list view

@@ -2,6 +2,7 @@ package project.martin.bepeakedprojekt.Settings;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class ActivationKey_akt extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_activationkey_akt);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Activation Key");

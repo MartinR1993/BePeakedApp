@@ -1,6 +1,7 @@
 package project.martin.bepeakedprojekt.Workout.WorkoutExercises;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -58,6 +59,7 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_workout_exercises_menu);
         workout = (WorkoutElement) getIntent().getSerializableExtra("workout");
         SingletonApplications.workout = workout;

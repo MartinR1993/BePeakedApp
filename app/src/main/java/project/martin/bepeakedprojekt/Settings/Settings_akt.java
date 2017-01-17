@@ -2,6 +2,7 @@ package project.martin.bepeakedprojekt.Settings;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,7 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         ListView listView;
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_settings_akt);
         setTitle(getString(R.string.settingstitle));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -1,6 +1,7 @@
 package project.martin.bepeakedprojekt.Workout;
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
@@ -40,6 +41,7 @@ public class WorkoutMenu_akt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_workout_menu);
         setTitle(R.string.workoutMenu_banner);
         SingletonApplications.changepic = false;

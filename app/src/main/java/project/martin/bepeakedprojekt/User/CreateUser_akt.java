@@ -1,6 +1,7 @@
 package project.martin.bepeakedprojekt.User;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,6 +32,7 @@ public class CreateUser_akt extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_create_user_akt);
         setTitle(getString(R.string.create_user_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

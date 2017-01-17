@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.Exercises;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -25,6 +26,7 @@ public class ExerciseMenu_akt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_exercise_menu);
         setTitle(R.string.exerciseMenu_banner);
 

@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.Diet_Plan.Recipe;
 
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ public class Recipe_akt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_recipe_akt);
 
         //Hente data fra forrige aktivitet
