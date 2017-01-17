@@ -75,8 +75,10 @@ public class WorkoutListAdapter extends BaseAdapter {
                         if (workoutList.get(position).getWorkoutID() == SingletonApplications.DBcom.getAllWorkouts().get(i).getWorkoutID())
 
                         SingletonApplications.DBcom.removeWorkout(workoutList.get(position).getWorkoutID());
+
+                        workoutList.remove(position);
+                        i = SingletonApplications.DBcom.getAllWorkouts().size();
                     }
-                            workoutList.remove(position);
 
                             notifyDataSetChanged();
                 }
