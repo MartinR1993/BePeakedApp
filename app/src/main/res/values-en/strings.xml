@@ -28,6 +28,8 @@
 
     <!--Øvelse-->
     <string name="exerciseResult_banner">Results</string>
+    <string name="exerciseResult_tableWeightkg">Kilogram</string>
+    <string name="exerciseResult_tableWeightgr">Gram</string>
     <string name="exerciseResult_tableWeight">Weight</string>
     <string name="exerciseResult_tableReps">Reps</string>
     <string name="exerciseResult_table1RM">1-RM</string>
@@ -93,6 +95,8 @@
     <string name="settings_user_protein">Protein: </string>
     <string name="settings_user_fat">Fat: </string>
     <string name="settings_changepassword">Change password</string>
+    <string name="settings_changeEmail">Change email</string>
+    <string name="settings_changeUsername">Change username</string>
 
     <!--Sprog-->
     <string name="language_title">Language</string>
@@ -129,5 +133,6 @@
     <string name="create_user_created">User created</string>
     <string name="create_user_error_password">Your passwords doesn\'t match</string>
     <string name="recipe_text">Proteinpowder: 38 g\nOat meal: 94 g\nFrozen berries: 151 g\nEgg: 94 g\nTotal: 377 g</string>
+
 
 </resources>

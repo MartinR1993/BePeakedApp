@@ -14,6 +14,8 @@ import project.martin.bepeakedprojekt.R;
 public class User_akt extends AppCompatActivity implements View.OnClickListener{
 
     private TextView skiftKode;
+    private TextView skiftBrugernavn;
+    private TextView skiftEmail;
 
 
     @Override
@@ -27,6 +29,12 @@ public class User_akt extends AppCompatActivity implements View.OnClickListener{
 
         skiftKode = (TextView) findViewById(R.id.changepassword);
         skiftKode.setOnClickListener(this);
+
+        skiftBrugernavn = (TextView) findViewById(R.id.changeUsername);
+        skiftBrugernavn.setOnClickListener(this);
+
+        skiftEmail = (TextView) findViewById(R.id.changeEmail);
+        skiftEmail.setOnClickListener(this);
 
     }
 
@@ -47,7 +55,14 @@ public class User_akt extends AppCompatActivity implements View.OnClickListener{
             //TODO
             //Databasekald
             // implementere en metode der skifter adganskode, og åbner et popup vindue hvori alt dette kommer til at foregå
-            Toast.makeText(getApplicationContext(), "Mangler kode hertil", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Mangler skift kode kode", Toast.LENGTH_LONG).show();
+
+        }
+        else if (v == skiftBrugernavn) {
+            Toast.makeText(getApplicationContext(), "Mangler skift brugernavn kode", Toast.LENGTH_LONG).show();
+        }
+        else if (v == skiftEmail) {
+            Toast.makeText(getApplicationContext(), "Mangler skift email kode", Toast.LENGTH_LONG).show();
         }
     }
 }
