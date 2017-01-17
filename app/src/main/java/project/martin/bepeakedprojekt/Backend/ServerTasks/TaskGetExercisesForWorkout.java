@@ -34,13 +34,13 @@ public class TaskGetExercisesForWorkout extends ServerTask
             jsonObj.put(TAG_COMMAND, TAG_CMD_GET);
             jsonObj.put(TAG_CMD_SESSION_ID, params[2]);
             JSONArray argsJA = new JSONArray();
-            argsJA.put(0, TAG_EXERCISE);
+            argsJA.put(0, TAG_EXERCISELIST);
             argsJA.put(1, Integer.parseInt(params[0]));
             argsJA.put(2, Integer.parseInt(params[1]));
             jsonObj.put(TAG_ARGS, argsJA);
 
             result = new String[1];
-            result[0] = sendRequest(jsonObj.toString()).getString(TAG_EXERCISE);
+            result[0] = sendRequest(jsonObj.toString()).getString(TAG_EXERCISELIST);
             return result;
         } catch (JSONException | IOException e) {
             e.printStackTrace();

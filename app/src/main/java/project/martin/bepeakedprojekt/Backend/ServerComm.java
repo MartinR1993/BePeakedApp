@@ -29,7 +29,6 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
 {
     private String host;
     private int port;
-
     private ServerTask serverTask;
 
     public ServerComm(String host, int port) {

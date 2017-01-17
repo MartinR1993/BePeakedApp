@@ -29,7 +29,8 @@ public class ServerTags {
     protected static final String TAG_PASSWORD = "password";
     protected static final String TAG_ACTIVATIONKEY = "activationkey";
     protected static final String TAG_SALT = "salt";
-    protected static final String TAG_EXERCISE = "exercise";
+    protected static final String TAG_EXERCISELIST = "exercise";
+    protected static final String TAG_EXERCISE = "exerciseSingle";
     protected static final String TAG_ERROR = "error";
     protected static final String TAG_ERROR_NONE = "none";
 }
