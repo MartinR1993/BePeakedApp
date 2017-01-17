@@ -128,5 +128,6 @@
     <string name="create_user_username_edit">Type in Username...</string>
     <string name="create_user_created">User created</string>
     <string name="create_user_error_password">Your passwords doesn\'t match</string>
+    <string name="recipe_text">Proteinpowder: 38 g\nOat meal: 94 g\nFrozen berries: 151 g\nEgg: 94 g\nTotal: 377 g</string>
 
 </resources>

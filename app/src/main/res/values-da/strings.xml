@@ -128,5 +128,6 @@
     <string name="create_user_username_edit">Indtast brugernavn...</string>
     <string name="create_user_created">Bruger oprettet</string>
     <string name="create_user_error_password">Dine password stemmer ikke overens</string>
+    <string name="recipe_text">Proteinpulver: 38 g\nHavregryn: 94 g\nFråsne bær: 151 g\nÆg: 94 g\nTotal: 377 g</string>
 
 </resources>
