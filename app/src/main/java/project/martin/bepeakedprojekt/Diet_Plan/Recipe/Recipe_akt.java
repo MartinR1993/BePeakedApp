@@ -30,9 +30,7 @@ public class Recipe_akt extends AppCompatActivity {
         //Lav det for diverse opskrifter
         image.setImageResource(R.drawable.proteinsmothie);
         descriptionView = (TextView) findViewById(R.id.rc_description);
-        descriptionView.setText("1. Bland skyr, isterninger, havregryn, blåbær og proteinpulver i den beskrevne mængde og blend det i 2-3 minutter. " +
-                "\n2. Ægget kan du spise hårdkogt eller som spejlæg. Spejlæg: Slå æggene ud på en opvarmet pande og lad dem stege 3-5 minutter, " +
-                "afhængig af hvordan blommen foretrækkes. Hold blusset på middel varme.");
+        descriptionView.setText(getString(R.string.recipe_protiensmoothie));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
