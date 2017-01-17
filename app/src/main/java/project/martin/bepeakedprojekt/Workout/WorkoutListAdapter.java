@@ -68,7 +68,7 @@ public class WorkoutListAdapter extends BaseAdapter {
             public void onClick(View v) {
 
 
-                if (SingletonApplications.changepic == true) {
+                if (SingletonApplications.changepic == true && !workoutelement.isFromServer()) {
 
                     for ( int i = 0 ; i < SingletonApplications.DBcom.getAllWorkouts().size() ; i++) {
 
