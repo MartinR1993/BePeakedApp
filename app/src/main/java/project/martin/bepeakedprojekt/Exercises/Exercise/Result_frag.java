@@ -73,7 +73,6 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graphView.getGridLabelRenderer().setPadding(30);
 
-
         return rod;
     }
 
@@ -163,7 +162,6 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                     graphView.getViewport().setMinX(0);
                     graphView.getViewport().setMaxX(i);
 
-
                     // udskriver højeste måling
                     //System.out.println(series.getHighestValueY());
 
@@ -180,11 +178,11 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                         public void onTap(Series series, DataPointInterface dataPoint) {
                             if (toast != null)
                             toast.cancel();
-
-                            toast = Toast.makeText(getActivity(), dataPoint.getY() + " 1-RM", Toast.LENGTH_LONG);
+                            double afrunding =  ((int) (100 * dataPoint.getY() + 0.5)) / 100.0;
+                            System.out.println(afrunding);
+                            toast = Toast.makeText(getActivity(), afrunding + " - 1-RM", Toast.LENGTH_LONG);
 
                             toast.show();
-
                         }
                     });
 
@@ -201,9 +199,5 @@ public class Result_frag extends Fragment implements View.OnClickListener {
             popup.setView(layout);
             popup.show();
         }
-
-
-
     }
-
 }
