@@ -160,16 +160,6 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                     graphView.getViewport().setMinX(0);
                     graphView.getViewport().setMaxX(i);
 
-                    // udskriver højeste måling
-                    //System.out.println(series.getHighestValueY());
-
-//                    får alle punkter skrevet ud
-//                    Iterator<DataPoint> x = series.getValues(0,graphView.getSeries().size());
-//                    DataPoint p;
-//                    while(x.hasNext()) {
-//                        p = x.next();
-//                        System.out.println(p);
-//                    }
 
                     series.setOnDataPointTapListener(new OnDataPointTapListener() {
                         @Override
