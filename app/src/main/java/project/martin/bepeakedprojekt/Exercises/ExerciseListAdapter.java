@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Exercises.Exercise.Exercise_akt;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.SingletonApplications;
 
 /**
  * Created by Martin on 14-11-2016.
@@ -74,6 +75,7 @@ public class ExerciseListAdapter extends BaseAdapter {
                 Intent i = new Intent(akt, Exercise_akt.class);
                 i.putExtra("exercise", exerciseList.get(position));
                 akt.startActivity(i);
+                SingletonApplications.currentExerciseID = exerciseList.get(position).getExerciseID();
             }
         });
         return rowView;

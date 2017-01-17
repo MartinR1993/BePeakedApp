@@ -51,6 +51,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
     int currentSet = 1;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rod = inflater.inflate(R.layout.frag_exercise_results, container, false);
@@ -69,6 +70,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
 
         sets = intent.getIntExtra("sets",1000);
 
+        
 
         //TODO: This is just dummy data.
         TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
@@ -114,31 +116,33 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         edit.setOnClickListener(this);
 
 
-
-        if (currentSet == sets){
-            Toast.makeText(getActivity(), "Du har lavet " + currentSet +" sæt", Toast.LENGTH_LONG).show();
-
-            for (int i = 0; i < SingletonApplications.data.size(); i++) {
-                if (SingletonApplications.currentExerciseID == SingletonApplications.data.get(i).getExerciseID() && i != SingletonApplications.data.size()-1) {
-
-
-                    System.out.println(SingletonApplications.data.get(i).getName());
-
-                    System.out.println(SingletonApplications.data.get(i+1).getName());
-
-                    SingletonApplications.currentExerciseID = SingletonApplications.data.get(i+1).getExerciseID();
-
-                    Intent j = new Intent(getContext(), Exercise_akt.class);
-                    j.putExtra("exercise", SingletonApplications.data.get(i+1));
-                    j.putExtra("sets", SingletonApplications.data.get(i+1).getSets());
-
-                    getContext().startActivity(j);
-
-
-                    i = SingletonApplications.data.size();
-                }
-            }
-        }
+//
+//        if (currentSet == sets){
+//            Toast.makeText(getActivity(), "Du har lavet " + currentSet +" sæt", Toast.LENGTH_LONG).show();
+//
+//            for (int i = 0; i < SingletonApplications.data.size(); i++) {
+//                if (SingletonApplications.currentExerciseID == SingletonApplications.data.get(i).getExerciseID() && i != SingletonApplications.data.size()-1) {
+//
+//
+//                    System.out.println(SingletonApplications.data.get(i).getName());
+//
+//                    System.out.println(SingletonApplications.data.get(i+1).getName());
+//
+//
+//
+//                    SingletonApplications.currentExerciseID = SingletonApplications.data.get(i+1).getExerciseID();
+//
+//                    Intent j = new Intent(getContext(), Exercise_akt.class);
+//                    j.putExtra("exercise", SingletonApplications.data.get(i+1));
+//                    j.putExtra("sets", SingletonApplications.data.get(i+1).getSets());
+//                    getActivity().finish();
+//                    getContext().startActivity(j);
+//
+//
+//                    i = SingletonApplications.data.size();
+//                }
+//            }
+//        }
 
 
         return row;
@@ -233,6 +237,33 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                     prefs.edit().putInt("idafresult", prefs.getInt("idafresult", 1) + 1).commit();
                     SingletonApplications.DBcom.addExerciseResult(prefs.getInt("idafresult", 1), SingletonApplications.currentExerciseID, weight, reps, oneRM);
 
+
+                    if (currentSet == sets){
+                        Toast.makeText(getActivity(), "Du har lavet " + currentSet +" sæt", Toast.LENGTH_LONG).show();
+
+                        for (int i = 0; i < SingletonApplications.data.size(); i++) {
+                            if (SingletonApplications.currentExerciseID == SingletonApplications.data.get(i).getExerciseID() && i != SingletonApplications.data.size()-1) {
+
+
+                                System.out.println(SingletonApplications.data.get(i).getName());
+
+                                System.out.println(SingletonApplications.data.get(i+1).getName());
+
+
+
+                                SingletonApplications.currentExerciseID = SingletonApplications.data.get(i+1).getExerciseID();
+
+                                Intent j = new Intent(getContext(), Exercise_akt.class);
+                                j.putExtra("exercise", SingletonApplications.data.get(i+1));
+                                j.putExtra("sets", SingletonApplications.data.get(i+1).getSets());
+                                getActivity().finish();
+                                getContext().startActivity(j);
+
+
+                                i = SingletonApplications.data.size();
+                            }
+                        }
+                    }
 
                     if (table.getChildCount() > 11)
                         table.getChildAt(11).setVisibility(View.GONE);
