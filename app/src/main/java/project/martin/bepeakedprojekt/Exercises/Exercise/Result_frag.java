@@ -127,8 +127,11 @@ public class Result_frag extends Fragment implements View.OnClickListener {
             npWeightkg.setMinValue(1);
             npWeightkg.setMaxValue(250);
 
-            npWeightgr.setMinValue(1);
-            npWeightgr.setMaxValue(9);
+
+            final int grIncrement = 250;
+            
+            npWeightgr.setMinValue(0);
+            npWeightgr.setMaxValue(750/grIncrement);
 
             ((TextView) popupContent.findViewById(R.id.popres_repsTitle)).setText(R.string.exerciseResult_tableReps);
             final NumberPicker npReps = (NumberPicker) popupContent.findViewById(R.id.popres_repsSpin);
@@ -144,7 +147,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                 public void onClick(View v) {
                     final String unit = Settings.getUnit(Settings.USTAG_WEIGHT);
 
-                    double weight = (npWeightkg.getValue()+npWeightgr.getValue()/10.0) * increment;
+                    double weight = (npWeightkg.getValue()+npWeightgr.getValue()) * increment;
                     int reps = npReps.getValue();
                     //Lombardi
                     double oneRM = weight * Math.pow(reps, 0.1);
@@ -178,7 +181,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                             if (toast != null)
                             toast.cancel();
 
-                            toast = Toast.makeText(getActivity(), dataPoint.getY() + " 1-RM", Toast.LENGTH_SHORT);
+                            toast = Toast.makeText(getActivity(), dataPoint.getY() + " 1-RM", Toast.LENGTH_LONG);
 
                             toast.show();
 
