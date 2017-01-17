@@ -104,8 +104,10 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     }
 
     public boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == android.R.id.home)
+        if (item.getItemId() == android.R.id.home){
+            SingletonApplications.changepic = false;
             onBackPressed();
+        }
 
         else if(item.getItemId() == R.id.edit){
 

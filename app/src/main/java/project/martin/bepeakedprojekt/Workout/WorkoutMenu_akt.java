@@ -65,6 +65,7 @@ public class WorkoutMenu_akt extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home: {
+                SingletonApplications.changepic = false;
                 onBackPressed();
                 break;
 
