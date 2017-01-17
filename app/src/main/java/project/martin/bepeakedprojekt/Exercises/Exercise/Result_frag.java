@@ -24,6 +24,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
+import project.martin.bepeakedprojekt.Misc.NumberPickerFormatter;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.Settings;
 
@@ -114,23 +115,20 @@ public class Result_frag extends Fragment implements View.OnClickListener {
 
             final LinearLayout popupContent = (LinearLayout) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.popup_result, null);
 
+            final int increment = 250;
+
             ((TextView) popupContent.findViewById(R.id.popres_weightkgTitle)).setText(R.string.exerciseResult_tableWeightkg);
-            ((TextView) popupContent.findViewById(R.id.popres_weightgrTitle)).setText(R.string.exerciseResult_tableWeightgr);
-
             final NumberPicker npWeightkg = (NumberPicker) popupContent.findViewById(R.id.popres_weightkgSpin);
-
-            final NumberPicker npWeightgr = (NumberPicker) popupContent.findViewById(R.id.popres_weightgrSpin);
-
-            final int increment = 1;
-
-            npWeightkg.setMinValue(1);
+            npWeightkg.setMinValue(0);
             npWeightkg.setMaxValue(250);
 
-
-            final int grIncrement = 250;
-            
+            ((TextView) popupContent.findViewById(R.id.popres_weightgrTitle)).setText(R.string.exerciseResult_tableWeightgr);
+            final NumberPicker npWeightgr = (NumberPicker) popupContent.findViewById(R.id.popres_weightgrSpin);
             npWeightgr.setMinValue(0);
-            npWeightgr.setMaxValue(750/grIncrement);
+            npWeightgr.setMaxValue(750/increment);
+            npWeightgr.setFormatter(new NumberPickerFormatter(increment));
+
+
 
             ((TextView) popupContent.findViewById(R.id.popres_repsTitle)).setText(R.string.exerciseResult_tableReps);
             final NumberPicker npReps = (NumberPicker) popupContent.findViewById(R.id.popres_repsSpin);
@@ -146,7 +144,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                 public void onClick(View v) {
                     final String unit = Settings.getUnit(Settings.USTAG_WEIGHT);
 
-                    double weight = (npWeightkg.getValue()+npWeightgr.getValue()) * increment;
+                    double weight = npWeightkg.getValue()+(npWeightgr.getValue()*increment/1000.0);
                     int reps = npReps.getValue();
                     //Lombardi
                     double oneRM = weight * Math.pow(reps, 0.1);
