@@ -57,7 +57,7 @@ public class WorkoutListAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         final View rowView;
         rowView = inflater.inflate(R.layout.list_workout_element, null);
-        WorkoutElement workoutelement = workoutList.get(position);
+        final WorkoutElement workoutelement = workoutList.get(position);
 
         WorkoutTitle = (TextView) rowView.findViewById(R.id.wle_WorkoutTitle);
         Exercises = (TextView) rowView.findViewById(R.id.wle_Exercises);
@@ -72,7 +72,7 @@ public class WorkoutListAdapter extends BaseAdapter {
 
                     for ( int i = 0 ; i < SingletonApplications.DBcom.getAllWorkouts().size() ; i++) {
 
-                        if (workoutList.get(position).getWorkoutID() == SingletonApplications.DBcom.getAllWorkouts().get(i).getWorkoutID())
+                        if (workoutList.get(position).getWorkoutID() == SingletonApplications.DBcom.getAllWorkouts().get(i).getWorkoutID() && !workoutelement.isFromServer())
 
                         SingletonApplications.DBcom.removeWorkout(workoutList.get(position).getWorkoutID());
 
@@ -91,7 +91,7 @@ public class WorkoutListAdapter extends BaseAdapter {
         WorkoutTitle.setText(workoutTitle);
 
 
-        if (SingletonApplications.changepic == true){
+        if (SingletonApplications.changepic == true && !workoutelement.isFromServer()){
             image.setImageResource(R.drawable.ic_delete);
         }
 

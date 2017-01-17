@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.GripView;
@@ -71,19 +72,21 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         if(workout.isFromServer()) {
             ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
             server.getExercisesByWorkoutID(this, workout.getWorkoutID(), User.getUserID(), User.getSessionID());
+        }else {
+
+            DBCom = SingletonApplications.DBcom;
+
+
+            ArrayList<Integer> exerciseArray = DBCom.getWorkoutExercises(workout.getWorkoutID());
+
+            for (int id : exerciseArray) {
+                exerciseList.add(DummyData.getExercise(id));
+                exerciseNames.add(DummyData.getExercise(id).getName());
+            }
+
+            SingletonApplications.data = exerciseList;
+            SingletonApplications.dataNames = exerciseNames;
         }
-        DBCom = SingletonApplications.DBcom;
-
-
-        ArrayList<Integer> exerciseArray = DBCom.getWorkoutExercises(workout.getWorkoutID());
-
-        for (int id:exerciseArray) {
-            exerciseList.add(DummyData.getExercise(id));
-            exerciseNames.add(DummyData.getExercise(id).getName());
-        }
-
-        SingletonApplications.data = exerciseList;
-        SingletonApplications.dataNames = exerciseNames;
 
         listView = (DynamicListView) findViewById(R.id.dynamiclistview);
         gripView = (GripView) findViewById(R.id.gripView);
@@ -106,7 +109,16 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     public void addExercises(ArrayList<ExerciseElement> exerciseList) {
 
         System.out.println("Workout received=" + exerciseList.toString());
-        this.exerciseList =exerciseList;
+        SingletonApplications.data =exerciseList;
+
+        SingletonApplications.dataNames.clear();
+
+        for (ExerciseElement element:exerciseList) {
+            SingletonApplications.dataNames.add(element.getName());
+        }
+
+
+
         listView.setAdapter(new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data));
     }
 
@@ -139,15 +151,16 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         }
         else if (item.getItemId() == R.id.OK){
             SingletonApplications.changepic = false;
+
             listView.setAdapter(new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data));
 
+            if (!workout.isFromServer()) {
+                DBCom.removeAllWorkoutExercises(workout.getWorkoutID());
 
-            DBCom.removeAllWorkoutExercises(workout.getWorkoutID());
-
-            for (ExerciseElement element: SingletonApplications.data) {
-                DBCom.addWorkoutExercise(workout.getWorkoutID(),element.getExerciseID());
+                for (ExerciseElement element : SingletonApplications.data) {
+                    DBCom.addWorkoutExercise(workout.getWorkoutID(), element.getExerciseID());
+                }
             }
-
 
             MenuItem ok = menu.findItem(R.id.OK);
             ok.setVisible(false);

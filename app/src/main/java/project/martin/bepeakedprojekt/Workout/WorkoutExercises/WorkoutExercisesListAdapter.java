@@ -78,8 +78,6 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
             @Override
             public void onClick(View v) {
 
-
-
                 System.out.println(SingletonApplications.dataNames.get(position) +"tester " + position);
 
                 if (SingletonApplications.changepic == true) {
@@ -131,8 +129,6 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
             }
         }
 
-
-
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,29 +150,6 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
             }
         });
 
-
-        view.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-// denne kode virker ikke på sidste element men har ellers ikke design problemer
-//                TextView test =(TextView) view.findViewById(R.id.ele_ExerciseTitle);
-//
-//                String tesa = (String) test.getText();
-//
-//                for (int i = 0; i < exerciseListNames.size(); i++) {
-//
-//                    if (tesa == exerciseListNames.get(i)) {
-//                        exerciseElements.remove(i);
-//
-//                        exerciseListNames.remove(i);
-//
-//                        remove(position);
-//                    }
-//                }
-//
-                return false;
-            }
-        });
 
         return view;
     }
