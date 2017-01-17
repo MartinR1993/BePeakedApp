@@ -62,8 +62,9 @@ public class TaskGetExercisesForWorkout extends ServerTask
                 String name = exerciseJSON.getString("name");
                 String description = exerciseJSON.getString("description");
                 int imageID = exerciseJSON.getInt("imageID");
+                String reps = exerciseJSON.getString("reps");
 
-                exerciseList.add(new ExerciseElement(id, sets, null, name, description, imageID));
+                exerciseList.add(new ExerciseElement(id, sets, reps, name, description, imageID));
             }
 
             workoutMenu.addExercises(exerciseList);
