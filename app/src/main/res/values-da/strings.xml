@@ -15,6 +15,7 @@
     <string name="mainMenu_buttonWorkoutMenu">Træningsprogrammer</string>
     <string name="mainMenu_buttonExerciseLibrary">Øvelser</string>
     <string name="mainMenu_buttonDietPlan">Kostplan</string>
+    <string name="main_menu_kunde">Du skal være kunde, for at benytte denne funktion</string>
     <string name="toolbar_elAbout">Om</string>
     <string name="toolbar_elLogOut">Log Af</string>
 

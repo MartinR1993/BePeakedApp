@@ -49,7 +49,7 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
         dietplanButton.setAlpha(0.5F);
         dietplanButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Du skal være kunde for at bruge denne funktion makker", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.main_menu_kunde, Toast.LENGTH_LONG).show();
             }
 
         });
