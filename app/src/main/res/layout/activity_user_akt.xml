@@ -58,13 +58,6 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
-                android:text="@string/settings_user_kostplanID"
-                android:layout_width="85dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView12"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
                 android:text="@string/settings_user_calories"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"

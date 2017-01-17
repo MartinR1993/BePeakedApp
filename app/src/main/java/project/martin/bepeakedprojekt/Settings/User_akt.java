@@ -17,6 +17,8 @@ public class User_akt extends AppCompatActivity implements View.OnClickListener{
     private TextView skiftBrugernavn;
     private TextView skiftEmail;
 
+    private TextView Username, Height, Weight, Age, Calories, Culhydrates, Protein, Fat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,23 @@ public class User_akt extends AppCompatActivity implements View.OnClickListener{
 
         skiftEmail = (TextView) findViewById(R.id.changeEmail);
         skiftEmail.setOnClickListener(this);
+
+
+        Username = (TextView) findViewById(R.id.textView5);
+
+        Height = (TextView) findViewById(R.id.textView9);
+
+        Weight = (TextView) findViewById(R.id.textView10);
+
+        Age = (TextView) findViewById(R.id.textView11);
+
+        Calories = (TextView) findViewById(R.id.textView13);
+
+        Culhydrates = (TextView) findViewById(R.id.textView14);
+
+        Protein = (TextView) findViewById(R.id.textView15);
+
+        Fat = (TextView) findViewById(R.id.textView16);
 
     }
 
