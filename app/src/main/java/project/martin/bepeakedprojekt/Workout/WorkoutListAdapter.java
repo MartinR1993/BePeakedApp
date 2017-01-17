@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.SingletonApplications;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
@@ -71,7 +70,12 @@ public class WorkoutListAdapter extends BaseAdapter {
 
                 if (SingletonApplications.changepic == true) {
 
-                            SingletonApplications.DBcom.removeWorkout(workoutList.get(position).getWorkoutID());
+                    for ( int i = 0 ; i < SingletonApplications.DBcom.getAllWorkouts().size() ; i++) {
+
+                        if (workoutList.get(position).getWorkoutID() == SingletonApplications.DBcom.getAllWorkouts().get(i).getWorkoutID())
+
+                        SingletonApplications.DBcom.removeWorkout(workoutList.get(position).getWorkoutID());
+                    }
                             workoutList.remove(position);
 
                             notifyDataSetChanged();
