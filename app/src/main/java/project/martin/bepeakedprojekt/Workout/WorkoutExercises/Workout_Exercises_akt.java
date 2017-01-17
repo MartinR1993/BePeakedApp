@@ -101,8 +101,13 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     }
 
     public void addExercises(ArrayList<ExerciseElement> exerciseList) {
-        //TODO: Tilføj øvelser hentet fra serveren til listen af øvelser.
-//        throw new UnsupportedOperationException("Method not implemented yet!");
+
+        System.out.println("Workout received=" + exerciseList.toString());
+        this.exerciseList.addAll(exerciseList);
+        for (ExerciseElement element: exerciseList) {
+            this.exerciseNames.add(element.getName());
+        }
+        listView.setAdapter(new WorkoutExercisesListAdapter(this, SingletonApplications.dataNames, SingletonApplications.data));
     }
 
     public boolean onOptionsItemSelected(final MenuItem item) {
