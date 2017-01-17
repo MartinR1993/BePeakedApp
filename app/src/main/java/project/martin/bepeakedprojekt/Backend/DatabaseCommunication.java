@@ -31,7 +31,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
     private static final String EXERCISE_ID = "ExerciseID";
 
     // ExerciseResults Table Columns names
-    private static final String EXERCISERESULTS_TABLE = "ExerciseResults";
+//    private static final String EXERCISERESULTS_TABLE = "ExerciseResults";
 //    private static final String RESULT_ID = "ResultID";
     //private static final String EXERCISE_ID = "ExerciseID";
 
@@ -71,7 +71,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         db.execSQL("drop table " + WORKOUT_TABLE);
         db.execSQL("drop table " + WORKOUTEXERCISE_TABLE);
         db.execSQL("drop table " + RESULTS_TABLE);
-        db.execSQL("drop table " + EXERCISERESULTS_TABLE);
+//        db.execSQL("drop table " + EXERCISERESULTS_TABLE);
         this.onCreate(db);
 
     }
