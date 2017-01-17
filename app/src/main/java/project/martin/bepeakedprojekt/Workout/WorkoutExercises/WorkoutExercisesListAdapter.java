@@ -80,12 +80,12 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
 
                 System.out.println(SingletonApplications.dataNames.get(position) +"tester " + position);
 
-                if (SingletonApplications.changepic == true) {
+                if (SingletonApplications.changepic == true && !SingletonApplications.workout.isFromServer()) {
 
 
                     for (int i = 0; i < exerciseListNames.size(); i++) {
 
-                        if (SingletonApplications.dataNames.get(position) == exerciseListNames.get(i)) {
+                        if (SingletonApplications.dataNames.get(position) == exerciseListNames.get(i) ) {
 
                             SingletonApplications.DBcom.removeWorkoutExercise(SingletonApplications.workout.getWorkoutID(),exerciseElements.get(i).getExerciseID());
 
@@ -103,7 +103,9 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
         GripView grip = (GripView) view.findViewById(R.id.gripView);
 
         if(SingletonApplications.changepic == true){
+            if (!SingletonApplications.workout.isFromServer())
             image.setImageResource(R.drawable.ic_delete);
+
             grip.setVisibility(View.VISIBLE);
             notifyDataSetChanged();
         }
