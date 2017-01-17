@@ -2,6 +2,7 @@ package project.martin.bepeakedprojekt.Exercises.Exercise;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ import com.jjoe64.graphview.series.Series;
 
 import project.martin.bepeakedprojekt.Misc.NumberPickerFormatter;
 import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.SingletonApplications;
 import project.martin.bepeakedprojekt.User.Settings;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -39,6 +41,8 @@ public class Result_frag extends Fragment implements View.OnClickListener {
     private GraphView graphView;
     private int i = 0;
     Toast toast;
+    int sets;
+    int currentSet = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +54,11 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         fab.setOnClickListener(new AddListener(this.getContext()));
 
         table = (TableLayout) rod.findViewById(R.id.res_tableresult);
+
+        Intent intent = getActivity().getIntent();
+
+        sets = intent.getIntExtra("sets",1000);
+
 
         //TODO: This is just dummy data.
         TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
@@ -85,6 +94,32 @@ public class Result_frag extends Fragment implements View.OnClickListener {
         ((TextView) row.findViewById(R.id.resta_col3)).setText(valRM);
         ImageView edit = (ImageView) row.findViewById(R.id.resta_button);
         edit.setOnClickListener(this);
+
+        currentSet++;
+
+        if (currentSet == sets){
+            Toast.makeText(getActivity(), "Du har lavet " + currentSet +" sæt", Toast.LENGTH_LONG).show();
+
+            for (int i = 0; i < SingletonApplications.data.size(); i++) {
+                if (SingletonApplications.currentExerciseID == SingletonApplications.data.get(i).getExerciseID() && i != SingletonApplications.data.size()-1) {
+
+
+                    System.out.println(SingletonApplications.data.get(i).getName());
+
+                    System.out.println(SingletonApplications.data.get(i+1).getName());
+
+                    SingletonApplications.currentExerciseID = SingletonApplications.data.get(i+1).getExerciseID();
+
+                    Intent j = new Intent(getContext(), Exercise_akt.class);
+                    j.putExtra("exercise", SingletonApplications.data.get(i+1));
+                    j.putExtra("sets", SingletonApplications.data.get(i+1).getSets());
+                    getContext().startActivity(j);
+
+                    i = SingletonApplications.data.size();
+                }
+            }
+        }
+
 
         return row;
     }
