@@ -53,9 +53,10 @@ public class TaskCreateUser extends ServerTask
 
     @Override
     public void onPostExecute(String... result) {
-        if(!result[0].equals(ERROR_NO_HOST)) {
-            if(result != null)
-                System.out.println("Create user errors: " + result[0]);
+        if(result != null){
+            if(result[0] != null)
+                if(!result[0].equals(ERROR_NO_HOST));
+                    System.out.println("Create user errors: " + result[0]);
         }
     }
 }
