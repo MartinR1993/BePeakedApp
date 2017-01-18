@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
+import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Settings.User_akt;
 
 import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
@@ -78,6 +79,6 @@ public class TaskGetUserProfile extends ServerTask
             userAct.setUserData(firstName, lastName, age, height, weight, prot, cal, col, fat, dpid);
         }
         else
-            showMessageDialouge(userAct, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
+            showMessageDialouge(userAct, userAct.getString(R.string.sc_tskConnError_title), userAct.getString(R.string.sc_tskConnError_msg) + BackendData.SERVER_ADRESS);
     }
 }

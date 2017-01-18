@@ -75,6 +75,6 @@ public class TaskActivateKey extends ServerTask
         if(!result[0].equals(ERROR_NO_HOST))
             activationAct.activateUser(result[0].equals(TAG_ERROR_NONE));
         else
-            showMessageDialouge(activationAct, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
+            showMessageDialouge(activationAct, activationAct.getString(R.string.sc_tskConnError_title), activationAct.getString(R.string.sc_tskConnError_msg) + BackendData.SERVER_ADRESS);
     }
 }

@@ -141,5 +141,16 @@
     <string name="create_user_created">User created</string>
     <string name="create_user_error">You need to fill in the blanks, or maybe your passwords doesn\'t match. Remember to have at least 6 characters in you password</string>
     <string name="exerciseResult_editBanner">Edit exercise result</string>
+    <string name="sc_oflineKey_title">Not available</string>
+    <string name="sc_oflineKey">Activation key is not possible during offline mode</string>
+    <string name="sc_profileInvalid">Your information will be shown here if you buy a profile</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="ok">OK</string>
+    <string name="sc_tskConnError_title">Connection error</string>
+    <string name="sc_tskConnError_msg">"Lost connection to server "</string>
+    <string name="sc_tskCouldnotConnect1">"Could not connect to server "</string>
+    <string name="sc_tskCouldnotConnect2">" Do you want to continue in offline mode?"</string>
+    <string name="sc_tskWrongPass_title">Wrong combination</string>
 
 </resources>

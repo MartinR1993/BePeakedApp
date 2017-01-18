@@ -141,6 +141,17 @@
     <string name="create_user_created">Bruger oprettet</string>
     <string name="create_user_error">Du skal udfylde hvert felt, eller også stemmer dine koder ikke overens. Husk at der skal være mindst 6 tegn i dit kodeord</string>
     <string name="exerciseResult_editBanner">Ret øvelsesresultat</string>
+    <string name="yes">JA</string>
+    <string name="ok">OK</string>
+    <string name="no">NEJ</string>
+    <string name="sc_oflineKey">Det er ikke muligt at aktivere sin nøgle i offline tilstand</string>
+    <string name="sc_oflineKey_title">Ikke tilgængelig</string>
+    <string name="sc_profileInvalid">Du vil kunne se dine informationer her hvis du køber en profil</string>
+    <string name="sc_tskConnError_msg">"Mistede forbindelsen til serveren "</string>
+    <string name="sc_tskConnError_title">Forbindelses fejl</string>
+    <string name="sc_tskCouldnotConnect1">"Kunne ikke få forbindelse til server "</string>
+    <string name="sc_tskCouldnotConnect2">" vil du fortsætte i offline tilstand?\n"</string>
+    <string name="sc_tskWrongPass_title">Forkert kombination</string>
 
 
 </resources>

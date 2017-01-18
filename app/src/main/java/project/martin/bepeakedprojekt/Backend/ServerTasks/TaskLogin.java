@@ -81,10 +81,10 @@ public class TaskLogin extends ServerTask
                 login.gotoMenu();
             }
             else {
-                showMessageDialouge(login, "Wrong combination" ,login.getString(R.string.login_error));
+                showMessageDialouge(login, login.getString(R.string.sc_tskWrongPass_title) ,login.getString(R.string.login_error));
             }
         }
         else
-            showMessageDialouge(login, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
+            showMessageDialouge(login, login.getString(R.string.sc_tskConnError_title), login.getString(R.string.sc_tskConnError_msg) + BackendData.SERVER_ADRESS);
     }
 }

@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Diet_Plan.DietPlanMenu_akt;
+import project.martin.bepeakedprojekt.R;
 
 import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
 
@@ -66,6 +67,6 @@ public class TaskGetDietplanProfile extends ServerTask
             dietplanMenu.setUserData(prot, cal, col, fat);
         }
         else
-            showMessageDialouge(dietplanMenu, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
+            showMessageDialouge(dietplanMenu, dietplanMenu.getString(R.string.sc_tskConnError_title), dietplanMenu.getString(R.string.sc_tskConnError_msg) + BackendData.SERVER_ADRESS);
     }
 }

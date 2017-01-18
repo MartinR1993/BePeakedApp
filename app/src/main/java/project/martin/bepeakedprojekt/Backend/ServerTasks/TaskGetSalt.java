@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Logind_akt;
+import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.User;
 
 import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
@@ -61,7 +62,7 @@ public class TaskGetSalt extends ServerTask
             login.login(result[0]);
         }
         else
-            showConfirmDialoge(login, "Connection not fount", "Could not connect to server " + BackendData.SERVER_ADRESS + " Do you want to continue in offline mode?",
+            showConfirmDialoge(login, login.getString(R.string.sc_tskConnError_title), login.getString(R.string.sc_tskCouldnotConnect1) + BackendData.SERVER_ADRESS + login.getString(R.string.sc_tskCouldnotConnect2),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.MainMenu_akt;
+import project.martin.bepeakedprojekt.R;
 
 import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
 
@@ -57,6 +58,6 @@ public class TaskGetUserType extends ServerTask
         if(!result[0].equals(ERROR_NO_HOST))
             mainMenu.setUserType(Integer.parseInt(result[0]));
         else
-            showMessageDialouge(mainMenu, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
+            showMessageDialouge(mainMenu, mainMenu.getString(R.string.sc_tskConnError_title), mainMenu.getString(R.string.sc_tskConnError_msg) + BackendData.SERVER_ADRESS);
     }
 }

@@ -1,6 +1,9 @@
 package project.martin.bepeakedprojekt.Backend;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import java.util.Arrays;
 
@@ -17,6 +20,7 @@ import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskLogin;
 import project.martin.bepeakedprojekt.Diet_Plan.DietPlanMenu_akt;
 import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.MainMenu_akt;
+import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Settings.ActivationKey_akt;
 import project.martin.bepeakedprojekt.Settings.User_akt;
 import project.martin.bepeakedprojekt.User.User;
@@ -32,6 +36,7 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     private String host;
     private int port;
     private ServerTask serverTask;
+    private SharedPreferences prefs;
 
     public ServerComm(String host, int port) {
         this.host = host;
@@ -52,10 +57,12 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     }
 
     public void activateUser(ActivationKey_akt activationAct, int userID, String activationKey, String sessionID) {
-        if(!User.isOffline())
+        prefs = PreferenceManager.getDefaultSharedPreferences(activationAct);
+
+        if(!User.isOffline() && prefs.getInt("usertype", 0) == 0)
             new ServerComm(new TaskActivateKey(activationAct, host, port)).execute("" + userID, activationKey, sessionID);
         else
-            ServerTask.showMessageDialouge(activationAct, "Not avalible", "Activation key is not possible during offline mode");
+            ServerTask.showMessageDialouge(activationAct, activationAct.getString(R.string.sc_oflineKey_title), activationAct.getString(R.string.sc_oflineKey));
     }
 
     public void getUserType(MainMenu_akt mainMenu, int userID, String sessionID) {
@@ -68,22 +75,33 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     }
 
     public void getUserProfile(User_akt userProfile, int userID, String sessionID) {
+        prefs = PreferenceManager.getDefaultSharedPreferences(userProfile);
+
         if(!User.isOffline())
-            new ServerComm(new TaskGetUserProfile(userProfile, host, port)).execute("" + userID, sessionID);
+            if(prefs.getInt("usertype", 0) != 0)
+                new ServerComm(new TaskGetUserProfile(userProfile, host, port)).execute("" + userID, sessionID);
+            else
+                Toast.makeText(userProfile, R.string.sc_profileInvalid, Toast.LENGTH_LONG).show();
     }
 
     public void getDieatplanProfile(DietPlanMenu_akt dietplanMenu, int userID, String sessionID) {
-        if(!User.isOffline())
+        prefs = PreferenceManager.getDefaultSharedPreferences(dietplanMenu);
+
+        if(!User.isOffline() && prefs.getInt("usertype", 0) != 0)
             new ServerComm(new TaskGetDietplanProfile(dietplanMenu, host, port)).execute("" + userID, sessionID);
     }
 
     public void getWorkoutlist(WorkoutMenu_akt workoutsMenu, int userID, String sessionID) {
-        if(!User.isOffline())
+        prefs = PreferenceManager.getDefaultSharedPreferences(workoutsMenu);
+
+        if(!User.isOffline() && prefs.getInt("usertype", 0) != 0)
             new ServerComm(new TaskGetWorkoutList(workoutsMenu, host, port)).execute("" + userID, sessionID);
     }
 
     public void getExercisesByWorkoutID(Workout_Exercises_akt workoutMenu, int userID, int workoutID, String sessionID) {
-        if(!User.isOffline())
+        prefs = PreferenceManager.getDefaultSharedPreferences(workoutMenu);
+
+        if(!User.isOffline() && prefs.getInt("usertype", 0) != 0)
             new ServerComm(new TaskGetExercisesForWorkout(workoutMenu, host, port)).execute("" + userID, "" + workoutID, sessionID);
     }
 

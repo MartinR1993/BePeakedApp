@@ -15,6 +15,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import project.martin.bepeakedprojekt.R;
+
 /**
  * Created by Lasse on 17/01-17.
  */
@@ -89,7 +91,7 @@ public abstract class ServerTask implements IServerTask {
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, context.getString(R.string.ok),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -104,8 +106,8 @@ public abstract class ServerTask implements IServerTask {
         builder.setTitle(title);
         builder.setMessage(message);
 
-        builder.setPositiveButton("YES", yesAction);
-        builder.setNegativeButton("NO", noAction);
+        builder.setPositiveButton(R.string.yes, yesAction);
+        builder.setNegativeButton(R.string.no, noAction);
 
         AlertDialog alert = builder.create();
         alert.show();

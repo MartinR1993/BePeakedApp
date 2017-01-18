@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
+import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
 
 import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.ERROR_NO_HOST;
@@ -87,6 +88,6 @@ public class TaskGetExercisesForWorkout extends ServerTask
             }
         }
         else
-            showMessageDialouge(workoutMenu, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
+            showMessageDialouge(workoutMenu, workoutMenu.getString(R.string.sc_tskConnError_title), workoutMenu.getString(R.string.sc_tskConnError_msg) + BackendData.SERVER_ADRESS);
     }
 }
