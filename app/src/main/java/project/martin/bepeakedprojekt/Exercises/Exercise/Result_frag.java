@@ -27,6 +27,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Exercises.ResultElement;
@@ -186,13 +187,14 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                     String oneRMString = "" + oneRM;
                     oneRMString = oneRMString.substring(0, oneRMString.indexOf('.') + 2);
 
+                    oneRM =  ((int) (100 * oneRM + 0.5)) / 100.0;
+
                     i++;
                     series.appendData(new DataPoint(i-1, oneRM), true, i);
 
                     graphView.addSeries(series);
                     graphView.getViewport().setMinX(0);
                     graphView.getViewport().setMaxX(i);
-
 
                     series.setOnDataPointTapListener(new OnDataPointTapListener() {
                         @Override
