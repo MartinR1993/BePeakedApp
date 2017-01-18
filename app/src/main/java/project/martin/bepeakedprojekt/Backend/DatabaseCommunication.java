@@ -180,6 +180,12 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         db.execSQL(updateQuery);
     }
 
+    public void deleteExerciseResult(int resultID) {
+        String deleteQuery = "DELETE FROM " + RESULTS_TABLE + " WHERE " + resultID + " = " + resultID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(deleteQuery);
+    }
+
     public ArrayList<ResultElement> getResults(int exerciseID) {
         String selectQuery = "SELECT * FROM " + RESULTS_TABLE + " WHERE " + EXERCISE_ID + "=" + exerciseID + "";
         SQLiteDatabase db = this.getWritableDatabase();
