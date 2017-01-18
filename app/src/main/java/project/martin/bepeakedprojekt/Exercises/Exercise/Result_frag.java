@@ -97,10 +97,14 @@ public class Result_frag extends Fragment implements View.OnClickListener {
 
         ArrayList<ResultElement> resultList = SingletonApplications.DBcom.getResults(SingletonApplications.currentExerciseID);
         for (int i = 0; i<resultList.size(); i++) {
-//            int t = resultList.get(i).getResultID();
-//            System.out.println("HER SKETE NOGET! i = "+i+", t = "+t);
             table.addView(createRow(resultList.get(i).getWeight()+" "+Settings.getUnit(Settings.USTAG_WEIGHT), resultList.get(i).getReps()+"", resultList.get(i).getOneRM()+" "+Settings.getUnit(Settings.USTAG_WEIGHT)),1);
-
+        }
+        for (int j = 0; j<resultList.size(); j++){
+            i++;
+            series.appendData(new DataPoint(i-1, resultList.get(j).getOneRM()), true, i);
+            graphView.addSeries(series);
+            graphView.getViewport().setMinX(0);
+            graphView.getViewport().setMaxX(i);
         }
 
         return rod;
