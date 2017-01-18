@@ -27,7 +27,6 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Exercises.ResultElement;
@@ -71,9 +70,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
 
         sets = intent.getIntExtra("sets",1000);
 
-        
 
-        //TODO: This is just dummy data.
         TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
         TextView col1 = (TextView) row.findViewById(R.id.resta_col1);
         col1.setTextAppearance(getActivity(), R.style.resta_header);
@@ -159,6 +156,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
             ((TextView) popupContent.findViewById(R.id.popres_weightgrTitle)).setText(R.string.exerciseResult_tableWeightgr);
             final NumberPicker npWeightgr = (NumberPicker) popupContent.findViewById(R.id.popres_weightgrSpin);
             npWeightgr.setMinValue(0);
+            npWeightgr.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
             npWeightgr.setMaxValue(750/increment);
             npWeightgr.setFormatter(new NumberPickerFormatter(increment));
 

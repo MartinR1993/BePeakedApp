@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Logind_akt;
+import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.User;
 import scSecurity.hashing.MD5Hashing;
 
@@ -78,6 +79,9 @@ public class TaskLogin extends ServerTask
                 User.setSessionID(result[1]);
                 User.setUserID(Integer.parseInt(result[2]));
                 login.gotoMenu();
+            }
+            else {
+                showMessageDialouge(login, "Wrong combination" ,login.getString(R.string.login_error));
             }
         }
         else

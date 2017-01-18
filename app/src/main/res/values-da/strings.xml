@@ -9,6 +9,7 @@
     <string name="login_usernameInput">Indtast brugernavn her...</string>
     <string name="login_password">Kodeord</string>
     <string name="login_buttonExecute">Log på</string>
+    <string name="login_error">Dit brugernavn og kodeord passede ikke sammen</string>
 
     <!--Main menu-->
     <string name="mainMenu_banner">Menu</string>

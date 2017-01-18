@@ -9,6 +9,7 @@
     <string name="login_usernameInput">Enter username here...</string>
     <string name="login_password">Password</string>
     <string name="login_buttonExecute">Log in</string>
+    <string name="login_error">Your username and password didn\'t match</string>
 
     <!--Main menu-->
     <string name="mainMenu_banner">Menu</string>
