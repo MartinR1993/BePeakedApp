@@ -212,20 +212,6 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                     graphView.getViewport().setMaxX(i);
 
 
-
-//                    series.setOnDataPointTapListener(new OnDataPointTapListener() {
-//                        @Override
-//                        public void onTap(Series series, DataPointInterface dataPoint) {
-//                            if (toast != null)
-//                            toast.cancel();
-//                            double afrunding =  ((int) (100 * dataPoint.getY() + 0.5)) / 100.0;
-//                            System.out.println(afrunding);
-//                            toast = Toast.makeText(getActivity(), afrunding + " - 1-RM", Toast.LENGTH_LONG);
-//
-//                            toast.show();
-//                        }
-//                    });
-
                     table.addView(createRow(weight + " " + unit, reps + "", oneRMString + " " + unit),1);
                     prefs.edit().putInt("idafresult", prefs.getInt("idafresult", 1) + 1).commit();
                     SingletonApplications.DBcom.addExerciseResult(prefs.getInt("idafresult", 1), SingletonApplications.currentExerciseID, weight, reps, oneRM);
