@@ -118,8 +118,10 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
 
     public void removeWorkout(int id) {
         String removeQuery = "DELETE FROM " + WORKOUT_TABLE + " WHERE " + WORKOUT_ID + " = " + id;
+        String removeQuery2 = "DELETE FROM " + WORKOUTEXERCISE_TABLE + " WHERE " + WORKOUT_ID + " = " + id;
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(removeQuery);
+        db.execSQL(removeQuery2);
     }
 
 
