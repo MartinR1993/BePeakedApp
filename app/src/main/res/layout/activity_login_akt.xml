@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonLogin"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         style="@android:style/Widget.Holo.Button"
         android:backgroundTint="@android:drawable/screen_background_light_transparent"
         android:textAppearance="@style/TextAppearance.AppCompat"
@@ -80,11 +80,12 @@
         android:text="@string/login_buttonExecute" />
 
 
-    <TextView
+    <Button
         android:text="@string/login_createUser"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/opretBruger" />
+        android:id="@+id/opretBruger"
+        style="@style/Widget.AppCompat.Button.Borderless" />
 
 </LinearLayout>

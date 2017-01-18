@@ -90,19 +90,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/up_fat"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
 
             <Button
                 android:text="@string/settings_changepassword"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/changepassword" />
+                android:id="@+id/changepassword"
+                android:layout_gravity="center_horizontal"
+                style="@style/Widget.AppCompat.Button.Borderless" />
 
             <Button
                 android:text="@string/settings_changeEmail"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/changeEmail" />
+                android:id="@+id/changeEmail"
+                android:layout_gravity="center_horizontal"
+                style="@style/Widget.AppCompat.Button.Borderless" />
 
         </LinearLayout>
 

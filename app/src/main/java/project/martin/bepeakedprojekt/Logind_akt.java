@@ -18,9 +18,9 @@ import project.martin.bepeakedprojekt.User.CreateUser_akt;
 public class Logind_akt extends AppCompatActivity implements View.OnClickListener
 {
     private ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
-    private TextView textUsername, textPassword, opretBruger;
+    private TextView textUsername, textPassword;
     private EditText editUsername, editPassword;
-    private Button buttonLogin;
+    private Button buttonLogin, opretBruger;
     SharedPreferences prefs;
 
     @Override
@@ -44,7 +44,7 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(this);
 
-        opretBruger = (TextView) findViewById(R.id.opretBruger);
+        opretBruger = (Button) findViewById(R.id.opretBruger);
         opretBruger.setOnClickListener(this);
     }
 
