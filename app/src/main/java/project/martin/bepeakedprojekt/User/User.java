@@ -9,6 +9,7 @@ public class User {
     private double protien, fat;
     private static int userID;
     private static String sessionID;
+    private static boolean offline = true;
 
     public User(int height, int weight, int age, int kostplanID, int calories, int culhydrates, double protien, double fat) {
         this.height = height;
@@ -99,6 +100,14 @@ public class User {
 
     public static void setUserID(int userID) {
         User.userID = userID;
+    }
+
+    public static boolean isOffline() {
+        return offline;
+    }
+
+    public static void setOffline(boolean offline) {
+        User.offline = offline;
     }
 
     @Override

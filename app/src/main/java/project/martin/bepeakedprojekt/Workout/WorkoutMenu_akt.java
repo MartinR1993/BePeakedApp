@@ -13,18 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
-
 import java.util.ArrayList;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.DatabaseCommunication;
 import project.martin.bepeakedprojekt.Backend.ServerComm;
-import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.SingletonApplications;
 import project.martin.bepeakedprojekt.User.User;
-import project.martin.bepeakedprojekt.Workout.WorkoutExercises.WorkoutExercisesListAdapter;
 
 public class WorkoutMenu_akt extends AppCompatActivity {
     private ArrayList<WorkoutElement> workoutList;
@@ -48,7 +44,7 @@ public class WorkoutMenu_akt extends AppCompatActivity {
         server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         DBCom = new DatabaseCommunication(this);
-        //TODO: Denne linje crasher måske (har ikke kunne tjekke pga. andet problem med SQLLite).
+
         server.getWorkoutlist(this, User.getUserID(), User.getSessionID());
         workoutList = DBCom.getAllWorkouts();
 
@@ -102,7 +98,7 @@ public class WorkoutMenu_akt extends AppCompatActivity {
                 add.setVisible(true);
 
                 lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, SingletonApplications.allWorkouts));
-break;
+                break;
             }
             case R.id.add: {
                 popup = new AlertDialog.Builder(WorkoutMenu_akt.this).create();
@@ -148,6 +144,4 @@ break;
         this.workoutList.addAll(0, workoutList);
         listAdapter.notifyDataSetChanged();
     }
-
-
 }

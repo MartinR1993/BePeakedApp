@@ -1,6 +1,8 @@
 package project.martin.bepeakedprojekt.Backend.ServerTasks;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 /**
  * Created by Lasse on 17/01-17.
@@ -47,6 +50,12 @@ public abstract class ServerTask implements IServerTask {
             else
                 return null;
         }
+        catch (UnknownHostException e) {
+            e.printStackTrace();
+            JSONObject hostError = new JSONObject();
+            hostError.put(ServerTags.TAG_ERROR, ServerTags.ERROR_NO_HOST);
+            return hostError;
+        }
         catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,5 +83,31 @@ public abstract class ServerTask implements IServerTask {
                 }
         }
         throw new IOException("Could not get reply from server!");
+    }
+
+    public static void showMessageDialouge(Context context, String title, String message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
+
+    protected void showConfirmDialoge(Context context, String title, String message, DialogInterface.OnClickListener yesAction, DialogInterface.OnClickListener noAction) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setTitle(title);
+        builder.setMessage(message);
+
+        builder.setPositiveButton("YES", yesAction);
+        builder.setNegativeButton("NO", noAction);
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

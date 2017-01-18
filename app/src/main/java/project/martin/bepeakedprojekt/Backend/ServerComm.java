@@ -19,7 +19,7 @@ import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.Settings.ActivationKey_akt;
 import project.martin.bepeakedprojekt.Settings.User_akt;
-import project.martin.bepeakedprojekt.User.CreateUser_akt;
+import project.martin.bepeakedprojekt.User.User;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
 import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
 
@@ -47,35 +47,44 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
     }
 
     public void login(Logind_akt login, String username, String password, String salt) {
-        new ServerComm(new TaskLogin(login, host, port)).execute(username, password, salt);
+        if(!User.isOffline())
+            new ServerComm(new TaskLogin(login, host, port)).execute(username, password, salt);
     }
 
     public void activateUser(ActivationKey_akt activationAct, int userID, String activationKey, String sessionID) {
-        new ServerComm(new TaskActivateKey(activationAct, host, port)).execute("" + userID, activationKey, sessionID);
+        if(!User.isOffline())
+            new ServerComm(new TaskActivateKey(activationAct, host, port)).execute("" + userID, activationKey, sessionID);
+        else
+            ServerTask.showMessageDialouge(activationAct, "Not avalible", "Activation key is not possible during offline mode");
     }
 
     public void getUserType(MainMenu_akt mainMenu, int userID, String sessionID) {
-        new ServerComm(new TaskGetUserType(mainMenu, host, port)).execute("" + userID, sessionID);
+        if(!User.isOffline())
+            new ServerComm(new TaskGetUserType(mainMenu, host, port)).execute("" + userID, sessionID);
     }
 
-    public void createUser(CreateUser_akt createUserAct, String firstName, String lastName, String nickName, String passHash, String salt, String email) {
+    public void createUser(String firstName, String lastName, String nickName, String passHash, String salt, String email) {
         new ServerComm(new TaskCreateUser(host, port)).execute(firstName, lastName, nickName, passHash, salt, email);
     }
 
     public void getUserProfile(User_akt userProfile, int userID, String sessionID) {
-        new ServerComm(new TaskGetUserProfile(userProfile, host, port)).execute("" + userID, sessionID);
+        if(!User.isOffline())
+            new ServerComm(new TaskGetUserProfile(userProfile, host, port)).execute("" + userID, sessionID);
     }
 
     public void getDieatplanProfile(DietPlanMenu_akt dietplanMenu, int userID, String sessionID) {
-        new ServerComm(new TaskGetDietplanProfile(dietplanMenu, host, port)).execute("" + userID, sessionID);
+        if(!User.isOffline())
+            new ServerComm(new TaskGetDietplanProfile(dietplanMenu, host, port)).execute("" + userID, sessionID);
     }
 
     public void getWorkoutlist(WorkoutMenu_akt workoutsMenu, int userID, String sessionID) {
-        new ServerComm(new TaskGetWorkoutList(workoutsMenu, host, port)).execute("" + userID, sessionID);
+        if(!User.isOffline())
+            new ServerComm(new TaskGetWorkoutList(workoutsMenu, host, port)).execute("" + userID, sessionID);
     }
 
     public void getExercisesByWorkoutID(Workout_Exercises_akt workoutMenu, int userID, int workoutID, String sessionID) {
-        new ServerComm(new TaskGetExercisesForWorkout(workoutMenu, host, port)).execute("" + userID, "" + workoutID, sessionID);
+        if(!User.isOffline())
+            new ServerComm(new TaskGetExercisesForWorkout(workoutMenu, host, port)).execute("" + userID, "" + workoutID, sessionID);
     }
 
     @Override

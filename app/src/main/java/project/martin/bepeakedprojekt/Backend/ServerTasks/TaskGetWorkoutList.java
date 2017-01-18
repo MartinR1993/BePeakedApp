@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Exercises.ExerciseElement;
 import project.martin.bepeakedprojekt.Workout.WorkoutElement;
 import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
@@ -39,8 +40,14 @@ public class TaskGetWorkoutList extends ServerTask
             argsJA.put(1, Integer.parseInt(params[0]));
             jsonObj.put(TAG_ARGS, argsJA);
 
+            JSONObject reply = sendRequest(jsonObj.toString());
+            try {
+                if(reply.getString(TAG_ERROR).equals(ERROR_NO_HOST))
+                    return new String[]{ERROR_NO_HOST};
+            } catch (JSONException e) {}
+
             result = new String[1];
-            result[0] = sendRequest(jsonObj.toString()).getString(TAG_WORKOUTLIST);
+            result[0] = reply.getString(TAG_WORKOUTLIST);
             return result;
         } catch (JSONException | IOException e) {
             e.printStackTrace();
@@ -51,22 +58,26 @@ public class TaskGetWorkoutList extends ServerTask
 
     @Override
     public void onPostExecute(String... result) {
-        try {
-            ArrayList<WorkoutElement> workoutList = new ArrayList<>();
-            JSONArray workoutlistJSON = new JSONArray(result[0]);
+        if(!result[0].equals(ERROR_NO_HOST)) {
+            try {
+                ArrayList<WorkoutElement> workoutList = new ArrayList<>();
+                JSONArray workoutlistJSON = new JSONArray(result[0]);
 
-            JSONObject workoutJSON;
-            for(int i = 0; i < workoutlistJSON.length(); i++) {
-                workoutJSON = (JSONObject) workoutlistJSON.get(i);
-                int id = workoutJSON.getInt("id");
-                String name = workoutJSON.getString("name");
+                JSONObject workoutJSON;
+                for(int i = 0; i < workoutlistJSON.length(); i++) {
+                    workoutJSON = (JSONObject) workoutlistJSON.get(i);
+                    int id = workoutJSON.getInt("id");
+                    String name = workoutJSON.getString("name");
 
-                workoutList.add(new WorkoutElement(id, name, new ArrayList<ExerciseElement>(), true));
+                    workoutList.add(new WorkoutElement(id, name, new ArrayList<ExerciseElement>(), true));
+                }
+
+                workoutsMenu.addWorkouts(workoutList);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-            workoutsMenu.addWorkouts(workoutList);
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
+        else
+            showMessageDialouge(workoutsMenu, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
     }
 }

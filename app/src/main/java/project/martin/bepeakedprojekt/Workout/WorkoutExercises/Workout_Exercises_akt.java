@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.GripView;
@@ -177,65 +176,65 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         }
         else if (item.getItemId() == R.id.add) {
 
-                popup = new AlertDialog.Builder(Workout_Exercises_akt.this).create();
-                View addExercise = View.inflate(this, R.layout.popup_addexercises, null);
-                searchText = (EditText) addExercise.findViewById(R.id.searchText);
+            popup = new AlertDialog.Builder(Workout_Exercises_akt.this).create();
+            View addExercise = View.inflate(this, R.layout.popup_addexercises, null);
+            searchText = (EditText) addExercise.findViewById(R.id.searchText);
 
-                missingExerciseNames.clear();
-                allExercises = new ArrayList<>();
-                listOfExercises = (ListView) addExercise.findViewById(R.id.listViewExer);
+            missingExerciseNames.clear();
+            allExercises = new ArrayList<>();
+            listOfExercises = (ListView) addExercise.findViewById(R.id.listViewExer);
 
-                for (int i = 1; i <= DummyData.exerciseList.length; i++)
-                    allExercises.add(DummyData.getExercise(i));
+            for (int i = 1; i <= DummyData.exerciseList.length; i++)
+                allExercises.add(DummyData.getExercise(i));
 
-                for (int i = 0; i < exerciseList.size(); i++)
-                    allExercises.remove(exerciseList.get(i));
+            for (int i = 0; i < exerciseList.size(); i++)
+                allExercises.remove(exerciseList.get(i));
 
-                for (int q = 0; q < allExercises.size(); q++)
-                    missingExerciseNames.add(allExercises.get(q).getName());
+            for (int q = 0; q < allExercises.size(); q++)
+                missingExerciseNames.add(allExercises.get(q).getName());
 
-                adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, missingExerciseNames);
-                listOfExercises.setAdapter(adapter);
-                listOfExercises.setOnItemClickListener(this);
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, missingExerciseNames);
+            listOfExercises.setAdapter(adapter);
+            listOfExercises.setOnItemClickListener(this);
 
-                searchText.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
+            searchText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
 
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        allExercises.clear();
-                        missingExerciseNames.clear();
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    allExercises.clear();
+                    missingExerciseNames.clear();
 
-                        for (int i = 1; i <= DummyData.exerciseList.length; i++)
-                            allExercises.add(DummyData.getExercise(i));
+                    for (int i = 1; i <= DummyData.exerciseList.length; i++)
+                        allExercises.add(DummyData.getExercise(i));
 
-                        for (int i = 0; i < exerciseList.size(); i++)
-                            allExercises.remove(exerciseList.get(i));
+                    for (int i = 0; i < exerciseList.size(); i++)
+                        allExercises.remove(exerciseList.get(i));
 
-                        for (int q = 0; q < allExercises.size(); q++)
-                            missingExerciseNames.add(allExercises.get(q).getName());
+                    for (int q = 0; q < allExercises.size(); q++)
+                        missingExerciseNames.add(allExercises.get(q).getName());
 
-                        searchItem();
-                    }
+                    searchItem();
+                }
 
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                    }
-                });
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
 
-                final Button addExerBotton = (Button) addExercise.findViewById(R.id.addExerBotton);
-                addExerBotton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popup.cancel();
-                    }
-                });
-                popup.setTitle(R.string.add_exercise);
-                popup.setView(addExercise);
-                popup.show();
-            }
+            final Button addExerBotton = (Button) addExercise.findViewById(R.id.addExerBotton);
+            addExerBotton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popup.cancel();
+                }
+            });
+            popup.setTitle(R.string.add_exercise);
+            popup.setView(addExercise);
+            popup.show();
+        }
         return super.onOptionsItemSelected(item);
     }
 

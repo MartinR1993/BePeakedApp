@@ -35,6 +35,11 @@ public class TaskGetExercise extends ServerTask
 
             result = new String[4];
             JSONObject reply = sendRequest(jsonObj.toString());
+            try {
+                if(reply.getString(TAG_ERROR).equals(ERROR_NO_HOST))
+                    return new String[]{ERROR_NO_HOST};
+            } catch (JSONException e) {}
+
             result[0] = "" + reply.getInt("id");
             result[1] = reply.getString("name");
             result[2] = reply.getString("description");
@@ -48,13 +53,15 @@ public class TaskGetExercise extends ServerTask
 
     @Override
     public void onPostExecute(String... result) {
-        int id = Integer.parseInt(result[0]);
-        String name = result[1];
-        String description = result[2];
-        int imageID = Integer.parseInt(result[3]);
+        if(!result[0].equals(ERROR_NO_HOST)) {
+            int id = Integer.parseInt(result[0]);
+            String name = result[1];
+            String description = result[2];
+            int imageID = Integer.parseInt(result[3]);
 
 
-        ExerciseElement exercise = new ExerciseElement(id, -1, null, name, description, imageID);
-        //TODO: Send denne øvelse et eller andet sted hen.
+            ExerciseElement exercise = new ExerciseElement(id, -1, null, name, description, imageID);
+            //TODO: Send denne øvelse et eller andet sted hen.
+        }
     }
 }

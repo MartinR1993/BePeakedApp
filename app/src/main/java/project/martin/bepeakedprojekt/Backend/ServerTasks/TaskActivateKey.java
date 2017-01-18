@@ -6,10 +6,18 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Settings.ActivationKey_akt;
 
-import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
+import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.ERROR_NO_HOST;
+import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.TAG_ACTIVATIONKEY;
+import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.TAG_ARGS;
+import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.TAG_CMD_SESSION_ID;
+import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.TAG_CMD_VALIDATE;
+import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.TAG_COMMAND;
+import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.TAG_ERROR;
+import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.TAG_ERROR_NONE;
 
 /**
  * Created by Lasse on 17/01-17.
@@ -23,7 +31,7 @@ public class TaskActivateKey extends ServerTask
         super(host, port);
         this.activationAct = activationAct;
     }
-//    userID, activationKey, sessionID
+
     @Override
     public String[] doInBackground(String... params) {
         String[] result;
@@ -40,6 +48,12 @@ public class TaskActivateKey extends ServerTask
             jsonObj.put(TAG_ARGS, argsJA);
 
             JSONObject reply = sendRequest(jsonObj.toString());
+
+            try {
+                if(reply.getString(TAG_ERROR).equals(ERROR_NO_HOST))
+                    return new String[]{ERROR_NO_HOST};
+            } catch (JSONException e) {}
+
             String errorMsg;
             if(reply != null)
                 errorMsg = reply.getString(TAG_ERROR);
@@ -58,6 +72,9 @@ public class TaskActivateKey extends ServerTask
 
     @Override
     public void onPostExecute(String... result) {
-        activationAct.activateUser(result[0].equals(TAG_ERROR_NONE));
+        if(!result[0].equals(ERROR_NO_HOST))
+            activationAct.activateUser(result[0].equals(TAG_ERROR_NONE));
+        else
+            showMessageDialouge(activationAct, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
     }
 }

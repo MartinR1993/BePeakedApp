@@ -2,8 +2,8 @@ package project.martin.bepeakedprojekt.User;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,12 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.ServerComm;
 import project.martin.bepeakedprojekt.Logind_akt;
-import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
 import scSecurity.RandomGen;
 import scSecurity.hashing.MD5Hashing;

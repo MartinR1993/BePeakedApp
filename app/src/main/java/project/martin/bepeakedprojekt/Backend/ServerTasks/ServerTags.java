@@ -24,4 +24,5 @@ public class ServerTags {
     protected static final String TAG_EXERCISE = "exerciseSingle";
     protected static final String TAG_ERROR = "error";
     protected static final String TAG_ERROR_NONE = "none";
+    protected static final String ERROR_NO_HOST = "no_host";
 }

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Settings.User_akt;
 
 import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
@@ -38,6 +39,11 @@ public class TaskGetUserProfile extends ServerTask
 
             result = new String[10];
             JSONObject reply = sendRequest(jsonObj.toString());
+            try {
+                if(reply.getString(TAG_ERROR).equals(ERROR_NO_HOST))
+                    return new String[]{ERROR_NO_HOST};
+            } catch (JSONException e) {}
+
             result[0] = "" + reply.getString("first");
             result[1] = "" + reply.getString("last");
             result[2] = "" + reply.getInt("age");
@@ -57,17 +63,21 @@ public class TaskGetUserProfile extends ServerTask
 
     @Override
     public void onPostExecute(String... result) {
-        String firstName = result[0];
-        String lastName = result[1];
-        int age = Integer.parseInt(result[2]);
-        double height = Double.parseDouble(result[3]);
-        double weight = Double.parseDouble(result[4]);
-        double prot = Double.parseDouble(result[5]);
-        double cal = Double.parseDouble(result[6]);
-        double col = Double.parseDouble(result[7]);
-        double fat = Double.parseDouble(result[8]);
-        int dpid = Integer.parseInt(result[9]);
+        if(!result[0].equals(ERROR_NO_HOST)) {
+            String firstName = result[0];
+            String lastName = result[1];
+            int age = Integer.parseInt(result[2]);
+            double height = Double.parseDouble(result[3]);
+            double weight = Double.parseDouble(result[4]);
+            double prot = Double.parseDouble(result[5]);
+            double cal = Double.parseDouble(result[6]);
+            double col = Double.parseDouble(result[7]);
+            double fat = Double.parseDouble(result[8]);
+            int dpid = Integer.parseInt(result[9]);
 
-        userAct.setUserData(firstName, lastName, age, height, weight, prot, cal, col, fat, dpid);
+            userAct.setUserData(firstName, lastName, age, height, weight, prot, cal, col, fat, dpid);
+        }
+        else
+            showMessageDialouge(userAct, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
     }
 }

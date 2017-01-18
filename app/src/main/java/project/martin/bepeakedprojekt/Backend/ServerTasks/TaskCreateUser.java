@@ -36,7 +36,14 @@ public class TaskCreateUser extends ServerTask
             jsonObj.put(TAG_ARGS, argsJA);
 
             result = new String[1];
-            result[0] = sendRequest(jsonObj.toString()).getString(TAG_ERROR);
+
+            JSONObject reply = sendRequest(jsonObj.toString());
+            try {
+                if(reply.getString(TAG_ERROR).equals(ERROR_NO_HOST))
+                    return new String[]{ERROR_NO_HOST};
+            } catch (JSONException e) {}
+
+            result[0] = reply.getString(TAG_ERROR);
             return result;
         } catch (JSONException | IOException e) {
             e.printStackTrace();
@@ -46,7 +53,9 @@ public class TaskCreateUser extends ServerTask
 
     @Override
     public void onPostExecute(String... result) {
-        if(result != null)
-            System.out.println("Create user errors: " + result[0]);
+        if(!result[0].equals(ERROR_NO_HOST)) {
+            if(result != null)
+                System.out.println("Create user errors: " + result[0]);
+        }
     }
 }

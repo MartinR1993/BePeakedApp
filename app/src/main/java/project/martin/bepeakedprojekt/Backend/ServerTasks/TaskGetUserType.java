@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.MainMenu_akt;
 
 import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
@@ -36,8 +37,14 @@ public class TaskGetUserType extends ServerTask
             argsJA.put(1, Integer.parseInt(params[0]));
             jsonObj.put(TAG_ARGS, argsJA);
 
+            JSONObject reply = sendRequest(jsonObj.toString());
+            try {
+                if(reply.getString(TAG_ERROR).equals(ERROR_NO_HOST))
+                    return new String[]{ERROR_NO_HOST};
+            } catch (JSONException e) {}
+
             result = new String[1];
-            result[0] = "" + sendRequest(jsonObj.toString()).getInt(TAG_USER_TYPE);
+            result[0] = "" + reply.getInt(TAG_USER_TYPE);
             return result;
         } catch (JSONException | IOException e) {
             e.printStackTrace();
@@ -47,6 +54,9 @@ public class TaskGetUserType extends ServerTask
 
     @Override
     public void onPostExecute(String... result) {
-        mainMenu.setUserType(Integer.parseInt(result[0]));
+        if(!result[0].equals(ERROR_NO_HOST))
+            mainMenu.setUserType(Integer.parseInt(result[0]));
+        else
+            showMessageDialouge(mainMenu, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
     }
 }

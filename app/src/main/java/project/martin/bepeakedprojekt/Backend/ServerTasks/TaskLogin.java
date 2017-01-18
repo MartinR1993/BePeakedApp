@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.User.User;
 import scSecurity.hashing.MD5Hashing;
@@ -47,6 +48,11 @@ public class TaskLogin extends ServerTask
             jsonObj.put(TAG_ARGS, argsJA);
 
             JSONObject reply = sendRequest(jsonObj.toString());
+            try {
+                if(reply.getString(TAG_ERROR).equals(ERROR_NO_HOST))
+                    return new String[]{ERROR_NO_HOST};
+            } catch (JSONException e) {}
+
             String errorMsg = reply.getString(TAG_ERROR);
             if(errorMsg.equals(TAG_ERROR_NONE)) {
                 result = new String[3];
@@ -67,10 +73,14 @@ public class TaskLogin extends ServerTask
 
     @Override
     public void onPostExecute(String... result) {
-        if (result.length == 3) {
-            User.setSessionID(result[1]);
-            User.setUserID(Integer.parseInt(result[2]));
-            login.gotoMenu();
+        if(!result[0].equals(ERROR_NO_HOST)) {
+            if (result.length == 3) {
+                User.setSessionID(result[1]);
+                User.setUserID(Integer.parseInt(result[2]));
+                login.gotoMenu();
+            }
         }
+        else
+            showMessageDialouge(login, "Connection error", "Lost connection to server " + BackendData.SERVER_ADRESS);
     }
 }

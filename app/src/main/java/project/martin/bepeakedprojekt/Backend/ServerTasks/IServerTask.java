@@ -1,9 +1,5 @@
 package project.martin.bepeakedprojekt.Backend.ServerTasks;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-
 /**
  * Created by Lasse on 17/01-17.
  */
