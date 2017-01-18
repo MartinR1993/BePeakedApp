@@ -25,6 +25,7 @@
     <string name="createWorkout_description">Give your new workout a name:</string>
     <string name="createWorkout_nameInput">Type name here!</string>
     <string name="createWorkout_buttonExecute">Save Workout</string>
+    <string name="createWorkout_name">Remember to give your workout a name</string>
 
     <!--Øvelse-->
     <string name="exerciseResult_banner">Results</string>

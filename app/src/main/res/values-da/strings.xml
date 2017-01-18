@@ -25,6 +25,7 @@
     <string name="createWorkout_description">Angiv programmets navn:</string>
     <string name="createWorkout_nameInput">Indtast navn her..</string>
     <string name="createWorkout_buttonExecute">Opret træningsprogram</string>
+    <string name="createWorkout_name">Remember to give your workout a name</string>
 
     <!--Øvelse-->
     <string name="exerciseResult_banner">Resultater</string>

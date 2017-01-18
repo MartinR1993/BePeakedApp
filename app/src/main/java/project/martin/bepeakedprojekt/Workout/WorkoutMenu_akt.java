@@ -1,5 +1,6 @@
 package project.martin.bepeakedprojekt.Workout;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -106,22 +108,8 @@ public class WorkoutMenu_akt extends AppCompatActivity {
 
                 saveWorkoutName = (EditText) createWorkout.findViewById(R.id.giveNameWorkout);
                 final Button saveWorkoutButton = (Button) createWorkout.findViewById(R.id.saveWorkout);
-                saveWorkoutButton.setOnClickListener(new View.OnClickListener() {
+                saveWorkoutButton.setOnClickListener(new clickListener(this));
 
-                    @Override
-                    public void onClick(View v) {
-
-                        prefs.edit().putInt("idafworkoutet", prefs.getInt("idafworkoutet", 1) + 1).commit();
-                        DBCom.addWorkout(prefs.getInt("idafworkoutet", 1), saveWorkoutName.getText().toString());
-
-                        SingletonApplications.allWorkouts.add(DBCom.getAllWorkouts().get(DBCom.getAllWorkouts().size()-1));
-
-
-                        lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, SingletonApplications.allWorkouts));
-
-                        popup.cancel();
-                    }
-                });
 
                 popup.setTitle(R.string.createWorkout_title);
                 popup.setView(createWorkout);
@@ -143,5 +131,32 @@ public class WorkoutMenu_akt extends AppCompatActivity {
         System.out.println("Workout received=" + workoutList.toString());
         this.workoutList.addAll(0, workoutList);
         listAdapter.notifyDataSetChanged();
+    }
+
+    private class clickListener implements View.OnClickListener{
+
+        private final Activity act;
+
+        private clickListener(Activity act) {
+            this.act = act;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(!saveWorkoutName.getText().toString().isEmpty()) {
+
+                prefs.edit().putInt("idafworkoutet", prefs.getInt("idafworkoutet", 1) + 1).commit();
+                DBCom.addWorkout(prefs.getInt("idafworkoutet", 1), saveWorkoutName.getText().toString());
+
+                SingletonApplications.allWorkouts.add(DBCom.getAllWorkouts().get(DBCom.getAllWorkouts().size() - 1));
+
+
+                lv.setAdapter(new WorkoutListAdapter(WorkoutMenu_akt.this, SingletonApplications.allWorkouts));
+            }
+            else {
+                Toast.makeText(act, R.string.createWorkout_name, Toast.LENGTH_LONG).show();
+            }
+            popup.cancel();
+        }
     }
 }
