@@ -27,10 +27,11 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/create_user_edit_user"
             android:id="@+id/cua_editfirstname"
+            android:singleLine="true"
             android:textSize="14sp" />
 
         <TextView
@@ -42,11 +43,12 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/create_user_last_name_edit"
             android:id="@+id/cua_editlastname"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:singleLine="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,11 +59,12 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/create_user_username_edit"
             android:id="@+id/cua_editusername"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:singleLine="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,11 +75,12 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/create_user_email_edit"
             android:id="@+id/cua_editemail"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:singleLine="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,13 +91,14 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/create_user_password_edit"
             android:id="@+id/cua_editpassword1"
             android:inputType="textPassword"
             android:ems="10"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:singleLine="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -110,7 +115,8 @@
             android:inputType="textPassword"
             android:id="@+id/cua_editpassword2"
             android:ems="10"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:singleLine="true" />
 
         <Button
             android:layout_gravity="center"
