@@ -162,20 +162,7 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         System.out.println("Workouts : " + Arrays.toString(WorkoutIDs.toArray()));
         return WorkoutIDs;
     }
-    //    public ArrayList<Integer> getExerciseResults(int exerciseID) {
-//        String selectQuery = "SELECT * FROM " + EXERCISERESULTS_TABLE + " WHERE " + EXERCISE_ID + "=" + exerciseID + "";
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery(selectQuery, null);
-//        ArrayList<Integer> ExerciseIDs = new ArrayList<Integer>();
-//        if (cursor.moveToFirst()) {
-//            do {
-//                int uname = cursor.getInt(cursor.getColumnIndex("ExerciseID"));
-//                ExerciseIDs.add(uname);
-//            } while (cursor.moveToNext());
-//            System.out.println(Arrays.toString(ExerciseIDs.toArray()));
-//        }
-//        return ExerciseIDs;
-//    }
+
 
     //RESULTATERDELEN KOMMER HER SÅ VÆR KLAR PARAT TIL START
 
@@ -183,6 +170,12 @@ public class DatabaseCommunication extends SQLiteOpenHelper {
         String insertQuery = "INSERT INTO " + RESULTS_TABLE + "( " + RESULT_ID + "," + EXERCISE_ID + ", " + RESULT_WEIGHT + ", " + RESULT_REPS + ", " + RESULT_1RM + ") VALUES " + "(" + resultID + "," + exerciseID + "," + weight + "," + reps + "," + OneRM + ")";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(insertQuery);
+    }
+
+    public void editExerciseResult(int resultID, double weight, int reps, double OneRM) {
+        String updateQuery = "UPDATE " + RESULTS_TABLE + " SET " + RESULT_WEIGHT + " = " + weight + ", " + RESULT_REPS + " = " + reps + ", " + RESULT_1RM + " = " + RESULT_1RM + " WHERE " + RESULT_ID + " = " +resultID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(updateQuery);
     }
 
     public ArrayList<ResultElement> getResults(int exerciseID) {
