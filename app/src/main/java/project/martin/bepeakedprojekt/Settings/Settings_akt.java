@@ -63,7 +63,7 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
 //        }
 
         profil = getString(R.string.settings_profile);
-        activationKey = "ActivationKey";
+        activationKey = getString(R.string.settings_activation);
         changeLanguage = getString(R.string.settings_language) + "  -  " + language;
         unitSystem = getString(R.string.settings_unitsystem);
         about = getString(R.string.settings_about);
@@ -82,7 +82,7 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
         if(prefs.getInt("usertype",0) == 0)
             indstillinger = new String[]{
                     getString(R.string.settings_profile),
-                    "ActivationKey",
+                    getString(R.string.settings_activation),
                     getString(R.string.settings_language) + "  -  " + language,
                     getString(R.string.settings_unitsystem),
                     getString(R.string.settings_about),

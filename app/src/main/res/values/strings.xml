@@ -99,6 +99,11 @@
     <string name="settings_user_fat">Fat: </string>
     <string name="settings_changepassword">Change password</string>
     <string name="settings_changeEmail">Change email</string>
+    <string name="settings_changeUsername">Change username</string>
+    <string name="settings_activation">Activation Key</string>
+    <string name="activationkey_error">Your activation key was rejected</string>
+    <string name="activationkey_error1">Activation key does not exsist for the given user</string>
+
 
     <!--Sprog-->
     <string name="language_title">Language</string>
@@ -134,7 +139,6 @@
     <string name="create_user_username_edit">Type in Username...</string>
     <string name="create_user_created">User created</string>
     <string name="create_user_error_password">Your passwords doesn\'t match</string>
-
 
 
 </resources>

@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Settings.ActivationKey_akt;
 
 import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
@@ -43,7 +44,7 @@ public class TaskActivateKey extends ServerTask
             if(reply != null)
                 errorMsg = reply.getString(TAG_ERROR);
             else
-                errorMsg = "Activation key does not exsist for the given user";
+                errorMsg = activationAct.getString(R.string.activationkey_error1);
 
             result = new String[1];
             result[0] = errorMsg;

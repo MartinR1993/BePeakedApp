@@ -99,6 +99,10 @@
     <string name="settings_user_fat">Fedt: </string>
     <string name="settings_changepassword">Skift kodeord</string>
     <string name="settings_changeEmail">Skift email</string>
+    <string name="settings_changeUsername">Skift brugernavn</string>
+    <string name="settings_activation">Aktiverings nøgle</string>
+    <string name="activationkey_error">Din aktiverings nøgle blev afvist</string>
+    <string name="activationkey_error1">Der eksisterer ikke en aktiveringsnøgle for denne bruger</string>
 
     <!--Sprog-->
     <string name="language_title">Sprog</string>

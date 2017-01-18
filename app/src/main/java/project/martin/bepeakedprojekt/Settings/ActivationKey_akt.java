@@ -33,7 +33,7 @@ public class ActivationKey_akt extends AppCompatActivity implements View.OnClick
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_activationkey_akt);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Activation Key");
+        setTitle(getString(R.string.settings_activation));
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -80,6 +80,6 @@ public class ActivationKey_akt extends AppCompatActivity implements View.OnClick
             startActivity(i);
         }
         else
-            Toast.makeText(getApplicationContext(), "Din activationkey blev afvist", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.activationkey_error, Toast.LENGTH_LONG).show();
     }
 }
