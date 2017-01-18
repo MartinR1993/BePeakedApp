@@ -54,7 +54,6 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
             server.getSalt(this, editUsername.getText().toString());
         }
         else if (v == opretBruger) {
-            System.out.println("Opret bruger");
             Intent i = new Intent(this, CreateUser_akt.class);
             startActivity(i);
         }

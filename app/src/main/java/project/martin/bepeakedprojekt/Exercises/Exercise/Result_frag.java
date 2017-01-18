@@ -70,7 +70,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
 
         sets = intent.getIntExtra("sets",1000);
 
-        
+
 
         //TODO: This is just dummy data.
         TableRow row = (TableRow) LayoutInflater.from(Result_frag.this.getActivity()).inflate(R.layout.res_tablerow, null);
@@ -97,8 +97,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
 
         ArrayList<ResultElement> resultList = SingletonApplications.DBcom.getResults(SingletonApplications.currentExerciseID);
         for (int i = 0; i<resultList.size(); i++) {
-//            int t = resultList.get(i).getResultID();
-//            System.out.println("HER SKETE NOGET! i = "+i+", t = "+t);
+
             table.addView(createRow(resultList.get(i).getWeight()+" "+Settings.getUnit(Settings.USTAG_WEIGHT), resultList.get(i).getReps()+"", resultList.get(i).getOneRM()+" "+Settings.getUnit(Settings.USTAG_WEIGHT)),1);
 
         }
@@ -194,7 +193,7 @@ public class Result_frag extends Fragment implements View.OnClickListener {
                         @Override
                         public void onTap(Series series, DataPointInterface dataPoint) {
                             if (toast != null)
-                            toast.cancel();
+                                toast.cancel();
                             double afrunding =  ((int) (100 * dataPoint.getY() + 0.5)) / 100.0;
                             System.out.println(afrunding);
                             toast = Toast.makeText(getActivity(), afrunding + " - 1-RM", Toast.LENGTH_LONG);

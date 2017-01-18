@@ -104,7 +104,7 @@ public class WorkoutExercisesListAdapter extends ArrayAdapter<String> {
 
         if(SingletonApplications.changepic == true){
             if (!SingletonApplications.workout.isFromServer())
-            image.setImageResource(R.drawable.ic_delete);
+                image.setImageResource(R.drawable.ic_delete);
 
             grip.setVisibility(View.VISIBLE);
             notifyDataSetChanged();

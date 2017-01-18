@@ -30,62 +30,6 @@ public class User {
         this.height = height;
     }
 
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getKostplanID() {
-        return kostplanID;
-    }
-
-    public void setKostplanID(int kostplanID) {
-        this.kostplanID = kostplanID;
-    }
-
-    public int getCalories() {
-        return calories;
-    }
-
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
-
-    public int getCulhydrates() {
-        return culhydrates;
-    }
-
-    public void setCulhydrates(int culhydrates) {
-        this.culhydrates = culhydrates;
-    }
-
-    public double getProtien() {
-        return protien;
-    }
-
-    public void setProtien(double protien) {
-        this.protien = protien;
-    }
-
-    public double getFat() {
-        return fat;
-    }
-
-    public void setFat(double fat) {
-        this.fat = fat;
-    }
-
     public static String getSessionID() {
         return sessionID;
     }

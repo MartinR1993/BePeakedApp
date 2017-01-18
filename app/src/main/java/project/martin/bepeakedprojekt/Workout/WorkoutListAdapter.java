@@ -74,13 +74,13 @@ public class WorkoutListAdapter extends BaseAdapter {
 
                         if (workoutList.get(position).getWorkoutID() == SingletonApplications.DBcom.getAllWorkouts().get(i).getWorkoutID() && !workoutelement.isFromServer())
 
-                        SingletonApplications.DBcom.removeWorkout(workoutList.get(position).getWorkoutID());
+                            SingletonApplications.DBcom.removeWorkout(workoutList.get(position).getWorkoutID());
 
                         workoutList.remove(position);
                         i = SingletonApplications.DBcom.getAllWorkouts().size();
                     }
 
-                            notifyDataSetChanged();
+                    notifyDataSetChanged();
                 }
 
             }
@@ -100,14 +100,7 @@ public class WorkoutListAdapter extends BaseAdapter {
         }
 
 
-        //StringBuilder sbExerciseList = new StringBuilder();
-        //for (ExerciseElement exercise : workoutelement.getExercises())
-        //    sbExerciseList.append(exercise.getName()).append(", ");
-        //sbExerciseList.substring(0, sbExerciseList.length());
-
-        //holder.Exercises.setText(sbExerciseList);
-
-        Exercises.setText("Carl Mar var her");
+        Exercises.setText("Placeholder");
 
 
 

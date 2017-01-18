@@ -13,8 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 import project.martin.bepeakedprojekt.Logind_akt;
 import project.martin.bepeakedprojekt.R;
 
@@ -22,7 +20,6 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
 
     SharedPreferences prefs;
     String language;
-    ArrayList<String> indstillinger;
     String profil;
     String activationKey;
     String changeLanguage;
@@ -55,12 +52,6 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
             language = getString(R.string.settings_default);
         }
 
-//        if(prefs.getInt("Unitsystem",0) == 0){
-//            unitsystem = "Metric";
-//        }
-//        else if(prefs.getInt("Unitsystem",0) == 1){
-//            unitsystem = "Imperial";
-//        }
 
         profil = getString(R.string.settings_profile);
         activationKey = getString(R.string.settings_activation);
@@ -120,7 +111,6 @@ public class Settings_akt extends AppCompatActivity implements AdapterView.OnIte
             startActivity(i);
 
         }else if (data.equalsIgnoreCase(activationKey)){
-            System.out.println("lol");
             Intent i = new Intent(this, ActivationKey_akt.class);
             startActivity(i);
 

@@ -92,7 +92,6 @@ public class MainMenu_akt extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         if(item.getItemId() == R.id.settings) {
-            System.out.println("Du har valgt indstillinger");
             Intent i = new Intent(this, Settings_akt.class);
             startActivity(i);
         }

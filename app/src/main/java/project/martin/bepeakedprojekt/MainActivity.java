@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (prefs.getInt("Language", 0) == 1) {
             setting.setLanguage(this.getBaseContext().getResources(), Settings.Language.ENGLISH);
         } else if (prefs.getInt("Language", 0) == 2) {
-            //Her mangler vietnamesisk
+            //Todo Her mangler vietnamesisk
         }
     }
 
@@ -55,7 +55,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        //Sprog kan ændres vha. hardcode her
-//        Settings.setLanguage(this.getBaseContext().getResources(), Settings.Language.DANISH);
     }
 }

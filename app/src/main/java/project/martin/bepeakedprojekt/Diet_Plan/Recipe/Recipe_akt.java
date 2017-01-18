@@ -26,8 +26,7 @@ public class Recipe_akt extends AppCompatActivity {
         ingridients = (TextView) findViewById(R.id.ingridients);
 
         image = (ImageView) findViewById(R.id.rc_image);
-        //TODO
-        //Lav det for diverse opskrifter
+        //ToDo Lav det for diverse opskrifter
         image.setImageResource(R.drawable.proteinsmothie);
         descriptionView = (TextView) findViewById(R.id.rc_description);
         descriptionView.setText(getString(R.string.recipe_protiensmoothie));

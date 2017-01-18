@@ -51,7 +51,7 @@ public class User_akt extends AppCompatActivity implements View.OnClickListener{
         return super.onOptionsItemSelected(item);
     }
 
-     public void onClick(View v) {
+    public void onClick(View v) {
         if (v == skiftKode){
             //TODO
             //Databasekald

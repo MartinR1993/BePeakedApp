@@ -1,6 +1,5 @@
 package project.martin.bepeakedprojekt.Workout.WorkoutExercises;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
-import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.GripView;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.OnItemMovedListener;
 import com.nhaarman.listviewanimations.itemmanipulation.dragdrop.TouchViewDraggableManager;
 
@@ -41,20 +39,15 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
     private ArrayList<String> exerciseNames = new ArrayList<>();
     private ArrayList<String> missingExerciseNames = new ArrayList<>();
     private ArrayList<ExerciseElement> exerciseList = new ArrayList<>();
-    public ArrayList<ExerciseElement> allExercises;
+    private ArrayList<ExerciseElement> allExercises;
     private EditText searchText;
-    private DynamicListView dlv;
     private DynamicListView listView;
-    //    private ListView lv;
     private ArrayAdapter adapter;
     private DatabaseCommunication DBCom;
     private AlphaInAnimationAdapter animAdapter;
-    private GripView gripView;
     private Menu menu;
-    private MenuItem item;
-
     private static final int INITIAL_DELAY_MILLIS = 300;
-    WorkoutElement workout;
+    private WorkoutElement workout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +68,6 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
 
             DBCom = SingletonApplications.DBcom;
 
-
             ArrayList<Integer> exerciseArray = DBCom.getWorkoutExercises(workout.getWorkoutID());
 
             for (int id : exerciseArray) {
@@ -88,8 +80,6 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         }
 
         listView = (DynamicListView) findViewById(R.id.dynamiclistview);
-        gripView = (GripView) findViewById(R.id.gripView);
-
 
 
         /* Setup the adapter */
@@ -101,7 +91,6 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         listView.setAdapter(animAdapter);
 
         listView.setOnItemMovedListener(new MyOnItemMovedListener(adapter));
-        listView.setOnItemLongClickListener(new MyOnItemLongClickListener(this,listView,adapter,exerciseNames,exerciseList));
 
     }
 
@@ -282,41 +271,6 @@ public class Workout_Exercises_akt extends AppCompatActivity implements AdapterV
         listView.setAdapter(new WorkoutExercisesListAdapter(this, exerciseNames, exerciseList));
         listOfExercises.setAdapter(adapter);
         popup.cancel();
-    }
-
-    private static class MyOnItemLongClickListener implements AdapterView.OnItemLongClickListener {
-
-        private  ArrayList<String> exerciseListNames;
-        private ArrayList<ExerciseElement> exerciseElements;
-        private DynamicListView mListView;
-        com.nhaarman.listviewanimations.ArrayAdapter<String> adapter;
-        Activity akt;
-
-        MyOnItemLongClickListener(Activity activity, DynamicListView listView, com.nhaarman.listviewanimations.ArrayAdapter<String> adapter, ArrayList<String>exerciseListNames, ArrayList<ExerciseElement> exerciseElements) {
-            mListView = listView;
-            this.exerciseListNames = exerciseListNames;
-            this.exerciseElements = exerciseElements;
-            this.adapter = adapter;
-            this.akt = activity;
-        }
-
-        @Override
-        public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-
-            // denne kode virker men har design problemer
-//            TextView test =(TextView) view.findViewById(R.id.ele_ExerciseTitle);
-//            String tesa = (String) test.getText();
-//
-//            for (int i = 0; i < exerciseListNames.size(); i++) {
-//                if (tesa == exerciseListNames.get(i)) {
-//                    SingletonApplications.DBcom.removeWorkoutExercise(SingletonApplications.workout.getWorkoutID(),exerciseElements.get(i).getExerciseID());
-//                    exerciseElements.remove(i);
-//                    exerciseListNames.remove(i);
-//                    mListView.setAdapter( new WorkoutExercisesListAdapter(akt, exerciseListNames, exerciseElements));
-//                }
-//            }
-            return true;
-        }
     }
 
     private class MyOnItemMovedListener implements OnItemMovedListener {

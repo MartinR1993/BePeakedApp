@@ -155,7 +155,6 @@ public class DietPlanMenu_akt extends AppCompatActivity {
 
         //create a new child and add that to the group
         ChildInfo detailInfo = new ChildInfo();
-        // detailInfo.setSequence(String.valueOf(listSize));
         detailInfo.setName(product);
         productList.add(detailInfo);
         headerInfo.setProductList(productList);

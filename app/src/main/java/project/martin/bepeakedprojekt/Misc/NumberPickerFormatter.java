@@ -8,10 +8,6 @@ import android.widget.NumberPicker;
 public class NumberPickerFormatter implements NumberPicker.Formatter {
     private final int increment;
 
-    public NumberPickerFormatter() {
-        this(1);
-    }
-
     public NumberPickerFormatter(int increment) {
         this.increment = increment;
     }

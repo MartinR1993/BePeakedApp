@@ -46,8 +46,6 @@ public class DietPlanAdapter extends BaseExpandableListAdapter {
             view = infalInflater.inflate(R.layout.items_child_diet_plan, null);
         }
 
-        /*TextView sequence = (TextView) view.findViewById(R.id.sequence);
-        sequence.setText(detailInfo.getSequence().trim() + ". ");*/
         TextView childItem = (TextView) view.findViewById(R.id.childItem);
         childItem.setText(detailInfo.getName().trim());
 
