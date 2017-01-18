@@ -139,6 +139,7 @@
     <string name="create_user_username_edit">Indtast brugernavn...</string>
     <string name="create_user_created">Bruger oprettet</string>
     <string name="create_user_error">Du skal udfylde hvert felt, eller også stemmer dine koder ikke overens</string>
+    <string name="exerciseResult_editBanner">Ret øvelsesresultat</string>
 
 
 </resources>

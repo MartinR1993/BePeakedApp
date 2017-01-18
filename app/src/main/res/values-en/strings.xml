@@ -139,5 +139,6 @@
     <string name="create_user_username_edit">Type in Username...</string>
     <string name="create_user_created">User created</string>
     <string name="create_user_error">You need to fill in the blanks, or maybe your passwords doesn\'t match</string>
+    <string name="exerciseResult_editBanner">Edit exercise result</string>
 
 </resources>
