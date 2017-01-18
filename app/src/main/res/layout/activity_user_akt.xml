@@ -38,21 +38,21 @@
 
             <TextView
                 android:text="@string/settings_user_height"
-                android:layout_width="85dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/up_height"
                 android:layout_marginTop="10dp"/>
 
             <TextView
                 android:text="@string/settings_user_weight"
-                android:layout_width="85dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/up_weight"
                 android:layout_marginTop="10dp"/>
 
             <TextView
                 android:text="@string/settings_user_age"
-                android:layout_width="85dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/up_age"
                 android:layout_marginTop="10dp"/>
@@ -66,61 +66,43 @@
 
             <TextView
                 android:text="@string/settings_user_calories"
-                android:layout_width="85dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/up_cal"
                 android:layout_marginTop="10dp"/>
 
             <TextView
                 android:text="@string/settings_user_culhydrates"
-                android:layout_width="85dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/up_col"
                 android:layout_marginTop="10dp"/>
 
             <TextView
                 android:text="@string/settings_user_protein"
-                android:layout_width="85dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/up_prot"
                 android:layout_marginTop="10dp"/>
 
             <TextView
                 android:text="@string/settings_user_fat"
-                android:layout_width="85dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/up_fat"
                 android:layout_marginTop="10dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/changepassword"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_vertical"
+            <Button
                 android:text="@string/settings_changepassword"
-                android:textAllCaps="false"
-                android:soundEffectsEnabled="false" />
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/changeUsername"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_vertical"
-                android:text="@string/settings_changeUsername"
-                android:textAllCaps="false"
-                android:soundEffectsEnabled="false" />
+                android:id="@+id/changepassword" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/changeEmail"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_vertical"
+            <Button
                 android:text="@string/settings_changeEmail"
-                android:textAllCaps="false"
-                android:soundEffectsEnabled="false" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/changeEmail" />
 
         </LinearLayout>
 

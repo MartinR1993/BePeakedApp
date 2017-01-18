@@ -99,7 +99,6 @@
     <string name="settings_user_fat">Fat: </string>
     <string name="settings_changepassword">Change password</string>
     <string name="settings_changeEmail">Change email</string>
-    <string name="settings_changeUsername">Change username</string>
 
     <!--Sprog-->
     <string name="language_title">Language</string>

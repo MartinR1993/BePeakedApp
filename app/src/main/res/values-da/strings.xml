@@ -99,7 +99,6 @@
     <string name="settings_user_fat">Fedt: </string>
     <string name="settings_changepassword">Skift kodeord</string>
     <string name="settings_changeEmail">Skift email</string>
-    <string name="settings_changeUsername">Skift brugernavn</string>
 
     <!--Sprog-->
     <string name="language_title">Sprog</string>

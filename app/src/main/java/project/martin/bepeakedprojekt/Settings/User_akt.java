@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,11 +17,8 @@ import project.martin.bepeakedprojekt.User.User;
 
 public class User_akt extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView skiftKode;
-    private TextView skiftBrugernavn;
-    private TextView skiftEmail;
-
-//    private TextView Username, Height, Weight, Age, Calories, Culhydrates, Protein, Fat;
+    private Button skiftKode;
+    private Button skiftEmail;
 
 
     @Override
@@ -33,31 +31,11 @@ public class User_akt extends AppCompatActivity implements View.OnClickListener{
         setTitle(getString(R.string.settings_profile));
 
 
-        skiftKode = (TextView) findViewById(R.id.changepassword);
+        skiftKode = (Button) findViewById(R.id.changepassword);
         skiftKode.setOnClickListener(this);
 
-        skiftBrugernavn = (TextView) findViewById(R.id.changeUsername);
-        skiftBrugernavn.setOnClickListener(this);
-
-        skiftEmail = (TextView) findViewById(R.id.changeEmail);
+        skiftEmail = (Button) findViewById(R.id.changeEmail);
         skiftEmail.setOnClickListener(this);
-
-
-//        Username = (TextView) findViewById(R.id.up_name);
-
-//        Height = (TextView) findViewById(R.id.textView9);
-//
-//        Weight = (TextView) findViewById(R.id.textView10);
-//
-//        Age = (TextView) findViewById(R.id.textView11);
-//
-//        Calories = (TextView) findViewById(R.id.textView13);
-//
-//        Culhydrates = (TextView) findViewById(R.id.textView14);
-//
-//        Protein = (TextView) findViewById(R.id.textView15);
-//
-//        Fat = (TextView) findViewById(R.id.textView16);
 
     }
 
@@ -79,11 +57,8 @@ public class User_akt extends AppCompatActivity implements View.OnClickListener{
             //Databasekald
             // implementere en metode der skifter adganskode, og åbner et popup vindue hvori alt dette kommer til at foregå
             Toast.makeText(getApplicationContext(), "Mangler skift kode kode", Toast.LENGTH_LONG).show();
+        }
 
-        }
-        else if (v == skiftBrugernavn) {
-            Toast.makeText(getApplicationContext(), "Mangler skift brugernavn kode", Toast.LENGTH_LONG).show();
-        }
         else if (v == skiftEmail) {
             Toast.makeText(getApplicationContext(), "Mangler skift email kode", Toast.LENGTH_LONG).show();
         }
