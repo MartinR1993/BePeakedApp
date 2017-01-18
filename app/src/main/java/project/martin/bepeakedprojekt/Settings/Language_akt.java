@@ -31,9 +31,9 @@ public class Language_akt extends AppCompatActivity  implements AdapterView.OnIt
     ListView listView;
     String[] language = {
             //Kan ikke oversættes?
-            "Danish",
+            "Dansk",
             "English",
-            "Vietnamese"
+            "Tiếng Việt"
     };
 
     @Override
