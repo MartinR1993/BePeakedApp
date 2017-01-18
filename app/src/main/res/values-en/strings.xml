@@ -137,7 +137,6 @@
     <string name="create_user_username">Username</string>
     <string name="create_user_username_edit">Type in Username...</string>
     <string name="create_user_created">User created</string>
-    <string name="create_user_error_password">Your passwords doesn\'t match</string>
-
+    <string name="create_user_error">You need to fill in the blanks, or maybe your passwords doesn\'t match</string>
 
 </resources>

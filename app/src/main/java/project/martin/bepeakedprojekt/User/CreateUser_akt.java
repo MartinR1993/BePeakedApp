@@ -59,7 +59,7 @@ public class CreateUser_akt extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         String password = epassword.getText().toString();
-        if(password.equals(erpassword.getText().toString()) && (eemail != null) && (efirstname != null) && (elastname != null) && (eusername != null) && (epassword.toString().length() == 6) ) {
+        if(password.equals(erpassword.getText().toString()) && (!eemail.getText().toString().isEmpty()) && (!efirstname.getText().toString().isEmpty()) && (!elastname.getText().toString().isEmpty()) && (!eusername.getText().toString().isEmpty()) && (epassword.toString().length() >= 6)) {
             String firstName = efirstname.getText().toString();
             String lastName = elastname.getText().toString();
             String email = eemail.getText().toString();
@@ -76,7 +76,7 @@ public class CreateUser_akt extends AppCompatActivity implements View.OnClickLis
             startActivity(i);
         }
         else
-            Toast.makeText(getApplicationContext(), R.string.create_user_error_password, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.create_user_error, Toast.LENGTH_LONG).show();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
