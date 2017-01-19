@@ -154,5 +154,7 @@
     <string name="sc_tskCouldnotConnect1">"Could not connect to server "</string>
     <string name="sc_tskCouldnotConnect2">" Do you want to continue in offline mode?"</string>
     <string name="sc_tskWrongPass_title">Wrong combination</string>
+    <string name="sc_tskUserDuplicate_title">Duplicate user</string>
+    <string name="sc_tskUserDuplicate_msg">A user with that username already exist.\nTry another username</string>
 
 </resources>

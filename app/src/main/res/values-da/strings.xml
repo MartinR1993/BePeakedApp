@@ -152,6 +152,8 @@
     <string name="sc_tskCouldnotConnect1">"Kunne ikke få forbindelse til server "</string>
     <string name="sc_tskCouldnotConnect2">" vil du fortsætte i offline tilstand?\n"</string>
     <string name="sc_tskWrongPass_title">Forkert kombination</string>
+    <string name="sc_tskUserDuplicate_msg">En bruger med dette brugernavn eksisterer allerede.\nPrøv et andet brugernavn</string>
+    <string name="sc_tskUserDuplicate_title">Bruger eksiterer allerede</string>
 
 
 </resources>

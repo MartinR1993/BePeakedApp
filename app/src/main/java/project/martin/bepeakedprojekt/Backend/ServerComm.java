@@ -23,6 +23,7 @@ import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Settings.ActivationKey_akt;
 import project.martin.bepeakedprojekt.Settings.User_akt;
+import project.martin.bepeakedprojekt.User.CreateUser_akt;
 import project.martin.bepeakedprojekt.User.User;
 import project.martin.bepeakedprojekt.Workout.WorkoutExercises.Workout_Exercises_akt;
 import project.martin.bepeakedprojekt.Workout.WorkoutMenu_akt;
@@ -70,8 +71,8 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
             new ServerComm(new TaskGetUserType(mainMenu, host, port)).execute("" + userID, sessionID);
     }
 
-    public void createUser(String firstName, String lastName, String nickName, String passHash, String salt, String email) {
-        new ServerComm(new TaskCreateUser(host, port)).execute(firstName, lastName, nickName, passHash, salt, email);
+    public void createUser(CreateUser_akt creatUserAct, String firstName, String lastName, String nickName, String passHash, String salt, String email) {
+        new ServerComm(new TaskCreateUser(creatUserAct, host, port)).execute(firstName, lastName, nickName, passHash, salt, email);
     }
 
     public void getUserProfile(User_akt userProfile, int userID, String sessionID) {

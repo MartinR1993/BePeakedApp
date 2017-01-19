@@ -10,12 +10,19 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import project.martin.bepeakedprojekt.Backend.BackendData;
+import project.martin.bepeakedprojekt.R;
+import project.martin.bepeakedprojekt.User.CreateUser_akt;
+
 import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
 
 public class TaskCreateUser extends ServerTask
 {
-    public TaskCreateUser(String host, int port) {
+    private final CreateUser_akt createUserAct;
+
+    public TaskCreateUser(CreateUser_akt createUserAct, String host, int port) {
         super(host, port);
+        this.createUserAct = createUserAct;
     }
 
     @Override
@@ -53,10 +60,20 @@ public class TaskCreateUser extends ServerTask
 
     @Override
     public void onPostExecute(String... result) {
-        if(result != null){
-            if(result[0] != null)
-                if(!result[0].equals(ERROR_NO_HOST));
-                    System.out.println("Create user errors: " + result[0]);
+        if(result != null) {
+            if(result[0] != null) {
+                switch (result[0]) {
+                    case ERROR_NO_HOST:
+                        showMessageDialouge(createUserAct, createUserAct.getString(R.string.sc_tskConnError_title), createUserAct.getString(R.string.sc_tskConnError_msg) + BackendData.SERVER_ADRESS);
+                        break;
+                    case TAG_ERROR_NONE:
+                        createUserAct.userCreated();
+                        break;
+                    default:
+                        showMessageDialouge(createUserAct, createUserAct.getString(R.string.sc_tskUserDuplicate_title), createUserAct.getString(R.string.sc_tskUserDuplicate_msg) + '\n' + result[0]);
+                        break;
+                }
+            }
         }
     }
 }

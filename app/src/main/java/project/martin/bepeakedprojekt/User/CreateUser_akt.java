@@ -20,11 +20,9 @@ import scSecurity.RandomGen;
 import scSecurity.hashing.MD5Hashing;
 
 public class CreateUser_akt extends AppCompatActivity implements View.OnClickListener {
-
-    TextView firstname, lastname, username, email, password, rpassword;
-    EditText efirstname, elastname, eusername, eemail, epassword, erpassword;
-    Button create;
-    String passwordc;
+    private TextView firstname, lastname, username, email, password, rpassword;
+    private EditText efirstname, elastname, eusername, eemail, epassword, erpassword;
+    private Button create;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +67,17 @@ public class CreateUser_akt extends AppCompatActivity implements View.OnClickLis
             MD5Hashing md5 = new MD5Hashing();
             String passwordHashed = md5.decryptHash(md5.encryptHash(password, salt));
 
-            new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT).createUser(firstName, lastName,  nickName, passwordHashed, salt, email);
-            Toast.makeText(getApplicationContext(), R.string.create_user_created, Toast.LENGTH_LONG).show();
-            Intent i = new Intent(this, Logind_akt.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
+            new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT).createUser(this, firstName, lastName,  nickName, passwordHashed, salt, email);
         }
         else
             Toast.makeText(getApplicationContext(), R.string.create_user_error, Toast.LENGTH_LONG).show();
+    }
+
+    public void userCreated() {
+        Toast.makeText(getApplicationContext(), R.string.create_user_created, Toast.LENGTH_LONG).show();
+        Intent i = new Intent(this, Logind_akt.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
