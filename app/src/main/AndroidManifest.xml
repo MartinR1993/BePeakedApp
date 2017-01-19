@@ -7,7 +7,7 @@
     <application
         android:name=".SingletonApplications"
         android:allowBackup="true"
-        android:icon="@drawable/bepeakedlogo"
+        android:icon="@drawable/bodybook_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
