@@ -18,7 +18,7 @@ import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskGetUserType;
 import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskGetWorkoutList;
 import project.martin.bepeakedprojekt.Backend.ServerTasks.TaskLogin;
 import project.martin.bepeakedprojekt.Diet_Plan.DietPlanMenu_akt;
-import project.martin.bepeakedprojekt.Logind_akt;
+import project.martin.bepeakedprojekt.Login_akt;
 import project.martin.bepeakedprojekt.MainMenu_akt;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.Settings.ActivationKey_akt;
@@ -48,11 +48,11 @@ public class ServerComm extends AsyncTask<String, Void, String[]>
         this.serverTask = serverTask;
     }
 
-    public void getSalt(Logind_akt login, String username) {
+    public void getSalt(Login_akt login, String username) {
         new ServerComm(new TaskGetSalt(login, host, port)).execute(username);
     }
 
-    public void login(Logind_akt login, String username, String password, String salt) {
+    public void login(Login_akt login, String username, String password, String salt) {
         if(!User.isOffline())
             new ServerComm(new TaskLogin(login, host, port)).execute(username, password, salt);
     }

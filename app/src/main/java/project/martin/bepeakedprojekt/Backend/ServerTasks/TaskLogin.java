@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
-import project.martin.bepeakedprojekt.Logind_akt;
+import project.martin.bepeakedprojekt.Login_akt;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.User;
 import scSecurity.hashing.MD5Hashing;
@@ -20,9 +20,9 @@ import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
 
 public class TaskLogin extends ServerTask
 {
-    private final Logind_akt login;
+    private final Login_akt login;
 
-    public TaskLogin(Logind_akt login, String host, int port) {
+    public TaskLogin(Login_akt login, String host, int port) {
         super(host, port);
         this.login = login;
     }

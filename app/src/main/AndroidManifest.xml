@@ -13,14 +13,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="BodyBook">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Logind_akt" />
+        <activity android:name=".Login_akt" />
         <activity android:name=".MainMenu_akt" />
         <activity android:name=".Workout.WorkoutMenu_akt" />
         <activity

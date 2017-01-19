@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.ServerComm;
-import project.martin.bepeakedprojekt.Logind_akt;
+import project.martin.bepeakedprojekt.Login_akt;
 import project.martin.bepeakedprojekt.R;
 import scSecurity.RandomGen;
 import scSecurity.hashing.MD5Hashing;
@@ -75,7 +75,7 @@ public class CreateUser_akt extends AppCompatActivity implements View.OnClickLis
 
     public void userCreated() {
         Toast.makeText(getApplicationContext(), R.string.create_user_created, Toast.LENGTH_LONG).show();
-        Intent i = new Intent(this, Logind_akt.class);
+        Intent i = new Intent(this, Login_akt.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
     }

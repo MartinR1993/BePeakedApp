@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import project.martin.bepeakedprojekt.Backend.BackendData;
-import project.martin.bepeakedprojekt.Logind_akt;
+import project.martin.bepeakedprojekt.Login_akt;
 import project.martin.bepeakedprojekt.R;
 import project.martin.bepeakedprojekt.User.User;
 
@@ -21,9 +21,9 @@ import static project.martin.bepeakedprojekt.Backend.ServerTasks.ServerTags.*;
 
 public class TaskGetSalt extends ServerTask
 {
-    private final Logind_akt login;
+    private final Login_akt login;
 
-    public TaskGetSalt(Logind_akt login, String host, int port) {
+    public TaskGetSalt(Login_akt login, String host, int port) {
         super(host, port);
         this.login = login;
     }

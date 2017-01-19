@@ -1,6 +1,6 @@
 <resources>
     <!--Projekt navn-->
-    <string name="app_name">BePeaked Projekt</string>
+    <string name="app_name">g9 BePeaked Projekt</string>
 
     <!--Log ind menu-->
     <string name="login_banner">Login Menu</string>

@@ -15,7 +15,7 @@ import project.martin.bepeakedprojekt.Backend.BackendData;
 import project.martin.bepeakedprojekt.Backend.ServerComm;
 import project.martin.bepeakedprojekt.User.CreateUser_akt;
 
-public class Logind_akt extends AppCompatActivity implements View.OnClickListener
+public class Login_akt extends AppCompatActivity implements View.OnClickListener
 {
     private ServerComm server = new ServerComm(BackendData.SERVER_ADRESS, BackendData.SERVER_PORT);
     private TextView textUsername, textPassword;
@@ -35,9 +35,11 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
 
         textUsername = (TextView) findViewById(R.id.textUsername);
         editUsername = (EditText) findViewById(R.id.editUsername);
+        editUsername.setText("lasse91");
 
         textPassword = (TextView) findViewById(R.id.textPassword);
         editPassword = (EditText) findViewById(R.id.editPassword);
+        editPassword.setText("brint");
 
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(this);
@@ -64,7 +66,7 @@ public class Logind_akt extends AppCompatActivity implements View.OnClickListene
 
     public void gotoMenu() {
         Intent i = new Intent(this, MainMenu_akt.class);
-        Logind_akt.this.finish();
+        Login_akt.this.finish();
         startActivity(i);
     }
 }
