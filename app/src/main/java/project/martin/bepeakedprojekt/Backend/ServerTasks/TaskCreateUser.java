@@ -70,7 +70,7 @@ public class TaskCreateUser extends ServerTask
                         createUserAct.userCreated();
                         break;
                     default:
-                        showMessageDialouge(createUserAct, createUserAct.getString(R.string.sc_tskUserDuplicate_title), createUserAct.getString(R.string.sc_tskUserDuplicate_msg) + '\n' + result[0]);
+                        showMessageDialouge(createUserAct, createUserAct.getString(R.string.sc_tskUserDuplicate_title), createUserAct.getString(R.string.sc_tskUserDuplicate_msg));
                         break;
                 }
             }
